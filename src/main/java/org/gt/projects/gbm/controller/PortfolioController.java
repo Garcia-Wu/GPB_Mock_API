@@ -96,54 +96,106 @@ public class PortfolioController extends BaseAPIController{
 	@RequestMapping(value = "/allocation", method = {RequestMethod.POST})
 	public BaseAPIResponse<JSONObject> allocation(@RequestBody Map<String, Object> params) {
 		printParams(params);
-		String fileName = "";
-		String id = params.get("id").toString();
-		if("0".equals(id)) {
-			fileName = "allocation_noData";
-		} else if ("1".equals(id)) {
-			fileName = "breakDown_hasSubClass_7currency";
-		} else if ("2".equals(id)) {
-			fileName = "breakDown_hasSubClass_8currency";
-		} else if ("3".equals(id)) {
-			fileName = "breakDown_hasSubClass_9currency";
-		} else {
-			fileName = "breakDownDefault";
-		}
-		String json = JsonFileUtils.readFileToString(fileName);
-		if(params.get("currency") != null) {
-			json = json.replaceAll("GBP", params.get("currency").toString());
-		} 
 		
-		if(params.get("category") != null) {
-			String category = params.get("category").toString();
-			String jsonField = "";
-			if(category.equalsIgnoreCase("ASSET")) {
-				jsonField = "clazz";
-			}else if(category.equalsIgnoreCase("CURRENCY")) {
-				jsonField = "currency";
-			}else if(category.equalsIgnoreCase("REGION")) {
-				jsonField = "region";
+		JSONObject result = new JSONObject();
+		JSONArray classList = JSONObject.fromObject(JsonFileUtils.readFileToString("hasSubClass_list")).getJSONArray("clazz");
+		JSONArray regionList = JSONObject.fromObject(JsonFileUtils.readFileToString("region_list")).getJSONArray("region");
+		JSONArray currencyList = new JSONArray();
+		
+		String id = params.get("id").toString();
+		if ("0".equals(id)) {
+			classList.clear();
+			regionList.clear();
+		} else if ("1".equals(id)) {
+			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("7currency_list")).getJSONArray("currency");
+		} else if ("2".equals(id)) {
+			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list")).getJSONArray("currency");
+		} else if ("3".equals(id)) {
+			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("9currency_list")).getJSONArray("currency");
+		} else {
+			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list")).getJSONArray("currency");
+		}
+
+		if (params.get("currency") != null) {
+			JsonFileUtils.replaceProperty(classList, "currency", params.get("currency"));
+			for (int i = 0; i < classList.size(); i++) {
+				JsonFileUtils.replaceProperty(classList.getJSONObject(i).getJSONArray("nodes"), "currency", params.get("currency"));
 			}
-			if(!jsonField.equals("")) {
-				JSONObject jsonObject = new JSONObject();
-				jsonObject.put(jsonField, JSONObject.fromObject(json).get(jsonField));
-				json = jsonObject.toString();
+			JsonFileUtils.replaceProperty(currencyList, "currency", params.get("currency"));
+			JsonFileUtils.replaceProperty(regionList, "currency", params.get("currency"));
+		}
+		
+		result.put("clazz", classList);
+		result.put("currency", currencyList);
+		result.put("region", regionList);
+
+		if (params.get("category") != null) {
+			String category = params.get("category").toString();
+			if (category.equalsIgnoreCase("ASSET")) {
+				result.remove("currency");
+				result.remove("region");
+			} else if (category.equalsIgnoreCase("CURRENCY")) {
+				result.remove("clazz");
+				result.remove("region");
+			} else if (category.equalsIgnoreCase("REGION")) {
+				result.remove("clazz");
+				result.remove("currency");
 			}
 		}
-		return new BaseAPIResponse<JSONObject>(json);
+		return new BaseAPIResponse<JSONObject>(result);
 	}
+//	
+//	@RequestMapping(value = "/allocation", method = {RequestMethod.POST})
+//	public BaseAPIResponse<JSONObject> allocation(@RequestBody Map<String, Object> params) {
+//		printParams(params);
+//		String fileName = "";
+//		String id = params.get("id").toString();
+//		if("0".equals(id)) {
+//			fileName = "allocation_noData";
+//		} else if ("1".equals(id)) {
+//			fileName = "breakDown_hasSubClass_7currency";
+//		} else if ("2".equals(id)) {
+//			fileName = "breakDown_hasSubClass_8currency";
+//		} else if ("3".equals(id)) {
+//			fileName = "breakDown_hasSubClass_9currency";
+//		} else {
+//			fileName = "breakDownDefault";
+//		}
+//		String json = JsonFileUtils.readFileToString(fileName);
+//		if(params.get("currency") != null) {
+//			json = json.replaceAll("GBP", params.get("currency").toString());
+//		} 
+//		
+//		if(params.get("category") != null) {
+//			String category = params.get("category").toString();
+//			String jsonField = "";
+//			if(category.equalsIgnoreCase("ASSET")) {
+//				jsonField = "clazz";
+//			}else if(category.equalsIgnoreCase("CURRENCY")) {
+//				jsonField = "currency";
+//			}else if(category.equalsIgnoreCase("REGION")) {
+//				jsonField = "region";
+//			}
+//			if(!jsonField.equals("")) {
+//				JSONObject jsonObject = new JSONObject();
+//				jsonObject.put(jsonField, JSONObject.fromObject(json).get(jsonField));
+//				json = jsonObject.toString();
+//			}
+//		}
+//		return new BaseAPIResponse<JSONObject>(json);
+//	}
 	
 	@RequestMapping(value = "/liability/detail", method = {RequestMethod.POST})
 	public BaseAPIResponse<JSONObject> liabilityDetail(@RequestBody Map<String, Object> params) {
 		printParams(params);
-		String jsonName = "contingent_liabilities_list_USD2";
+		String jsonName = "contingent_liabilities_list_USD";
 		String id = "0";
 		String reportCurrency = "USD";
 		if(params.get("id") != null) {
 			id = params.get("id").toString();
 		}
 		if ("2".equals(id) || "3".equals(id)) {
-			jsonName = "contingent_liabilities_list_GBP2";
+			jsonName = "contingent_liabilities_list_GBP";
 			reportCurrency = "GBP";
 		} 
 		String json = JsonFileUtils.readFileToString(jsonName);
@@ -194,7 +246,7 @@ public class PortfolioController extends BaseAPIController{
 	@RequestMapping(value = "/transactions", method = {RequestMethod.POST})
 	public BaseAPIResponse<JSONObject> transactions(@RequestBody Map<String, Object> params) {
 		printParams(params);
-		String json = JsonFileUtils.readFileToString("portfolio_transactions_list2");
+		String json = JsonFileUtils.readFileToString("portfolio_transactions_list");
 		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("transactions");
 		String id = params.get("id").toString();
 		if(id.equals("0")) {

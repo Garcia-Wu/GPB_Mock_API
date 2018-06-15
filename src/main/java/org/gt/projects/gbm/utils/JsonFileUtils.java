@@ -42,6 +42,13 @@ public class JsonFileUtils {
 	    return result;
 	}
 
+	/**
+	 * 获取分页数组
+	 * @param jsonArray
+	 * @param page 
+	 * @param pageSize 
+	 * @return
+	 */
 	public static JSONArray getPageJsonArray(JSONArray jsonArray, int page, int pageSize) {
 		if(pageSize == -1) {
 			return jsonArray;
@@ -73,6 +80,13 @@ public class JsonFileUtils {
 		return result;
 	}
 	
+	/**
+	 * 根据数组属性筛选
+	 * @param jsonArray
+	 * @param filterKey
+	 * @param filterValue
+	 * @return
+	 */
 	public static JSONArray getFilterArray(JSONArray jsonArray, String filterKey, String filterValue) {
 		JSONArray result = new JSONArray();
 		for (int i = 0; i < jsonArray.size(); i++) {
@@ -81,6 +95,20 @@ public class JsonFileUtils {
 			}
 		}
 		return result;
+	}
+	
+	/**
+	 * 替换数组属性值
+	 * @param jsonArray
+	 * @param property
+	 * @param replaceValue
+	 * @return
+	 */
+	public static JSONArray replaceProperty(JSONArray jsonArray, String property, Object replaceValue) {
+		for (int i = 0; i < jsonArray.size(); i++) {
+			jsonArray.getJSONObject(i).put(property, replaceValue);
+		}
+		return jsonArray;
 	}
 	
 }

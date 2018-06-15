@@ -1,0 +1,52 @@
+{
+	"currency": [
+		{
+			"amount": 116266920155.82,
+			"name": "Hong Kong Dollar",
+			"currency": "GBP",
+			"weight": 29.85
+		},
+		{
+			"amount": 76615421087.60,
+			"name": "US Dollar",
+			"currency": "GBP",
+			"weight": 19.67
+		},
+		{
+			"amount": 65202956228.09,
+			"name": "Australian Dollar",
+			"currency": "GBP",
+			"weight": 16.74
+		},
+		{
+			"amount": 41754820236.86,
+			"name": "Canadian Dollar",
+			"currency": "GBP",
+			"weight": 10.72
+		},
+		{
+			"amount": 41754820236.86,
+			"name": "Japanese Yen",
+			"currency": "GBP",
+			"weight": 10.72
+		},
+		{
+			"amount": 27732679112.54,
+			"name": "Euro Member Countries",
+			"currency": "GBP",
+			"weight": 7.12
+		},
+		{
+			"amount": 16904470133.21,
+			"name": "Singapore Dollar",
+			"currency": "GBP",
+			"weight": 4.3
+		},
+		{
+			"amount": 15375154097,
+			"name": "Thai Baht",
+			"currency": "GBP",
+			"weight": 4
+		}
+	]
+}
