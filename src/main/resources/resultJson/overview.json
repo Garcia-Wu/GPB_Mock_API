@@ -1,0 +1,10 @@
+{
+	"asset": {
+		"amount": 389503920120,
+		"currency": "GBP"
+	},
+	"customer": {
+		"id": "12",
+		"name": "Jones"
+	}
+}

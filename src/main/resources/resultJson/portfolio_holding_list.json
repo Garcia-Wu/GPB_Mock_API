@@ -1,0 +1,12 @@
+{
+	"holdings":[
+		{
+			"id":"1",
+			"name":"CMS GMCB Moderate",
+			"code":"034850959",
+			"weight":-0.10,
+			"asset":388598.00,
+			"currency":"GBP"
+		}
+	]
+}
