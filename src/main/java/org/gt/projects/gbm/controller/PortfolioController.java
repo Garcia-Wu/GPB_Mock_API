@@ -213,12 +213,12 @@ public class PortfolioController extends BaseAPIController{
 		
 		JSONObject commiment = new JSONObject();
 		commiment.put("currency", reportCurrency);
-		if (params.get("currency") != null) {
-			for (int i = 0; i < jsonArray.size(); i++) {
-				jsonArray.getJSONObject(i).put("baseCurrency", params.get("currency"));
-				jsonArray.getJSONObject(i).put("remainingBaseCurrency", params.get("currency"));
-			}
-		}
+//		if (params.get("currency") != null) {
+//			for (int i = 0; i < jsonArray.size(); i++) {
+//				jsonArray.getJSONObject(i).put("baseCurrency", params.get("currency"));
+//				jsonArray.getJSONObject(i).put("remainingBaseCurrency", params.get("currency"));
+//			}
+//		}
 
 		int page = 0;
 		int pageSize = 15;
