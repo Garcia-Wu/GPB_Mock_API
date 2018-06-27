@@ -7,7 +7,7 @@
 			"id": 1,
 			"tradeDate": 1529658449.2655811,
 			"type": "cash movements1 GBP Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
-			"description": "Transaction Description: This is the income description, please see the description of the income 1 item",
+			"description": "Transaction Description: This is the income description, please see the description of the income 1 item Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
 			"currency": "GBP"
 		},
 		{
@@ -17,7 +17,7 @@
 			"id": 2,
 			"tradeDate": 1529658449.2656431,
 			"type": "Purchases1 USD Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
-			"description": "Transaction Description: This is the purchase description, please see the description of the purchase 1 item",
+			"description": "Transaction Description: This is the purchase description, please see the description of the purchase 1 item Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
 			"currency": "USD"
 		},
 		{
@@ -27,7 +27,7 @@
 			"id": 3,
 			"tradeDate": 1529658449.265645,
 			"type": "Sales1 JPY Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
-			"description": "Transaction Description: This is the sales description, please see the description of the sales 1 item",
+			"description": "Transaction Description: This is the sales description, please see the description of the sales 1 item Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
 			"currency": "JPY"
 		},
 		{
