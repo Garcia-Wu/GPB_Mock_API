@@ -22,7 +22,7 @@ public class OverviewController extends BaseAPIController {
 		if (id.equals("5") || id.equals("6") || id.equals("7")) {
 			jsonObject.getJSONObject("asset").put("amount", 13560001.01);
 			if(id.equals("7")) {
-				jsonObject.getJSONObject("customer").put("name", "Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+				jsonObject.getJSONObject("customer").put("name", "WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
 			}
 		} 
 		if (currency != null) {
@@ -46,7 +46,8 @@ public class OverviewController extends BaseAPIController {
 			jsonArray = new JSONArray();
 			jsonArray.add(oneItem);
 		} else if ("2".equals(id)) {
-			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 0, 5);
+			// 获取ID为7与8的数据（ID为7对应的portfolioNumber为2）
+			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 3, 2);
 		} else if ("3".equals(id)) {
 			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 0, 13);
 		} else if ("4".equals(id)) {

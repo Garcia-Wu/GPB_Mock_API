@@ -12,7 +12,7 @@ public class JsonFileUtils {
 
 	/**
 	 * 读取文件，返回字符串
-	 * @param filePath 文件项目路径
+	 * @param fileName 文件名
 	 * @return 文件字符串
 	 */
 	public static String readFileToString(String fileName) {

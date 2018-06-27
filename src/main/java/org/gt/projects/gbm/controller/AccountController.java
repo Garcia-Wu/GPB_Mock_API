@@ -55,7 +55,9 @@ public class AccountController extends BaseAPIController{
 			JSONObject oneItem = (JSONObject) jsonArray.get(2);
 			jsonArray = new JSONArray();
 			jsonArray.add(oneItem);
-		} 
+		} else if ("7".equals(id)) {
+			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 0, 2);
+		}
 		
 		if(currency != null) {
 			for (int i = 0; i < jsonArray.size(); i++) {
@@ -83,11 +85,19 @@ public class AccountController extends BaseAPIController{
 		if ("0".equals(id)) {
 			classList.clear();
 			regionList.clear();
-		} else if ("1".equals(id) || "4".equals(id)) {
+		} else if ("1".equals(id)) {
 			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("7currency_list")).getJSONArray("currency");
-		} else if ("2".equals(id) || "5".equals(id)) {
+		} else if ("2".equals(id)) {
 			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list")).getJSONArray("currency");
-		} else if ("3".equals(id) || "6".equals(id)) {
+		} else if ("3".equals(id)) {
+			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("9currency_list")).getJSONArray("currency");
+		} else if ("4".equals(id)) {
+			classList.clear();
+			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("7currency_list")).getJSONArray("currency");
+		} else if ("5".equals(id)) {
+//			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list")).getJSONArray("currency");
+		} else if ("6".equals(id)) {
+			regionList.clear();
 			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("9currency_list")).getJSONArray("currency");
 		} else {
 			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list")).getJSONArray("currency");
