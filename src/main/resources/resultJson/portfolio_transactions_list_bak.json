@@ -1,12 +1,12 @@
 {
 	"transactions": [
 		{
-			"filterType": "cash movements",
+			"filterType": "income",
 			"status": "Pending",
 			"amount": 2000000.12,
 			"id": 1,
 			"tradeDate": 1529658449.2655811,
-			"type": "cash movements1 GBP Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+			"type": "Income1 GBP",
 			"description": "Transaction Description: This is the income description, please see the description of the income 1 item",
 			"currency": "GBP"
 		},
@@ -16,7 +16,7 @@
 			"amount": -348425.933,
 			"id": 2,
 			"tradeDate": 1529658449.2656431,
-			"type": "Purchases1 USD Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+			"type": "Purchases1 USD",
 			"description": "Transaction Description: This is the purchase description, please see the description of the purchase 1 item",
 			"currency": "USD"
 		},
@@ -26,27 +26,27 @@
 			"amount": 29492927.37,
 			"id": 3,
 			"tradeDate": 1529658449.265645,
-			"type": "Sales1 JPY Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+			"type": "Sales1 JPY",
 			"description": "Transaction Description: This is the sales description, please see the description of the sales 1 item",
 			"currency": "JPY"
 		},
 		{
-			"filterType": "cash movements",
+			"filterType": "fees",
 			"status": "Pending",
 			"amount": -150000,
 			"id": 4,
 			"tradeDate": 1529658449.703336,
 			"description": "Transaction Description: This is the fees description, please see the description of the fees 1 item",
 			"currency": "GBP",
-			"type": "cash movements2 GBP"
+			"type": "Fees1 GBP"
 		},
 		{
-			"filterType": "cash movements",
+			"filterType": "fees",
 			"status": "",
 			"amount": 17695752,
 			"id": 5,
 			"tradeDate": 1527066448.703346,
-			"type": "cash movements3 JPY",
+			"type": "Fees2 JPY",
 			"description": "Transaction Description: This is the fees description, please see the description of the fees 2 item",
 			"currency": "JPY"
 		},
@@ -71,12 +71,12 @@
 			"currency": "USD"
 		},
 		{
-			"filterType": "cash movements",
+			"filterType": "income",
 			"status": "",
 			"amount": 40203,
 			"id": 8,
 			"tradeDate": 1527066448.965102,
-			"type": "cash movements4 USD",
+			"type": "Income2 USD",
 			"description": "Transaction Description: This is the income description, please see the description of the income 2 item",
 			"currency": "USD"
 		},
@@ -101,22 +101,22 @@
 			"currency": "JPY"
 		},
 		{
-			"filterType": "cash movements",
+			"filterType": "fees",
 			"status": "",
 			"amount": 20000,
 			"id": 11,
 			"tradeDate": 1524474448.006484,
-			"type": "cash movements5 GBP",
+			"type": "Fees3 GBP",
 			"description": "Transaction Description: This is the fees description, please see the description of the fees 3 item",
 			"currency": "GBP"
 		},
 		{
-			"filterType": "cash movements",
+			"filterType": "income",
 			"status": "Pending",
 			"amount": 2949292,
 			"id": 12,
 			"tradeDate": 1524474448.0064859,
-			"type": "cash movements6 JPY",
+			"type": "Income3 JPY",
 			"description": "Transaction Description: This is the income description, please see the description of the income 3 item",
 			"currency": "JPY"
 		},
@@ -131,22 +131,22 @@
 			"currency": "USD"
 		},
 		{
-			"filterType": "cash movements",
+			"filterType": "income",
 			"status": "Pending",
 			"amount": -10000,
 			"id": 14,
 			"tradeDate": 1521796048.0064859,
-			"type": "cash movements7 GBP",
+			"type": "Income4 GBP",
 			"description": "Transaction Description: This is the income description, please see the description of the income 4 item",
 			"currency": "GBP"
 		},
 		{
-			"filterType": "cash movements",
+			"filterType": "fees",
 			"status": "Pending",
 			"amount": -10000,
 			"id": 15,
 			"tradeDate": 1521796048.0064859,
-			"type": "cash movements8 GBP",
+			"type": "Fees4 GBP",
 			"description": "Transaction Description: This is the fees description, please see the description of the fees 4 item",
 			"currency": "GBP"
 		},

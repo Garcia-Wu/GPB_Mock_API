@@ -22,9 +22,12 @@ public class OverviewController extends BaseAPIController {
 		JSONObject jsonObject = JSONObject.fromObject(JsonFileUtils.readFileToString("overview"));
 		String id = params.get("id").toString();
 		jsonObject.getJSONObject("customer").put("id", id);
-		if (id.equals("5") || id.equals("6")) {
+		if (id.equals("5") || id.equals("6") || id.equals("7")) {
 			jsonObject.getJSONObject("asset").put("amount", 13560001.01);
-		}
+			if(id.equals("7")) {
+				jsonObject.getJSONObject("customer").put("name", "Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+			}
+		} 
 		if (params.get("currency") != null) {
 			jsonObject.getJSONObject("asset").put("currency", params.get("currency"));
 		}
