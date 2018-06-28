@@ -21,7 +21,7 @@ public class AccountController extends BaseAPIController{
 	
 	@RequestMapping(value = "v1/overview", method = {RequestMethod.POST})
 	public BaseAPIResponse<JSONObject> overview(@RequestBody Map<String, Object> params) {
-		printParams(params);
+		printJsonParams(params);
 		List<String> ids = (List<String>) params.get("ids");
 		String json = JsonFileUtils.readFileToString("overview_account_list");
 		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("accounts");

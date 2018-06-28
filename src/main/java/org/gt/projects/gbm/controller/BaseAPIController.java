@@ -28,7 +28,7 @@ public class BaseAPIController {
         return response;
     }
 	
-	public void printParams(Map<String, Object> params) {
+	public void printJsonParams(Map<String, Object> params) {
 		System.out.print("request body:\t");
 		for(String key : params.keySet()) {
 			System.out.print(key+"="+params.get(key)+"  ");
