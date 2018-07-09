@@ -4,8 +4,24 @@
 			"id":"1",
 			"name":"CMS GMCB Moderate",
 			"code":"034850959",
-			"weight":-0.10,
-			"asset":388598.00,
+			"weight":-0.1,
+			"asset":388598,
+			"currency":"GBP"
+		},
+		{
+			"id":"2",
+			"name":"Apple Inc (AAPL) ComStk NPV",
+			"code":"034850960",
+			"weight":12.082,
+			"asset":283598,
+			"currency":"GBP"
+		},
+		{
+			"id":"3",
+			"name":"Alphabet Inc (GOOGL) NPV A",
+			"code":"034850961",
+			"weight":5.2,
+			"asset":3598,
 			"currency":"GBP"
 		}
 	]

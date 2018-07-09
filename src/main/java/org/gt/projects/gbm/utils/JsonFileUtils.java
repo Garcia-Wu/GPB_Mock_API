@@ -98,6 +98,29 @@ public class JsonFileUtils {
 	}
 	
 	/**
+	 * 根据数组属性筛选
+	 * @param jsonArray
+	 * @param filterKey
+	 * @param filterValue
+	 * @param resultCount 获取多少个
+	 * @return
+	 */
+	public static JSONArray getFilterArray(JSONArray jsonArray, String filterKey, String filterValue, int resultCount) {
+		JSONArray result = new JSONArray();
+		int count = 0;
+		for (int i = 0; i < jsonArray.size(); i++) {
+			if(count >= resultCount) {
+				break;
+			}
+			if(jsonArray.getJSONObject(i).getString(filterKey).equalsIgnoreCase(filterValue)) {
+				result.add(jsonArray.getJSONObject(i));
+				count++;
+			}
+		}
+		return result;
+	}
+	
+	/**
 	 * 替换数组属性值
 	 * @param jsonArray
 	 * @param property

@@ -99,6 +99,12 @@ public class AccountController extends BaseAPIController{
 		} else if ("6".equals(id)) {
 			regionList.clear();
 			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("9currency_list")).getJSONArray("currency");
+		} else if ("15".equals(id)) {
+			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list")).getJSONArray("currency");
+			classList.getJSONObject(0).put("name", "Liquidity and Money");
+			classList.getJSONObject(0).getJSONArray("nodes").getJSONObject(0).put("name", "Futures on Forex");
+			currencyList.getJSONObject(0).put("name", "Hong Kong Dollar");
+			regionList.getJSONObject(0).put("name", "Europe");
 		} else {
 			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list")).getJSONArray("currency");
 		}

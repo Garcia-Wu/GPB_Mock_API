@@ -1,10 +1,12 @@
 package org.gt.projects.gbm.controller;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import org.gt.projects.gbm.responseObject.BaseAPIResponse;
 import org.gt.projects.gbm.utils.JsonFileUtils;
+import org.gt.projects.gbm.utils.TransactionComparable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,7 +46,7 @@ public class PortfolioController extends BaseAPIController{
 															String currency) {
 		String json = JsonFileUtils.readFileToString("portfolio_holding_list");
 		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("holdings");
-		if ("0".equals(id)) {
+		if ("0".equals(id) || "3".equals(id)) {
 			jsonArray.clear();
 		} else {
 			// 增加数据以供测试使用
@@ -103,6 +105,20 @@ public class PortfolioController extends BaseAPIController{
 			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list")).getJSONArray("currency");
 		} else if ("3".equals(id)) {
 			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("9currency_list")).getJSONArray("currency");
+		} else if ("4".equals(id)) {
+			classList.clear();
+			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("7currency_list")).getJSONArray("currency");
+		} else if ("5".equals(id)) {
+//			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list")).getJSONArray("currency");
+		} else if ("6".equals(id)) {
+			regionList.clear();
+			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("9currency_list")).getJSONArray("currency");
+		} else if ("15".equals(id)) {
+			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list")).getJSONArray("currency");
+			classList.getJSONObject(0).put("name", "Liquidity and Money");
+			classList.getJSONObject(0).getJSONArray("nodes").getJSONObject(0).put("name", "Futures on Forex");
+			currencyList.getJSONObject(0).put("name", "Hong Kong Dollar");
+			regionList.getJSONObject(0).put("name", "Europe");
 		} else {
 			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list")).getJSONArray("currency");
 		}
@@ -197,10 +213,15 @@ public class PortfolioController extends BaseAPIController{
 		} else if ("3".equals(id)) {
 			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 0, 5);
 		} else if ("4".equals(id)) {
-			JSONObject oneItem = (JSONObject) jsonArray.get(0);
-			jsonArray = new JSONArray();
-			jsonArray.add(oneItem);
-		} 
+//			JSONObject oneItem = (JSONObject) jsonArray.get(0);
+//			jsonArray = new JSONArray();
+//			jsonArray.add(oneItem);
+			jsonArray = JsonFileUtils.getFilterArray(jsonArray, "filterType", "cash movements", 1);
+		} else if ("5".equals(id)) {
+			jsonArray = JsonFileUtils.getFilterArray(jsonArray, "filterType", "purchases", 1);
+		} else if ("6".equals(id)) {
+			jsonArray = JsonFileUtils.getFilterArray(jsonArray, "filterType", "sales", 1);
+		}
 		
 //		if (currency != null) {
 //			for (int i = 0; i < jsonArray.size(); i++) {
@@ -211,6 +232,9 @@ public class PortfolioController extends BaseAPIController{
 		if(!type.equalsIgnoreCase("all")) {
 			jsonArray = JsonFileUtils.getFilterArray(jsonArray, "filterType", type);
 		}
+		
+		TransactionComparable com = new TransactionComparable();
+		Collections.sort(jsonArray, com);
 		
 		JSONObject jsonObject = new JSONObject();	
 		JSONArray pageJson = JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
