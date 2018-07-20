@@ -12,10 +12,10 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 @RestController
-@RequestMapping("/api/customer")
+@RequestMapping("/mobile/v1/customer")
 public class OverviewController extends BaseAPIController {
 
-	@RequestMapping(value = "{id}/v1/overview", method = { RequestMethod.GET })
+	@RequestMapping(value = "{id}/overview", method = { RequestMethod.GET })
 	public BaseAPIResponse<JSONObject> overview(@PathVariable("id") String id, String currency) {
 		JSONObject jsonObject = JSONObject.fromObject(JsonFileUtils.readFileToString("overview"));
 		jsonObject.getJSONObject("customer").put("id", id);
@@ -33,7 +33,7 @@ public class OverviewController extends BaseAPIController {
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
 
-	@RequestMapping(value = "{id}/v1/accounts", method = { RequestMethod.GET })
+	@RequestMapping(value = "{id}/accounts", method = { RequestMethod.GET })
 	public BaseAPIResponse<JSONObject> accounts(@PathVariable("id") String id,
 												@RequestParam(defaultValue="0")Integer offset,
 												@RequestParam(defaultValue="15")Integer limit,
@@ -72,7 +72,7 @@ public class OverviewController extends BaseAPIController {
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
 
-	@RequestMapping(value = "{id}/v1/allocation", method = { RequestMethod.GET })
+	@RequestMapping(value = "{id}/allocation", method = { RequestMethod.GET })
 	public BaseAPIResponse<JSONObject> allocation(@PathVariable("id") String id,
 //												@RequestParam(defaultValue="0")Integer offset,
 //												@RequestParam(defaultValue="15")Integer limit,

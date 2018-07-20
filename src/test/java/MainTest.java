@@ -18,7 +18,7 @@ public class MainTest {
 //		list.add("yyu");
 //		System.out.println("sub:"+list.subList(0, 1));
 		
-//		System.out.println("order:"+"aaaaa".compareTo("aaaAa"));
+		System.out.println("order:"+"aaaaa".compareTo("aaaAa"));
 //		List<String> newLsit = new ArrayList<>();
 //		newLsit.addAll(list);
 //		Comparator<Object> com = Collator.getInstance(java.util.Locale.ENGLISH);
@@ -38,6 +38,6 @@ public class MainTest {
 //		System.out.println("data: "+simpleDateFormat.parse("2011-Jul-9"));
 //		System.out.println("data: "+simpleDateFormat2.format(simpleDateFormat.parse("2011-Jul-9")));
 		
-		System.out.println(simpleDateFormat2.format(new Date(1528560000*1000L)));
+		System.out.println(simpleDateFormat2.format(new Date(1529560000*1000L)));
 	}
 }

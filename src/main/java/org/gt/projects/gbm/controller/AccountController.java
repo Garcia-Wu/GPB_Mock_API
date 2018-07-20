@@ -16,10 +16,10 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 @RestController
-@RequestMapping("/api/account")
+@RequestMapping("/mobile/v1")
 public class AccountController extends BaseAPIController{
 	
-	@RequestMapping(value = "v1/overview", method = {RequestMethod.POST})
+	@RequestMapping(value = "accounts/overview", method = {RequestMethod.POST})
 	public BaseAPIResponse<JSONObject> overview(@RequestBody Map<String, Object> params) {
 		printJsonParams(params);
 		List<String> ids = (List<String>) params.get("ids");
@@ -37,7 +37,7 @@ public class AccountController extends BaseAPIController{
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
 	
-	@RequestMapping(value = "{id}/v1/portfolios", method = {RequestMethod.GET})
+	@RequestMapping(value = "account/{id}/portfolios", method = {RequestMethod.GET})
 	public BaseAPIResponse<JSONObject> portfolios(@PathVariable("id") String id,
 												@RequestParam(defaultValue="0")Integer offset,
 												@RequestParam(defaultValue="15")Integer limit,
@@ -72,7 +72,7 @@ public class AccountController extends BaseAPIController{
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
 	
-	@RequestMapping(value = "{id}/v1/allocation", method = {RequestMethod.GET})
+	@RequestMapping(value = "account/{id}/allocation", method = {RequestMethod.GET})
 	public BaseAPIResponse<JSONObject> allocation(@PathVariable("id") String id,
 //												@RequestParam(defaultValue="0")Integer offset,
 //												@RequestParam(defaultValue="15")Integer limit,

@@ -2,27 +2,43 @@
 	"holdings":[
 		{
 			"id":"1",
-			"name":"CMS GMCB Moderate",
-			"code":"034850959",
+			"name":"SNE 0.001USD Sony Corp ADR Each Rep 1 Ord NPV (CDI)LUHSony Corp ADR Each Rep 1 Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
 			"weight":-0.1,
-			"asset":388598,
-			"currency":"GBP"
+			"baseAmount":510462.3328,
+			"baseCurrency":"USD",
+			"reprotAmount":388598,
+			"reprotCurrency":"GBP",
+			"type":0
 		},
 		{
 			"id":"2",
-			"name":"Apple Inc (AAPL) ComStk NPV",
-			"code":"034850960",
+			"name":"SNE 0.002USD Sony Corp ADR Each Rep 1 Ord NPV (CDI)LUHSony Corp ADR Each Rep 1",
 			"weight":12.082,
-			"asset":283598,
-			"currency":"GBP"
+			"baseAmount":283598.08,
+			"baseCurrency":"GBP",
+			"reprotAmount":283598.08,
+			"reprotCurrency":"GBP",
+			"type":1
 		},
 		{
 			"id":"3",
-			"name":"Alphabet Inc (GOOGL) NPV A",
-			"code":"034850961",
+			"name":"SNE 0.003USD Sony Corp ADR Each Rep 1 Ord NPV (CDI)LUHSony Corp ADR Each Rep 1",
 			"weight":5.2,
-			"asset":3598,
-			"currency":"GBP"
+			"baseAmount":42202513.8829,
+			"baseCurrency":"JYP",
+			"reprotAmount":183598.08,
+			"reprotCurrency":"GBP",
+			"type":1
+		},
+		{
+			"id":"4",
+			"name":"SNE 0.004USD Sony Corp ADR Each Rep 1 Ord NPV (CDI)LUHSony Corp ADR Each Rep 1",
+			"weight":5.2,
+			"baseAmount":83598.76,
+			"baseCurrency":"GBP",
+			"reprotAmount":83598.76,
+			"reprotCurrency":"GBP",
+			"type":0
 		}
 	]
 }

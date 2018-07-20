@@ -18,10 +18,10 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 @RestController
-@RequestMapping("/api/portfolio")
+@RequestMapping("/mobile/v1")
 public class PortfolioController extends BaseAPIController{
 	
-	@RequestMapping(value = "v1/overview", method = {RequestMethod.POST})
+	@RequestMapping(value = "portfolios/overview", method = {RequestMethod.POST})
 	public BaseAPIResponse<JSONObject> overview(@RequestBody Map<String, Object> params) {
 		printJsonParams(params);
 		List<String> ids = (List<String>) params.get("ids");
@@ -39,7 +39,7 @@ public class PortfolioController extends BaseAPIController{
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
 	
-	@RequestMapping(value = "{id}/v1/holdings", method = {RequestMethod.GET})
+	@RequestMapping(value = "portfolio/{id}/holdings", method = {RequestMethod.GET})
 	public BaseAPIResponse<JSONObject> holdings(@PathVariable("id") String id,
 												@RequestParam(defaultValue="0")Integer offset,
 												@RequestParam(defaultValue="15")Integer limit,
@@ -69,11 +69,11 @@ public class PortfolioController extends BaseAPIController{
 //			}
 		}
 		
-		if(currency != null) {
-			for (int i = 0; i < jsonArray.size(); i++) {
-				jsonArray.getJSONObject(i).put("currency", currency);
-			}
-		}
+//		if(currency != null) {
+//			for (int i = 0; i < jsonArray.size(); i++) {
+//				jsonArray.getJSONObject(i).put("currency", currency);
+//			}
+//		}
 		
 		JSONObject jsonObject = new JSONObject();
 		JSONArray pageJson = JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
@@ -86,7 +86,7 @@ public class PortfolioController extends BaseAPIController{
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
 	
-	@RequestMapping(value = "{id}/v1/allocation", method = {RequestMethod.GET})
+	@RequestMapping(value = "portfolio/{id}/allocation", method = {RequestMethod.GET})
 	public BaseAPIResponse<JSONObject> allocation(@PathVariable("id") String id,
 //												@RequestParam(defaultValue="0")Integer offset,
 //												@RequestParam(defaultValue="15")Integer limit,
@@ -151,7 +151,7 @@ public class PortfolioController extends BaseAPIController{
 		return new BaseAPIResponse<JSONObject>(result);
 	}
 	
-	@RequestMapping(value = "{id}/v1/liability/detail", method = {RequestMethod.GET})
+	@RequestMapping(value = "portfolio/{id}/liabilities", method = {RequestMethod.GET})
 	public BaseAPIResponse<JSONObject> liabilityDetail(@PathVariable("id") String id,
 														@RequestParam(defaultValue="0")Integer offset,
 														@RequestParam(defaultValue="15")Integer limit,
@@ -198,7 +198,7 @@ public class PortfolioController extends BaseAPIController{
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
 	
-	@RequestMapping(value = "{id}/v1/transactions", method = {RequestMethod.GET})
+	@RequestMapping(value = "portfolio/{id}/transactions", method = {RequestMethod.GET})
 	public BaseAPIResponse<JSONObject> transactions(@PathVariable("id") String id,
 													@RequestParam(defaultValue="all")String type,
 													@RequestParam(defaultValue="0")Integer offset,
