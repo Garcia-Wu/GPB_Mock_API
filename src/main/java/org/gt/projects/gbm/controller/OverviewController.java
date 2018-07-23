@@ -24,9 +24,9 @@ public class OverviewController extends BaseAPIController {
 		} else if (id.equals("5") || id.equals("6") || id.equals("7")) {
 			jsonObject.getJSONObject("asset").put("amount", 13560001.01);
 			if(id.equals("7")) {
-				jsonObject.getJSONObject("customer").put("name", "WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+//				jsonObject.getJSONObject("customer").put("name", "WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
 			}
-		} 
+		}
 		if (currency != null) {
 			jsonObject.getJSONObject("asset").put("currency", currency);
 		}
@@ -57,7 +57,16 @@ public class OverviewController extends BaseAPIController {
 			JSONObject oneItem = (JSONObject) jsonArray.get(2);
 			jsonArray = new JSONArray();
 			jsonArray.add(oneItem);
+		} else if ("7".equals(id)) {
+			// fix for noTruncation
+			jsonArray.getJSONObject(0).put("name", "Ada");
+			for (int i = 0; i < jsonArray.size() - 1; i++) {
+				JSONObject jsonObject = jsonArray.getJSONObject(i);
+				jsonObject.put("id", String.valueOf((15 + jsonObject.getInt("id"))));
+			}
 		}
+		
+		
 		if (currency != null) {
 			for (int i = 0; i < jsonArray.size(); i++) {
 				jsonArray.getJSONObject(i).put("currency", currency);
@@ -93,6 +102,15 @@ public class OverviewController extends BaseAPIController {
 			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("9currency_list")).getJSONArray("currency");
 		} else {
 			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list")).getJSONArray("currency");
+			
+			// fix for noTruncation
+			if("7".equals(id)) {
+				classList.getJSONObject(0).put("name", "Liquidity and Money");
+				classList.getJSONObject(0).getJSONArray("nodes").getJSONObject(0).put("name", "Futures on Forex");
+				currencyList.getJSONObject(0).put("name", "Hong Kong Dollar");
+				regionList.getJSONObject(0).put("name", "Europe");
+			}
+			
 		}
 
 		if (currency != null) {

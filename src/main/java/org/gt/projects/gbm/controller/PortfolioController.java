@@ -29,6 +29,19 @@ public class PortfolioController extends BaseAPIController{
 		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("portfolios");
 		JSONArray resultArray = JsonFileUtils.getIdsArray(jsonArray, ids);
 		
+		// fix for noTruncation
+		if(Integer.valueOf(ids.get(0)) > 15) {
+			for (int i = 0; i < ids.size(); i++) {
+				if(!ids.get(i).equals("0")) {
+					ids.set(i, String.valueOf(Integer.valueOf(ids.get(i)) - 15));
+				}
+			}
+			resultArray = JsonFileUtils.getIdsArray(jsonArray, ids);
+			if(resultArray.getJSONObject(0).getInt("id") == 1) {
+				resultArray.getJSONObject(0).put("name", "FX Portfolio 1");
+			}
+		}
+		
 		if(params.get("currency") != null) {
 			for (int i = 0; i < resultArray.size(); i++) {
 				resultArray.getJSONObject(i).put("currency", params.get("currency"));
@@ -48,25 +61,9 @@ public class PortfolioController extends BaseAPIController{
 		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("holdings");
 		if ("0".equals(id) || "3".equals(id)) {
 			jsonArray.clear();
-		} else {
-			// 增加数据以供测试使用
-//			Integer holdingId = jsonArray.getJSONObject(0).getInt("id");
-//			String name = jsonArray.getJSONObject(0).getString("name");
-//			String code = jsonArray.getJSONObject(0).getString("code");
-//			Double weight = jsonArray.getJSONObject(0).getDouble("weight");
-//			Double asset = jsonArray.getJSONObject(0).getDouble("asset");
-//			String holdingCurrency = jsonArray.getJSONObject(0).getString("currency");
-//			JSONObject holding = null;
-//			for (int i = 1; i <= 30; i++) {
-//				holding = new JSONObject();
-//				holding.put("id", holdingId + i);
-//				holding.put("name", name + i);
-//				holding.put("code", code + i);
-//				holding.put("weight", weight);
-//				holding.put("asset", asset);
-//				holding.put("currency", holdingCurrency);
-//				jsonArray.add(holding);
-//			}
+		} else if (Integer.valueOf(id) > 15) {
+			// fix for noTruncation
+			jsonArray.getJSONObject(0).put("name", "SNE 0.001USD Sony Corp ADR Each Rep 1 Ord NPV (CDI)LUHSony Corp ADR Each Rep 1");
 		}
 		
 //		if(currency != null) {
@@ -121,6 +118,14 @@ public class PortfolioController extends BaseAPIController{
 			regionList.getJSONObject(0).put("name", "Europe");
 		} else {
 			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list")).getJSONArray("currency");
+			
+			// fix for noTruncation
+			if (Integer.valueOf(id) > 15) {
+				classList.getJSONObject(0).put("name", "Liquidity and Money");
+				classList.getJSONObject(0).getJSONArray("nodes").getJSONObject(0).put("name", "Futures on Forex");
+				currencyList.getJSONObject(0).put("name", "Hong Kong Dollar");
+				regionList.getJSONObject(0).put("name", "Europe");
+			}
 		}
 
 		if (currency != null) {
@@ -173,7 +178,10 @@ public class PortfolioController extends BaseAPIController{
 			JSONObject oneItem = (JSONObject) jsonArray.get(0);
 			jsonArray = new JSONArray();
 			jsonArray.add(oneItem);
-		} 
+		} else if (Integer.valueOf(id) > 15) {
+			// fix for noTruncation
+			jsonArray.getJSONObject(0).put("description", "BRQ227M Caisse d'Amortissement de la Dette Sociale");
+		}
 		
 		JSONObject commiment = new JSONObject();
 		commiment.put("currency", reportCurrency);
@@ -221,6 +229,14 @@ public class PortfolioController extends BaseAPIController{
 			jsonArray = JsonFileUtils.getFilterArray(jsonArray, "filterType", "purchases", 1);
 		} else if ("6".equals(id)) {
 			jsonArray = JsonFileUtils.getFilterArray(jsonArray, "filterType", "sales", 1);
+		} else if (Integer.valueOf(id) > 15) {
+			// fix for noTruncation
+			jsonArray.getJSONObject(0).put("type", "Cash movements1 GBP");
+			jsonArray.getJSONObject(0).put("description", "Transaction Description: This is the Cash movements description, please see the description of the Cash movements 1 item");
+			jsonArray.getJSONObject(1).put("type", "Purchases1 USD");
+			jsonArray.getJSONObject(1).put("description", "Transaction Description: This is the purchase description, please see the description of the purchase 1 item");
+			jsonArray.getJSONObject(2).put("type", "Sales1 JPY");
+			jsonArray.getJSONObject(2).put("description", "Transaction Description: This is the sales description, please see the description of the sales 1 item");
 		}
 		
 //		if (currency != null) {
@@ -249,6 +265,11 @@ public class PortfolioController extends BaseAPIController{
 		String json = JsonFileUtils.readFileToString("portfolio_holding_detail_list");
 		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("holdings");
 		jsonArray = JsonFileUtils.getFilterArray(jsonArray, "id", holdingid, 1);
+		
+		// fix for noTruncation
+		if(Integer.valueOf(id) > 15 && Integer.valueOf(holdingid) == 1) {
+			jsonArray.getJSONObject(0).put("name", "TESLA, INC.");
+		}
 		
 		JSONObject jsonObject = new JSONObject();	
 		jsonObject.put("holding", jsonArray.get(0));
