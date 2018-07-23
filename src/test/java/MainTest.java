@@ -39,5 +39,7 @@ public class MainTest {
 //		System.out.println("data: "+simpleDateFormat2.format(simpleDateFormat.parse("2011-Jul-9")));
 		
 		System.out.println(simpleDateFormat2.format(new Date(1529560000*1000L)));
+		
+		System.out.println("HHH".indexOf(" "));
 	}
 }

@@ -242,4 +242,16 @@ public class PortfolioController extends BaseAPIController{
 		jsonObject.put("totalSize", jsonArray.size());
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
+	
+	@RequestMapping(value = "portfolio/{id}/holdings/detail", method = {RequestMethod.GET})
+	public BaseAPIResponse<JSONObject> holdingsDetail(@PathVariable("id") String id,
+													@RequestParam(required = true)String holdingid) {
+		String json = JsonFileUtils.readFileToString("portfolio_holding_detail_list");
+		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("holdings");
+		jsonArray = JsonFileUtils.getFilterArray(jsonArray, "id", holdingid, 1);
+		
+		JSONObject jsonObject = new JSONObject();	
+		jsonObject.put("holding", jsonArray.get(0));
+		return new BaseAPIResponse<JSONObject>(jsonObject);
+	}
 }
