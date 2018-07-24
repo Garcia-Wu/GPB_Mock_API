@@ -2,7 +2,7 @@
 	"holdings":[
 		{
 			"id":"1",
-			"name":"SNE 0.001USD Sony Corp ADR Each Rep 1 Ord NPV (CDI)LUHSony Corp ADR Each Rep 1 Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+			"name":"TESLA, INC. Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
 			"weight":-0.1,
 			"baseAmount":510462.3328,
 			"baseCurrency":"USD",
@@ -12,8 +12,8 @@
 		},
 		{
 			"id":"2",
-			"name":"SNE 0.002USD Sony Corp ADR Each Rep 1 Ord NPV (CDI)LUHSony Corp ADR Each Rep 1",
-			"weight":12.082,
+			"name":"GOLD Coins of South Africa",
+			"weight":-12.082,
 			"baseAmount":283598.08,
 			"baseCurrency":"GBP",
 			"reprotAmount":283598.08,
@@ -22,7 +22,7 @@
 		},
 		{
 			"id":"3",
-			"name":"SNE 0.003USD Sony Corp ADR Each Rep 1 Ord NPV (CDI)LUHSony Corp ADR Each Rep 1",
+			"name":"GOLD Coins of South Africa",
 			"weight":5.2,
 			"baseAmount":42202513.8829,
 			"baseCurrency":"JYP",
@@ -32,13 +32,73 @@
 		},
 		{
 			"id":"4",
-			"name":"SNE 0.004USD Sony Corp ADR Each Rep 1 Ord NPV (CDI)LUHSony Corp ADR Each Rep 1",
+			"name":"CMS Balance Strategy",
 			"weight":5.2,
 			"baseAmount":83598.76,
 			"baseCurrency":"GBP",
 			"reprotAmount":83598.76,
 			"reprotCurrency":"GBP",
 			"type":0
+		},
+		{
+			"id":"5",
+			"name":"Current Account Name",
+			"weight":5.2,
+			"baseAmount":83598.76,
+			"baseCurrency":"GBP",
+			"reprotAmount":83598.76,
+			"reprotCurrency":"GBP",
+			"type":1
+		},
+		{
+			"id":"6",
+			"name":"Metal Account XAU",
+			"weight":5.2,
+			"baseAmount":83598.76,
+			"baseCurrency":"GBP",
+			"reprotAmount":83598.76,
+			"reprotCurrency":"GBP",
+			"type":1
+		},
+		{
+			"id":"7",
+			"name":"HSBC OTC on Vadofone 18Mar2019",
+			"weight":5.2,
+			"baseAmount":83598.76,
+			"baseCurrency":"GBP",
+			"reprotAmount":83598.76,
+			"reprotCurrency":"GBP",
+			"type":1
+		},
+		{
+			"id":"8",
+			"name":"HSBC WARRANT on Vodafone 18Mar2019",
+			"weight":5.2,
+			"baseAmount":83598.76,
+			"baseCurrency":"GBP",
+			"reprotAmount":83598.76,
+			"reprotCurrency":"GBP",
+			"type":1
+		},
+		{
+			"id":"9",
+			"name":"Direct investment",
+			"weight":5.2,
+			"baseAmount":83598.76,
+			"baseCurrency":"GBP",
+			"reprotAmount":83598.76,
+			"reprotCurrency":"GBP",
+			"type":1
+		},
+		{
+			"id":"10",
+			"name":"IRS USD 29Jan2014-29Jan2021",
+			"weight":5.2,
+			"baseAmount":83598.76,
+			"baseCurrency":"GBP",
+			"reprotAmount":83598.76,
+			"reprotCurrency":"GBP",
+			"type":1
 		}
 	]
 }

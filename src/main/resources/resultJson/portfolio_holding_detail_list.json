@@ -2,7 +2,7 @@
 	"holdings":[
 		{
 			"id":"1",
-			"category":"Equites",
+			"category":1730,
 			"name":"TESLA, INC. WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
 			"isin":"1637463453",
 			"marketBaseAmount":3559600.00,
@@ -21,12 +21,11 @@
 			"country":"U.S.",
 			"expiryDate":"",
 			"notionalAmount":0,
-			"notionalAmountCurrency":"",
-			"filter":12
+			"notionalAmountCurrency":""
 		},
 		{
 			"id":"2",
-			"category":"Precious metals",
+			"category":1727,
 			"name":"GOLD Coins of South Africa",
 			"isin":"1637463453",
 			"marketBaseAmount":999756.09,
@@ -45,12 +44,11 @@
 			"country":"",
 			"expiryDate":"",
 			"notionalAmount":0,
-			"notionalAmountCurrency":"",
-			"filter":32
+			"notionalAmountCurrency":""
 		},
 		{
 			"id":"3",
-			"category":"Funds",
+			"category":17361,
 			"name":"HSBC Private Bank World Equity Fund",
 			"isin":"1637463453",
 			"marketBaseAmount":3559600.00,
@@ -69,12 +67,11 @@
 			"country":"",
 			"expiryDate":"",
 			"notionalAmount":0,
-			"notionalAmountCurrency":"",
-			"filter":25
+			"notionalAmountCurrency":""
 		},
 		{
 			"id":"4",
-			"category":"Funds",
+			"category":17362,
 			"name":"CMS Balance Strategy",
 			"isin":"1637463453",
 			"marketBaseAmount":3559600.00,
@@ -93,12 +90,11 @@
 			"country":"",
 			"expiryDate":"",
 			"notionalAmount":0,
-			"notionalAmountCurrency":"",
-			"filter":1
+			"notionalAmountCurrency":""
 		},
 		{
 			"id":"5",
-			"category":"Current accounts",
+			"category":1700,
 			"name":"Current Account Name",
 			"isin":"Any reference values",
 			"marketBaseAmount":999756.09,
@@ -117,12 +113,11 @@
 			"country":"",
 			"expiryDate":"",
 			"notionalAmount":0,
-			"notionalAmountCurrency":"",
-			"filter":58
+			"notionalAmountCurrency":""
 		},
 		{
 			"id":"6",
-			"category":"Metal ounces",
+			"category":1810,
 			"name":"Metal Account XAU",
 			"isin":"1637463453",
 			"marketBaseAmount":0,
@@ -141,12 +136,11 @@
 			"country":"",
 			"expiryDate":"",
 			"notionalAmount":0,
-			"notionalAmountCurrency":"",
-			"filter":59
+			"notionalAmountCurrency":""
 		},
 		{
 			"id":"7",
-			"category":"Derivatives",
+			"category":17341,
 			"name":"HSBC OTC on Vadofone 18Mar2019",
 			"isin":"1637463453",
 			"marketBaseAmount":3559600.00,
@@ -165,12 +159,11 @@
 			"country":"",
 			"expiryDate":"",
 			"notionalAmount":0,
-			"notionalAmountCurrency":"",
-			"filter":52
+			"notionalAmountCurrency":""
 		},
 		{
 			"id":"8",
-			"category":"Derivatives",
+			"category":17342,
 			"name":"HSBC WARRANT on Vodafone 18Mar2019",
 			"isin":"1637463453",
 			"marketBaseAmount":3559600.00,
@@ -189,12 +182,11 @@
 			"country":"",
 			"expiryDate":"28 Mar 2018",
 			"notionalAmount":370986.00,
-			"notionalAmountCurrency":"USD",
-			"filter":40
+			"notionalAmountCurrency":"USD"
 		},
 		{
 			"id":"9",
-			"category":"Direct investments",
+			"category":1728,
 			"name":"Direct investment",
 			"isin":"DI-00151",
 			"marketBaseAmount":999756.09,
@@ -213,12 +205,11 @@
 			"country":"",
 			"expiryDate":"",
 			"notionalAmount":0,
-			"notionalAmountCurrency":"",
-			"filter":10
+			"notionalAmountCurrency":""
 		},
 		{
 			"id":"10",
-			"category":"Interest rate swap",
+			"category":1733,
 			"name":"IRS USD 29Jan2014-29Jan2021",
 			"isin":"847564",
 			"marketBaseAmount":999756.09,
@@ -237,8 +228,7 @@
 			"country":"",
 			"expiryDate":"28 Mar 2018",
 			"notionalAmount":900000.00,
-			"notionalAmountCurrency":"EUR",
-			"filter":43
+			"notionalAmountCurrency":"EUR"
 		}
 	]
 }

@@ -23,8 +23,8 @@ public class OverviewController extends BaseAPIController {
 			jsonObject.getJSONObject("asset").put("amount", 0);
 		} else if (id.equals("5") || id.equals("6") || id.equals("7")) {
 			jsonObject.getJSONObject("asset").put("amount", 13560001.01);
-			if(id.equals("7")) {
-//				jsonObject.getJSONObject("customer").put("name", "WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+			if(id.equals("6")) {
+				jsonObject.getJSONObject("customer").put("name", "WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
 			}
 		}
 		if (currency != null) {
