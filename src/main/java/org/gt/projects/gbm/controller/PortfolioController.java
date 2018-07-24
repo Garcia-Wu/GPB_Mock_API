@@ -6,7 +6,8 @@ import java.util.Map;
 
 import org.gt.projects.gbm.responseObject.BaseAPIResponse;
 import org.gt.projects.gbm.utils.JsonFileUtils;
-import org.gt.projects.gbm.utils.TransactionComparable;
+import org.gt.projects.gbm.utils.comparable.LiabilitiesComparable;
+import org.gt.projects.gbm.utils.comparable.TransactionComparable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -191,6 +192,9 @@ public class PortfolioController extends BaseAPIController{
 //				jsonArray.getJSONObject(i).put("remainingBaseCurrency", currency);
 //			}
 //		}
+		
+		LiabilitiesComparable com = new LiabilitiesComparable();
+		Collections.sort(jsonArray, com);
 		
 		JSONObject jsonObject = new JSONObject();	
 		JSONArray pageJson = JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
