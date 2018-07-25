@@ -99,6 +99,106 @@
 			"reprotAmount":83598.76,
 			"reprotCurrency":"GBP",
 			"type":1
+		},
+		{
+			"id":"11",
+			"name":"S&P500 Future Dec19",
+			"weight":5.2,
+			"baseAmount":83598.76,
+			"baseCurrency":"GBP",
+			"reprotAmount":83598.76,
+			"reprotCurrency":"GBP",
+			"type":1
+		},
+		{
+			"id":"12",
+			"name":"FX Name and any reference",
+			"weight":5.2,
+			"baseAmount":83598.76,
+			"baseCurrency":"GBP",
+			"reprotAmount":83598.76,
+			"reprotCurrency":"GBP",
+			"type":1
+		},
+		{
+			"id":"13",
+			"name":"HEADLAND Private Equity",
+			"weight":5.2,
+			"baseAmount":83598.76,
+			"baseCurrency":"GBP",
+			"reprotAmount":83598.76,
+			"reprotCurrency":"GBP",
+			"type":1
+		},
+		{
+			"id":"14",
+			"name":"HSBC CALL Deposit Rate 0.3%",
+			"weight":5.2,
+			"baseAmount":83598.76,
+			"baseCurrency":"GBP",
+			"reprotAmount":83598.76,
+			"reprotCurrency":"GBP",
+			"type":1
+		},
+		{
+			"id":"15",
+			"name":"HSBC FIDUCIARY Deposit 12.10.2018 Rate 0.3%",
+			"weight":5.2,
+			"baseAmount":83598.76,
+			"baseCurrency":"GBP",
+			"reprotAmount":83598.76,
+			"reprotCurrency":"GBP",
+			"type":1
+		},
+		{
+			"id":"16",
+			"name":"HSBC FIDUCIARY Deposit 12.10.2018 Rate 0.3%",
+			"weight":5.2,
+			"baseAmount":83598.76,
+			"baseCurrency":"GBP",
+			"reprotAmount":83598.76,
+			"reprotCurrency":"GBP",
+			"type":1
+		},
+		{
+			"id":"17",
+			"name":"HSBC Murabaha Deposit 12/10/2018 Rate 0.3%",
+			"weight":5.2,
+			"baseAmount":83598.76,
+			"baseCurrency":"GBP",
+			"reprotAmount":83598.76,
+			"reprotCurrency":"GBP",
+			"type":1
+		},
+		{
+			"id":"18",
+			"name":"LVMH 1.25% 4nov2019 EUR",
+			"weight":5.2,
+			"baseAmount":83598.76,
+			"baseCurrency":"GBP",
+			"reprotAmount":83598.76,
+			"reprotCurrency":"GBP",
+			"type":1
+		},
+		{
+			"id":"19",
+			"name":"HSBC Reverse Convertible 5% 18.03.2019 on TSLA",
+			"weight":5.2,
+			"baseAmount":83598.76,
+			"baseCurrency":"GBP",
+			"reprotAmount":83598.76,
+			"reprotCurrency":"GBP",
+			"type":1
+		},
+		{
+			"id":"20",
+			"name":"HSBC Reverse Convertible 5% 18.03.2019 on TSLA",
+			"weight":5.2,
+			"baseAmount":83598.76,
+			"baseCurrency":"GBP",
+			"reprotAmount":83598.76,
+			"reprotCurrency":"GBP",
+			"type":1
 		}
 	]
 }

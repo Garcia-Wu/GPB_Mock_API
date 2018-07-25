@@ -2,13 +2,26 @@ package org.gt.projects.gbm.utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+import org.springframework.boot.ApplicationHome;
+
 import net.sf.json.JSONArray;
 
 public class JsonFileUtils {
+	
+	/**
+	 * 设置json数据源位置
+	 * true: 位于项目路径下 src/main/resources/resultJson
+	 * false: 位于jar包同级目录下 resultJson
+	 */
+	public static final boolean JSON_IN_PROJECT = false;
+	
+	public static final String JAR_PATH = new ApplicationHome(JsonFileUtils.class).getSource().getParentFile().toString();
 
 	/**
 	 * 读取文件，返回字符串
@@ -16,9 +29,22 @@ public class JsonFileUtils {
 	 * @return 文件字符串
 	 */
 	public static String readFileToString(String fileName) {
-		String filePath = "resultJson"+ File.separator + fileName + ".json";
-		// 获取项目下文件的输入流
-		InputStream input = JsonFileUtils.class.getClassLoader().getResourceAsStream(filePath);
+		String filePath = "resultJson"+ File.separator + fileName + ".json";	
+		System.out.println("filePath: "+filePath);
+		InputStream input = null;
+		try {
+			if(JSON_IN_PROJECT) {
+				// 获取项目下文件的输入流
+				input = JsonFileUtils.class.getClassLoader().getResourceAsStream(filePath);
+			} else {
+				// 获取项目外文件的输入流（jar包同级目录下）
+				filePath = JAR_PATH + File.separator +filePath;
+				input = new FileInputStream(new File(filePath));
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
 		byte[] bcache = new byte[2048];  
 	    int readSize = 0;//每次读取的字节长度  
 	    ByteArrayOutputStream infoStream = new ByteArrayOutputStream(); 

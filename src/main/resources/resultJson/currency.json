@@ -1,0 +1,35 @@
+{
+	"base":{
+		"flagCode" : "GBP",
+		"code": "GBP",
+		"rate": 1.0
+	},
+	"currencies": [
+		{
+			"flagCode" : "AUD",
+			"code": "AUD",
+			"rate": 1.7755
+		},
+		{
+			"flagCode" : "CAD",
+			"code": "CAD",
+			"rate": 1.7257
+		},
+		{
+			"flagCode" : "CHF",
+			"code": "CHF",
+			"rate": 1.3025
+		},
+		{
+			"flagCode" : "EUR",
+			"code": "EUR",
+			"rate": 1.1213
+		},
+		{
+			"flagCode" : "USD",
+			"code": "USD",
+			"rate": 1.3156
+		}
+	]
+	
+}

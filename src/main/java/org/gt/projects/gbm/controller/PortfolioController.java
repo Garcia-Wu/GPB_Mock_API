@@ -56,7 +56,7 @@ public class PortfolioController extends BaseAPIController{
 	@RequestMapping(value = "portfolio/{id}/holdings", method = {RequestMethod.GET})
 	public BaseAPIResponse<JSONObject> holdings(@PathVariable("id") String id,
 												@RequestParam(defaultValue="0")Integer offset,
-												@RequestParam(defaultValue="15")Integer limit,
+												@RequestParam(defaultValue="100")Integer limit,
 															String currency) {
 		String json = JsonFileUtils.readFileToString("portfolio_holding_list");
 		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("holdings");
@@ -277,6 +277,17 @@ public class PortfolioController extends BaseAPIController{
 		
 		JSONObject jsonObject = new JSONObject();	
 		jsonObject.put("holding", jsonArray.get(0));
+		return new BaseAPIResponse<JSONObject>(jsonObject);
+	}
+	
+	@RequestMapping(value = "portfolio/{id}/currency", method = { RequestMethod.GET })
+	public BaseAPIResponse<JSONObject> currency(@PathVariable("id") String id,
+												@RequestParam(defaultValue="0")Integer offset,
+												@RequestParam(defaultValue="15")Integer limit) {
+		String json = JsonFileUtils.readFileToString("currency");
+		JSONObject jsonObject = JSONObject.fromObject(json);
+//		JSONArray pageArray = JsonFileUtils.getPageJsonArray(jsonObject.getJSONArray("currencies"), offset, limit);
+//		jsonObject.put("currencies", pageArray);
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
 }
