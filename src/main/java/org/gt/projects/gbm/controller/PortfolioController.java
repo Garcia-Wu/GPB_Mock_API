@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.gt.projects.gbm.responseObject.BaseAPIResponse;
 import org.gt.projects.gbm.utils.JsonFileUtils;
+import org.gt.projects.gbm.utils.comparable.HoldingsComparable;
 import org.gt.projects.gbm.utils.comparable.LiabilitiesComparable;
 import org.gt.projects.gbm.utils.comparable.TransactionComparable;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -72,6 +73,8 @@ public class PortfolioController extends BaseAPIController{
 //				jsonArray.getJSONObject(i).put("currency", currency);
 //			}
 //		}
+		
+		Collections.sort(jsonArray, new HoldingsComparable());
 		
 		JSONObject jsonObject = new JSONObject();
 		JSONArray pageJson = JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
@@ -286,6 +289,17 @@ public class PortfolioController extends BaseAPIController{
 												@RequestParam(defaultValue="15")Integer limit) {
 		String json = JsonFileUtils.readFileToString("currency");
 		JSONObject jsonObject = JSONObject.fromObject(json);
+		if("2".equals(id)) {
+			BaseAPIResponse<JSONObject> response = new BaseAPIResponse<>();
+			response.setCode("1001");
+			response.setMessage("error!");
+			return response;
+		} else if("3".equals(id)) {
+			BaseAPIResponse<JSONObject> response = new BaseAPIResponse<>();
+			response.setCode("1002");
+			response.setMessage("error!");
+			return response;
+		}
 //		JSONArray pageArray = JsonFileUtils.getPageJsonArray(jsonObject.getJSONArray("currencies"), offset, limit);
 //		jsonObject.put("currencies", pageArray);
 		return new BaseAPIResponse<JSONObject>(jsonObject);

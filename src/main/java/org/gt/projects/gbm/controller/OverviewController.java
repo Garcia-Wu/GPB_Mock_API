@@ -147,6 +147,17 @@ public class OverviewController extends BaseAPIController {
 												@RequestParam(defaultValue="15")Integer limit) {
 		String json = JsonFileUtils.readFileToString("currency");
 		JSONObject jsonObject = JSONObject.fromObject(json);
+		if("2".equals(id)) {
+			BaseAPIResponse<JSONObject> response = new BaseAPIResponse<>();
+			response.setCode("1001");
+			response.setMessage("error!");
+			return response;
+		} else if("3".equals(id)) {
+			BaseAPIResponse<JSONObject> response = new BaseAPIResponse<>();
+			response.setCode("1002");
+			response.setMessage("error!");
+			return response;
+		}
 //		JSONArray pageArray = JsonFileUtils.getPageJsonArray(jsonObject.getJSONArray("currencies"), offset, limit);
 //		jsonObject.put("currencies", pageArray);
 		return new BaseAPIResponse<JSONObject>(jsonObject);

@@ -30,7 +30,6 @@ public class JsonFileUtils {
 	 */
 	public static String readFileToString(String fileName) {
 		String filePath = "resultJson"+ File.separator + fileName + ".json";	
-		System.out.println("filePath: "+filePath);
 		InputStream input = null;
 		try {
 			if(JSON_IN_PROJECT) {
