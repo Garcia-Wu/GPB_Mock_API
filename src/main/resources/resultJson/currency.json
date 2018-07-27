@@ -23,6 +23,42 @@
 		{
 			"code": "USD",
 			"rate": 1.3156
+		},
+		{
+			"code": "AED",
+			"rate": 4.8415
+		},
+		{
+			"code": "CNY",
+			"rate": 8.9382
+		},
+		{
+			"code": "HUF",
+			"rate": 364.5614
+		},
+		{
+			"code": "INR",
+			"rate": 90.5474
+		},
+		{
+			"code": "JPY",
+			"rate": 146.0017
+		},
+		{
+			"code": "MYR",
+			"rate": 5.3523
+		},
+		{
+			"code": "SGD",
+			"rate": 1.7941
+		},
+		{
+			"code": "THB",
+			"rate": 43.8994
+		},
+		{
+			"code": "ZAR",
+			"rate": 17.3956
 		}
 	],
 	"updateDate":1532511567

@@ -1,10 +1,12 @@
 package org.gt.projects.gbm.controller;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import org.gt.projects.gbm.responseObject.BaseAPIResponse;
 import org.gt.projects.gbm.utils.JsonFileUtils;
+import org.gt.projects.gbm.utils.comparable.CurrencyComparable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -167,11 +169,7 @@ public class AccountController extends BaseAPIController{
 	}
 	
 	@RequestMapping(value = "account/{id}/currency", method = { RequestMethod.GET })
-	public BaseAPIResponse<JSONObject> currency(@PathVariable("id") String id,
-												@RequestParam(defaultValue="0")Integer offset,
-												@RequestParam(defaultValue="15")Integer limit) {
-		String json = JsonFileUtils.readFileToString("currency");
-		JSONObject jsonObject = JSONObject.fromObject(json);
+	public BaseAPIResponse<JSONObject> currency(@PathVariable("id") String id) {
 		if("2".equals(id)) {
 			BaseAPIResponse<JSONObject> response = new BaseAPIResponse<>();
 			response.setCode("1001");
@@ -183,8 +181,17 @@ public class AccountController extends BaseAPIController{
 			response.setMessage("error!");
 			return response;
 		}
-//		JSONArray pageArray = JsonFileUtils.getPageJsonArray(jsonObject.getJSONArray("currencies"), offset, limit);
-//		jsonObject.put("currencies", pageArray);
+		
+		String json = JsonFileUtils.readFileToString("currency");
+		JSONObject jsonObject = JSONObject.fromObject(json);
+		JSONArray jsonArray = jsonObject.getJSONArray("currencies");
+		Collections.sort(jsonArray, new CurrencyComparable());
+		
+		if("1".equals(id)) {
+			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 0, 5);
+		}
+		
+		jsonObject.put("currencies", jsonArray);
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
 

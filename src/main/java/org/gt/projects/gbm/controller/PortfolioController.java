@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.gt.projects.gbm.responseObject.BaseAPIResponse;
 import org.gt.projects.gbm.utils.JsonFileUtils;
+import org.gt.projects.gbm.utils.comparable.CurrencyComparable;
 import org.gt.projects.gbm.utils.comparable.HoldingsComparable;
 import org.gt.projects.gbm.utils.comparable.LiabilitiesComparable;
 import org.gt.projects.gbm.utils.comparable.TransactionComparable;
@@ -284,11 +285,7 @@ public class PortfolioController extends BaseAPIController{
 	}
 	
 	@RequestMapping(value = "portfolio/{id}/currency", method = { RequestMethod.GET })
-	public BaseAPIResponse<JSONObject> currency(@PathVariable("id") String id,
-												@RequestParam(defaultValue="0")Integer offset,
-												@RequestParam(defaultValue="15")Integer limit) {
-		String json = JsonFileUtils.readFileToString("currency");
-		JSONObject jsonObject = JSONObject.fromObject(json);
+	public BaseAPIResponse<JSONObject> currency(@PathVariable("id") String id) {
 		if("2".equals(id)) {
 			BaseAPIResponse<JSONObject> response = new BaseAPIResponse<>();
 			response.setCode("1001");
@@ -300,8 +297,17 @@ public class PortfolioController extends BaseAPIController{
 			response.setMessage("error!");
 			return response;
 		}
-//		JSONArray pageArray = JsonFileUtils.getPageJsonArray(jsonObject.getJSONArray("currencies"), offset, limit);
-//		jsonObject.put("currencies", pageArray);
+		
+		String json = JsonFileUtils.readFileToString("currency");
+		JSONObject jsonObject = JSONObject.fromObject(json);
+		JSONArray jsonArray = jsonObject.getJSONArray("currencies");
+		Collections.sort(jsonArray, new CurrencyComparable());
+		
+		if("1".equals(id)) {
+			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 0, 5);
+		}
+		
+		jsonObject.put("currencies", jsonArray);
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
 }

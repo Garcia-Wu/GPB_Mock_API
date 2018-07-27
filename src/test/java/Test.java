@@ -28,6 +28,7 @@ public class Test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("comp: "+"aa".compareTo("ab"));
 	}
 	
 	public static double getAmount(String amount){

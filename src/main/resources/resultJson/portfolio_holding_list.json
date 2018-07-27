@@ -13,7 +13,7 @@
 		{
 			"id":"2",
 			"name":"GOLD Coins of South Africa",
-			"weight":-12.082,
+			"weight":-12.08,
 			"baseAmount":700600500.40,
 			"baseCurrency":"USD",
 			"reprotAmount":532754135.52,
@@ -23,7 +23,7 @@
 		{
 			"id":"3",
 			"name":"HSBC Private Bank World Equity Fund",
-			"weight":5.2,
+			"weight":5.32,
 			"baseAmount":590000000.00,
 			"baseCurrency":"EUR",
 			"reprotAmount":524418111.44,
@@ -33,7 +33,7 @@
 		{
 			"id":"4",
 			"name":"CMS Balance Strategy",
-			"weight":5.2,
+			"weight":5.32,
 			"baseAmount":500400300.00,
 			"baseCurrency":"GBP",
 			"reprotAmount":500400300.00,
@@ -43,7 +43,7 @@
 		{
 			"id":"5",
 			"name":"Current Account Name",
-			"weight":5.2,
+			"weight":25.81,
 			"baseAmount":400300200.00,
 			"baseCurrency":"USD",
 			"reprotAmount":304310213.54,
@@ -53,7 +53,7 @@
 		{
 			"id":"6",
 			"name":"Metal Account XAU",
-			"weight":5.2,
+			"weight":11.21,
 			"baseAmount":300200100.50,
 			"baseCurrency":"GBP",
 			"reprotAmount":300200100.50,
@@ -73,7 +73,7 @@
 		{
 			"id":"8",
 			"name":"HSBC WARRANT on Vodafone 18Mar2019",
-			"weight":12.2,
+			"weight":12.21,
 			"baseAmount":100900800.12,
 			"baseCurrency":"USD",
 			"reprotAmount":76705797.26,
@@ -83,7 +83,7 @@
 		{
 			"id":"9",
 			"name":"Direct investment",
-			"weight":5.2,
+			"weight":22.33,
 			"baseAmount":98070070,
 			"baseCurrency":"USD",
 			"reprotAmount":74553847.91,
@@ -93,7 +93,7 @@
 		{
 			"id":"10",
 			"name":"IRS USD 29Jan2014-29Jan2021",
-			"weight":5.2,
+			"weight":5.15,
 			"baseAmount":80070090.08,
 			"baseCurrency":"USD",
 			"reprotAmount":60870083.18,
@@ -123,7 +123,7 @@
 		{
 			"id":"13",
 			"name":"HEADLAND Private Equity",
-			"weight":23.2,
+			"weight":23.20,
 			"baseAmount":40030010.00,
 			"baseCurrency":"GBP",
 			"reprotAmount":40030010.00,
@@ -133,7 +133,7 @@
 		{
 			"id":"14",
 			"name":"HSBC CALL Deposit Rate 0.3%",
-			"weight":5.2,
+			"weight":54.02,
 			"baseAmount":40090080.11,
 			"baseCurrency":"EUR",
 			"reprotAmount":30476879.72,
@@ -154,7 +154,7 @@
 		{
 			"id":"16",
 			"name":"HSBC FIDUCIARY Deposit 12.10.2018 Rate 0.3%",
-			"weight":21,
+			"weight":21.00,
 			"baseAmount":20090070,
 			"baseCurrency":"EUR",
 			"reprotAmount":17853598.75,
@@ -164,7 +164,7 @@
 		{
 			"id":"17",
 			"name":"HSBC Murabaha Deposit 12/10/2018 Rate 0.3%",
-			"weight":5.2,
+			"weight":5.81,
 			"baseAmount":-10090070,
 			"baseCurrency":"GBP",
 			"reprotAmount":-10090070,
@@ -174,7 +174,7 @@
 		{
 			"id":"18",
 			"name":"LVMH 1.25% 4nov2019 EUR",
-			"weight":5.2,
+			"weight":3.56,
 			"baseAmount":-20090030,
 			"baseCurrency":"EUR",
 			"reprotAmount":-17851520.69,
@@ -184,7 +184,7 @@
 		{
 			"id":"19",
 			"name":"HSBC Reverse Convertible 5% 18.03.2019 on TSLA",
-			"weight":5.2,
+			"weight":1.57,
 			"baseAmount":-30050030,
 			"baseCurrency":"EUR",
 			"reprotAmount":-26701738.74,
@@ -194,7 +194,7 @@
 		{
 			"id":"20",
 			"name":"HSBC Reverse Convertible 5% 18.03.2019 on TSLA",
-			"weight":5.2,
+			"weight":1.57,
 			"baseAmount":-90080030,
 			"baseCurrency":"EUR",
 			"reprotAmount":-80042962.57,
