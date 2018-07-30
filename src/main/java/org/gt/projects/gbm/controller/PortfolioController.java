@@ -4,10 +4,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import org.gt.projects.gbm.responseObject.BaseAPIResponse;
+import org.gt.projects.gbm.base.BaseAPIController;
+import org.gt.projects.gbm.base.BaseAPIResponse;
+import org.gt.projects.gbm.base.comparable.JsonCompare;
 import org.gt.projects.gbm.utils.GBMConstant;
 import org.gt.projects.gbm.utils.JsonFileUtils;
-import org.gt.projects.gbm.utils.comparable.JsonCompare;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,7 +74,7 @@ public class PortfolioController extends BaseAPIController{
 //			}
 //		}
 		
-		JsonCompare numCompare = JsonCompare.getNumberOrderDesc("reprotAmount");
+		JsonCompare numCompare = JsonCompare.getNumberOrderDesc("reportAmount");
 		Collections.sort(jsonArray, numCompare);
 		
 		JSONObject jsonObject = new JSONObject();

@@ -1,4 +1,4 @@
-package org.gt.projects.gbm.utils.comparable;
+package org.gt.projects.gbm.base.comparable;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

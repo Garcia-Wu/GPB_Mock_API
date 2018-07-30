@@ -1,8 +1,7 @@
-package org.gt.projects.gbm.controller;
+package org.gt.projects.gbm.base;
 
 import java.util.Map;
 
-import org.gt.projects.gbm.responseObject.BaseAPIResponse;
 import org.gt.projects.gbm.utils.GBMConstant;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

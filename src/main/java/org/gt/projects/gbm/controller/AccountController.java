@@ -4,9 +4,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import org.gt.projects.gbm.responseObject.BaseAPIResponse;
+import org.gt.projects.gbm.base.BaseAPIController;
+import org.gt.projects.gbm.base.BaseAPIResponse;
+import org.gt.projects.gbm.base.comparable.JsonCompare;
 import org.gt.projects.gbm.utils.JsonFileUtils;
-import org.gt.projects.gbm.utils.comparable.JsonCompare;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

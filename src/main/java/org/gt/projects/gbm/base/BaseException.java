@@ -1,4 +1,4 @@
-package org.gt.projects.gbm.utils;
+package org.gt.projects.gbm.base;
 
 /**
  * @author  JX.Wu

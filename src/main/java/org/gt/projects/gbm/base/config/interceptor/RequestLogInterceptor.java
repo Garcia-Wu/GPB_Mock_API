@@ -1,4 +1,4 @@
-package org.gt.projects.gbm.config.interceptor;
+package org.gt.projects.gbm.base.config.interceptor;
 
 import java.net.URLEncoder;
 import java.util.Enumeration;

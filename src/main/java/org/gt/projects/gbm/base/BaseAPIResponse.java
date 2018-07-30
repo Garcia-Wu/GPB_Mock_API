@@ -1,4 +1,4 @@
-package org.gt.projects.gbm.responseObject;
+package org.gt.projects.gbm.base;
 
 import java.io.Serializable;
 

@@ -1,7 +1,7 @@
 import java.util.Collections;
 
+import org.gt.projects.gbm.base.comparable.JsonCompare;
 import org.gt.projects.gbm.utils.JsonFileUtils;
-import org.gt.projects.gbm.utils.comparable.JsonCompare;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
