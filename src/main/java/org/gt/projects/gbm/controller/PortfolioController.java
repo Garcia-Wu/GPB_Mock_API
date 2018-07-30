@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.gt.projects.gbm.responseObject.BaseAPIResponse;
+import org.gt.projects.gbm.utils.GBMConstant;
 import org.gt.projects.gbm.utils.JsonFileUtils;
 import org.gt.projects.gbm.utils.comparable.JsonCompare;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -200,6 +201,12 @@ public class PortfolioController extends BaseAPIController{
 		
 		JSONObject jsonObject = new JSONObject();	
 		JSONArray pageJson = JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
+		
+		for (int i = 0; i< pageJson.size(); i++) {
+			String valueDate = GBMConstant.ALL_MONTH_FORMAT.format(pageJson.getJSONObject(i).getLong("valueDate") * 1000);
+			pageJson.getJSONObject(i).put("valueDate", valueDate);
+		}
+		
 		jsonObject.put("liabilities", pageJson);
 		jsonObject.put("totalSize", jsonArray.size());
 		
@@ -262,6 +269,12 @@ public class PortfolioController extends BaseAPIController{
 		
 		JSONObject jsonObject = new JSONObject();	
 		JSONArray pageJson = JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
+		
+		for (int i = 0; i< pageJson.size(); i++) {
+			String tradeDate = GBMConstant.SIM_MONTH_FORMAT.format(pageJson.getJSONObject(i).getLong("tradeDate") * 1000);
+			pageJson.getJSONObject(i).put("tradeDate", tradeDate);
+		}
+		
 		jsonObject.put("transactions", pageJson);
 		jsonObject.put("totalSize", jsonArray.size());
 		return new BaseAPIResponse<JSONObject>(jsonObject);
