@@ -2,8 +2,6 @@ package org.gt.projects.gbm.responseObject;
 
 import java.io.Serializable;
 
-import net.sf.json.JSONObject;
-
 /**
  * @author  JX.Wu
  * @date  2018年5月16日
@@ -14,12 +12,6 @@ public class BaseAPIResponse<T> implements Serializable{
 	private T data;
 	
 	public BaseAPIResponse() {
-	}
-	
-	public BaseAPIResponse(String json) {
-		super();
-		JSONObject jsonObject = JSONObject.fromObject(json);
-		this.data = (T) jsonObject;
 	}
 
 	public BaseAPIResponse(T data) {

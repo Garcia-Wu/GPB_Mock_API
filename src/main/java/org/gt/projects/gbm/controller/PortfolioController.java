@@ -6,10 +6,7 @@ import java.util.Map;
 
 import org.gt.projects.gbm.responseObject.BaseAPIResponse;
 import org.gt.projects.gbm.utils.JsonFileUtils;
-import org.gt.projects.gbm.utils.comparable.CurrencyComparable;
-import org.gt.projects.gbm.utils.comparable.HoldingsComparable;
-import org.gt.projects.gbm.utils.comparable.LiabilitiesComparable;
-import org.gt.projects.gbm.utils.comparable.TransactionComparable;
+import org.gt.projects.gbm.utils.comparable.JsonCompare;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -75,7 +72,8 @@ public class PortfolioController extends BaseAPIController{
 //			}
 //		}
 		
-		Collections.sort(jsonArray, new HoldingsComparable());
+		JsonCompare numCompare = JsonCompare.getNumberOrderDesc("reprotAmount");
+		Collections.sort(jsonArray, numCompare);
 		
 		JSONObject jsonObject = new JSONObject();
 		JSONArray pageJson = JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
@@ -197,8 +195,8 @@ public class PortfolioController extends BaseAPIController{
 //			}
 //		}
 		
-		LiabilitiesComparable com = new LiabilitiesComparable();
-		Collections.sort(jsonArray, com);
+		JsonCompare numCompare = JsonCompare.getNumberOrderDesc("remainingBaseAmount");
+		Collections.sort(jsonArray, numCompare);
 		
 		JSONObject jsonObject = new JSONObject();	
 		JSONArray pageJson = JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
@@ -257,8 +255,10 @@ public class PortfolioController extends BaseAPIController{
 			jsonArray = JsonFileUtils.getFilterArray(jsonArray, "filterType", type);
 		}
 		
-		TransactionComparable com = new TransactionComparable();
-		Collections.sort(jsonArray, com);
+		JsonCompare transactionCompare = new JsonCompare(new String[] { "tradeDate", "type", "description" },
+				new String[] { JsonCompare.NUMBER, JsonCompare.LETTER, JsonCompare.LETTER },
+				new String[] { JsonCompare.DESC, JsonCompare.ASC, JsonCompare.ASC });
+		Collections.sort(jsonArray, transactionCompare);
 		
 		JSONObject jsonObject = new JSONObject();	
 		JSONArray pageJson = JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
@@ -301,7 +301,7 @@ public class PortfolioController extends BaseAPIController{
 		String json = JsonFileUtils.readFileToString("currency");
 		JSONObject jsonObject = JSONObject.fromObject(json);
 		JSONArray jsonArray = jsonObject.getJSONArray("currencies");
-		Collections.sort(jsonArray, new CurrencyComparable());
+		Collections.sort(jsonArray, JsonCompare.getLetterOrderAsc("code"));
 		
 		if("1".equals(id)) {
 			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 0, 5);
