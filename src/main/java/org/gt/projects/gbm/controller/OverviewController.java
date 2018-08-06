@@ -24,15 +24,15 @@ public class OverviewController extends BaseAPIController {
 		JSONObject jsonObject = JSONObject.fromObject(JsonFileUtils.readFileToString("overview"));
 		jsonObject.getJSONObject("customer").put("id", id);
 		if (id.equals("0")) {
-			jsonObject.getJSONObject("asset").put("amount", 0);
+			jsonObject.getJSONObject("customer").put("amount", 0);
 		} else if (id.equals("5") || id.equals("6") || id.equals("7")) {
-			jsonObject.getJSONObject("asset").put("amount", 13560001.01);
+			jsonObject.getJSONObject("customer").put("amount", 13560001.01);
 			if(id.equals("6")) {
 				jsonObject.getJSONObject("customer").put("name", "WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
 			}
 		}
 		if (currency != null) {
-			jsonObject.getJSONObject("asset").put("currency", currency);
+			jsonObject.getJSONObject("customer").put("currency", currency.toUpperCase());
 		}
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
@@ -73,7 +73,7 @@ public class OverviewController extends BaseAPIController {
 		
 		if (currency != null) {
 			for (int i = 0; i < jsonArray.size(); i++) {
-				jsonArray.getJSONObject(i).put("currency", currency);
+				jsonArray.getJSONObject(i).put("currency", currency.toUpperCase());
 			}
 		}
 
@@ -118,12 +118,12 @@ public class OverviewController extends BaseAPIController {
 		}
 
 		if (currency != null) {
-			JsonFileUtils.replaceProperty(classList, "currency", currency);
+			JsonFileUtils.replaceProperty(classList, "currency", currency.toUpperCase());
 			for (int i = 0; i < classList.size(); i++) {
-				JsonFileUtils.replaceProperty(classList.getJSONObject(i).getJSONArray("nodes"), "currency", currency);
+				JsonFileUtils.replaceProperty(classList.getJSONObject(i).getJSONArray("nodes"), "currency", currency.toUpperCase());
 			}
-			JsonFileUtils.replaceProperty(currencyList, "currency", currency);
-			JsonFileUtils.replaceProperty(regionList, "currency", currency);
+			JsonFileUtils.replaceProperty(currencyList, "currency", currency.toUpperCase());
+			JsonFileUtils.replaceProperty(regionList, "currency", currency.toUpperCase());
 		}
 		
 		result.put("clazz", classList);

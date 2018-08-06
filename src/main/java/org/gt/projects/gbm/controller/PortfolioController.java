@@ -46,8 +46,14 @@ public class PortfolioController extends BaseAPIController{
 		
 		if(params.get("currency") != null) {
 			for (int i = 0; i < resultArray.size(); i++) {
-				resultArray.getJSONObject(i).put("currency", params.get("currency"));
+				resultArray.getJSONObject(i).put("currency", params.get("currency").toString().toUpperCase());
 			}
+		}
+		
+		for (int i = 0; i < resultArray.size(); i++) {
+			resultArray.getJSONObject(i).remove("weight");
+			resultArray.getJSONObject(i).remove("mandateType");
+			resultArray.getJSONObject(i).put("updateDate", "24 May 2018");
 		}
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("portfolios", resultArray);
@@ -70,7 +76,7 @@ public class PortfolioController extends BaseAPIController{
 		
 //		if(currency != null) {
 //			for (int i = 0; i < jsonArray.size(); i++) {
-//				jsonArray.getJSONObject(i).put("currency", currency);
+//				jsonArray.getJSONObject(i).put("currency", currency.toUpperCase());
 //			}
 //		}
 		
@@ -134,12 +140,12 @@ public class PortfolioController extends BaseAPIController{
 		}
 
 		if (currency != null) {
-			JsonFileUtils.replaceProperty(classList, "currency", currency);
+			JsonFileUtils.replaceProperty(classList, "currency", currency.toUpperCase());
 			for (int i = 0; i < classList.size(); i++) {
-				JsonFileUtils.replaceProperty(classList.getJSONObject(i).getJSONArray("nodes"), "currency", currency);
+				JsonFileUtils.replaceProperty(classList.getJSONObject(i).getJSONArray("nodes"), "currency", currency.toUpperCase());
 			}
-			JsonFileUtils.replaceProperty(currencyList, "currency", currency);
-			JsonFileUtils.replaceProperty(regionList, "currency", currency);
+			JsonFileUtils.replaceProperty(currencyList, "currency", currency.toUpperCase());
+			JsonFileUtils.replaceProperty(regionList, "currency", currency.toUpperCase());
 		}
 		
 		result.put("clazz", classList);
@@ -192,8 +198,8 @@ public class PortfolioController extends BaseAPIController{
 		commiment.put("currency", reportCurrency);
 //		if (currency != null) {
 //			for (int i = 0; i < jsonArray.size(); i++) {
-//				jsonArray.getJSONObject(i).put("baseCurrency", currency);
-//				jsonArray.getJSONObject(i).put("remainingBaseCurrency", currency);
+//				jsonArray.getJSONObject(i).put("baseCurrency", currency.toUpperCase());
+//				jsonArray.getJSONObject(i).put("remainingBaseCurrency", currency.toUpperCase());
 //			}
 //		}
 		
@@ -255,7 +261,7 @@ public class PortfolioController extends BaseAPIController{
 		
 //		if (currency != null) {
 //			for (int i = 0; i < jsonArray.size(); i++) {
-//				jsonArray.getJSONObject(i).put("currency", currency);
+//				jsonArray.getJSONObject(i).put("currency", currency.toUpperCase());
 //			}
 //		}
 

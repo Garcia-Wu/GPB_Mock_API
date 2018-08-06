@@ -3,131 +3,210 @@
 		{
 			"id": "1",
 			"name": "Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
-			"weight": 0.2212,
-			"asset": 6000000.12,
+			"weight": -0.2212,
+			"amount": 6000000.12,
 			"externalId": "000000001",
-			"currency": "GBP"
+			"currency": "GBP",
+			"ytd": {
+				"amount": -2000000.12,
+				"currency": "GBP",
+				"weight": -0.75
+			}
 		},
 		{
 			"id": "2",
 			"name": "Ben",
 			"weight": 0.1475,
 			"externalId": "000000002",
-			"asset": 5000000.87,
-			"currency": "GBP"
+			"amount": 5000000.87,
+			"currency": "GBP",
+			"ytd": {
+				"amount": 9000000.12,
+				"currency": "GBP",
+				"weight": 0.95
+			}
 		},
 		{
 			"id": "3",
 			"name": "Clara",
 			"weight": 0.1475,
 			"externalId": "000000003",
-			"asset": 3000000.01,
-			"currency": "GBP"
+			"amount": 3000000.01,
+			"currency": "GBP",
+			"ytd": {
+				"amount": 8234000.12,
+				"currency": "GBP",
+				"weight": 0.80
+			}
 		},
 		{
 			"id": "4",
 			"name": "Don",
 			"weight": 0.1475,
 			"externalId": "000000004",
-			"asset": 2000000.01,
-			"currency": "GBP"
+			"amount": 2000000.01,
+			"currency": "GBP",
+			"ytd": {
+				"amount": 7234000.12,
+				"currency": "GBP",
+				"weight": 0.77
+			}
 		},
 		{
 			"id": "5",
 			"name": "Esther",
 			"weight": 0.0664,
 			"externalId": "000000005",
-			"asset": 900000,
-			"currency": "GBP"
+			"amount": 900000,
+			"currency": "GBP",
+			"ytd": {
+				"amount": 6834000.12,
+				"currency": "GBP",
+				"weight": 0.74
+			}
 		},
 		{
 			"id": "6",
 			"name": "Fabien",
 			"weight": 0.059,
-			"asset": 800000,
+			"amount": 800000,
 			"externalId": "000000006",
-			"currency": "GBP"
+			"currency": "GBP",
+			"ytd": {
+				"amount": 6334000.12,
+				"currency": "GBP",
+				"weight": 0.69
+			}
 		},
 		{
 			"id": "7",
 			"name": "Gillian",
 			"weight": 0.0517,
-			"asset": 700000,
+			"amount": 700000,
 			"externalId": "000000007",
-			"currency": "GBP"
+			"currency": "GBP",
+			"ytd": {
+				"amount": 5934000.12,
+				"currency": "GBP",
+				"weight": 0.63
+			}
 		},
 		{
 			"id": "8",
 			"name": "Holland",
 			"weight": 0.0442,
-			"asset": 600000,
+			"amount": 600000,
 			"externalId": "000000008",
-			"currency": "GBP"
+			"currency": "GBP",
+			"ytd": {
+				"amount": 5534000.12,
+				"currency": "GBP",
+				"weight": 0.89
+			}
 		},
 		{
 			"id": "9",
 			"name": "Issac",
 			"weight": 0.0369,
-			"asset": 500000,
+			"amount": 500000,
 			"externalId": "000000009",
-			"currency": "GBP"
+			"currency": "GBP",
+			"ytd": {
+				"amount": 5134000.12,
+				"currency": "GBP",
+				"weight": 0.14
+			}
 		},
 		{
 			"id": "10",
 			"name": "John",
 			"weight": 0.0295,
-			"asset": 400000,
+			"amount": 400000,
 			"externalId": "000000010",
-			"currency": "GBP"
+			"currency": "GBP",
+			"ytd": {
+				"amount": -1234000.12,
+				"currency": "GBP",
+				"weight": -0.50
+			}
 		},
 		{
 			"id": "11",
 			"name": "Keith",
 			"weight": 0.0221,
-			"asset": 300000,
+			"amount": 300000,
 			"externalId": "000000011",
-			"currency": "GBP"
+			"currency": "GBP",
+			"ytd": {
+				"amount": 3234000.12,
+				"currency": "GBP",
+				"weight": 0.80
+			}
 		},
 		{
 			"id": "12",
 			"name": "Lam",
 			"weight": 0.0147,
-			"asset": 200000,
+			"amount": 200000,
 			"externalId": "000000012",
-			"currency": "GBP"
+			"currency": "GBP",
+			"ytd": {
+				"amount": 2234000.12,
+				"currency": "GBP",
+				"weight": 0.37
+			}
 		},
 		{
 			"id": "13",
 			"name": "Moses",
 			"weight": 0.0054,
-			"asset": 100000,
+			"amount": 100000,
 			"externalId": "000000013",
-			"currency": "GBP"
+			"currency": "GBP",
+			"ytd": {
+				"amount": 934000.12,
+				"currency": "GBP",
+				"weight": 0.10
+			}
 		},
 		{
 			"id": "14",
 			"name": "Neil",
 			"weight": 0.0032,
-			"asset": 40000,
+			"amount": 40000,
 			"externalId": "000000014",
-			"currency": "GBP"
+			"currency": "GBP",
+			"ytd": {
+				"amount": 244000.12,
+				"currency": "GBP",
+				"weight": 0.09
+			}
 		},
 		{
 			"id": "15",
 			"name": "Oscar",
 			"weight": 0.0022,
-			"asset": 3000,
+			"amount": 3000,
 			"externalId": "000000015",
-			"currency": "GBP"
+			"currency": "GBP",
+			"ytd": {
+				"amount": 9734000.12,
+				"currency": "GBP",
+				"weight": 0.52
+			}
 		},
-
 		{
 			"id": "0",
 			"name": "Pauline",
 			"weight": 0,
 			"externalId": "000000016",
-			"asset": 0,
-			"currency": "GBP"
+			"amount": 0,
+			"currency": "GBP",
+			"ytd": {
+				"amount": 0.00,
+				"currency": "GBP",
+				"weight": 0.00
+			}
 		}
 	]
 }

@@ -19,7 +19,7 @@ public class JsonFileUtils {
 	 * true: 位于项目路径下 src/main/resources/resultJson
 	 * false: 位于jar包同级目录下 resultJson
 	 */
-	public static final boolean JSON_IN_PROJECT = false;
+	public static final boolean JSON_IN_PROJECT = true;
 	
 	public static final String JAR_PATH = new ApplicationHome(JsonFileUtils.class).getSource().getParentFile().toString();
 
