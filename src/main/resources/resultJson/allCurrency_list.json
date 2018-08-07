@@ -48,7 +48,41 @@
 			"name": "Thai Baht",
 			"currency": "GBP",
 			"weight": 4
+		},
+		{
+			"id": "8",
+			"amount": 27732679112.54,
+			"name": "Euro Member Countries",
+			"currency": "GBP",
+			"weight": 7.12
+		},
+		{
+			"id": "9",
+			"amount": 34899551242.75,
+			"name": "Japanese Yen",
+			"currency": "GBP",
+			"weight": 8.96
+		},
+		{
+			"id": "10",
+			"amount": 27732679112.54,
+			"name": "Euro Member Countries",
+			"currency": "GBP",
+			"weight": 7.12
+		},
+		{
+			"id": "11",
+			"amount": 15375154097.66,
+			"name": "Thai Baht",
+			"currency": "GBP",
+			"weight": 4.28
+		},
+		{
+			"id": "12",
+			"amount": 14751947825.46,
+			"name": "South Korean Won",
+			"currency": "GBP",
+			"weight": 3.89
 		}
 	]
 }
-

@@ -11,6 +11,7 @@ import java.util.List;
 import org.springframework.boot.ApplicationHome;
 
 import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 public class JsonFileUtils {
 	
@@ -19,7 +20,7 @@ public class JsonFileUtils {
 	 * true: 位于项目路径下 src/main/resources/resultJson
 	 * false: 位于jar包同级目录下 resultJson
 	 */
-	public static final boolean JSON_IN_PROJECT = true;
+	public static final boolean JSON_IN_PROJECT = false;
 	
 	public static final String JAR_PATH = new ApplicationHome(JsonFileUtils.class).getSource().getParentFile().toString();
 
@@ -89,6 +90,7 @@ public class JsonFileUtils {
 				result.add(jsonArray.get(i));
 			}
 		}
+		jsonArray = result;
 		return result;
 	}
 
@@ -143,6 +145,10 @@ public class JsonFileUtils {
 			}
 		}
 		return result;
+	}
+	
+	public static JSONObject getFilterObject(JSONArray jsonArray, String filterKey, String filterValue) {
+		return getFilterArray(jsonArray, filterKey, filterValue, 1).getJSONObject(0);
 	}
 	
 	/**

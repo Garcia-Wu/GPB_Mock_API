@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.gt.projects.gbm.base.BaseAPIController;
 import org.gt.projects.gbm.base.BaseAPIResponse;
+import org.gt.projects.gbm.base.BaseException;
 import org.gt.projects.gbm.base.comparable.JsonCompare;
 import org.gt.projects.gbm.utils.GBMConstant;
 import org.gt.projects.gbm.utils.JsonFileUtils;
@@ -329,5 +330,39 @@ public class PortfolioController extends BaseAPIController{
 		
 		jsonObject.put("currencies", jsonArray);
 		return new BaseAPIResponse<JSONObject>(jsonObject);
+	}
+	
+	@RequestMapping(value = "portfolio/{portfolioId}/holdings/allocation", method = { RequestMethod.GET })
+	public BaseAPIResponse<JSONObject> allocationHoldingList(String currency,
+															@PathVariable("portfolioId") String portfolioId,
+															@RequestParam(required=true)String category, 
+															@RequestParam(required=true)String id, 
+															@RequestParam(defaultValue="0")Integer offset,
+															@RequestParam(defaultValue="15")Integer limit) {
+		String json = JsonFileUtils.readFileToString("portfolio_holding_list");
+		JSONObject resultJson = new JSONObject();
+		JSONObject allocation = new JSONObject();
+		
+		JSONArray jsonArray = null;
+		if (category.equalsIgnoreCase("ASSET")) {
+			jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("hasSubClass_list")).getJSONArray("clazz");
+		} else if (category.equalsIgnoreCase("CURRENCY")) {
+			jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("allCurrency_list")).getJSONArray("currency");
+		} else if (category.equalsIgnoreCase("REGION")) {
+			jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("region_list")).getJSONArray("region");
+		} else {
+			throw new BaseException();
+		}
+		JSONObject jsonObject = JsonFileUtils.getFilterObject(jsonArray, "id", id);
+		
+		allocation.put("name", jsonObject.getString("name"));
+		allocation.put("amount", jsonObject.getDouble("amount"));
+		allocation.put("currency", jsonObject.getString("currency"));
+		resultJson.put("allocation", allocation);
+		
+		JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
+		JSONArray holdingJson = JSONObject.fromObject(json).getJSONArray("holdings");
+		resultJson.put("holdings", JsonFileUtils.getPageJsonArray(holdingJson, offset, limit));
+		return new BaseAPIResponse<JSONObject>(resultJson);
 	}
 }

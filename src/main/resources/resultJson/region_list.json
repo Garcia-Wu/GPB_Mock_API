@@ -1,36 +1,42 @@
 {
 	"region": [
 		{
+			"id": "1",
 			"amount": 112177128994,
 			"name": "Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
 			"currency": "GBP",
 			"weight": 29
 		},
 		{
+			"id": "2",
 			"amount": 84911854586.16,
 			"name": "Asia",
 			"currency": "GBP",
 			"weight": 21.8
 		},
 		{
+			"id": "3",
 			"amount": 57257076257.64,
 			"name": "North America",
 			"currency": "GBP",
 			"weight": 14.7
 		},
 		{
+			"id": "4",
 			"amount": 33497337130.32,
 			"name": "Latin America",
 			"currency": "GBP",
 			"weight": 8.6
 		},
 		{
+			"id": "5",
 			"amount": 30498156945.40,
 			"name": "Australia",
 			"currency": "GBP",
 			"weight": 7.83
 		},
 		{
+			"id": "6",
 			"amount": 30498156945.40,
 			"name": "Canada",
 			"currency": "GBP",
