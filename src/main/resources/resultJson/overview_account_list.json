@@ -11,7 +11,7 @@
 			"ytd": {
 				"amount": -2000000.12,
 				"currency": "GBP",
-				"weight": -0.75
+				"weight": -999.99
 			}
 		},
 		{
@@ -25,7 +25,7 @@
 			"ytd": {
 				"amount": 9000000.12,
 				"currency": "GBP",
-				"weight": 0.95
+				"weight": 999.99
 			}
 		},
 		{
@@ -39,7 +39,7 @@
 			"ytd": {
 				"amount": 8234000.12,
 				"currency": "GBP",
-				"weight": 0.80
+				"weight": 60.80
 			}
 		},
 		{
@@ -53,7 +53,7 @@
 			"ytd": {
 				"amount": 7234000.12,
 				"currency": "GBP",
-				"weight": 0.77
+				"weight": 120.77
 			}
 		},
 		{
@@ -67,7 +67,7 @@
 			"ytd": {
 				"amount": 6834000.12,
 				"currency": "GBP",
-				"weight": 0.74
+				"weight": 55.74
 			}
 		},
 		{
@@ -81,7 +81,7 @@
 			"ytd": {
 				"amount": 6334000.12,
 				"currency": "GBP",
-				"weight": 0.69
+				"weight": 94.69
 			}
 		},
 		{
@@ -95,7 +95,7 @@
 			"ytd": {
 				"amount": 5934000.12,
 				"currency": "GBP",
-				"weight": 0.63
+				"weight": 382.63
 			}
 		},
 		{
@@ -109,7 +109,7 @@
 			"ytd": {
 				"amount": 5534000.12,
 				"currency": "GBP",
-				"weight": 0.89
+				"weight": 34.89
 			}
 		},
 		{
@@ -123,7 +123,7 @@
 			"ytd": {
 				"amount": 5134000.12,
 				"currency": "GBP",
-				"weight": 0.14
+				"weight": 67.14
 			}
 		},
 		{
@@ -137,7 +137,7 @@
 			"ytd": {
 				"amount": -1234000.12,
 				"currency": "GBP",
-				"weight": -0.50
+				"weight": -9.50
 			}
 		},
 		{
@@ -151,7 +151,7 @@
 			"ytd": {
 				"amount": 3234000.12,
 				"currency": "GBP",
-				"weight": 0.80
+				"weight": 553.80
 			}
 		},
 		{
@@ -165,7 +165,7 @@
 			"ytd": {
 				"amount": 2234000.12,
 				"currency": "GBP",
-				"weight": 0.37
+				"weight": 126.37
 			}
 		},
 		{
@@ -179,7 +179,7 @@
 			"ytd": {
 				"amount": 934000.12,
 				"currency": "GBP",
-				"weight": 0.10
+				"weight": 46.10
 			}
 		},
 		{
@@ -193,7 +193,7 @@
 			"ytd": {
 				"amount": 244000.12,
 				"currency": "GBP",
-				"weight": 0.09
+				"weight": 8.09
 			}
 		},
 		{
@@ -207,7 +207,7 @@
 			"ytd": {
 				"amount": 9734000.12,
 				"currency": "GBP",
-				"weight": 0.52
+				"weight": 447.52
 			}
 		},
 		{

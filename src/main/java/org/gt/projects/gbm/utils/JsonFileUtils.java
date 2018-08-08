@@ -6,7 +6,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.boot.ApplicationHome;
 
@@ -161,6 +163,45 @@ public class JsonFileUtils {
 	public static JSONArray replaceProperty(JSONArray jsonArray, String property, Object replaceValue) {
 		for (int i = 0; i < jsonArray.size(); i++) {
 			jsonArray.getJSONObject(i).put(property, replaceValue);
+		}
+		return jsonArray;
+	}
+	
+	public static JSONArray formatArrayNumber2DP(JSONArray jsonArray) {
+		return formatArrayNumber2DP(jsonArray, null);
+	}
+	
+	public static JSONObject formatObjectNumber2DP(JSONObject jsonObject) {
+		return formatObjectNumber2DP(jsonObject, null);
+	}
+	
+	public static JSONObject formatObjectNumber2DP(JSONObject jsonObject, String[] exceptField) {
+		Set<String> set = jsonObject.keySet();
+		forObjectSet: for (String key : set) {
+			if(exceptField != null && exceptField.length > 0) {
+				for (String field : exceptField) {
+					if(key.equals(field)) {
+						continue forObjectSet;
+					}
+				}
+			}
+			if(jsonObject.get(key).getClass().equals(JSONArray.class)) {
+				formatArrayNumber2DP(jsonObject.getJSONArray(key), exceptField);
+			}
+			if(jsonObject.get(key).getClass().equals(JSONObject.class)) {
+				formatObjectNumber2DP(jsonObject.getJSONObject(key), exceptField);
+			}
+			if(jsonObject.get(key).getClass().equals(Integer.class) || jsonObject.get(key).getClass().equals(Double.class)) {
+		        BigDecimal d1=new BigDecimal(String.valueOf(jsonObject.get(key))).setScale(2, BigDecimal.ROUND_HALF_UP);
+		        jsonObject.put(key, d1);
+			}
+		}
+		return jsonObject;
+	}
+	
+	public static JSONArray formatArrayNumber2DP(JSONArray jsonArray, String[] exceptField) {
+		for (int i = 0; i < jsonArray.size(); i++) {
+			formatObjectNumber2DP(jsonArray.getJSONObject(i), exceptField);
 		}
 		return jsonArray;
 	}

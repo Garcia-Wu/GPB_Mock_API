@@ -1,4 +1,7 @@
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.Collections;
+import java.util.Set;
 
 import org.gt.projects.gbm.base.comparable.JsonCompare;
 import org.gt.projects.gbm.utils.JsonFileUtils;
@@ -23,14 +26,26 @@ public class Test {
 //		System.out.println(getAmount(s3));
 //		System.out.println(getAmount(s4));
 //		System.out.println(getAmount(s5));
-		JSONArray jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("test")).getJSONArray("test");
-		JsonCompare compare = new JsonCompare(new String[] { "id", "name", "code" },
-				new String[] { JsonCompare.NUMBER, JsonCompare.LETTER, JsonCompare.LETTER },
-				new String[] { JsonCompare.DESC, JsonCompare.ASC, JsonCompare.ASC });
-		Collections.sort(jsonArray, compare);
-		for (Object object : jsonArray) {
-			System.out.println(object);
+//		JSONArray jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("test")).getJSONArray("test");
+//		JsonCompare compare = new JsonCompare(new String[] { "id", "name", "code" },
+//				new String[] { JsonCompare.NUMBER, JsonCompare.LETTER, JsonCompare.LETTER },
+//				new String[] { JsonCompare.DESC, JsonCompare.ASC, JsonCompare.ASC });
+//		Collections.sort(jsonArray, compare);
+//		for (Object object : jsonArray) {
+//			System.out.println(object);
+//		}
+		System.out.println(new BigDecimal("0.00"));
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("aa", 0);
+		jsonObject.put("bb", "0.00");
+		jsonObject.put("cc", new JSONArray());
+		Set<String> set = jsonObject.keySet();
+		for (String key : set) {
+			System.out.println("key:"+key+" value:"+jsonObject.get(key));
 		}
+		System.out.println(jsonObject.get("aa").getClass().equals(Integer.class));
+		System.out.println(jsonObject.get("bb").getClass().equals(String.class));
+		System.out.println(jsonObject.get("cc").getClass().equals(JSONArray.class));
 	}
 
 	public static double getAmount(String amount) {

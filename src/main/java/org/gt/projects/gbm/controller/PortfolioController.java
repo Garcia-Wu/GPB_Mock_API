@@ -33,17 +33,17 @@ public class PortfolioController extends BaseAPIController{
 		JSONArray resultArray = JsonFileUtils.getIdsArray(jsonArray, ids);
 		
 		// fix for noTruncation
-		if(Integer.valueOf(ids.get(0)) > 15) {
-			for (int i = 0; i < ids.size(); i++) {
-				if(!ids.get(i).equals("0")) {
-					ids.set(i, String.valueOf(Integer.valueOf(ids.get(i)) - 15));
-				}
-			}
-			resultArray = JsonFileUtils.getIdsArray(jsonArray, ids);
-			if(resultArray.getJSONObject(0).getInt("id") == 1) {
-				resultArray.getJSONObject(0).put("name", "FX Portfolio 1");
-			}
-		}
+//		if(Integer.valueOf(ids.get(0)) > 15) {
+//			for (int i = 0; i < ids.size(); i++) {
+//				if(!ids.get(i).equals("0")) {
+//					ids.set(i, String.valueOf(Integer.valueOf(ids.get(i)) - 15));
+//				}
+//			}
+//			resultArray = JsonFileUtils.getIdsArray(jsonArray, ids);
+//			if(resultArray.getJSONObject(0).getInt("id") == 1) {
+//				resultArray.getJSONObject(0).put("name", "FX Portfolio 1");
+//			}
+//		}
 		
 		if(params.get("currency") != null) {
 			for (int i = 0; i < resultArray.size(); i++) {
@@ -57,6 +57,7 @@ public class PortfolioController extends BaseAPIController{
 			resultArray.getJSONObject(i).put("updateDate", "24 May 2018");
 		}
 		JSONObject jsonObject = new JSONObject();
+		JsonFileUtils.formatArrayNumber2DP(resultArray);
 		jsonObject.put("portfolios", resultArray);
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
@@ -72,7 +73,7 @@ public class PortfolioController extends BaseAPIController{
 			jsonArray.clear();
 		} else if (Integer.valueOf(id) > 15) {
 			// fix for noTruncation
-			jsonArray.getJSONObject(0).put("name", "SNE 0.001USD Sony Corp ADR Each Rep 1 Ord NPV (CDI)LUHSony Corp ADR Each Rep 1");
+//			jsonArray.getJSONObject(0).put("name", "SNE 0.001USD Sony Corp ADR Each Rep 1 Ord NPV (CDI)LUHSony Corp ADR Each Rep 1");
 		}
 		
 //		if(currency != null) {
@@ -92,6 +93,7 @@ public class PortfolioController extends BaseAPIController{
 		if("0".equals(id) || "4".equals(id)) {
 			jsonObject.put("hasLiability", "N");
 		} 
+		JsonFileUtils.formatObjectNumber2DP(jsonObject, new String[] {"type"});
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
 	
@@ -132,12 +134,12 @@ public class PortfolioController extends BaseAPIController{
 			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list")).getJSONArray("currency");
 			
 			// fix for noTruncation
-			if (Integer.valueOf(id) > 15) {
-				classList.getJSONObject(0).put("name", "Liquidity and Money");
-				classList.getJSONObject(0).getJSONArray("nodes").getJSONObject(0).put("name", "Futures on Forex");
-				currencyList.getJSONObject(0).put("name", "Hong Kong Dollar");
-				regionList.getJSONObject(0).put("name", "Europe");
-			}
+//			if (Integer.valueOf(id) > 15) {
+//				classList.getJSONObject(0).put("name", "Liquidity and Money");
+//				classList.getJSONObject(0).getJSONArray("nodes").getJSONObject(0).put("name", "Futures on Forex");
+//				currencyList.getJSONObject(0).put("name", "Hong Kong Dollar");
+//				regionList.getJSONObject(0).put("name", "Europe");
+//			}
 		}
 
 		if (currency != null) {
@@ -165,6 +167,7 @@ public class PortfolioController extends BaseAPIController{
 				result.remove("currency");
 			}
 		}
+		JsonFileUtils.formatObjectNumber2DP(result);
 		return new BaseAPIResponse<JSONObject>(result);
 	}
 	
@@ -192,7 +195,7 @@ public class PortfolioController extends BaseAPIController{
 			jsonArray.add(oneItem);
 		} else if (Integer.valueOf(id) > 15) {
 			// fix for noTruncation
-			jsonArray.getJSONObject(0).put("description", "BRQ227M Caisse d'Amortissement de la Dette Sociale");
+//			jsonArray.getJSONObject(0).put("description", "BRQ227M Caisse d'Amortissement de la Dette Sociale");
 		}
 		
 		JSONObject commiment = new JSONObject();
@@ -224,6 +227,7 @@ public class PortfolioController extends BaseAPIController{
 		}
 		commiment.put("amount", amount);
 		jsonObject.put("commiment", commiment);
+		JsonFileUtils.formatObjectNumber2DP(jsonObject);
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
 	
@@ -252,12 +256,12 @@ public class PortfolioController extends BaseAPIController{
 			jsonArray = JsonFileUtils.getFilterArray(jsonArray, "filterType", "sales", 1);
 		} else if (Integer.valueOf(id) > 15) {
 			// fix for noTruncation
-			jsonArray.getJSONObject(0).put("type", "Cash movements1 GBP");
-			jsonArray.getJSONObject(0).put("description", "Transaction Description: This is the Cash movements description, please see the description of the Cash movements 1 item");
-			jsonArray.getJSONObject(1).put("type", "Purchases1 USD");
-			jsonArray.getJSONObject(1).put("description", "Transaction Description: This is the purchase description, please see the description of the purchase 1 item");
-			jsonArray.getJSONObject(2).put("type", "Sales1 JPY");
-			jsonArray.getJSONObject(2).put("description", "Transaction Description: This is the sales description, please see the description of the sales 1 item");
+//			jsonArray.getJSONObject(0).put("type", "Cash movements1 GBP");
+//			jsonArray.getJSONObject(0).put("description", "Transaction Description: This is the Cash movements description, please see the description of the Cash movements 1 item");
+//			jsonArray.getJSONObject(1).put("type", "Purchases1 USD");
+//			jsonArray.getJSONObject(1).put("description", "Transaction Description: This is the purchase description, please see the description of the purchase 1 item");
+//			jsonArray.getJSONObject(2).put("type", "Sales1 JPY");
+//			jsonArray.getJSONObject(2).put("description", "Transaction Description: This is the sales description, please see the description of the sales 1 item");
 		}
 		
 //		if (currency != null) {
@@ -281,8 +285,15 @@ public class PortfolioController extends BaseAPIController{
 		for (int i = 0; i< pageJson.size(); i++) {
 			String tradeDate = GBMConstant.SIM_MONTH_FORMAT.format(pageJson.getJSONObject(i).getLong("tradeDate") * 1000);
 			pageJson.getJSONObject(i).put("tradeDate", tradeDate);
+			if(pageJson.getJSONObject(i).getLong("settlementDate") == 0) {
+				pageJson.getJSONObject(i).put("settlementDate", "");
+			} else {
+				String settlementDate = GBMConstant.SIM_MONTH_FORMAT.format(pageJson.getJSONObject(i).getLong("settlementDate") * 1000);
+				pageJson.getJSONObject(i).put("settlementDate", settlementDate);
+			}
 		}
 		
+		JsonFileUtils.formatArrayNumber2DP(pageJson, new String[] {"units"});
 		jsonObject.put("transactions", pageJson);
 		jsonObject.put("totalSize", jsonArray.size());
 		return new BaseAPIResponse<JSONObject>(jsonObject);
@@ -296,11 +307,12 @@ public class PortfolioController extends BaseAPIController{
 		jsonArray = JsonFileUtils.getFilterArray(jsonArray, "id", holdingid, 1);
 		
 		// fix for noTruncation
-		if(Integer.valueOf(id) > 15 && Integer.valueOf(holdingid) == 1) {
-			jsonArray.getJSONObject(0).put("name", "TESLA, INC.");
-		}
+//		if(Integer.valueOf(id) > 15 && Integer.valueOf(holdingid) == 1) {
+//			jsonArray.getJSONObject(0).put("name", "TESLA, INC.");
+//		}
 		
-		JSONObject jsonObject = new JSONObject();	
+		JSONObject jsonObject = new JSONObject();
+		JsonFileUtils.formatArrayNumber2DP(jsonArray, new String[] {"category", "number"});
 		jsonObject.put("holding", jsonArray.get(0));
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
@@ -345,7 +357,7 @@ public class PortfolioController extends BaseAPIController{
 		
 		JSONArray jsonArray = null;
 		if (category.equalsIgnoreCase("ASSET")) {
-			jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("hasSubClass_list")).getJSONArray("clazz");
+			jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("allClass_list")).getJSONArray("clazz");
 		} else if (category.equalsIgnoreCase("CURRENCY")) {
 			jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("allCurrency_list")).getJSONArray("currency");
 		} else if (category.equalsIgnoreCase("REGION")) {
@@ -363,6 +375,7 @@ public class PortfolioController extends BaseAPIController{
 		JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
 		JSONArray holdingJson = JSONObject.fromObject(json).getJSONArray("holdings");
 		resultJson.put("holdings", JsonFileUtils.getPageJsonArray(holdingJson, offset, limit));
+		JsonFileUtils.formatObjectNumber2DP(resultJson, new String[] {"type"});
 		return new BaseAPIResponse<JSONObject>(resultJson);
 	}
 }

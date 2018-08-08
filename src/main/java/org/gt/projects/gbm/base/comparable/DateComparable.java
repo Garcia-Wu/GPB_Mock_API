@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
 
+import org.gt.projects.gbm.base.BaseException;
+
 import net.sf.json.JSONObject;
 
 /**
@@ -38,7 +40,7 @@ public class DateComparable implements Comparator<JSONObject>{
 			date2 = simpleDateFormat.parse(o2.getString(orderField));
 		} catch (ParseException e) {
 			e.printStackTrace();
-			throw new RuntimeException("时间格式化错误，属性分别为："+o1.getString(orderField) + "   "+o2.getString(orderField));
+			throw new BaseException("时间格式化错误，属性分别为："+o1.getString(orderField) + "   "+o2.getString(orderField));
 		}
 		if(date1.getTime() > date2.getTime()) {
 			if(DESC.equals(sequence)) {
