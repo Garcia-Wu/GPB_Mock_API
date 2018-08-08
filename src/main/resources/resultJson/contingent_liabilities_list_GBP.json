@@ -12,7 +12,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -500600700,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.04995999992
+			"remainingReportWeight": 4.995999992
 		},
 		{
 			"id": "2",
@@ -26,7 +26,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -400000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.005
+			"remainingReportWeight": 0.5
 		},
 		{
 			"id": "3",
@@ -40,7 +40,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -840000000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.933333333
+			"remainingReportWeight": 93.3333333
 		},
 		{
 			"id": "4",
@@ -54,7 +54,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -7100000000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.959459459
+			"remainingReportWeight": 95.9459459
 		},
 		{
 			"id": "5",
@@ -68,7 +68,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -15000000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.05
+			"remainingReportWeight": 5
 		},
 		{
 			"id": "6",
@@ -82,7 +82,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -320000000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.49230769
+			"remainingReportWeight": 49.230769
 		},
 		{
 			"id": "7",
@@ -96,7 +96,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -170000000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.85
+			"remainingReportWeight": 85
 		},
 		{
 			"id": "8",
@@ -110,7 +110,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -4000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.000090909090
+			"remainingReportWeight": 0.0090909090
 		},
 		{
 			"id": "9",
@@ -124,7 +124,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -720000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.12
+			"remainingReportWeight": 12
 		},
 		{
 			"id": "10",
@@ -138,7 +138,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -5200000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.063414634
+			"remainingReportWeight": 6.3414634
 		},
 		{
 			"id": "11",
@@ -152,7 +152,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -500600700,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.04995999992
+			"remainingReportWeight": 4.995999992
 		},
 		{
 			"id": "12",
@@ -166,7 +166,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -400000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.005
+			"remainingReportWeight": 0.5
 		},
 		{
 			"id": "13",
@@ -180,7 +180,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -840000000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.933333333
+			"remainingReportWeight": 93.3333333
 		},
 		{
 			"id": "14",
@@ -194,7 +194,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -7100000000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.959459459
+			"remainingReportWeight": 95.9459459
 		},
 		{
 			"id": "15",
@@ -208,7 +208,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -15000000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.05
+			"remainingReportWeight": 5
 		},
 		{
 			"id": "16",
@@ -222,7 +222,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -320000000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.49230769
+			"remainingReportWeight": 49.230769
 		},
 		{
 			"id": "17",
@@ -236,7 +236,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -170000000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.85
+			"remainingReportWeight": 85
 		},
 		{
 			"id": "18",
@@ -250,7 +250,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -4000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.000090909090
+			"remainingReportWeight": 0.0090909090
 		},
 		{
 			"id": "19",
@@ -264,7 +264,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -720000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.12
+			"remainingReportWeight": 12
 		},
 		{
 			"id": "20",
@@ -278,7 +278,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -5200000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.063414634
+			"remainingReportWeight": 6.3414634
 		},{
 			"id": "21",
 			"description": "BRQ227M Caisse d'Amortissement de la Dette Sociale 2",
@@ -291,7 +291,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -500600700,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.04995999992
+			"remainingReportWeight": 4.995999992
 		},
 		{
 			"id": "22",
@@ -305,7 +305,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -400000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.005
+			"remainingReportWeight": 0.5
 		},
 		{
 			"id": "23",
@@ -319,7 +319,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -840000000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.933333333
+			"remainingReportWeight": 93.3333333
 		},
 		{
 			"id": "24",
@@ -333,7 +333,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -7100000000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.959459459
+			"remainingReportWeight": 95.9459459
 		},
 		{
 			"id": "25",
@@ -347,7 +347,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -15000000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.05
+			"remainingReportWeight": 5
 		},
 		{
 			"id": "26",
@@ -361,7 +361,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -320000000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.49230769
+			"remainingReportWeight": 49.230769
 		},
 		{
 			"id": "27",
@@ -375,7 +375,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -170000000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.85
+			"remainingReportWeight": 85
 		},
 		{
 			"id": "28",
@@ -389,7 +389,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -4000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.000090909090
+			"remainingReportWeight": 0.0090909090
 		},
 		{
 			"id": "29",
@@ -403,7 +403,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -720000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.12
+			"remainingReportWeight": 12
 		},
 		{
 			"id": "30",
@@ -417,7 +417,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -5200000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.063414634
+			"remainingReportWeight": 6.3414634
 		},
 		{
 			"id": "31",
@@ -431,7 +431,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -5200000,
 			"remainingReportCurrency": "GBP",
-			"remainingReportWeight": 0.063414634
+			"remainingReportWeight": 6.3414634
 		}
 	]
 }

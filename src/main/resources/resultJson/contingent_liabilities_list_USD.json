@@ -12,7 +12,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -676318554.11,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.0499599
+			"remainingReportWeight": 4.99599
 		},
 		{
 			"id": "2",
@@ -26,7 +26,7 @@
 			"remainingBaseCurrency": "JPY",
 			"remainingReportAmount": -540405.60,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.005
+			"remainingReportWeight": 0.5
 		},
 		{
 			"id": "3",
@@ -40,7 +40,7 @@
 			"remainingBaseCurrency": "CNY",
 			"remainingReportAmount": -1128493800.00,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.933333333
+			"remainingReportWeight": 93.3333333
 		},
 		{
 			"id": "4",
@@ -54,7 +54,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -9592199400.00,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.959459459
+			"remainingReportWeight": 95.9459459
 		},
 		{
 			"id": "5",
@@ -68,7 +68,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -20265210.00,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.05
+			"remainingReportWeight": 5
 		},
 		{
 			"id": "6",
@@ -82,7 +82,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -432324480.00,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.49230769
+			"remainingReportWeight": 49.230769
 		},
 		{
 			"id": "7",
@@ -96,7 +96,7 @@
 			"remainingBaseCurrency": "CNY",
 			"remainingReportAmount": -229672380.00,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.85
+			"remainingReportWeight": 85
 		},
 		{
 			"id": "8",
@@ -110,7 +110,7 @@
 			"remainingBaseCurrency": "JPY",
 			"remainingReportAmount": -5404.06,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.000090909090
+			"remainingReportWeight": 0.0090909090
 		},
 		{
 			"id": "9",
@@ -124,7 +124,7 @@
 			"remainingBaseCurrency": "EUR",
 			"remainingReportAmount": -972730.08,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.12
+			"remainingReportWeight": 12
 		},
 		{
 			"id": "10",
@@ -138,7 +138,7 @@
 			"remainingBaseCurrency": "EUR",
 			"remainingReportAmount": -7025272.80,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.063414634
+			"remainingReportWeight": 6.3414634
 		},
 		{
 			"id": "11",
@@ -152,7 +152,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -676318554.11,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.0499599
+			"remainingReportWeight": 4.99599
 		},
 		{
 			"id": "12",
@@ -166,7 +166,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -540405.60,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.005
+			"remainingReportWeight": 0.5
 		},
 		{
 			"id": "13",
@@ -180,7 +180,7 @@
 			"remainingBaseCurrency": "CNY",
 			"remainingReportAmount": -1128493800.00,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.933333333
+			"remainingReportWeight": 93.3333333
 		},
 		{
 			"id": "14",
@@ -194,7 +194,7 @@
 			"remainingBaseCurrency": "CNY",
 			"remainingReportAmount": -9592199400.00,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.959459459
+			"remainingReportWeight": 95.9459459
 		},
 		{
 			"id": "15",
@@ -208,7 +208,7 @@
 			"remainingBaseCurrency": "JPY",
 			"remainingReportAmount": -20265210.00,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.05
+			"remainingReportWeight": 5
 		},
 		{
 			"id": "16",
@@ -222,7 +222,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -432324480.00,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.49230769
+			"remainingReportWeight": 49.230769
 		},
 		{
 			"id": "17",
@@ -236,7 +236,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -229672380.00,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.85
+			"remainingReportWeight": 85
 		},
 		{
 			"id": "18",
@@ -250,7 +250,7 @@
 			"remainingBaseCurrency": "EUR",
 			"remainingReportAmount": -5404.06,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.000090909090
+			"remainingReportWeight": 0.0090909090
 		},
 		{
 			"id": "19",
@@ -264,7 +264,7 @@
 			"remainingBaseCurrency": "EUR",
 			"remainingReportAmount": -972730.08,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.12
+			"remainingReportWeight": 12
 		},
 		{
 			"id": "20",
@@ -278,7 +278,7 @@
 			"remainingBaseCurrency": "EUR",
 			"remainingReportAmount": -7025272.80,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.063414634
+			"remainingReportWeight": 6.3414634
 		},
 		{
 			"id": "21",
@@ -292,7 +292,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -676318554.11,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.0499599
+			"remainingReportWeight": 4.99599
 		},
 		{
 			"id": "22",
@@ -306,7 +306,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -540405.60,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.005
+			"remainingReportWeight": 0.5
 		},
 		{
 			"id": "23",
@@ -320,7 +320,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -1128493800.00,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.933333333
+			"remainingReportWeight": 93.3333333
 		},
 		{
 			"id": "24",
@@ -334,7 +334,7 @@
 			"remainingBaseCurrency": "CNY",
 			"remainingReportAmount": -9592199400.00,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.959459459
+			"remainingReportWeight": 95.9459459
 		},
 		{
 			"id": "25",
@@ -348,7 +348,7 @@
 			"remainingBaseCurrency": "CNY",
 			"remainingReportAmount": -20265210.00,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.05
+			"remainingReportWeight": 5
 		},
 		{
 			"id": "26",
@@ -362,7 +362,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -432324480.00,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.49230769
+			"remainingReportWeight": 49.230769
 		},
 		{
 			"id": "27",
@@ -376,7 +376,7 @@
 			"remainingBaseCurrency": "JPY",
 			"remainingReportAmount": -229672380.00,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.85
+			"remainingReportWeight": 85
 		},
 		{
 			"id": "28",
@@ -390,7 +390,7 @@
 			"remainingBaseCurrency": "JPY",
 			"remainingReportAmount": -5404.06,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.000090909090
+			"remainingReportWeight": 0.0090909090
 		},
 		{
 			"id": "29",
@@ -404,7 +404,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -972730.08,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.12
+			"remainingReportWeight": 12
 		},
 		{
 			"id": "30",
@@ -418,7 +418,7 @@
 			"remainingBaseCurrency": "GBP",
 			"remainingReportAmount": -7025272.80,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.063414634
+			"remainingReportWeight": 6.3414634
 		},
 		{
 			"id": "31",
@@ -432,7 +432,7 @@
 			"remainingBaseCurrency": "EUR",
 			"remainingReportAmount": -676318554.11,
 			"remainingReportCurrency": "USD",
-			"remainingReportWeight": 0.0499599
+			"remainingReportWeight": 4.99599
 		}
 
 	]
