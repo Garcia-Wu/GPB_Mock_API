@@ -1,6 +1,8 @@
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Set;
 
 import org.gt.projects.gbm.base.comparable.JsonCompare;
@@ -46,6 +48,8 @@ public class Test {
 		System.out.println(jsonObject.get("aa").getClass().equals(Integer.class));
 		System.out.println(jsonObject.get("bb").getClass().equals(String.class));
 		System.out.println(jsonObject.get("cc").getClass().equals(JSONArray.class));
+		
+		System.out.println(new Date().getTime() / 1000);
 	}
 
 	public static double getAmount(String amount) {

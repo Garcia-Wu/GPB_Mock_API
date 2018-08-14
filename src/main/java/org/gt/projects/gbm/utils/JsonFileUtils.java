@@ -22,7 +22,7 @@ public class JsonFileUtils {
 	 * true: 位于项目路径下 src/main/resources/resultJson
 	 * false: 位于jar包同级目录下 resultJson
 	 */
-	public static final boolean JSON_IN_PROJECT = false;
+	public static final boolean JSON_IN_PROJECT = true;
 	
 	public static final String JAR_PATH = new ApplicationHome(JsonFileUtils.class).getSource().getParentFile().toString();
 
@@ -202,6 +202,21 @@ public class JsonFileUtils {
 	public static JSONArray formatArrayNumber2DP(JSONArray jsonArray, String[] exceptField) {
 		for (int i = 0; i < jsonArray.size(); i++) {
 			formatObjectNumber2DP(jsonArray.getJSONObject(i), exceptField);
+		}
+		return jsonArray;
+	}
+	
+	public static JSONArray removeFilterObject(JSONArray jsonArray, String filterKey, String filterValue) {
+		return removeFilterObject(jsonArray, filterKey, new String[] {filterValue});
+	}
+
+	public static JSONArray removeFilterObject(JSONArray jsonArray, String filterKey, String[] filterValues) {
+		for (int i = 0; i < jsonArray.size(); i++) {
+			for (String filterValue : filterValues) {
+				if(jsonArray.getJSONObject(i).getString(filterKey).equalsIgnoreCase(filterValue)) {
+					jsonArray.remove(i);
+				}
+			}
 		}
 		return jsonArray;
 	}

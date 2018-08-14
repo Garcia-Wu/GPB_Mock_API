@@ -237,9 +237,10 @@ public class AccountController extends BaseAPIController{
 		allocation.put("currency", jsonObject.getString("currency"));
 		resultJson.put("allocation", allocation);
 		
-		JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
 		JSONArray holdingJson = JSONObject.fromObject(json).getJSONArray("holdings");
+		JsonFileUtils.removeFilterObject(holdingJson, "id", new String[] {"11","12"});
 		resultJson.put("holdings", JsonFileUtils.getPageJsonArray(holdingJson, offset, limit));
+		resultJson.put("totalSize", holdingJson.size());
 		JsonFileUtils.formatObjectNumber2DP(resultJson, new String[] {"type"});
 		return new BaseAPIResponse<JSONObject>(resultJson);
 	}

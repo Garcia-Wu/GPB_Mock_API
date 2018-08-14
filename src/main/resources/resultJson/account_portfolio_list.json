@@ -232,7 +232,7 @@
 			"baseCurrency": "JPY",
 			"name": "FX Portfolio 0",
 			"amount": 0,
-			"weight": 13.1199999999999999,
+			"weight": 0,
 			"id": "0",
 			"ytd": {
 				"amount": 0.00,

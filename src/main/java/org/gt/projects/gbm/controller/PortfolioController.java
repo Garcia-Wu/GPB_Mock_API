@@ -299,9 +299,8 @@ public class PortfolioController extends BaseAPIController{
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
 	
-	@RequestMapping(value = "portfolio/{id}/holdings/detail", method = {RequestMethod.GET})
-	public BaseAPIResponse<JSONObject> holdingsDetail(@PathVariable("id") String id,
-													@RequestParam(required = true)String holdingid) {
+	@RequestMapping(value = "holdings/detail", method = {RequestMethod.GET})
+	public BaseAPIResponse<JSONObject> holdingsDetail(@RequestParam(required = true)String holdingid, String currency) {
 		String json = JsonFileUtils.readFileToString("portfolio_holding_detail_list");
 		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("holdings");
 		jsonArray = JsonFileUtils.getFilterArray(jsonArray, "id", holdingid, 1);
@@ -372,9 +371,10 @@ public class PortfolioController extends BaseAPIController{
 		allocation.put("currency", jsonObject.getString("currency"));
 		resultJson.put("allocation", allocation);
 		
-		JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
 		JSONArray holdingJson = JSONObject.fromObject(json).getJSONArray("holdings");
+		JsonFileUtils.removeFilterObject(holdingJson, "id", new String[] {"11","12"});
 		resultJson.put("holdings", JsonFileUtils.getPageJsonArray(holdingJson, offset, limit));
+		resultJson.put("totalSize", holdingJson.size());
 		JsonFileUtils.formatObjectNumber2DP(resultJson, new String[] {"type"});
 		return new BaseAPIResponse<JSONObject>(resultJson);
 	}

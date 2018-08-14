@@ -3,7 +3,7 @@
 		{
 			"id":"1",
 			"name":"TESLA, INC. Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
-			"weight":-0.1,
+			"weight":0,
 			"baseAmount":800700600.00,
 			"baseCurrency":"USD",
 			"reportAmount":608872753.75,
@@ -33,7 +33,7 @@
 		{
 			"id":"4",
 			"name":"CMS Balance Strategy",
-			"weight":5.32,
+			"weight":0,
 			"baseAmount":500400300.00,
 			"baseCurrency":"GBP",
 			"reportAmount":500400300.00,
@@ -44,8 +44,8 @@
 			"id":"5",
 			"name":"Current Account Name",
 			"weight":25.81,
-			"baseAmount":400300200.00,
-			"baseCurrency":"USD",
+			"baseAmount":304310213.54,
+			"baseCurrency":"GBP",
 			"reportAmount":304310213.54,
 			"reportCurrency":"GBP",
 			"type":1
@@ -53,12 +53,12 @@
 		{
 			"id":"6",
 			"name":"Metal Account XAU",
-			"weight":11.21,
+			"weight":0,
 			"baseAmount":300200100.50,
 			"baseCurrency":"GBP",
 			"reportAmount":300200100.50,
 			"reportCurrency":"GBP",
-			"type":1
+			"type":0
 		},
 		{
 			"id":"7",
@@ -83,22 +83,22 @@
 		{
 			"id":"9",
 			"name":"Direct investment",
-			"weight":22.33,
+			"weight":0,
 			"baseAmount":98070070,
 			"baseCurrency":"USD",
 			"reportAmount":74553847.91,
 			"reportCurrency":"GBP",
-			"type":1
+			"type":0
 		},
 		{
 			"id":"10",
 			"name":"IRS USD 29Jan2014-29Jan2021",
-			"weight":5.15,
+			"weight":0,
 			"baseAmount":80070090.08,
 			"baseCurrency":"USD",
 			"reportAmount":60870083.18,
 			"reportCurrency":"GBP",
-			"type":1
+			"type":0
 		},
 		{
 			"id":"11",
@@ -113,33 +113,32 @@
 		{
 			"id":"12",
 			"name":"FX Name and any reference",
-			"weight":10.08,
+			"weight":0,
 			"baseAmount":50040020.89,
 			"baseCurrency":"GBP",
 			"reportAmount":50040020.89,
 			"reportCurrency":"GBP",
-			"type":1
+			"type":0
 		},
 		{
 			"id":"13",
 			"name":"HEADLAND Private Equity",
-			"weight":23.20,
+			"weight":0,
 			"baseAmount":40030010.00,
 			"baseCurrency":"GBP",
 			"reportAmount":40030010.00,
 			"reportCurrency":"GBP",
-			"type":1
+			"type":0
 		},
 		{
 			"id":"14",
 			"name":"HSBC CALL Deposit Rate 0.3%",
-			"weight":54.02,
+			"weight":0,
 			"baseAmount":40090080.11,
 			"baseCurrency":"EUR",
 			"reportAmount":30476879.72,
 			"reportCurrency":"GBP",
-
-			"type":1
+			"type":0
 		},
 		{
 			"id":"15",
@@ -153,23 +152,23 @@
 		},
 		{
 			"id":"16",
-			"name":"HSBC FIDUCIARY Deposit 12.10.2018 Rate 0.3%",
-			"weight":21.00,
+			"name":"HSBC CALL Deposit Rate 0.3%",
+			"weight":0,
 			"baseAmount":20090070,
 			"baseCurrency":"EUR",
 			"reportAmount":17853598.75,
 			"reportCurrency":"GBP",
-			"type":1
+			"type":0
 		},
 		{
 			"id":"17",
 			"name":"HSBC Murabaha Deposit 12/10/2018 Rate 0.3%",
-			"weight":5.81,
+			"weight":0,
 			"baseAmount":-10090070,
 			"baseCurrency":"GBP",
 			"reportAmount":-10090070,
 			"reportCurrency":"GBP",
-			"type":1
+			"type":0
 		},
 		{
 			"id":"18",
@@ -188,26 +187,6 @@
 			"baseAmount":-30050030,
 			"baseCurrency":"EUR",
 			"reportAmount":-26701738.74,
-			"reportCurrency":"GBP",
-			"type":1
-		},
-		{
-			"id":"20",
-			"name":"HSBC Reverse Convertible 5% 18.03.2019 on TSLA",
-			"weight":1.57,
-			"baseAmount":-90080030,
-			"baseCurrency":"EUR",
-			"reportAmount":-80042962.57,
-			"reportCurrency":"GBP",
-			"type":1
-		},
-		{
-			"id":"21",
-			"name":"LVMH 1.25% 4nov2019 EUR",
-			"weight":1.52,
-			"baseAmount":-92080030,
-			"baseCurrency":"EUR",
-			"reportAmount":-88042962.57,
 			"reportCurrency":"GBP",
 			"type":1
 		}
