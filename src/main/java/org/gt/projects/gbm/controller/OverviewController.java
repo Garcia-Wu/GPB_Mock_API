@@ -25,31 +25,6 @@ public class OverviewController extends BaseAPIController {
 
 	@RequestMapping(value = "{id}/overview", method = { RequestMethod.GET })
 	public BaseAPIResponse<JSONObject> overview(@PathVariable("id") String id, String currency, HttpServletRequest request, HttpServletResponse response) {
-//		System.out.println("-------------------------");
-//		Enumeration<String> enumeration = request.getHeaderNames();
-//		System.out.println("request header: ");
-//		while (enumeration.hasMoreElements()) {
-//			String key = enumeration.nextElement();
-//			System.out.println(key+ " : "+request.getHeader(key));
-//		}
-//		System.out.println("-------------------------");
-//		System.out.println("cookies: ");
-//		Cookie[] cookies = request.getCookies();
-//		if(cookies != null) {
-//			for (Cookie cookie : cookies) {
-//				System.out.println(cookie.getName()+ " : "+cookie.getValue());
-//			}
-//		}
-//		
-//		System.out.println("-------------------------");
-//		response.setHeader("AMSESSION", UUID.randomUUID().toString());
-//		response.setHeader("LtpaToken2", UUID.randomUUID().toString());
-//		List<String> list = (List<String>) response.getHeaderNames();
-//		System.out.println("response header: ");
-//		for (String key : list) {
-//			System.out.println(key+ " : "+response.getHeader(key));
-//		}
-//		System.out.println("-------------------------");
 		
 		JSONObject jsonObject = JSONObject.fromObject(JsonFileUtils.readFileToString("overview"));
 		jsonObject.getJSONObject("customer").put("id", id);
@@ -77,32 +52,6 @@ public class OverviewController extends BaseAPIController {
 	public BaseAPIResponse<JSONObject> accounts(@PathVariable("id") String id,
 			@RequestParam(defaultValue = "0") Integer offset, @RequestParam(defaultValue = "15") Integer limit,
 			String currency, HttpServletRequest request, HttpServletResponse response) {
-//		System.out.println("-------------------------");
-//		Enumeration<String> enumeration = request.getHeaderNames();
-//		System.out.println("request header: ");
-//		while (enumeration.hasMoreElements()) {
-//			String key = enumeration.nextElement();
-//			System.out.println(key+ " : "+request.getHeader(key));
-//		}
-//		System.out.println("-------------------------");
-//		System.out.println("cookies: ");
-//		Cookie[] cookies = request.getCookies();
-//		if(cookies != null) {
-//			for (Cookie cookie : cookies) {
-//				System.out.println(cookie.getName()+ " : "+cookie.getValue());
-//			}
-//		}
-//		
-//		System.out.println("-------------------------");
-//		response.setHeader("AMSESSION", UUID.randomUUID().toString());
-//		response.setHeader("LtpaToken2", UUID.randomUUID().toString());
-//		List<String> list = (List<String>) response.getHeaderNames();
-//		System.out.println("response header: ");
-//		for (String key : list) {
-//			System.out.println(key+ " : "+response.getHeader(key));
-//		}
-//		System.out.println("-------------------------");
-		
 		
 		String json = JsonFileUtils.readFileToString("overview_account_list");
 		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("accounts");
@@ -155,31 +104,6 @@ public class OverviewController extends BaseAPIController {
 			// @RequestParam(defaultValue="0")Integer offset,
 			// @RequestParam(defaultValue="15")Integer limit,
 			String currency, String category, HttpServletRequest request, HttpServletResponse response) {
-//		System.out.println("-------------------------");
-//		Enumeration<String> enumeration = request.getHeaderNames();
-//		System.out.println("request header: ");
-//		while (enumeration.hasMoreElements()) {
-//			String key = enumeration.nextElement();
-//			System.out.println(key+ " : "+request.getHeader(key));
-//		}
-//		System.out.println("-------------------------");
-//		System.out.println("cookies: ");
-//		Cookie[] cookies = request.getCookies();
-//		if(cookies != null) {
-//			for (Cookie cookie : cookies) {
-//				System.out.println(cookie.getName()+ " : "+cookie.getValue());
-//			}
-//		}
-//		
-//		System.out.println("-------------------------");
-//		response.setHeader("AMSESSION", UUID.randomUUID().toString());
-//		response.setHeader("LtpaToken2", UUID.randomUUID().toString());
-//		List<String> list = (List<String>) response.getHeaderNames();
-//		System.out.println("response header: ");
-//		for (String key : list) {
-//			System.out.println(key+ " : "+response.getHeader(key));
-//		}
-//		System.out.println("-------------------------");
 		
 		JSONObject result = new JSONObject();
 		JSONArray classList = JSONObject.fromObject(JsonFileUtils.readFileToString("hasSubClass_list"))
