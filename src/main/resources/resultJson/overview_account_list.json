@@ -3,7 +3,7 @@
 		{
 			"id": "1",
 			"name": "Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
-			"weight": -22.12,
+			"weight": -999.99,
 			"amount": 600000000000.12,
 			"externalId": "000000001",
 			"currency": "GBP",
@@ -17,7 +17,7 @@
 		{
 			"id": "2",
 			"name": "Ben",
-			"weight": 14.75,
+			"weight": 999.99,
 			"externalId": "000000002",
 			"amount": 5000000.87,
 			"currency": "GBP",
@@ -31,7 +31,7 @@
 		{
 			"id": "3",
 			"name": "Clara",
-			"weight": 14.75,
+			"weight": 60.80,
 			"externalId": "000000003",
 			"amount": 3000000.01,
 			"currency": "GBP",
@@ -45,7 +45,7 @@
 		{
 			"id": "4",
 			"name": "Don",
-			"weight": 14.75,
+			"weight": 120.77,
 			"externalId": "000000004",
 			"amount": 2000000.01,
 			"currency": "GBP",
@@ -59,7 +59,7 @@
 		{
 			"id": "5",
 			"name": "Esther",
-			"weight": 6.64,
+			"weight": 55.74,
 			"externalId": "000000005",
 			"amount": 900000,
 			"currency": "GBP",
@@ -73,7 +73,7 @@
 		{
 			"id": "6",
 			"name": "Fabien",
-			"weight": 5.9,
+			"weight": 94.69,
 			"amount": 800000,
 			"externalId": "000000006",
 			"currency": "GBP",
@@ -87,7 +87,7 @@
 		{
 			"id": "7",
 			"name": "Gillian",
-			"weight": 5.17,
+			"weight": 382.63,
 			"amount": 700000,
 			"externalId": "000000007",
 			"currency": "GBP",
@@ -101,7 +101,7 @@
 		{
 			"id": "8",
 			"name": "Holland",
-			"weight": 4.42,
+			"weight": 34.89,
 			"amount": 600000,
 			"externalId": "000000008",
 			"currency": "GBP",
@@ -115,7 +115,7 @@
 		{
 			"id": "9",
 			"name": "Issac",
-			"weight": 3.69,
+			"weight": 67.14,
 			"amount": 500000,
 			"externalId": "000000009",
 			"currency": "GBP",
@@ -129,7 +129,7 @@
 		{
 			"id": "10",
 			"name": "John",
-			"weight": 2.95,
+			"weight": -9.50,
 			"amount": 400000,
 			"externalId": "000000010",
 			"currency": "GBP",
@@ -143,7 +143,7 @@
 		{
 			"id": "11",
 			"name": "Keith",
-			"weight": 2.21,
+			"weight": 553.80,
 			"amount": 300000,
 			"externalId": "000000011",
 			"currency": "GBP",
@@ -157,7 +157,7 @@
 		{
 			"id": "12",
 			"name": "Lam",
-			"weight": 1.47,
+			"weight": 126.37,
 			"amount": 200000,
 			"externalId": "000000012",
 			"currency": "GBP",
@@ -171,7 +171,7 @@
 		{
 			"id": "13",
 			"name": "Moses",
-			"weight": 0.54,
+			"weight": 46.10,
 			"amount": 100000,
 			"externalId": "000000013",
 			"currency": "GBP",
@@ -185,7 +185,7 @@
 		{
 			"id": "14",
 			"name": "Neil",
-			"weight": 0.32,
+			"weight": 8.09,
 			"amount": 40000,
 			"externalId": "000000014",
 			"currency": "GBP",
@@ -199,7 +199,7 @@
 		{
 			"id": "15",
 			"name": "Oscar",
-			"weight": 0.22,
+			"weight": 447.52,
 			"amount": 3000,
 			"externalId": "000000015",
 			"currency": "GBP",

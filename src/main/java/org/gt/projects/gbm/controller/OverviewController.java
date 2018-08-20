@@ -32,7 +32,7 @@ public class OverviewController extends BaseAPIController {
 			jsonObject.getJSONObject("customer").put("amount", 0);
 			jsonObject.getJSONObject("ytd").put("amount", 0);
 		} else if (id.equals("2")) {
-			jsonObject.getJSONObject("customer").put("bookingCenter", "HK accounts");
+			jsonObject.getJSONObject("customer").put("bookingCenter", "Hong Kong");
 			jsonObject.getJSONObject("ytd").put("amount", -389503920120D);
 		} else if (id.equals("5") || id.equals("6") || id.equals("7")) {
 			jsonObject.getJSONObject("customer").put("amount", 13560001.01);

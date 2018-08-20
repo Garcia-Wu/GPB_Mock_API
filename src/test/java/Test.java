@@ -1,4 +1,5 @@
 import java.text.SimpleDateFormat;
+import java.util.UUID;
 
 /**
  * @author JX.Wu
@@ -8,9 +9,11 @@ public class Test {
 
 	public static void main(String[] args) throws Exception {
 		
-		SimpleDateFormat s = new SimpleDateFormat("dd MMM yyyy");
-		String d = "29 Mar 2018";
-		System.out.println(s.parse(d));
+		for(int i=1; i<=1000;i++) {
+			System.out.print(UUID.randomUUID().toString().substring(0, 6).toUpperCase()+"\t");
+			if(i % 10 == 0)
+			System.out.println();
+		}
 		
 	}
 

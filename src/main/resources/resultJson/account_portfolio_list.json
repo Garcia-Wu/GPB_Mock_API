@@ -7,7 +7,7 @@
 			"baseCurrency": "JPY",
 			"name": "Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
 			"amount": 20000000000.12,
-			"weight": -11.00,
+			"weight": -999.99,
 			"id": "1",
 			"ytd": {
 				"amount": -2000000.12,
@@ -22,7 +22,7 @@
 			"baseCurrency": "JPY",
 			"name": "FX Portfolio 2",
 			"amount": 259999.95,
-			"weight": 3.1199999999999999,
+			"weight": 999.99,
 			"id": "2",
 			"ytd": {
 				"amount": 9000000.12,
@@ -37,7 +37,7 @@
 			"baseCurrency": "JPY",
 			"name": "FX Portfolio 3",
 			"amount": 200000.05,
-			"weight": 10.4,
+			"weight": 98.80,
 			"id": "3",
 			"ytd": {
 				"amount": 8234000.12,
@@ -52,7 +52,7 @@
 			"baseCurrency": "JPY",
 			"name": "FX Portfolio 4",
 			"amount": 150000,
-			"weight": 10.4,
+			"weight": 55.77,
 			"id": "4",
 			"ytd": {
 				"amount": 7234000.12,
@@ -67,7 +67,7 @@
 			"baseCurrency": "JPY",
 			"name": "FX Portfolio 5",
 			"amount": 120000,
-			"weight": 10.4,
+			"weight": 38.74,
 			"id": "5",
 			"ytd": {
 				"amount": 6834000.12,
@@ -82,7 +82,7 @@
 			"baseCurrency": "JPY",
 			"name": "FX Portfolio 6",
 			"amount": 80000,
-			"weight": 10.4,
+			"weight": 362.69,
 			"id": "6",
 			"ytd": {
 				"amount": 6334000.12,
@@ -97,7 +97,7 @@
 			"baseCurrency": "JPY",
 			"name": "FX Portfolio 7",
 			"amount": 40000,
-			"weight": 10.4,
+			"weight": 22.63,
 			"id": "7",
 			"ytd": {
 				"amount": 5934000.12,
@@ -112,7 +112,7 @@
 			"baseCurrency": "JPY",
 			"name": "FX Portfolio 8",
 			"amount": 30000,
-			"weight": 10.4,
+			"weight": 73.89,
 			"id": "8",
 			"ytd": {
 				"amount": 5534000.12,
@@ -127,7 +127,7 @@
 			"baseCurrency": "JPY",
 			"name": "FX Portfolio 9",
 			"amount": 30000,
-			"weight": 10.4,
+			"weight": 142.14,
 			"id": "9",
 			"ytd": {
 				"amount": 5134000.12,
@@ -142,7 +142,7 @@
 			"baseCurrency": "JPY",
 			"name": "FX Portfolio 10",
 			"amount": 20000,
-			"weight": 10.4,
+			"weight": -34.50,
 			"id": "10",
 			"ytd": {
 				"amount": -1234000.12,
@@ -157,7 +157,7 @@
 			"baseCurrency": "JPY",
 			"name": "FX Portfolio 11",
 			"amount": 20000,
-			"weight": 10.4,
+			"weight": 76.80,
 			"id": "11",
 			"ytd": {
 				"amount": 3234000.12,
@@ -172,7 +172,7 @@
 			"baseCurrency": "JPY",
 			"name": "FX Portfolio 12",
 			"amount": 20000,
-			"weight": 10.4,
+			"weight": 45.37,
 			"id": "12",
 			"ytd": {
 				"amount": 2234000.12,
@@ -187,7 +187,7 @@
 			"baseCurrency": "JPY",
 			"name": "FX Portfolio 13",
 			"amount": 10000,
-			"weight": 10.4,
+			"weight": 34.10,
 			"id": "13",
 			"ytd": {
 				"amount": 934000.12,
@@ -202,7 +202,7 @@
 			"baseCurrency": "JPY",
 			"name": "FX Portfolio 14",
 			"amount": 10000,
-			"weight": 10.4,
+			"weight": 231.09,
 			"id": "14",
 			"ytd": {
 				"amount": 244000.12,
@@ -217,7 +217,7 @@
 			"baseCurrency": "JPY",
 			"name": "FX Portfolio 15",
 			"amount": 10000,
-			"weight": 10.4,
+			"weight": 88.52,
 			"id": "15",
 			"ytd": {
 				"amount": 9734000.12,
