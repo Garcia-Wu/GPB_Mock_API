@@ -54,14 +54,14 @@
 			"amount": 15375154097.66,
 			"name": "Thai Baht",
 			"currency": "GBP",
-			"weight": 4.28
+			"weight": 0
 		},
 		{
 			"id": "12",
 			"amount": 14751947825.46,
 			"name": "South Korean Won",
 			"currency": "GBP",
-			"weight": 3.89
+			"weight": -30.89
 		}
 	]
 }

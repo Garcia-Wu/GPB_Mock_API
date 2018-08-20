@@ -33,14 +33,14 @@
 			"amount": 30498156945.40,
 			"name": "Australia",
 			"currency": "GBP",
-			"weight": 7.83
+			"weight": 0
 		},
 		{
 			"id": "6",
 			"amount": 30498156945.40,
 			"name": "Canada",
 			"currency": "GBP",
-			"weight": 7.83
+			"weight": -7.83
 		}
 	]
 }

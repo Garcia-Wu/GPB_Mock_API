@@ -50,20 +50,23 @@
 			"reportCurrency":"GBP",
 			"type":1
 		},
+
+
 		{
 			"id":"6",
 			"name":"Metal Account XAU",
 			"weight":0,
-			"baseAmount":300200100.50,
+			"baseAmount":254810000.54,
 			"baseCurrency":"GBP",
-			"reportAmount":300200100.50,
+			"reportAmount":254810000.54,
 			"reportCurrency":"GBP",
 			"type":0
 		},
+
 		{
 			"id":"7",
 			"name":"HSBC OTC on Vadofone 18Mar2019",
-			"weight":45.57,
+			"weight":0.00,
 			"baseAmount":200100900.48,
 			"baseCurrency":"USD",
 			"reportAmount":152118705.55,
@@ -73,9 +76,9 @@
 		{
 			"id":"8",
 			"name":"HSBC WARRANT on Vodafone 18Mar2019",
-			"weight":12.21,
-			"baseAmount":100900800.12,
-			"baseCurrency":"USD",
+			"weight":-12.21,
+			"baseAmount":76705797.26,
+			"baseCurrency":"GBP",
 			"reportAmount":76705797.26,
 			"reportCurrency":"GBP",
 			"type":1
@@ -154,12 +157,14 @@
 			"id":"16",
 			"name":"HSBC CALL Deposit Rate 0.3%",
 			"weight":0,
-			"baseAmount":20090070,
+			"baseAmount":0.00,
 			"baseCurrency":"EUR",
-			"reportAmount":17853598.75,
+			"reportAmount":0.00,
 			"reportCurrency":"GBP",
-			"type":0
+			"type":1
 		},
+
+		
 		{
 			"id":"17",
 			"name":"HSBC Murabaha Deposit 12/10/2018 Rate 0.3%",

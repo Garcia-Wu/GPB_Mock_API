@@ -198,7 +198,13 @@ public class AccountController extends BaseAPIController{
 		
 		String json = JsonFileUtils.readFileToString("currency");
 		JSONObject jsonObject = JSONObject.fromObject(json);
+		jsonObject.getJSONObject("base").put("code", "USD");
 		JSONArray jsonArray = jsonObject.getJSONArray("currencies");
+		jsonArray = JsonFileUtils.removeFilterObject(jsonArray, "code", "USD");
+		JSONObject gbpCurrency = new JSONObject();
+		gbpCurrency.put("code", "GBP");
+		gbpCurrency.put("rate", "1.3156");
+		jsonArray.add(gbpCurrency);
 		Collections.sort(jsonArray, JsonCompare.getLetterOrderAsc("code"));
 		
 		if("1".equals(id)) {

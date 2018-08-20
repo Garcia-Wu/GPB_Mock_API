@@ -2,47 +2,54 @@
 	"clazz": [
 		{
 			"id": "1",
-			"amount": 248620352212.60,
+			"amount": 200400600800.90,
 			"name": "Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
 			"weight": 63.83,
 			"currency": "GBP",
 			"nodes": [
 				{
 					"id": "6",
-					"amount": 124310176106.3,
+					"amount": 120240360480.54,
 					"name": "Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
 					"currency": "GBP",
-					"weight": 50
+					"weight": 60
 				},
 				{
 					"id": "7",
-					"amount": 124310176106.3,
+					"amount": 100200300400.45,
 					"name": "Mutual Funds Money Market",
 					"currency": "GBP",
-					"weight": 50
+					"weight": 0
+				},
+				{
+					"id": "17",
+					"amount": 20040060080.09,
+					"name": "Mutual Funds Money Market",
+					"currency": "GBP",
+					"weight": -10
 				}
 			]
 		},
 		{
 			"id": "2",
-			"amount": 123355891502.00,
+			"amount": 10002000300.00,
 			"name": "Hedge Funds",
 			"weight": 31.67,
 			"currency": "GBP",
 			"nodes": [
 				{
 					"id": "8",
-					"amount": 79959288871.60,
-					"name": "Hedge Funds",
+					"amount": 11002200330.40,
+					"name": "Hedge Funds (Islamic Products)",
 					"currency": "GBP",
-					"weight": 64.82
+					"weight": 110
 				},
 				{
 					"id": "9",
-					"amount": 43396602630.40,
-					"name": "Hedge Funds (Islamic Products)",
+					"amount": -1000200030.00,
+					"name": "Hedge Funds",
 					"currency": "GBP",
-					"weight": 35.18
+					"weight": 10.00
 				}
 			]
 		},
@@ -50,7 +57,7 @@
 			"id": "3",
 			"amount": 49622799423.29,
 			"name": "Commodities",
-			"weight": 12.74,
+			"weight": -12.74,
 			"currency": "GBP",
 			"nodes": [
 				{
@@ -71,47 +78,54 @@
 		},
 		{
 			"id": "4",
-			"amount": 9500000001.29,
+			"amount": 0.00,
 			"name": "Real Estate",
 			"weight": 12.74,
 			"currency": "GBP",
 			"nodes": [
 				{
 					"id": "12",
-					"amount": 5000000000.35,
+					"amount": 0.00,
 					"name": "Real Estate 1",
 					"currency": "GBP",
-					"weight": 47.37
+					"weight": 0.00
 				},
 				{
 					"id": "13",
-					"amount": 4500000000.94,
+					"amount": 0.00,
 					"name": "Real Estate 2",
 					"currency": "GBP",
-					"weight": 52.63
+					"weight": -52.63
 				}
 			]
 		},
 		{
 			"id": "5",
-			"amount": 1280000000.44,
+			"amount": -1280000000.44,
 			"name": "Liabilities",
-			"weight": 8.96,
+			"weight": -280.96,
 			"currency": "GBP",
 			"nodes": [
 				{
 					"id": "14",
-					"amount": 720000000.32,
+					"amount": -60.12,
 					"name": "Liabilities 1",
 					"currency": "GBP",
-					"weight": 56.25
+					"weight": 0.00
 				},
 				{
 					"id": "15",
-					"amount": 560000000.12,
+					"amount": -560000000.12,
 					"name": "Liabilities 2",
 					"currency": "GBP",
 					"weight": 43.75
+				},
+				{
+					"id": "16",
+					"amount": -720000000.32,
+					"name": "Liabilities 3",
+					"currency": "GBP",
+					"weight": -256.25
 				}
 			]
 		}
