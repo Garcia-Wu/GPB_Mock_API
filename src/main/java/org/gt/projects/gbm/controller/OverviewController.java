@@ -35,11 +35,11 @@ public class OverviewController extends BaseAPIController {
 			jsonObject.getJSONObject("customer").put("bookingCenter", "Hong Kong");
 			jsonObject.getJSONObject("ytd").put("amount", -389503920120D);
 		} else if (id.equals("5") || id.equals("6") || id.equals("7")) {
-			jsonObject.getJSONObject("customer").put("amount", 13560001.01);
-			if (id.equals("6")) {
-				jsonObject.getJSONObject("customer").put("name",
-						"WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
-			}
+//			jsonObject.getJSONObject("customer").put("amount", 13560001.01);
+//			if (id.equals("6")) {
+//				jsonObject.getJSONObject("customer").put("name",
+//						"WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+//			}
 		}
 		if (currency != null) {
 			jsonObject.getJSONObject("customer").put("currency", currency.toUpperCase());
@@ -195,9 +195,9 @@ public class OverviewController extends BaseAPIController {
 	public BaseAPIResponse<JSONObject> userprofile(@PathVariable("id") String id) {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("userName", "Jones");
-		if ("6".equals(id)) {
-			jsonObject.put("userName", "WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
-		} 
+//		if ("6".equals(id)) {
+//			jsonObject.put("userName", "WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+//		} 
 		jsonObject.put("lastLoginTime", 1533882667);
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}

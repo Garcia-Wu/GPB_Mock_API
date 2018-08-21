@@ -72,7 +72,7 @@ public class AccountController extends BaseAPIController{
 		} else if ("1".equals(id)) {
 			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 0, 13);
 		} else if ("2".equals(id)) {
-			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 0, 5);
+			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 1, 5);
 		} else if ("3".equals(id)) {
 			// 获取对应liabilityNum为1的portfolio
 			JSONObject oneItem = (JSONObject) jsonArray.get(2);

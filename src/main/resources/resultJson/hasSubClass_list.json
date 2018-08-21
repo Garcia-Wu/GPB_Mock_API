@@ -3,28 +3,28 @@
 		{
 			"id": "1",
 			"amount": 200400600800.90,
-			"name": "Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+			"name": "Equities",
 			"weight": 63.83,
 			"currency": "GBP",
 			"nodes": [
 				{
 					"id": "6",
 					"amount": 120240360480.54,
-					"name": "Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+					"name": "Equities",
 					"currency": "GBP",
 					"weight": 60
 				},
 				{
 					"id": "7",
 					"amount": 100200300400.45,
-					"name": "Mutual Funds Money Market",
+					"name": "Equity Mutual Funds",
 					"currency": "GBP",
 					"weight": 0
 				},
 				{
 					"id": "17",
 					"amount": 20040060080.09,
-					"name": "Mutual Funds Money Market",
+					"name": "Equity Warrants",
 					"currency": "GBP",
 					"weight": -10
 				}
@@ -33,21 +33,21 @@
 		{
 			"id": "2",
 			"amount": 10002000300.00,
-			"name": "Hedge Funds",
+			"name": "Others",
 			"weight": 31.67,
 			"currency": "GBP",
 			"nodes": [
 				{
 					"id": "8",
 					"amount": 11002200330.40,
-					"name": "Hedge Funds (Islamic Products)",
+					"name": "Other Mutual Funds",
 					"currency": "GBP",
 					"weight": 110
 				},
 				{
 					"id": "9",
 					"amount": -1000200030.00,
-					"name": "Hedge Funds",
+					"name": "Others",
 					"currency": "GBP",
 					"weight": 10.00
 				}
@@ -56,44 +56,37 @@
 		{
 			"id": "3",
 			"amount": 49622799423.29,
-			"name": "Commodities",
+			"name": "Liquidity and Money Markets",
 			"weight": -12.74,
 			"currency": "GBP",
 			"nodes": [
 				{
 					"id": "10",
 					"amount": 36194869899.35,
-					"name": "Commodity Linked OTC Derivatives",
+					"name": "Current Accounts",
 					"currency": "GBP",
 					"weight": 72.94
-				},
-				{
-					"id": "11",
-					"amount": 13427929523.94,
-					"name": "Commodity Funds",
-					"currency": "GBP",
-					"weight": 27.06
 				}
 			]
 		},
 		{
 			"id": "4",
 			"amount": 0.00,
-			"name": "Real Estate",
+			"name": "Commodities",
 			"weight": 12.74,
 			"currency": "GBP",
 			"nodes": [
 				{
 					"id": "12",
 					"amount": 0.00,
-					"name": "Real Estate 1",
+					"name": "Commodity Funds",
 					"currency": "GBP",
 					"weight": 0.00
 				},
 				{
 					"id": "13",
 					"amount": 0.00,
-					"name": "Real Estate 2",
+					"name": "Commodity Warrants",
 					"currency": "GBP",
 					"weight": -52.63
 				}
@@ -102,28 +95,28 @@
 		{
 			"id": "5",
 			"amount": -1280000000.44,
-			"name": "Liabilities",
+			"name": "Fixed Income",
 			"weight": -280.96,
 			"currency": "GBP",
 			"nodes": [
 				{
 					"id": "14",
 					"amount": -60.12,
-					"name": "Liabilities 1",
+					"name": "Fixed Income",
 					"currency": "GBP",
 					"weight": 0.00
 				},
 				{
 					"id": "15",
 					"amount": -560000000.12,
-					"name": "Liabilities 2",
+					"name": "Fixed Income Mutual Funds",
 					"currency": "GBP",
 					"weight": 43.75
 				},
 				{
 					"id": "16",
 					"amount": -720000000.32,
-					"name": "Liabilities 3",
+					"name": "Fixed Income Warrants",
 					"currency": "GBP",
 					"weight": -256.25
 				}

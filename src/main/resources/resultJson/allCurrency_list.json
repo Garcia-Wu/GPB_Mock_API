@@ -3,84 +3,84 @@
 		{
 			"id": "1",
 			"amount": 116266920155.82,
-			"name": "Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+			"name": "GBP",
 			"currency": "GBP",
 			"weight": 29.85
 		},
 		{
 			"id": "2",
 			"amount": 76615421087.60,
-			"name": "US Dollar",
+			"name": "EUR",
 			"currency": "GBP",
 			"weight": 19.67
 		},
 		{
 			"id": "3",
 			"amount": 65202956228.09,
-			"name": "Australian Dollar",
+			"name": "USD",
 			"currency": "GBP",
 			"weight": 16.74
 		},
 		{
 			"id": "4",
 			"amount": 41754820236.86,
-			"name": "Canadian Dollar",
+			"name": "CAD",
 			"currency": "GBP",
 			"weight": 10.72
 		},
 		{
 			"id": "5",
 			"amount": 41754820236.86,
-			"name": "Japanese Yen",
+			"name": "SEK",
 			"currency": "GBP",
 			"weight": 10.72
 		},
 		{
 			"id": "6",
 			"amount": 16904470133.21,
-			"name": "Singapore Dollar",
+			"name": "CHF",
 			"currency": "GBP",
 			"weight": 4.3
 		},
 		{
 			"id": "7",
 			"amount": 15375154097,
-			"name": "Thai Baht",
+			"name": "NOK",
 			"currency": "GBP",
 			"weight": 4
 		},
 		{
 			"id": "8",
 			"amount": 27732679112.54,
-			"name": "Euro Member Countries",
+			"name": "TRY",
 			"currency": "GBP",
 			"weight": 7.12
 		},
 		{
 			"id": "9",
 			"amount": 34899551242.75,
-			"name": "Japanese Yen",
+			"name": "ARS",
 			"currency": "GBP",
 			"weight": 8.96
 		},
 		{
 			"id": "10",
 			"amount": 27732679112.54,
-			"name": "Euro Member Countries",
+			"name": "AUD",
 			"currency": "GBP",
 			"weight": 7.12
 		},
 		{
 			"id": "11",
 			"amount": 15375154097.66,
-			"name": "Thai Baht",
+			"name": "IDR",
 			"currency": "GBP",
 			"weight": 4.28
 		},
 		{
 			"id": "12",
 			"amount": 14751947825.46,
-			"name": "South Korean Won",
+			"name": "JPY",
 			"currency": "GBP",
 			"weight": 3.89
 		}

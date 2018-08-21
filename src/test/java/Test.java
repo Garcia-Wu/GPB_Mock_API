@@ -9,8 +9,8 @@ public class Test {
 
 	public static void main(String[] args) throws Exception {
 		
-		for(int i=1; i<=1000;i++) {
-			System.out.print(UUID.randomUUID().toString().substring(0, 6).toUpperCase()+"\t");
+		for(int i=1; i<=100;i++) {
+			System.out.print("C"+UUID.randomUUID().toString().substring(0, 6).toUpperCase()+"\t");
 			if(i % 10 == 0)
 			System.out.println();
 		}

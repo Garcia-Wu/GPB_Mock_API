@@ -2,221 +2,221 @@
 	"portfolios": [
 		{
 			"mandateType": "Execution",
-			"externalId": "123400001",
+			"externalId": "C4G0Z9C",
 			"currency": "GBP",
 			"baseCurrency": "JPY",
-			"name": "Wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
-			"amount": 20000000000.12,
-			"weight": -999.99,
+			"name": "C4G0Z9C Standard GBP",
+			"amount": 21378987.12,
+			"weight": -31.37,
 			"id": "1",
 			"ytd": {
 				"amount": -2000000.12,
 				"currency": "GBP",
-				"weight": -999.99
+				"weight": -31.37
 			}
 		},
 		{
 			"mandateType": "Discretionary",
-			"externalId": "123400002",
+			"externalId": "CF596B8",
 			"currency": "GBP",
 			"baseCurrency": "JPY",
-			"name": "FX Portfolio 2",
+			"name": "CF596B8 Standard GBP",
 			"amount": 259999.95,
-			"weight": 999.99,
+			"weight": 81.4,
 			"id": "2",
 			"ytd": {
-				"amount": 9000000.12,
+				"amount": 9364785.12,
 				"currency": "GBP",
-				"weight": 999.99
+				"weight": 81.4
 			}
 		},
 		{
 			"mandateType": "Advisory",
-			"externalId": "123400003",
+			"externalId": "CD7D39E",
 			"currency": "GBP",
 			"baseCurrency": "JPY",
-			"name": "FX Portfolio 3",
-			"amount": 200000.05,
+			"name": "CD7D39E Standard GBP",
+			"amount": 224163.05,
 			"weight": 98.80,
 			"id": "3",
 			"ytd": {
-				"amount": 8234000.12,
+				"amount": 8234350.12,
 				"currency": "GBP",
 				"weight": 98.80
 			}
 		},
 		{
 			"mandateType": "Advisory",
-			"externalId": "123400004",
+			"externalId": "CA0C52A",
 			"currency": "GBP",
 			"baseCurrency": "JPY",
-			"name": "FX Portfolio 4",
-			"amount": 150000,
+			"name": "CA0C52A Standard GBP",
+			"amount": 159544,
 			"weight": 55.77,
 			"id": "4",
 			"ytd": {
-				"amount": 7234000.12,
+				"amount": 7234011.12,
 				"currency": "GBP",
 				"weight": 55.77
 			}
 		},
 		{
 			"mandateType": "Advisory",
-			"externalId": "123400005",
+			"externalId": "C2B24C9",
 			"currency": "GBP",
 			"baseCurrency": "JPY",
-			"name": "FX Portfolio 5",
-			"amount": 120000,
+			"name": "C2B24C9 Standard GBP",
+			"amount": 120235.87,
 			"weight": 38.74,
 			"id": "5",
 			"ytd": {
-				"amount": 6834000.12,
+				"amount": 6834081.12,
 				"currency": "GBP",
 				"weight": 38.74
 			}
 		},
 		{
 			"mandateType": "Advisory",
-			"externalId": "035465806",
+			"externalId": "C8E0C39",
 			"currency": "GBP",
 			"baseCurrency": "JPY",
-			"name": "FX Portfolio 6",
-			"amount": 80000,
-			"weight": 362.69,
+			"name": "C8E0C39 Standard GBP",
+			"amount": 119576.92,
+			"weight": 62.69,
 			"id": "6",
 			"ytd": {
-				"amount": 6334000.12,
+				"amount": 633412.12,
 				"currency": "GBP",
-				"weight": 362.69
+				"weight": 62.69
 			}
 		},
 		{
 			"mandateType": "Advisory",
-			"externalId": "123400007",
+			"externalId": "C9F8C74",
 			"currency": "GBP",
 			"baseCurrency": "JPY",
-			"name": "FX Portfolio 7",
-			"amount": 40000,
+			"name": "C9F8C74 Standard GBP",
+			"amount": 94010,
 			"weight": 22.63,
 			"id": "7",
 			"ytd": {
-				"amount": 5934000.12,
+				"amount": 5934233.12,
 				"currency": "GBP",
 				"weight": 22.63
 			}
 		},
 		{
 			"mandateType": "Advisory",
-			"externalId": "123400008",
+			"externalId": "C59E04F",
 			"currency": "GBP",
 			"baseCurrency": "JPY",
-			"name": "FX Portfolio 8",
-			"amount": 30000,
+			"name": "C59E04F Standard GBP",
+			"amount": 90301,
 			"weight": 73.89,
 			"id": "8",
 			"ytd": {
-				"amount": 5534000.12,
+				"amount": 5534240.12,
 				"currency": "GBP",
 				"weight": 73.89
 			}
 		},
 		{
 			"mandateType": "Advisory",
-			"externalId": "123400009",
+			"externalId": "CA46227",
 			"currency": "GBP",
 			"baseCurrency": "JPY",
-			"name": "FX Portfolio 9",
-			"amount": 30000,
+			"name": "CA46227 Standard GBP",
+			"amount": 88533.93,
 			"weight": 142.14,
 			"id": "9",
 			"ytd": {
-				"amount": 5134000.12,
+				"amount": 5134012.12,
 				"currency": "GBP",
 				"weight": 142.14
 			}
 		},
 		{
 			"mandateType": "Advisory",
-			"externalId": "123400010",
+			"externalId": "C2463E5",
 			"currency": "GBP",
 			"baseCurrency": "JPY",
-			"name": "FX Portfolio 10",
-			"amount": 20000,
+			"name": "C2463E5 Standard GBP",
+			"amount": 79233.23,
 			"weight": -34.50,
 			"id": "10",
 			"ytd": {
-				"amount": -1234000.12,
+				"amount": -1234517.12,
 				"currency": "GBP",
 				"weight": -34.50
 			}
 		},
 		{
 			"mandateType": "Advisory",
-			"externalId": "123400011",
+			"externalId": "CE81B13",
 			"currency": "GBP",
 			"baseCurrency": "JPY",
-			"name": "FX Portfolio 11",
-			"amount": 20000,
+			"name": "CE81B13 Standard GBP",
+			"amount": 79049.09,
 			"weight": 76.80,
 			"id": "11",
 			"ytd": {
-				"amount": 3234000.12,
+				"amount": 3234981.12,
 				"currency": "GBP",
 				"weight": 76.80
 			}
 		},
 		{
 			"mandateType": "Advisory",
-			"externalId": "123400012",
+			"externalId": "CD22F41",
 			"currency": "GBP",
 			"baseCurrency": "JPY",
-			"name": "FX Portfolio 12",
-			"amount": 20000,
+			"name": "CD22F41 Standard GBP",
+			"amount": 62075.13,
 			"weight": 45.37,
 			"id": "12",
 			"ytd": {
-				"amount": 2234000.12,
+				"amount": 2234752.12,
 				"currency": "GBP",
 				"weight": 45.37
 			}
 		},
 		{
 			"mandateType": "Advisory",
-			"externalId": "123400013",
+			"externalId": "C1CEBA9",
 			"currency": "GBP",
 			"baseCurrency": "JPY",
-			"name": "FX Portfolio 13",
-			"amount": 10000,
+			"name": "C1CEBA9 Standard GBP",
+			"amount": 59033.15,
 			"weight": 34.10,
 			"id": "13",
 			"ytd": {
-				"amount": 934000.12,
+				"amount": 934187.12,
 				"currency": "GBP",
 				"weight": 34.10
 			}
 		},
 		{
 			"mandateType": "Advisory",
-			"externalId": "035465814",
+			"externalId": "C4F6AF6",
 			"currency": "GBP",
 			"baseCurrency": "JPY",
-			"name": "FX Portfolio 14",
-			"amount": 10000,
+			"name": "C4F6AF6 Standard GBP",
+			"amount": 55998.87,
 			"weight": 231.09,
 			"id": "14",
 			"ytd": {
-				"amount": 244000.12,
+				"amount": 244421.12,
 				"currency": "GBP",
 				"weight": 231.09
 			}
 		},
 		{
 			"mandateType": "Advisory",
-			"externalId": "123400015",
+			"externalId": "CF91965",
 			"currency": "GBP",
 			"baseCurrency": "JPY",
-			"name": "FX Portfolio 15",
-			"amount": 10000,
+			"name": "CF91965 Standard GBP",
+			"amount": 44987.42,
 			"weight": 88.52,
 			"id": "15",
 			"ytd": {
@@ -227,10 +227,10 @@
 		},
 		{
 			"mandateType": "Discretionary",
-			"externalId": "123400000",
+			"externalId": "CBB8824",
 			"currency": "GBP",
 			"baseCurrency": "JPY",
-			"name": "FX Portfolio 0",
+			"name": "CBB8824 Standard GBP",
 			"amount": 0,
 			"weight": 0,
 			"id": "0",
