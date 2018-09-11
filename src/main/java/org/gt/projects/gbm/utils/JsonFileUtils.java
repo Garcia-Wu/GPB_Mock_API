@@ -10,20 +10,14 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 
+import org.gt.projects.gbm.GbmApplication;
 import org.springframework.boot.ApplicationHome;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 public class JsonFileUtils {
-	
-	/**
-	 * 设置json数据源位置
-	 * true: 位于项目路径下 src/main/resources/resultJson
-	 * false: 位于jar包同级目录下 resultJson
-	 */
-	public static final boolean JSON_IN_PROJECT = false;
-	
+
 	public static final String JAR_PATH = new ApplicationHome(JsonFileUtils.class).getSource().getParentFile().toString();
 
 	/**
@@ -35,7 +29,7 @@ public class JsonFileUtils {
 		String filePath = "resultJson"+ File.separator + fileName + ".json";	
 		InputStream input = null;
 		try {
-			if(JSON_IN_PROJECT) {
+			if(GbmApplication.JSON_IN_PROJECT) {
 				// 获取项目下文件的输入流
 				input = JsonFileUtils.class.getClassLoader().getResourceAsStream(filePath);
 			} else {
@@ -167,14 +161,30 @@ public class JsonFileUtils {
 		return jsonArray;
 	}
 	
+	/**
+	 * 将json数组下所有数字格式化为保留2位小数
+	 * @param jsonArray
+	 * @return
+	 */
 	public static JSONArray formatArrayNumber2DP(JSONArray jsonArray) {
 		return formatArrayNumber2DP(jsonArray, null);
 	}
 	
+	/**
+	 * 将json对象下所有数字格式化为保留2位小数
+	 * @param jsonObject
+	 * @return
+	 */
 	public static JSONObject formatObjectNumber2DP(JSONObject jsonObject) {
 		return formatObjectNumber2DP(jsonObject, null);
 	}
 	
+	/**
+	 * 将json对象下所有数字格式化为保留2位小数
+	 * @param jsonObject
+	 * @param exceptField 指定不格式化的属性
+	 * @return
+	 */
 	public static JSONObject formatObjectNumber2DP(JSONObject jsonObject, String[] exceptField) {
 		Set<String> set = jsonObject.keySet();
 		forObjectSet: for (String key : set) {
@@ -199,6 +209,12 @@ public class JsonFileUtils {
 		return jsonObject;
 	}
 	
+	/**
+	 * 将json数组下所有数字格式化为保留2位小数
+	 * @param jsonArray
+	 * @param exceptField 指定不格式化的属性
+	 * @return
+	 */
 	public static JSONArray formatArrayNumber2DP(JSONArray jsonArray, String[] exceptField) {
 		for (int i = 0; i < jsonArray.size(); i++) {
 			formatObjectNumber2DP(jsonArray.getJSONObject(i), exceptField);

@@ -10,7 +10,11 @@ public class GBMConstant {
 	public static final String GLOBAL_ERROR_CODE = "1000";
 	public static final String GLOBAL_ERROR_MESSAGE = "System error!";
 	
+	public static final String GLOBAL_BASE_ERROR_CODE = "2000";
+	
 	public static final String ARGUMENT_ERROR_CODE = "2001";
 	public static final String ARGUMENT_ERROR_MESSAGE = "Parameter format error!";
+	
+	public static final String MISSING_ARGUMENT_ERROR_CODE = "2002";
 	
 }

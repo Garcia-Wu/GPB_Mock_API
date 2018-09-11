@@ -25,14 +25,19 @@ public class OverviewController extends BaseAPIController {
 
 	@RequestMapping(value = "{id}/overview", method = { RequestMethod.GET })
 	public BaseAPIResponse<JSONObject> overview(@PathVariable("id") String id, String currency, HttpServletRequest request, HttpServletResponse response) {
+		if(Integer.valueOf(id) > 7) {
+			throw new BaseException("");
+		}
 		
 		JSONObject jsonObject = JSONObject.fromObject(JsonFileUtils.readFileToString("overview"));
 		jsonObject.getJSONObject("customer").put("id", id);
 		if (id.equals("0")) {
+			jsonObject.getJSONObject("customer").put("name", "");
 			jsonObject.getJSONObject("customer").put("amount", 0);
 			jsonObject.getJSONObject("ytd").put("amount", 0);
 		} else if (id.equals("2")) {
-			jsonObject.getJSONObject("customer").put("bookingCenter", "Hong Kong");
+			jsonObject.getJSONObject("customer").put("name", "Mr Chen");
+			jsonObject.getJSONObject("customer").put("bookingCenter", "HK Accounts");
 			jsonObject.getJSONObject("ytd").put("amount", -389503920120D);
 		} else if (id.equals("5") || id.equals("6") || id.equals("7")) {
 //			jsonObject.getJSONObject("customer").put("amount", 13560001.01);
@@ -40,7 +45,7 @@ public class OverviewController extends BaseAPIController {
 //				jsonObject.getJSONObject("customer").put("name",
 //						"WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
 //			}
-		}
+		} 
 		if (currency != null) {
 			jsonObject.getJSONObject("customer").put("currency", currency.toUpperCase());
 		}
@@ -73,6 +78,13 @@ public class OverviewController extends BaseAPIController {
 			jsonArray = new JSONArray();
 			jsonArray.add(oneItem);
 		} else if ("7".equals(id)) {
+			// For a timeout
+			JSONObject account = JsonFileUtils.getFilterObject(jsonArray, "id", "0");
+			account.put("id", "16");
+			account.put("name", "B5ED76G ***");
+			account.put("externalId", "B5ED76G");
+			jsonArray.add(account);
+			
 			// fix for noTruncation
 			// jsonArray.getJSONObject(0).put("name", "Ada");
 			// for (int i = 0; i < jsonArray.size() - 1; i++) {
@@ -103,7 +115,7 @@ public class OverviewController extends BaseAPIController {
 	public BaseAPIResponse<JSONObject> allocation(@PathVariable("id") String id,
 			// @RequestParam(defaultValue="0")Integer offset,
 			// @RequestParam(defaultValue="15")Integer limit,
-			String currency, String category, HttpServletRequest request, HttpServletResponse response) {
+			@RequestParam(required=true)String currency, String category, HttpServletRequest request, HttpServletResponse response) {
 		
 		JSONObject result = new JSONObject();
 		JSONArray classList = JSONObject.fromObject(JsonFileUtils.readFileToString("hasSubClass_list"))
@@ -148,38 +160,76 @@ public class OverviewController extends BaseAPIController {
 			JsonFileUtils.replaceProperty(currencyList, "currency", currency.toUpperCase());
 			JsonFileUtils.replaceProperty(regionList, "currency", currency.toUpperCase());
 		}
+		
+		if(currencyList.size() > 8) {
+			StringBuilder currencyId = new StringBuilder();
+			double currencyAmount = 0;
+			double currencyWeight = 0;
+			String currencyName = "Other";
+			for (int i = 7; i < currencyList.size(); i++) {
+				currencyId.append(currencyList.getJSONObject(i).getString("id"));
+				if(i != currencyList.size() - 1) {
+					currencyId.append(",");
+				}
+				currencyAmount += currencyList.getJSONObject(i).getDouble("amount");
+				currencyWeight += currencyList.getJSONObject(i).getDouble("weight");
+			}
+			JSONObject otherCurrency = new JSONObject();
+			otherCurrency.put("id", currencyId.toString());
+			otherCurrency.put("amount", currencyAmount);
+			otherCurrency.put("name", currencyName);
+			otherCurrency.put("currency", currency.toUpperCase());
+			otherCurrency.put("weight", currencyWeight);
+			
+			currencyList = JsonFileUtils.getPageJsonArray(currencyList, 0, 7);
+			currencyList.add(otherCurrency);
+		}
 
 		result.put("clazz", classList);
 		result.put("currency", currencyList);
 		result.put("region", regionList);
 
 		if (category != null) {
+			JSONArray nullList = new JSONArray();
 			if (category.equalsIgnoreCase("ASSET")) {
-				result.remove("currency");
-				result.remove("region");
+				result.put("currency", nullList);
+				result.put("region", nullList);
 			} else if (category.equalsIgnoreCase("CURRENCY")) {
-				result.remove("clazz");
-				result.remove("region");
+				result.put("clazz", nullList);
+				result.put("region", nullList);
 			} else if (category.equalsIgnoreCase("REGION")) {
-				result.remove("clazz");
-				result.remove("currency");
+				result.put("clazz", nullList);
+				result.put("currency", nullList);
 			}
 		}
 		JsonFileUtils.formatObjectNumber2DP(result);
 		return new BaseAPIResponse<JSONObject>(result);
 	}
 
-	@RequestMapping(value = "{id}/currency", method = { RequestMethod.GET })
+	@RequestMapping(value = "{id}/xrate", method = { RequestMethod.GET })
 	public BaseAPIResponse<JSONObject> currency(@PathVariable("id") String id) {
+	
+		String json = JsonFileUtils.readFileToString("currency");
+		JSONObject jsonObject = JSONObject.fromObject(json);
+		
 		if ("2".equals(id)) {
 			BaseAPIResponse<JSONObject> response = new BaseAPIResponse<>();
 			response.setCode("1001");
 			response.setMessage("error!");
+			jsonObject.remove("currencies");
+			jsonObject.remove("updateDate");
+			response.setData(jsonObject);
+			return response;
+		} else if ("3".equals(id)) {
+			BaseAPIResponse<JSONObject> response = new BaseAPIResponse<>();
+			response.setCode("1002");
+			response.setMessage("error!");
+			jsonObject.remove("currencies");
+			jsonObject.remove("updateDate");
+			response.setData(jsonObject);
 			return response;
 		} 
 
-		String json = JsonFileUtils.readFileToString("currency");
-		JSONObject jsonObject = JSONObject.fromObject(json);
 		JSONArray jsonArray = jsonObject.getJSONArray("currencies");
 		Collections.sort(jsonArray, JsonCompare.getLetterOrderAsc("code"));
 
@@ -191,20 +241,36 @@ public class OverviewController extends BaseAPIController {
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
 
-	@RequestMapping(value = "{id}/userprofile", method = { RequestMethod.GET })
-	public BaseAPIResponse<JSONObject> userprofile(@PathVariable("id") String id) {
+	@RequestMapping(value = "userprofile", method = { RequestMethod.GET })
+	public BaseAPIResponse<JSONObject> userprofile(HttpServletRequest request, HttpServletResponse response) {
+//		Enumeration<String> headerNames = request.getHeaderNames();
+//		System.out.println("request header: ");
+//	    while (headerNames.hasMoreElements()) {
+//	        String key = (String) headerNames.nextElement();
+//	        System.out.println(key+":"+request.getHeader(key));
+//	    }
+		
+		String id = request.getHeader("AMSESSION");
+		if(id == null) {
+			throw new BaseException("Required 'AMSESSION' is not present!");
+		}
+		
+		response.addHeader("AMSESSION", id + "_AMSESSION");
+		response.addHeader("LtpaToken2", id + "_LtpaToken2");
+		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("userName", "Jones");
 //		if ("6".equals(id)) {
 //			jsonObject.put("userName", "WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
 //		} 
 		jsonObject.put("lastLoginTime", 1533882667);
+		jsonObject.put("id", id);
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
 
-	@RequestMapping(value = "holdings/allocation", method = { RequestMethod.GET })
-	public BaseAPIResponse<JSONObject> allocationHoldingList(String currency,
-			@RequestParam(required = true) String category, @RequestParam(required = true) String id,
+	@RequestMapping(value = "{id}/holdings/allocation", method = { RequestMethod.GET })
+	public BaseAPIResponse<JSONObject> allocationHoldingList(@PathVariable("id") String id, @RequestParam(required = true)String currency,
+			@RequestParam(required = true) String category, @RequestParam(required = true) String categoryId,
 			@RequestParam(defaultValue = "0") Integer offset, @RequestParam(defaultValue = "15") Integer limit) {
 		String json = JsonFileUtils.readFileToString("portfolio_holding_list");
 		JSONObject resultJson = new JSONObject();
@@ -214,25 +280,38 @@ public class OverviewController extends BaseAPIController {
 		if (category.equalsIgnoreCase("ASSET")) {
 			jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("allClass_list")).getJSONArray("clazz");
 		} else if (category.equalsIgnoreCase("CURRENCY")) {
-			jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("allCurrency_list"))
-					.getJSONArray("currency");
+			jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("allCurrency_list")).getJSONArray("currency");
 		} else if (category.equalsIgnoreCase("REGION")) {
 			jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("region_list")).getJSONArray("region");
 		} else {
 			throw new BaseException();
 		}
-		JSONObject jsonObject = JsonFileUtils.getFilterObject(jsonArray, "id", id);
-
+		
+		JSONObject jsonObject = new JSONObject();
+		if(category.equalsIgnoreCase("CURRENCY") && categoryId.contains(",")) {
+			String[] categoryIds = categoryId.split(",");
+			double categoryAmount = 0;
+			for (String cId : categoryIds) {
+				JSONObject categoryObject = JsonFileUtils.getFilterObject(jsonArray, "id", cId);
+				categoryAmount += categoryObject.getDouble("amount");
+			}
+			
+			jsonObject.put("name", "Other");
+			jsonObject.put("amount", categoryAmount);
+		} else {
+			jsonObject = JsonFileUtils.getFilterObject(jsonArray, "id", categoryId);
+		}
+		
 		allocation.put("name", jsonObject.getString("name"));
 		allocation.put("amount", jsonObject.getDouble("amount"));
-		allocation.put("currency", jsonObject.getString("currency"));
+		allocation.put("currency", currency.toUpperCase());
 		resultJson.put("allocation", allocation);
 
 		JSONArray holdingJson = JSONObject.fromObject(json).getJSONArray("holdings");
 		JsonFileUtils.removeFilterObject(holdingJson, "id", new String[] { "11", "12" });
 		resultJson.put("holdings", JsonFileUtils.getPageJsonArray(holdingJson, offset, limit));
 		resultJson.put("totalSize", holdingJson.size());
-		JsonFileUtils.formatObjectNumber2DP(resultJson, new String[] { "type" });
+		JsonFileUtils.formatObjectNumber2DP(resultJson, new String[] { "type", "totalSize" });
 		return new BaseAPIResponse<JSONObject>(resultJson);
 	}
 
