@@ -1,0 +1,19 @@
+{
+	"android": {
+		"version": "1.0.0",
+		"forceUpdate": true,
+		"releaseDate": "2018-09-10",
+		"desc": "Release 1 - Version :1.0.0",
+		"link": "http://www.baidu.com"
+	},
+	"ios": {
+		"version": "1.0.0",
+		"forceUpdate": true,
+		"releaseDate": "2018-09-10",
+		"desc": "Release 1 - Version :1.0.0",
+		"link": "http://www.baidu.com"
+	},
+	"service": {
+		"availability": true
+	}
+}

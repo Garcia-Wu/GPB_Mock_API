@@ -16,6 +16,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter{
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new RequestLogInterceptor());
-		registry.addInterceptor(new HeaderInterceptor()).excludePathPatterns("/mobile/v1/customer/userprofile");
+		registry.addInterceptor(new HeaderInterceptor()).excludePathPatterns("/mobile/v1/customer/userprofile").excludePathPatterns("/mobile/v1/version");
 	}
 }

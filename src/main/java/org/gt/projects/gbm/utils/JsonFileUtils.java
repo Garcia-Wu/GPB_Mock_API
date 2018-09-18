@@ -89,6 +89,19 @@ public class JsonFileUtils {
 		jsonArray = result;
 		return result;
 	}
+	
+	public static JSONArray subJsonArray(JSONArray jsonArray, int startIndex, int endIndex) {
+		JSONArray result = new JSONArray();
+		for(int i = startIndex; i < jsonArray.size(); i++) {
+			if (i >= endIndex) {
+				break;
+			}
+			result.add(jsonArray.get(i));
+		}
+		jsonArray = result;
+		return result;
+	}
+
 
 	public static JSONArray getIdsArray(JSONArray jsonArray, List<String> ids) {
 		JSONArray result = new JSONArray();

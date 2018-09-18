@@ -19,7 +19,7 @@ public class Test {
 		testResponse.setName("yes");
 
 		TestResponse.AccountBean account = new TestResponse.AccountBean();
-//		account.setId("a1");
+		account.setId("a1");
 		account.setAccountName("aName");
 
 		TestResponse.PortfolioBean portfolio1 = new TestResponse.PortfolioBean();
@@ -41,7 +41,8 @@ public class Test {
 //		System.out.println();
 		test.printBean(testResponse);
 
-//		System.out.println(TestResponse.class);
+//		System.out.println(TestResponse.class.getSimpleName());
+//		System.out.println(TestResponse.AccountBean.class);
 	}
 
 	public void printBean(Object object) {
@@ -61,6 +62,7 @@ public class Test {
 						printBean(o);
 					}
 				}
+				
 				if(filedValue.getClass().toString().contains(clazz.getSimpleName()+"$")) {
 					printBean(filedValue);
 				}
