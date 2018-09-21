@@ -24,7 +24,7 @@ import net.sf.json.JSONObject;
 public class OverviewController extends BaseAPIController {
 
 	@RequestMapping(value = "{id}/overview", method = { RequestMethod.GET })
-	public BaseAPIResponse<JSONObject> overview(@PathVariable("id") String id, String currency, HttpServletRequest request, HttpServletResponse response) {
+	public BaseAPIResponse<JSONObject> overview(@PathVariable("id") String id, @RequestParam(required=true)String currency) {
 		if(Integer.valueOf(id) > 7) {
 			throw new BaseException("");
 		}
@@ -34,11 +34,18 @@ public class OverviewController extends BaseAPIController {
 		if (id.equals("0")) {
 			jsonObject.getJSONObject("customer").put("name", "");
 			jsonObject.getJSONObject("customer").put("amount", 0);
+			jsonObject.getJSONObject("customer").put("liabilitiesAmount", 1);
+			jsonObject.getJSONObject("customer").put("netAssetsAmount", 0);
 			jsonObject.getJSONObject("ytd").put("amount", 0);
 		} else if (id.equals("2")) {
 			jsonObject.getJSONObject("customer").put("name", "Mr Chen");
 			jsonObject.getJSONObject("customer").put("bookingCenter", "HK Accounts");
-			jsonObject.getJSONObject("ytd").put("amount", -389503920120D);
+			jsonObject.getJSONObject("customer").put("liabilitiesAmount", -0.001);
+			jsonObject.getJSONObject("customer").put("netAssetsAmount", 38950392011.999);
+			jsonObject.getJSONObject("ytd").put("amount", -38950392012D);
+		} else if (id.equals("4")) {
+			jsonObject.getJSONObject("customer").put("liabilitiesAmount", -38950392012D);
+			jsonObject.getJSONObject("customer").put("netAssetsAmount", 0);
 		} else if (id.equals("5") || id.equals("6") || id.equals("7")) {
 //			jsonObject.getJSONObject("customer").put("amount", 13560001.01);
 //			if (id.equals("6")) {
@@ -48,6 +55,9 @@ public class OverviewController extends BaseAPIController {
 		} 
 		if (currency != null) {
 			jsonObject.getJSONObject("customer").put("currency", currency.toUpperCase());
+			jsonObject.getJSONObject("customer").put("liabilitiesCurrency", currency.toUpperCase());
+			jsonObject.getJSONObject("customer").put("netAssetsCurrency", currency.toUpperCase());
+			jsonObject.getJSONObject("customer").put("ytd", currency.toUpperCase());
 		}
 		JsonFileUtils.formatObjectNumber2DP(jsonObject);
 		return new BaseAPIResponse<JSONObject>(jsonObject);
@@ -56,7 +66,7 @@ public class OverviewController extends BaseAPIController {
 	@RequestMapping(value = "{id}/accounts", method = { RequestMethod.GET })
 	public BaseAPIResponse<JSONObject> accounts(@PathVariable("id") String id,
 			@RequestParam(defaultValue = "0") Integer offset, @RequestParam(defaultValue = "15") Integer limit,
-			String currency, HttpServletRequest request, HttpServletResponse response) {
+			@RequestParam(required = true)String currency, HttpServletRequest request, HttpServletResponse response) {
 		
 		String json = JsonFileUtils.readFileToString("overview_account_list");
 		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("accounts");
@@ -74,7 +84,7 @@ public class OverviewController extends BaseAPIController {
 			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 0, 13);
 		} else if ("4".equals(id)) {
 			// 获取对应portfolioNum为1的account
-			JSONObject oneItem = (JSONObject) jsonArray.get(2);
+			JSONObject oneItem = JsonFileUtils.getFilterObject(jsonArray, "id", "3");
 			jsonArray = new JSONArray();
 			jsonArray.add(oneItem);
 		} else if ("7".equals(id)) {
@@ -103,6 +113,10 @@ public class OverviewController extends BaseAPIController {
 		JSONArray pageJson = JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
 		for (int i = 0; i < pageJson.size(); i++) {
 			pageJson.getJSONObject(i).remove("ytd");
+			pageJson.getJSONObject(i).remove("liabilitiesAmount");
+			pageJson.getJSONObject(i).remove("liabilitiesCurrency");
+			pageJson.getJSONObject(i).remove("netAssetsAmount");
+			pageJson.getJSONObject(i).remove("netAssetsCurrency");
 		}
 		JsonFileUtils.formatArrayNumber2DP(pageJson);
 		jsonObject.put("accounts", pageJson);

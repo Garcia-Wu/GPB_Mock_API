@@ -47,11 +47,19 @@ public class AccountController extends BaseAPIController{
 		for (int i = 0; i < resultArray.size(); i++) {
 			resultArray.getJSONObject(i).remove("weight");
 			resultArray.getJSONObject(i).put("updateDate", "24 May 2018");
+			if(resultArray.getJSONObject(i).getString("id").equals("3")) {
+				resultArray.getJSONObject(i).put("hasLiabilities", false);
+			} else {
+				resultArray.getJSONObject(i).put("hasLiabilities", true);
+			}
 		}
 		
 		if(params.get("currency") != null) {
 			for (int i = 0; i < resultArray.size(); i++) {
 				resultArray.getJSONObject(i).put("currency", params.get("currency").toString().toUpperCase());
+				resultArray.getJSONObject(i).put("liabilitiesCurrency", params.get("currency").toString().toUpperCase());
+				resultArray.getJSONObject(i).put("netAssetsCurrency", params.get("currency").toString().toUpperCase());
+				resultArray.getJSONObject(i).getJSONObject("ytd").put("currency", params.get("currency").toString().toUpperCase());
 			}
 		}
 		JSONObject jsonObject = new JSONObject();
@@ -74,8 +82,7 @@ public class AccountController extends BaseAPIController{
 		} else if ("2".equals(id)) {
 			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 1, 5);
 		} else if ("3".equals(id)) {
-			// 获取对应liabilityNum为1的portfolio
-			JSONObject oneItem = (JSONObject) jsonArray.get(2);
+			JSONObject oneItem = JsonFileUtils.getFilterObject(jsonArray, "id", "0");
 			jsonArray = new JSONArray();
 			jsonArray.add(oneItem);
 		} else if ("7".equals(id)) {
@@ -107,6 +114,10 @@ public class AccountController extends BaseAPIController{
 		JSONArray pageJson = JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
 		for (int i = 0; i < pageJson.size(); i++) {
 			pageJson.getJSONObject(i).remove("ytd");
+			pageJson.getJSONObject(i).remove("liabilitiesAmount");
+			pageJson.getJSONObject(i).remove("liabilitiesCurrency");
+			pageJson.getJSONObject(i).remove("netAssetsAmount");
+			pageJson.getJSONObject(i).remove("netAssetsCurrency");
 		}
 
 		JsonFileUtils.formatArrayNumber2DP(pageJson);

@@ -2,10 +2,14 @@
 	"customer": {
 		"id": "12",
 		"name": "Jones",
-		"amount": 389503920120,
+		"amount": 38950392012,
 		"currency": "GBP",
 		"bookingCenter": "UK Accounts",
-		"updateDate": "24 May 2018"
+		"updateDate": "24 May 2018",
+		"liabilitiesAmount": -8086438537.35,
+		"liabilitiesCurrency": "USD",
+		"netAssetsAmount": 30863953474.65,
+		"netAssetsCurrency": "USD"
 	},
 	"ytd": {
 		"amount": 850920120,

@@ -51,6 +51,9 @@ public class PortfolioController extends BaseAPIController{
 		if(params.get("currency") != null) {
 			for (int i = 0; i < resultArray.size(); i++) {
 				resultArray.getJSONObject(i).put("currency", params.get("currency").toString().toUpperCase());
+				resultArray.getJSONObject(i).put("liabilitiesCurrency", params.get("currency").toString().toUpperCase());
+				resultArray.getJSONObject(i).put("netAssetsCurrency", params.get("currency").toString().toUpperCase());
+				resultArray.getJSONObject(i).getJSONObject("ytd").put("currency", params.get("currency").toString().toUpperCase());
 			}
 		}
 		
@@ -200,65 +203,65 @@ public class PortfolioController extends BaseAPIController{
 		return new BaseAPIResponse<JSONObject>(result);
 	}
 	
-	@RequestMapping(value = "portfolio/{id}/liabilities", method = {RequestMethod.GET})
-	public BaseAPIResponse<JSONObject> liabilityDetail(@PathVariable("id") String id,
-														@RequestParam(defaultValue="0")Integer offset,
-														@RequestParam(defaultValue="15")Integer limit,
-														String currency) {
-		String jsonName = "contingent_liabilities_list_USD";
-		String reportCurrency = "USD";
-		if ("2".equals(id) || "3".equals(id)) {
-			jsonName = "contingent_liabilities_list_GBP";
-			reportCurrency = "GBP";
-		} 
-		String json = JsonFileUtils.readFileToString(jsonName);
-		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("liabilities");
-		
-		if ("1".equals(id)) {
-			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 0, 13);
-		} else if ("2".equals(id)) {
-			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 0, 5);
-		} else if ("3".equals(id)) {
-			JSONObject oneItem = (JSONObject) jsonArray.get(0);
-			jsonArray = new JSONArray();
-			jsonArray.add(oneItem);
-		} else if (Integer.valueOf(id) > 15) {
-			// fix for noTruncation
-//			jsonArray.getJSONObject(0).put("description", "BRQ227M Caisse d'Amortissement de la Dette Sociale");
-		}
-		
-		JSONObject commiment = new JSONObject();
-		commiment.put("currency", reportCurrency);
-//		if (currency != null) {
-//			for (int i = 0; i < jsonArray.size(); i++) {
-//				jsonArray.getJSONObject(i).put("baseCurrency", currency.toUpperCase());
-//				jsonArray.getJSONObject(i).put("remainingBaseCurrency", currency.toUpperCase());
-//			}
+//	@RequestMapping(value = "portfolio/{id}/liabilities", method = {RequestMethod.GET})
+//	public BaseAPIResponse<JSONObject> liabilityDetail(@PathVariable("id") String id,
+//														@RequestParam(defaultValue="0")Integer offset,
+//														@RequestParam(defaultValue="15")Integer limit,
+//														String currency) {
+//		String jsonName = "contingent_liabilities_list_USD";
+//		String reportCurrency = "USD";
+//		if ("2".equals(id) || "3".equals(id)) {
+//			jsonName = "contingent_liabilities_list_GBP";
+//			reportCurrency = "GBP";
+//		} 
+//		String json = JsonFileUtils.readFileToString(jsonName);
+//		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("liabilities");
+//		
+//		if ("1".equals(id)) {
+//			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 0, 13);
+//		} else if ("2".equals(id)) {
+//			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 0, 5);
+//		} else if ("3".equals(id)) {
+//			JSONObject oneItem = (JSONObject) jsonArray.get(0);
+//			jsonArray = new JSONArray();
+//			jsonArray.add(oneItem);
+//		} else if (Integer.valueOf(id) > 15) {
+//			// fix for noTruncation
+////			jsonArray.getJSONObject(0).put("description", "BRQ227M Caisse d'Amortissement de la Dette Sociale");
 //		}
-		
-		JsonCompare numCompare = JsonCompare.getNumberOrderDesc("remainingBaseAmount");
-		Collections.sort(jsonArray, numCompare);
-		
-		JSONObject jsonObject = new JSONObject();	
-		JSONArray pageJson = JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
-		
-		for (int i = 0; i< pageJson.size(); i++) {
-			String valueDate = GBMConstant.ALL_MONTH_FORMAT.format(pageJson.getJSONObject(i).getLong("valueDate") * 1000);
-			pageJson.getJSONObject(i).put("valueDate", valueDate);
-		}
-		
-		jsonObject.put("liabilities", pageJson);
-		jsonObject.put("totalSize", jsonArray.size());
-		
-		double amount = 0;
-		for (int i = 0; i < jsonArray.size(); i++) {
-			amount += jsonArray.getJSONObject(i).getDouble("remainingReportAmount");
-		}
-		commiment.put("amount", amount);
-		jsonObject.put("commiment", commiment);
-		JsonFileUtils.formatObjectNumber2DP(jsonObject);
-		return new BaseAPIResponse<JSONObject>(jsonObject);
-	}
+//		
+//		JSONObject commiment = new JSONObject();
+//		commiment.put("currency", reportCurrency);
+////		if (currency != null) {
+////			for (int i = 0; i < jsonArray.size(); i++) {
+////				jsonArray.getJSONObject(i).put("baseCurrency", currency.toUpperCase());
+////				jsonArray.getJSONObject(i).put("remainingBaseCurrency", currency.toUpperCase());
+////			}
+////		}
+//		
+//		JsonCompare numCompare = JsonCompare.getNumberOrderDesc("remainingBaseAmount");
+//		Collections.sort(jsonArray, numCompare);
+//		
+//		JSONObject jsonObject = new JSONObject();	
+//		JSONArray pageJson = JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
+//		
+//		for (int i = 0; i< pageJson.size(); i++) {
+//			String valueDate = GBMConstant.ALL_MONTH_FORMAT.format(pageJson.getJSONObject(i).getLong("valueDate") * 1000);
+//			pageJson.getJSONObject(i).put("valueDate", valueDate);
+//		}
+//		
+//		jsonObject.put("liabilities", pageJson);
+//		jsonObject.put("totalSize", jsonArray.size());
+//		
+//		double amount = 0;
+//		for (int i = 0; i < jsonArray.size(); i++) {
+//			amount += jsonArray.getJSONObject(i).getDouble("remainingReportAmount");
+//		}
+//		commiment.put("amount", amount);
+//		jsonObject.put("commiment", commiment);
+//		JsonFileUtils.formatObjectNumber2DP(jsonObject);
+//		return new BaseAPIResponse<JSONObject>(jsonObject);
+//	}
 	
 	@RequestMapping(value = "portfolio/{id}/transactions", method = {RequestMethod.GET})
 	public BaseAPIResponse<JSONObject> transactions(@PathVariable("id") String id,
@@ -434,4 +437,54 @@ public class PortfolioController extends BaseAPIController{
 		JsonFileUtils.formatObjectNumber2DP(resultJson, new String[] { "type", "totalSize" });
 		return new BaseAPIResponse<JSONObject>(resultJson);
 	}
+	
+	
+	@RequestMapping(value = "portfolio/{id}/liabilities", method = { RequestMethod.GET })
+	public BaseAPIResponse<JSONObject> liabilities(@PathVariable("id") String id,
+												   @RequestParam(required=true)String currency) {
+		String json = JsonFileUtils.readFileToString("portfolio_liabilities_list");
+		JSONObject jsonObject = JSONObject.fromObject(json);
+		JSONArray jsonArray = jsonObject.getJSONArray("liabilities");
+		
+		if(id.equals("0")){
+			jsonArray.clear();
+		} else if (id.equals("2")){
+			jsonArray = JsonFileUtils.getFilterArray(jsonArray, "liabilityType", "Call loan");
+		} else if (id.equals("3")){
+			jsonArray = JsonFileUtils.getFilterArray(jsonArray, "liabilityType", "Fixed loan");
+		}
+		
+		JsonFileUtils.replaceProperty(jsonArray, "baseCurrency", currency.toUpperCase());
+		
+		Collections.sort(jsonArray, JsonCompare.getNumberOrderAsc("baseAmount"));
+		JsonFileUtils.formatArrayNumber2DP(jsonArray);
+		jsonObject.put("liabilities", jsonArray);
+		jsonObject.put("totalSize", jsonArray.size());
+		return new BaseAPIResponse<JSONObject>(jsonObject);
+	}
+	
+	@RequestMapping(value = "liabilities/{id}/detail", method = { RequestMethod.GET })
+	public BaseAPIResponse<JSONObject> liabilitiesDetail(@PathVariable("id") String id,
+												   @RequestParam(required=true)String currency) {
+		String json = JsonFileUtils.readFileToString("portfolio_liabilities_list");
+		JSONArray liabilitiesList = JSONObject.fromObject(json).getJSONArray("liabilities");
+		
+		JSONObject liabilities =  JsonFileUtils.getFilterObject(liabilitiesList, "liabilityId", id);
+		JSONObject resultObject = new JSONObject();
+		resultObject.put("description", liabilities.get("liabilities"));
+		resultObject.put("type", liabilities.get("liabilityType"));
+		resultObject.put("principalAmount", -11000);
+		resultObject.put("principalCurrency", liabilities.get("currency"));
+		resultObject.put("accruedInterestAmount", -500);
+		resultObject.put("accruedInterestCurrency", liabilities.get("currency"));
+		resultObject.put("totalAmount", liabilities.get("amount"));
+		resultObject.put("totalCurrency", liabilities.get("currency"));
+		resultObject.put("totalBaseAmount", liabilities.get("baseAmount"));
+		
+		resultObject.put("totalBaseCurrency", currency.toUpperCase());
+		
+		JsonFileUtils.formatObjectNumber2DP(resultObject);
+		return new BaseAPIResponse<JSONObject>(resultObject);
+	}
+
 }
