@@ -26,7 +26,7 @@ public class OverviewController extends BaseAPIController {
 	@RequestMapping(value = "{id}/overview", method = { RequestMethod.GET })
 	public BaseAPIResponse<JSONObject> overview(@PathVariable("id") String id, @RequestParam(required=true)String currency) {
 		if(Integer.valueOf(id) > 7) {
-			throw new BaseException("");
+			throw new BaseException();
 		}
 		
 		JSONObject jsonObject = JSONObject.fromObject(JsonFileUtils.readFileToString("overview"));
@@ -57,7 +57,7 @@ public class OverviewController extends BaseAPIController {
 			jsonObject.getJSONObject("customer").put("currency", currency.toUpperCase());
 			jsonObject.getJSONObject("customer").put("liabilitiesCurrency", currency.toUpperCase());
 			jsonObject.getJSONObject("customer").put("netAssetsCurrency", currency.toUpperCase());
-			jsonObject.getJSONObject("customer").put("ytd", currency.toUpperCase());
+			jsonObject.getJSONObject("ytd").put("currency", currency.toUpperCase());
 		}
 		JsonFileUtils.formatObjectNumber2DP(jsonObject);
 		return new BaseAPIResponse<JSONObject>(jsonObject);
