@@ -24,7 +24,7 @@ import net.sf.json.JSONObject;
 public class OverviewController extends BaseAPIController {
 
 	@RequestMapping(value = "{id}/overview", method = { RequestMethod.GET })
-	public BaseAPIResponse<JSONObject> overview(@PathVariable("id") String id, @RequestParam(required=true)String currency) {
+	public BaseAPIResponse<JSONObject> overview(@PathVariable("id") String id, @RequestParam(required=true)String currency, HttpServletRequest request) {
 		if(Integer.valueOf(id) > 7) {
 			throw new BaseException();
 		}
@@ -59,6 +59,18 @@ public class OverviewController extends BaseAPIController {
 			jsonObject.getJSONObject("customer").put("netAssetsCurrency", currency.toUpperCase());
 			jsonObject.getJSONObject("ytd").put("currency", currency.toUpperCase());
 		}
+		
+		if(isUK(request)) {
+			// for UK
+			jsonObject.getJSONObject("customer").remove("liabilitiesAmount");
+			jsonObject.getJSONObject("customer").remove("liabilitiesCurrency");
+			jsonObject.getJSONObject("customer").remove("netAssetsAmount");
+			jsonObject.getJSONObject("customer").remove("netAssetsCurrency");
+		} else {
+			// for ASIA
+			jsonObject.remove("ytd");
+		}
+		
 		JsonFileUtils.formatObjectNumber2DP(jsonObject);
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
@@ -66,7 +78,7 @@ public class OverviewController extends BaseAPIController {
 	@RequestMapping(value = "{id}/accounts", method = { RequestMethod.GET })
 	public BaseAPIResponse<JSONObject> accounts(@PathVariable("id") String id,
 			@RequestParam(defaultValue = "0") Integer offset, @RequestParam(defaultValue = "15") Integer limit,
-			@RequestParam(required = true)String currency, HttpServletRequest request, HttpServletResponse response) {
+			@RequestParam(required = true)String currency, HttpServletRequest request) {
 		
 		String json = JsonFileUtils.readFileToString("overview_account_list");
 		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("accounts");
@@ -88,7 +100,7 @@ public class OverviewController extends BaseAPIController {
 			jsonArray = new JSONArray();
 			jsonArray.add(oneItem);
 		} else if ("7".equals(id)) {
-			// For a timeout
+			// For timeout
 			JSONObject account = JsonFileUtils.getFilterObject(jsonArray, "id", "0");
 			account.put("id", "16");
 			account.put("name", "B5ED76G ***");
@@ -111,6 +123,14 @@ public class OverviewController extends BaseAPIController {
 
 		JSONObject jsonObject = new JSONObject();
 		JSONArray pageJson = JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
+		
+		// for ASIA
+		if(isAsia(request)) {
+			for (int i = 0; i < pageJson.size(); i++) {
+				pageJson.getJSONObject(i).put("weight", "");
+			}
+		}
+		
 		for (int i = 0; i < pageJson.size(); i++) {
 			pageJson.getJSONObject(i).remove("ytd");
 			pageJson.getJSONObject(i).remove("liabilitiesAmount");
@@ -129,13 +149,16 @@ public class OverviewController extends BaseAPIController {
 	public BaseAPIResponse<JSONObject> allocation(@PathVariable("id") String id,
 			// @RequestParam(defaultValue="0")Integer offset,
 			// @RequestParam(defaultValue="15")Integer limit,
-			@RequestParam(required=true)String currency, String category, HttpServletRequest request, HttpServletResponse response) {
+			@RequestParam(required=true)String currency, String category, HttpServletRequest request) {
 		
 		JSONObject result = new JSONObject();
 		JSONArray classList = JSONObject.fromObject(JsonFileUtils.readFileToString("hasSubClass_list"))
 				.getJSONArray("clazz");
-		JSONArray regionList = JSONObject.fromObject(JsonFileUtils.readFileToString("region_list"))
-				.getJSONArray("region");
+		JSONArray regionList = new JSONArray();
+		if(isUK(request)) {
+			regionList = JSONObject.fromObject(JsonFileUtils.readFileToString("region_list")).getJSONArray("region");
+		}
+				
 		JSONArray currencyList = new JSONArray();
 
 		if ("0".equals(id)) {

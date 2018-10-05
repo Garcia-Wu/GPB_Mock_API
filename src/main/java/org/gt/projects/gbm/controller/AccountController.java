@@ -26,7 +26,7 @@ import net.sf.json.JSONObject;
 public class AccountController extends BaseAPIController{
 	
 	@RequestMapping(value = "overview", method = {RequestMethod.POST})
-	public BaseAPIResponse<JSONObject> overview(@RequestBody Map<String, Object> params) {
+	public BaseAPIResponse<JSONObject> overview(@RequestBody Map<String, Object> params, HttpServletRequest request) {
 		printJsonParams(params);
 		List<String> ids = (List<String>) params.get("ids");
 		String json = JsonFileUtils.readFileToString("overview_account_list");
@@ -46,22 +46,28 @@ public class AccountController extends BaseAPIController{
 //			}
 //		}
 		
-		for (int i = 0; i < resultArray.size(); i++) {
-			resultArray.getJSONObject(i).remove("weight");
-			resultArray.getJSONObject(i).put("updateDate", "24 May 2018");
-			if(resultArray.getJSONObject(i).getString("id").equals("3")) {
-				resultArray.getJSONObject(i).put("hasLiabilities", false);
-			} else {
-				resultArray.getJSONObject(i).put("hasLiabilities", true);
-			}
-		}
-		
 		if(params.get("currency") != null) {
 			for (int i = 0; i < resultArray.size(); i++) {
 				resultArray.getJSONObject(i).put("currency", params.get("currency").toString().toUpperCase());
 				resultArray.getJSONObject(i).put("liabilitiesCurrency", params.get("currency").toString().toUpperCase());
 				resultArray.getJSONObject(i).put("netAssetsCurrency", params.get("currency").toString().toUpperCase());
 				resultArray.getJSONObject(i).getJSONObject("ytd").put("currency", params.get("currency").toString().toUpperCase());
+			}
+		}
+		
+		for (int i = 0; i < resultArray.size(); i++) {
+			resultArray.getJSONObject(i).remove("weight");
+			resultArray.getJSONObject(i).put("updateDate", "24 May 2018");
+		
+			if(isUK(request)) {
+				// for UK
+				resultArray.getJSONObject(i).remove("liabilitiesAmount");
+				resultArray.getJSONObject(i).remove("liabilitiesCurrency");
+				resultArray.getJSONObject(i).remove("netAssetsAmount");
+				resultArray.getJSONObject(i).remove("netAssetsCurrency");
+			} else {
+				// for ASIA
+				resultArray.getJSONObject(i).remove("ytd");
 			}
 		}
 		JSONObject jsonObject = new JSONObject();
@@ -122,7 +128,7 @@ public class AccountController extends BaseAPIController{
 			pageJson.getJSONObject(i).remove("netAssetsCurrency");
 		}
 		
-		if(request.getHeader("AMSESSION").endsWith("HK") || request.getHeader("AMSESSION").endsWith("SG")) {
+		if(isAsia(request)) {
 			for (int i = 0; i < pageJson.size(); i++) {
 				if(pageJson.getJSONObject(i).getString("mandateType").equals("Advisory")) {
 					pageJson.getJSONObject(i).put("name", "Advisory");
@@ -140,10 +146,13 @@ public class AccountController extends BaseAPIController{
 	public BaseAPIResponse<JSONObject> allocation(@PathVariable("id") String id,
 //												@RequestParam(defaultValue="0")Integer offset,
 //												@RequestParam(defaultValue="15")Integer limit,
-			@RequestParam(required=true)String currency, String category) {
+			@RequestParam(required=true)String currency, String category, HttpServletRequest request) {
 		JSONObject result = new JSONObject();
 		JSONArray classList = JSONObject.fromObject(JsonFileUtils.readFileToString("hasSubClass_list")).getJSONArray("clazz");
-		JSONArray regionList = JSONObject.fromObject(JsonFileUtils.readFileToString("region_list")).getJSONArray("region");
+		JSONArray regionList = new JSONArray();
+		if(isUK(request)) {
+			regionList = JSONObject.fromObject(JsonFileUtils.readFileToString("region_list")).getJSONArray("region");
+		}
 		JSONArray currencyList = new JSONArray();
 		
 		if ("0".equals(id)) {
@@ -163,12 +172,12 @@ public class AccountController extends BaseAPIController{
 		} else if ("6".equals(id)) {
 			regionList.clear();
 			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("9currency_list")).getJSONArray("currency");
-		} else if ("15".equals(id)) {
-			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list")).getJSONArray("currency");
-			classList.getJSONObject(0).put("name", "Liquidity and Money");
-			classList.getJSONObject(0).getJSONArray("nodes").getJSONObject(0).put("name", "Futures on Forex");
-			currencyList.getJSONObject(0).put("name", "Hong Kong Dollar");
-			regionList.getJSONObject(0).put("name", "Europe");
+//		} else if ("15".equals(id)) {
+//			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list")).getJSONArray("currency");
+//			classList.getJSONObject(0).put("name", "Liquidity and Money");
+//			classList.getJSONObject(0).getJSONArray("nodes").getJSONObject(0).put("name", "Futures on Forex");
+//			currencyList.getJSONObject(0).put("name", "Hong Kong Dollar");
+//			regionList.getJSONObject(0).put("name", "Europe");
 		} else {
 			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list")).getJSONArray("currency");
 			

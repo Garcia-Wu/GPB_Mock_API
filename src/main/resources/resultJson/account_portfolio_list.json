@@ -16,7 +16,7 @@
 			"ytd": {
 				"amount": -2000000.12,
 				"currency": "GBP",
-				"weight": -31.37,
+				"weight": "-31.37",
 				"date": "31 Aug 2018"
 			}
 		},
@@ -27,7 +27,7 @@
 			"baseCurrency": "JPY",
 			"name": "CF596B8 Standard GBP",
 			"amount": 259999.95,
-			"weight": "81.4",
+			"weight": "81.40",
 			"id": "2",
 			"liabilitiesAmount": -0.001,
 			"liabilitiesCurrency": "USD",
@@ -36,7 +36,7 @@
 			"ytd": {
 				"amount": 9364785.12,
 				"currency": "GBP",
-				"weight": 81.4,
+				"weight": "81.40",
 				"date": "18 Jun 2018"
 			}
 		},
@@ -56,7 +56,7 @@
 			"ytd": {
 				"amount": 8234350.12,
 				"currency": "GBP",
-				"weight": 98.80,
+				"weight": "98.80",
 				"date": "11 Oct 2018"
 			}
 		},
@@ -76,7 +76,7 @@
 			"ytd": {
 				"amount": 7234011.12,
 				"currency": "GBP",
-				"weight": 55.77,
+				"weight": "0.00",
 				"date": "06 May 2018"
 			}
 		},
@@ -96,7 +96,7 @@
 			"ytd": {
 				"amount": 6834081.12,
 				"currency": "GBP",
-				"weight": 38.74,
+				"weight": "38.74",
 				"date": "31 Aug 2018"
 			}
 		},
@@ -116,7 +116,7 @@
 			"ytd": {
 				"amount": 633412.12,
 				"currency": "GBP",
-				"weight": 62.69,
+				"weight": "62.69",
 				"date": "31 Aug 2018"
 			}
 		},
@@ -136,7 +136,7 @@
 			"ytd": {
 				"amount": 5934233.12,
 				"currency": "GBP",
-				"weight": 22.63,
+				"weight": "22.63",
 				"date": "31 Aug 2018"
 			}
 		},
@@ -156,7 +156,7 @@
 			"ytd": {
 				"amount": 5534240.12,
 				"currency": "GBP",
-				"weight": 73.89,
+				"weight": "73.89",
 				"date": "31 Aug 2018"
 			}
 		},
@@ -176,7 +176,7 @@
 			"ytd": {
 				"amount": 5134012.12,
 				"currency": "GBP",
-				"weight": 142.14,
+				"weight": "142.14",
 				"date": "31 Aug 2018"
 			}
 		},
@@ -196,7 +196,7 @@
 			"ytd": {
 				"amount": -1234517.12,
 				"currency": "GBP",
-				"weight": -34.50,
+				"weight": "-34.50",
 				"date": "31 Aug 2018"
 			}
 		},
@@ -216,7 +216,7 @@
 			"ytd": {
 				"amount": 3234981.12,
 				"currency": "GBP",
-				"weight": 76.80,
+				"weight": "76.80",
 				"date": "31 Aug 2018"
 			}
 		},
@@ -236,7 +236,7 @@
 			"ytd": {
 				"amount": 2234752.12,
 				"currency": "GBP",
-				"weight": 45.37,
+				"weight": "45.37",
 				"date": "31 Aug 2018"
 			}
 		},
@@ -256,7 +256,7 @@
 			"ytd": {
 				"amount": 934187.12,
 				"currency": "GBP",
-				"weight": 34.10,
+				"weight": "34.10",
 				"date": "31 Aug 2018"
 			}
 		},
@@ -276,7 +276,7 @@
 			"ytd": {
 				"amount": 244421.12,
 				"currency": "GBP",
-				"weight": 231.09,
+				"weight": "231.09",
 				"date": "31 Aug 2018"
 			}
 		},
@@ -296,7 +296,7 @@
 			"ytd": {
 				"amount": 9734000.12,
 				"currency": "GBP",
-				"weight": 88.52,
+				"weight": "88.52",
 				"date": "31 Aug 2018"
 			}
 		},
@@ -316,7 +316,7 @@
 			"ytd": {
 				"amount": 0.00,
 				"currency": "GBP",
-				"weight": 0.00,
+				"weight": "",
 				"date": "31 Aug 2018"
 			}
 		}

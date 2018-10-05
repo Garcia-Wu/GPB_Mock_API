@@ -2,6 +2,8 @@ package org.gt.projects.gbm.base;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.gt.projects.gbm.utils.GBMConstant;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -48,6 +50,22 @@ public class BaseAPIController {
 			System.out.print(key+"="+params.get(key)+"  ");
 		}
 		System.out.println();
+	}
+	
+	public boolean isAsia(HttpServletRequest request) {
+		return isHK(request) || isSG(request);
+	}
+	
+	public boolean isUK(HttpServletRequest request) {
+		return request.getHeader("AMSESSION").endsWith(GBMConstant.REGION_UK);
+	}
+	
+	public boolean isHK(HttpServletRequest request) {
+		return request.getHeader("AMSESSION").endsWith(GBMConstant.REGION_HK);
+	}
+	
+	public boolean isSG(HttpServletRequest request) {
+		return request.getHeader("AMSESSION").endsWith(GBMConstant.REGION_SG);
 	}
 	
 }

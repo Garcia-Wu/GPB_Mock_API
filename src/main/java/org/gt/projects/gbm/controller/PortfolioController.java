@@ -61,21 +61,21 @@ public class PortfolioController extends BaseAPIController {
 			}
 		}
 
-		String amsession = request.getHeader("AMSESSION");
 		for (int i = 0; i < resultArray.size(); i++) {
 			JSONObject portfolioObjcet = resultArray.getJSONObject(i);
-			if (amsession.endsWith("UK")) {
+			if (isUK(request)) {
 				// for UK
 				portfolioObjcet.getJSONObject("ytd").remove("date");
+				resultArray.getJSONObject(i).remove("liabilitiesAmount");
+				resultArray.getJSONObject(i).remove("liabilitiesCurrency");
+				resultArray.getJSONObject(i).remove("netAssetsAmount");
+				resultArray.getJSONObject(i).remove("netAssetsCurrency");
 			} else {
 				// for ASIA
 				if (portfolioObjcet.getString("mandateType").equals("Advisory")) {
 					portfolioObjcet.put("name", "Advisory");
 				}
 			}
-		}
-
-		for (int i = 0; i < resultArray.size(); i++) {
 			resultArray.getJSONObject(i).remove("weight");
 			resultArray.getJSONObject(i).remove("mandateType");
 			resultArray.getJSONObject(i).put("updateDate", "24 May 2018");
@@ -127,12 +127,14 @@ public class PortfolioController extends BaseAPIController {
 	public BaseAPIResponse<JSONObject> allocation(@PathVariable("id") String id,
 			// @RequestParam(defaultValue="0")Integer offset,
 			// @RequestParam(defaultValue="15")Integer limit,
-			@RequestParam(required = true) String currency, String category) {
+			@RequestParam(required = true) String currency, String category, HttpServletRequest request) {
 		JSONObject result = new JSONObject();
 		JSONArray classList = JSONObject.fromObject(JsonFileUtils.readFileToString("hasSubClass_list"))
 				.getJSONArray("clazz");
-		JSONArray regionList = JSONObject.fromObject(JsonFileUtils.readFileToString("region_list"))
-				.getJSONArray("region");
+		JSONArray regionList = new JSONArray();
+		if(isUK(request)) {
+			regionList = JSONObject.fromObject(JsonFileUtils.readFileToString("region_list")).getJSONArray("region");
+		}
 		JSONArray currencyList = new JSONArray();
 
 		if ("0".equals(id)) {
@@ -158,13 +160,13 @@ public class PortfolioController extends BaseAPIController {
 			regionList.clear();
 			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("9currency_list"))
 					.getJSONArray("currency");
-		} else if ("15".equals(id)) {
-			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list"))
-					.getJSONArray("currency");
-			classList.getJSONObject(0).put("name", "Liquidity and Money");
-			classList.getJSONObject(0).getJSONArray("nodes").getJSONObject(0).put("name", "Futures on Forex");
-			currencyList.getJSONObject(0).put("name", "Hong Kong Dollar");
-			regionList.getJSONObject(0).put("name", "Europe");
+//		} else if ("15".equals(id)) {
+//			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list"))
+//					.getJSONArray("currency");
+//			classList.getJSONObject(0).put("name", "Liquidity and Money");
+//			classList.getJSONObject(0).getJSONArray("nodes").getJSONObject(0).put("name", "Futures on Forex");
+//			currencyList.getJSONObject(0).put("name", "Hong Kong Dollar");
+//			regionList.getJSONObject(0).put("name", "Europe");
 		} else {
 			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list"))
 					.getJSONArray("currency");

@@ -7,6 +7,10 @@ public class GBMConstant {
 	public static final SimpleDateFormat ALL_MONTH_FORMAT = new SimpleDateFormat("dd MMMM YYYY");
 	public static final SimpleDateFormat SIM_MONTH_FORMAT = new SimpleDateFormat("dd MMM YYYY");
 	
+	public static final String REGION_UK = "UK";
+	public static final String REGION_HK = "HK";
+	public static final String REGION_SG = "SG";
+	
 	public static final String GLOBAL_ERROR_CODE = "1000";
 	public static final String GLOBAL_ERROR_MESSAGE = "System error!";
 	
