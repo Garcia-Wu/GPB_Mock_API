@@ -46,13 +46,13 @@ public class OverviewController extends BaseAPIController {
 		} else if (id.equals("4")) {
 			jsonObject.getJSONObject("customer").put("liabilitiesAmount", -38950392012D);
 			jsonObject.getJSONObject("customer").put("netAssetsAmount", 0);
-		} else if (id.equals("5") || id.equals("6") || id.equals("7")) {
-//			jsonObject.getJSONObject("customer").put("amount", 13560001.01);
-//			if (id.equals("6")) {
-//				jsonObject.getJSONObject("customer").put("name",
-//						"WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
-//			}
-		} 
+		} else if (id.equals("5")) {
+			jsonObject.getJSONObject("customer").put("liabilitiesAmount", -48086438537.35);
+			jsonObject.getJSONObject("customer").put("netAssetsAmount", -9136046525.35);
+//		} else if (id.equals("6")) {
+//			jsonObject.getJSONObject("customer").put("name",
+//					"WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+		}
 		if (currency != null) {
 			jsonObject.getJSONObject("customer").put("currency", currency.toUpperCase());
 			jsonObject.getJSONObject("customer").put("liabilitiesCurrency", currency.toUpperCase());
@@ -267,10 +267,12 @@ public class OverviewController extends BaseAPIController {
 		String id = request.getHeader("AMSESSION");
 		if(id == null) {
 			throw new BaseException("Required 'AMSESSION' is not present!");
+		}  else {
+			System.out.println("AMSESSION:"+id);
 		}
 		
-		response.addHeader("AMSESSION", id + "_AMSESSION");
-		response.addHeader("LtpaToken2", id + "_LtpaToken2");
+		response.addHeader("AMSESSION", "AMSESSION_" + id.toUpperCase());
+		response.addHeader("LtpaToken2", "LtpaToken2_" + id.toUpperCase());
 		
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("userName", "Jones");
@@ -278,7 +280,16 @@ public class OverviewController extends BaseAPIController {
 //			jsonObject.put("userName", "WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
 //		} 
 		jsonObject.put("lastLoginTime", 1533882667);
+		
+		if(id.indexOf("_") != -1) {
+			id = id.substring(0, id.indexOf("_"));
+		}
 		jsonObject.put("id", id);
+		if(id.equals("4")) {
+			jsonObject.put("hasLiabilities", false);
+		} else {
+			jsonObject.put("hasLiabilities", true);
+		}
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
 

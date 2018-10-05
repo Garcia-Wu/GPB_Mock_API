@@ -3,7 +3,7 @@
 		{
 			"id": "1",
 			"name": "B4PCVIM ***",
-			"weight": -17.8,
+			"weight": "-17.81",
 			"amount": 693457107.12,
 			"externalId": "B4PCVIM",
 			"currency": "GBP",
@@ -21,7 +21,7 @@
 		{
 			"id": "2",
 			"name": "BU1A43O ***",
-			"weight": 52.9,
+			"weight": "52.90",
 			"externalId": "BU1A43O",
 			"amount": 503668433.87,
 			"currency": "GBP",
@@ -39,7 +39,7 @@
 		{
 			"id": "3",
 			"name": "B5F6126 ***",
-			"weight": 60.80,
+			"weight": "60.80",
 			"externalId": "B5F6126",
 			"amount": 3948542.01,
 			"currency": "GBP",
@@ -57,7 +57,7 @@
 		{
 			"id": "4",
 			"name": "BCA4397 ***",
-			"weight": 120.77,
+			"weight": "0.00",
 			"externalId": "BCA4397",
 			"amount": 2692564.01,
 			"currency": "GBP",
@@ -75,14 +75,14 @@
 		{
 			"id": "5",
 			"name": "BF4743F ***",
-			"weight": 55.74,
+			"weight": "55.74",
 			"externalId": "BF4743F",
 			"amount": 983178,
 			"currency": "GBP",
 			"baseCurrency": "USD",
-			"liabilitiesAmount": -323568.46,
+			"liabilitiesAmount": -1323568.46,
 			"liabilitiesCurrency": "USD",
-			"netAssetsAmount": 659609.54,
+			"netAssetsAmount": -340390.46,
 			"netAssetsCurrency": "USD",
 			"ytd": {
 				"amount": 6834007.12,
@@ -93,7 +93,7 @@
 		{
 			"id": "6",
 			"name": "B852578 ***",
-			"weight": 94.69,
+			"weight": "94.69",
 			"amount": 819638,
 			"externalId": "B852578",
 			"currency": "GBP",
@@ -111,7 +111,7 @@
 		{
 			"id": "7",
 			"name": "B217EFC ***",
-			"weight": 382.63,
+			"weight": "382.63",
 			"amount": 726793,
 			"externalId": "B217EFC",
 			"currency": "GBP",
@@ -129,7 +129,7 @@
 		{
 			"id": "8",
 			"name": "BBF391F ***",
-			"weight": 34.89,
+			"weight": "34.89",
 			"amount": 636820,
 			"externalId": "BBF391F",
 			"currency": "GBP",
@@ -147,7 +147,7 @@
 		{
 			"id": "9",
 			"name": "BF0B3D6 ***",
-			"weight": 67.14,
+			"weight": "67.14",
 			"amount": 511862,
 			"externalId": "BF0B3D6",
 			"currency": "GBP",
@@ -165,7 +165,7 @@
 		{
 			"id": "10",
 			"name": "BFD12CA ***",
-			"weight": -9.50,
+			"weight": "-9.50",
 			"amount": 403782,
 			"externalId": "BFD12CA",
 			"currency": "GBP",
@@ -183,7 +183,7 @@
 		{
 			"id": "11",
 			"name": "B254FF4 ***",
-			"weight": 553.80,
+			"weight": "553.80",
 			"amount": 319752,
 			"externalId": "B254FF4",
 			"currency": "GBP",
@@ -201,7 +201,7 @@
 		{
 			"id": "12",
 			"name": "B4727EF ***",
-			"weight": 126.37,
+			"weight": "126.37",
 			"amount": 300107,
 			"externalId": "B4727EF",
 			"currency": "GBP",
@@ -219,7 +219,7 @@
 		{
 			"id": "13",
 			"name": "BEFFF64 ***",
-			"weight": 46.10,
+			"weight": "46.10",
 			"amount": 108780,
 			"externalId": "BEFFF64",
 			"currency": "GBP",
@@ -237,7 +237,7 @@
 		{
 			"id": "14",
 			"name": "BC57031 ***",
-			"weight": 8.09,
+			"weight": "8.09",
 			"amount": 49351,
 			"externalId": "BC57031",
 			"currency": "GBP",
@@ -255,7 +255,7 @@
 		{
 			"id": "15",
 			"name": "B255FBD ***",
-			"weight": 447.52,
+			"weight": "447.52",
 			"amount": 37490,
 			"externalId": "B255FBD",
 			"currency": "GBP",
@@ -273,7 +273,7 @@
 		{
 			"id": "0",
 			"name": "B5ED76F ***",
-			"weight": 0,
+			"weight": "",
 			"externalId": "B5ED76F",
 			"amount": 0,
 			"currency": "GBP",

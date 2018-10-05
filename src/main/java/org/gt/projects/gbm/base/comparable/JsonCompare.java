@@ -25,12 +25,23 @@ public class JsonCompare implements Comparator<JSONObject>{
 	
 	private static JsonCompare jsonCompare;
 	
+	/**
+	 * 根据数字属性排序
+	 * @param orderField 数字属性名
+	 * @param sequence 排序方式
+	 */
 	public JsonCompare(String orderField, String sequence) {
 		super();
 		this.orderField = new String[] {orderField};
 		this.sequence = new String[] {sequence};
 	}
 	
+	/**
+	 * 单属性自定义排序
+	 * @param orderField 排序属性名
+	 * @param orderFieldType 排序属性类型
+	 * @param sequence 排序方式
+	 */
 	public JsonCompare(String orderField, String orderFieldType, String sequence) {
 		super();
 		this.orderField = new String[] {orderField};
@@ -38,6 +49,16 @@ public class JsonCompare implements Comparator<JSONObject>{
 		this.sequence = new String[] {sequence};
 	}
 	
+	/**
+	 * 多属性排序
+	 * @param orderField 排序属性名数组
+	 * @param orderFieldType 排序属性排序类型数组（如JsonCompare.LETTER）
+	 * @param sequence 排序方式（升序或降序）
+	 * eg: 
+	 *  JsonCompare compare = new JsonCompare(new String[] { "amount", "type", "description" },
+				new String[] { JsonCompare.NUMBER, JsonCompare.LETTER, JsonCompare.LETTER },
+				new String[] { JsonCompare.DESC, JsonCompare.ASC, JsonCompare.ASC });
+	 */
 	public JsonCompare(String orderField[], String orderFieldType[], String sequence[]) {
 		super();
 		this.orderField = orderField;
@@ -45,21 +66,41 @@ public class JsonCompare implements Comparator<JSONObject>{
 		this.sequence = sequence;
 	}
 	
+	/**
+	 * 根据数字属性降序排序
+	 * @param orderField 数字属性名
+	 * @return
+	 */
 	public static JsonCompare getNumberOrderDesc(String orderField) {
 		jsonCompare = new JsonCompare(orderField, DESC);
 		return jsonCompare;
 	}
 	
+	/**
+	 * 根据数字属性升序排序
+	 * @param orderField 数字属性名
+	 * @return
+	 */
 	public static JsonCompare getNumberOrderAsc(String orderField) {
 		jsonCompare = new JsonCompare(orderField, ASC);
 		return jsonCompare;
 	}
 	
+	/**
+	 * 根据英文属性降序排序 （Z-A）
+	 * @param orderField 英文属性名
+	 * @return
+	 */
 	public static JsonCompare getLetterOrderDesc(String orderField) {
 		jsonCompare = new JsonCompare(orderField, LETTER, DESC);
 		return jsonCompare;
 	}
 	
+	/**
+	 * 根据英文属性升序排序 （A-Z）
+	 * @param orderField 英文属性名
+	 * @return
+	 */
 	public static JsonCompare getLetterOrderAsc(String orderField) {
 		jsonCompare = new JsonCompare(orderField, LETTER, ASC);
 		return jsonCompare;

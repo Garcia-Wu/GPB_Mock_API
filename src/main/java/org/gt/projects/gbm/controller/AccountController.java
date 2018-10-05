@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.gt.projects.gbm.base.BaseAPIController;
 import org.gt.projects.gbm.base.BaseAPIResponse;
 import org.gt.projects.gbm.base.BaseException;
@@ -72,7 +74,7 @@ public class AccountController extends BaseAPIController{
 	public BaseAPIResponse<JSONObject> portfolios(@PathVariable("id") String id,
 												@RequestParam(defaultValue="0")Integer offset,
 												@RequestParam(defaultValue="15")Integer limit,
-															String currency) {
+												@RequestParam(required=true)String currency, HttpServletRequest request) {
 		String json = JsonFileUtils.readFileToString("account_portfolio_list");
 		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("portfolios");
 		if ("0".equals(id)) {
@@ -118,6 +120,14 @@ public class AccountController extends BaseAPIController{
 			pageJson.getJSONObject(i).remove("liabilitiesCurrency");
 			pageJson.getJSONObject(i).remove("netAssetsAmount");
 			pageJson.getJSONObject(i).remove("netAssetsCurrency");
+		}
+		
+		if(request.getHeader("AMSESSION").endsWith("HK") || request.getHeader("AMSESSION").endsWith("SG")) {
+			for (int i = 0; i < pageJson.size(); i++) {
+				if(pageJson.getJSONObject(i).getString("mandateType").equals("Advisory")) {
+					pageJson.getJSONObject(i).put("name", "Advisory");
+				}
+			}
 		}
 
 		JsonFileUtils.formatArrayNumber2DP(pageJson);

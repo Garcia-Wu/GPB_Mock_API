@@ -8,7 +8,9 @@
 			"baseCurrency":"USD",
 			"reportAmount":608872753.75,
 			"reportCurrency":"GBP",
-			"type":0
+			"type":0,
+			"performanceAmount":0,
+			"performanceCurrency":"USD"
 		},
 		{
 			"id":"2",
@@ -18,7 +20,9 @@
 			"baseCurrency":"USD",
 			"reportAmount":532754135.52,
 			"reportCurrency":"GBP",
-			"type":1
+			"type":1,
+			"performanceAmount":-3538675522.99,
+			"performanceCurrency":"USD"
 		},
 		{
 			"id":"3",
@@ -28,7 +32,9 @@
 			"baseCurrency":"EUR",
 			"reportAmount":524418111.44,
 			"reportCurrency":"GBP",
-			"type":1
+			"type":1,
+			"performanceAmount":2297765117.98,
+			"performanceCurrency":"EUR"
 		},
 		{
 			"id":"4",
@@ -38,7 +44,9 @@
 			"baseCurrency":"GBP",
 			"reportAmount":500400300.00,
 			"reportCurrency":"GBP",
-			"type":0
+			"type":0,
+			"performanceAmount":0,
+			"performanceCurrency":"GBP"
 		},
 		{
 			"id":"5",
@@ -48,7 +56,9 @@
 			"baseCurrency":"GBP",
 			"reportAmount":304310213.54,
 			"reportCurrency":"GBP",
-			"type":1
+			"type":1,
+			"performanceAmount":3567078236.09,
+			"performanceCurrency":"GBP"
 		},
 
 
@@ -60,7 +70,9 @@
 			"baseCurrency":"GBP",
 			"reportAmount":254810000.54,
 			"reportCurrency":"GBP",
-			"type":0
+			"type":0,
+			"performanceAmount":0,
+			"performanceCurrency":"GBP"
 		},
 
 		{
@@ -71,7 +83,9 @@
 			"baseCurrency":"USD",
 			"reportAmount":152118705.55,
 			"reportCurrency":"GBP",
-			"type":1
+			"type":1,
+			"performanceAmount":0.00,
+			"performanceCurrency":"USD"
 		},
 		{
 			"id":"8",
@@ -81,7 +95,9 @@
 			"baseCurrency":"GBP",
 			"reportAmount":76705797.26,
 			"reportCurrency":"GBP",
-			"type":1
+			"type":1,
+			"performanceAmount":-3458662350.87,
+			"performanceCurrency":"GBP"
 		},
 		{
 			"id":"9",
@@ -91,7 +107,9 @@
 			"baseCurrency":"USD",
 			"reportAmount":74553847.91,
 			"reportCurrency":"GBP",
-			"type":0
+			"type":0,
+			"performanceAmount":0,
+			"performanceCurrency":"USD"
 		},
 		{
 			"id":"10",
@@ -101,7 +119,9 @@
 			"baseCurrency":"USD",
 			"reportAmount":60870083.18,
 			"reportCurrency":"GBP",
-			"type":0
+			"type":0,
+			"performanceAmount":0,
+			"performanceCurrency":"USD"
 		},
 		{
 			"id":"11",
@@ -111,7 +131,9 @@
 			"baseCurrency":"GBP",
 			"reportAmount":60060050.12,
 			"reportCurrency":"GBP",
-			"type":1
+			"type":1,
+			"performanceAmount":975317635.00,
+			"performanceCurrency":"GBP"
 		},
 		{
 			"id":"12",
@@ -121,7 +143,9 @@
 			"baseCurrency":"GBP",
 			"reportAmount":50040020.89,
 			"reportCurrency":"GBP",
-			"type":0
+			"type":0,
+			"performanceAmount":0,
+			"performanceCurrency":"GBP"
 		},
 		{
 			"id":"13",
@@ -131,7 +155,9 @@
 			"baseCurrency":"GBP",
 			"reportAmount":40030010.00,
 			"reportCurrency":"GBP",
-			"type":0
+			"type":0,
+			"performanceAmount":0,
+			"performanceCurrency":"GBP"
 		},
 		{
 			"id":"14",
@@ -141,7 +167,9 @@
 			"baseCurrency":"EUR",
 			"reportAmount":30476879.72,
 			"reportCurrency":"GBP",
-			"type":0
+			"type":0,
+			"performanceAmount":0,
+			"performanceCurrency":"EUR"
 		},
 		{
 			"id":"15",
@@ -151,7 +179,9 @@
 			"baseCurrency":"EUR",
 			"reportAmount":26731489.75,
 			"reportCurrency":"GBP",
-			"type":1
+			"type":1,
+			"performanceAmount":6737210000.05,
+			"performanceCurrency":"EUR"
 		},
 		{
 			"id":"16",
@@ -161,7 +191,9 @@
 			"baseCurrency":"EUR",
 			"reportAmount":0.00,
 			"reportCurrency":"GBP",
-			"type":1
+			"type":1,
+			"performanceAmount":0,
+			"performanceCurrency":"EUR"
 		},
 		{
 			"id":"17",
@@ -171,7 +203,9 @@
 			"baseCurrency":"GBP",
 			"reportAmount":-10090070,
 			"reportCurrency":"GBP",
-			"type":0
+			"type":0,
+			"performanceAmount":0,
+			"performanceCurrency":"GBP"
 		},
 		{
 			"id":"18",
@@ -181,7 +215,9 @@
 			"baseCurrency":"EUR",
 			"reportAmount":-17851520.69,
 			"reportCurrency":"GBP",
-			"type":1
+			"type":1,
+			"performanceAmount":-8560003501.50,
+			"performanceCurrency":"EUR"
 		},
 		{
 			"id":"19",
@@ -191,7 +227,9 @@
 			"baseCurrency":"EUR",
 			"reportAmount":-26701738.74,
 			"reportCurrency":"GBP",
-			"type":1
+			"type":1,
+			"performanceAmount":-1569032875.30,
+			"performanceCurrency":"EUR"
 		}
 	]
 }
