@@ -61,7 +61,7 @@
 			}
 		},
 		{
-			"mandateType": "Advisory",
+			"mandateType": "Discretionary",
 			"externalId": "CA0C52A",
 			"currency": "GBP",
 			"baseCurrency": "JPY",
@@ -89,9 +89,9 @@
 			"amount": 120235.87,
 			"weight": "38.74",
 			"id": "5",
-			"liabilitiesAmount": -68744.46,
+			"liabilitiesAmount": -168744.46,
 			"liabilitiesCurrency": "USD",
-			"netAssetsAmount": 51491.41,
+			"netAssetsAmount": -48508.59,
 			"netAssetsCurrency": "USD",
 			"ytd": {
 				"amount": 6834081.12,
@@ -307,7 +307,7 @@
 			"baseCurrency": "JPY",
 			"name": "CBB8824 Standard GBP",
 			"amount": 0,
-			"weight": "",
+			"weight": "0.00",
 			"id": "0",
 			"liabilitiesAmount": 1,
 			"liabilitiesCurrency": "USD",
@@ -316,7 +316,7 @@
 			"ytd": {
 				"amount": 0.00,
 				"currency": "GBP",
-				"weight": "",
+				"weight": "0.00",
 				"date": "31 Aug 2018"
 			}
 		}

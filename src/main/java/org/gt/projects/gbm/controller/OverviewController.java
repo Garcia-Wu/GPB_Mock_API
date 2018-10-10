@@ -319,7 +319,7 @@ public class OverviewController extends BaseAPIController {
 	@RequestMapping(value = "{id}/holdings/allocation", method = { RequestMethod.GET })
 	public BaseAPIResponse<JSONObject> allocationHoldingList(@PathVariable("id") String id, @RequestParam(required = true)String currency,
 			@RequestParam(required = true) String category, @RequestParam(required = true) String categoryId,
-			@RequestParam(defaultValue = "0") Integer offset, @RequestParam(defaultValue = "15") Integer limit) {
+			@RequestParam(defaultValue = "0") Integer offset, @RequestParam(defaultValue = "15") Integer limit, HttpServletRequest request) {
 		String json = JsonFileUtils.readFileToString("portfolio_holding_list");
 		JSONObject resultJson = new JSONObject();
 		JSONObject allocation = new JSONObject();
@@ -357,6 +357,13 @@ public class OverviewController extends BaseAPIController {
 
 		JSONArray holdingJson = JSONObject.fromObject(json).getJSONArray("holdings");
 		JsonFileUtils.removeFilterObject(holdingJson, "id", new String[] { "11", "12" });
+		// for UK
+		if(isUK(request)) {
+			for (int i = 0; i < holdingJson.size(); i++) {
+				holdingJson.getJSONObject(i).remove("performanceAmount");
+				holdingJson.getJSONObject(i).remove("performanceCurrency");
+			}
+		}
 		resultJson.put("holdings", JsonFileUtils.getPageJsonArray(holdingJson, offset, limit));
 		resultJson.put("totalSize", holdingJson.size());
 		JsonFileUtils.formatObjectNumber2DP(resultJson, new String[] { "type", "totalSize" });

@@ -75,6 +75,9 @@ public class PortfolioController extends BaseAPIController {
 				if (portfolioObjcet.getString("mandateType").equals("Advisory")) {
 					portfolioObjcet.put("name", "Advisory");
 				}
+				if(portfolioObjcet.getString("id").equals("0")) {
+					portfolioObjcet.getJSONObject("ytd").put("weight", "");
+				}
 			}
 			resultArray.getJSONObject(i).remove("weight");
 			resultArray.getJSONObject(i).remove("mandateType");
@@ -90,7 +93,7 @@ public class PortfolioController extends BaseAPIController {
 	@RequestMapping(value = "portfolio/{id}/holdings", method = { RequestMethod.GET })
 	public BaseAPIResponse<JSONObject> holdings(@PathVariable("id") String id,
 			@RequestParam(defaultValue = "0") Integer offset, @RequestParam(defaultValue = "100") Integer limit,
-			String currency) {
+			String currency, HttpServletRequest request) {
 		String json = JsonFileUtils.readFileToString("portfolio_holding_list");
 		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("holdings");
 		if ("0".equals(id) || "3".equals(id)) {
@@ -113,6 +116,13 @@ public class PortfolioController extends BaseAPIController {
 		JSONObject jsonObject = new JSONObject();
 		JSONArray pageJson = JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
 		JsonFileUtils.formatArrayNumber2DP(pageJson, new String[] { "type" });
+		// for UK
+		if(isUK(request)) {
+			for (int i = 0; i < pageJson.size(); i++) {
+				pageJson.getJSONObject(i).remove("performanceAmount");
+				pageJson.getJSONObject(i).remove("performanceCurrency");
+			}
+		}
 
 		jsonObject.put("holdings", pageJson);
 		jsonObject.put("totalSize", jsonArray.size());
@@ -440,7 +450,7 @@ public class PortfolioController extends BaseAPIController {
 	public BaseAPIResponse<JSONObject> allocationHoldingList(@RequestParam(required = true) String currency,
 			@PathVariable("id") String id, @RequestParam(required = true) String category,
 			@RequestParam(required = true) String categoryId, @RequestParam(defaultValue = "0") Integer offset,
-			@RequestParam(defaultValue = "15") Integer limit) {
+			@RequestParam(defaultValue = "15") Integer limit, HttpServletRequest request) {
 		String json = JsonFileUtils.readFileToString("portfolio_holding_list");
 		JSONObject resultJson = new JSONObject();
 		JSONObject allocation = new JSONObject();
@@ -479,6 +489,13 @@ public class PortfolioController extends BaseAPIController {
 
 		JSONArray holdingJson = JSONObject.fromObject(json).getJSONArray("holdings");
 		JsonFileUtils.removeFilterObject(holdingJson, "id", new String[] { "11", "12" });
+		// for UK
+		if(isUK(request)) {
+			for (int i = 0; i < holdingJson.size(); i++) {
+				holdingJson.getJSONObject(i).remove("performanceAmount");
+				holdingJson.getJSONObject(i).remove("performanceCurrency");
+			}
+		}
 		resultJson.put("holdings", JsonFileUtils.getPageJsonArray(holdingJson, offset, limit));
 		resultJson.put("totalSize", holdingJson.size());
 		JsonFileUtils.formatObjectNumber2DP(resultJson, new String[] { "type", "totalSize" });

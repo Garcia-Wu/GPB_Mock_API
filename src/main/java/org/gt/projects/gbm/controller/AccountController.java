@@ -120,20 +120,24 @@ public class AccountController extends BaseAPIController{
 		
 		JSONObject jsonObject = new JSONObject();
 		JSONArray pageJson = JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
-		for (int i = 0; i < pageJson.size(); i++) {
-			pageJson.getJSONObject(i).remove("ytd");
-			pageJson.getJSONObject(i).remove("liabilitiesAmount");
-			pageJson.getJSONObject(i).remove("liabilitiesCurrency");
-			pageJson.getJSONObject(i).remove("netAssetsAmount");
-			pageJson.getJSONObject(i).remove("netAssetsCurrency");
-		}
 		
 		if(isAsia(request)) {
 			for (int i = 0; i < pageJson.size(); i++) {
 				if(pageJson.getJSONObject(i).getString("mandateType").equals("Advisory")) {
 					pageJson.getJSONObject(i).put("name", "Advisory");
 				}
+				if(pageJson.getJSONObject(i).getString("id").equals("0")) {
+					pageJson.getJSONObject(i).put("weight", "");
+				}
 			}
+		}
+		
+		for (int i = 0; i < pageJson.size(); i++) {
+			pageJson.getJSONObject(i).remove("ytd");
+			pageJson.getJSONObject(i).remove("liabilitiesAmount");
+			pageJson.getJSONObject(i).remove("liabilitiesCurrency");
+			pageJson.getJSONObject(i).remove("netAssetsAmount");
+			pageJson.getJSONObject(i).remove("netAssetsCurrency");
 		}
 
 		JsonFileUtils.formatArrayNumber2DP(pageJson);
@@ -291,7 +295,8 @@ public class AccountController extends BaseAPIController{
 															@RequestParam(required=true)String category, 
 															@RequestParam(required=true)String categoryId, 
 															@RequestParam(defaultValue="0")Integer offset,
-															@RequestParam(defaultValue="15")Integer limit) {
+															@RequestParam(defaultValue="15")Integer limit,
+															HttpServletRequest request) {
 		String json = JsonFileUtils.readFileToString("portfolio_holding_list");
 		JSONObject resultJson = new JSONObject();
 		JSONObject allocation = new JSONObject();
@@ -329,6 +334,13 @@ public class AccountController extends BaseAPIController{
 		
 		JSONArray holdingJson = JSONObject.fromObject(json).getJSONArray("holdings");
 		JsonFileUtils.removeFilterObject(holdingJson, "id", new String[] {"11","12"});
+		// for UK
+		if(isUK(request)) {
+			for (int i = 0; i < holdingJson.size(); i++) {
+				holdingJson.getJSONObject(i).remove("performanceAmount");
+				holdingJson.getJSONObject(i).remove("performanceCurrency");
+			}
+		}
 		resultJson.put("holdings", JsonFileUtils.getPageJsonArray(holdingJson, offset, limit));
 		resultJson.put("totalSize", holdingJson.size());
 		JsonFileUtils.formatObjectNumber2DP(resultJson, new String[] { "type", "totalSize" });
