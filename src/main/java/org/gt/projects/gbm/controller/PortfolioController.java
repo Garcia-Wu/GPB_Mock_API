@@ -63,22 +63,15 @@ public class PortfolioController extends BaseAPIController {
 
 		for (int i = 0; i < resultArray.size(); i++) {
 			JSONObject portfolioObjcet = resultArray.getJSONObject(i);
-			if (isUK(request)) {
-				// for UK
-				portfolioObjcet.getJSONObject("ytd").remove("date");
-				resultArray.getJSONObject(i).remove("liabilitiesAmount");
-				resultArray.getJSONObject(i).remove("liabilitiesCurrency");
-				resultArray.getJSONObject(i).remove("netAssetsAmount");
-				resultArray.getJSONObject(i).remove("netAssetsCurrency");
-			} else {
+			if (isAsia(request)) {
 				// for ASIA
 				if (portfolioObjcet.getString("mandateType").equals("Advisory")) {
 					portfolioObjcet.put("name", "Advisory");
 				}
-				if(portfolioObjcet.getString("id").equals("0")) {
+				if(portfolioObjcet.getString("id").equals("0") || portfolioObjcet.getString("id").equals("15")) {
 					portfolioObjcet.getJSONObject("ytd").put("weight", "");
 				}
-			}
+			} 
 			resultArray.getJSONObject(i).remove("weight");
 			resultArray.getJSONObject(i).remove("mandateType");
 			resultArray.getJSONObject(i).put("updateDate", "24 May 2018");
@@ -93,7 +86,7 @@ public class PortfolioController extends BaseAPIController {
 	@RequestMapping(value = "portfolio/{id}/holdings", method = { RequestMethod.GET })
 	public BaseAPIResponse<JSONObject> holdings(@PathVariable("id") String id,
 			@RequestParam(defaultValue = "0") Integer offset, @RequestParam(defaultValue = "100") Integer limit,
-			String currency, HttpServletRequest request) {
+			String currency) {
 		String json = JsonFileUtils.readFileToString("portfolio_holding_list");
 		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("holdings");
 		if ("0".equals(id) || "3".equals(id)) {
@@ -116,13 +109,6 @@ public class PortfolioController extends BaseAPIController {
 		JSONObject jsonObject = new JSONObject();
 		JSONArray pageJson = JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
 		JsonFileUtils.formatArrayNumber2DP(pageJson, new String[] { "type" });
-		// for UK
-		if(isUK(request)) {
-			for (int i = 0; i < pageJson.size(); i++) {
-				pageJson.getJSONObject(i).remove("performanceAmount");
-				pageJson.getJSONObject(i).remove("performanceCurrency");
-			}
-		}
 
 		jsonObject.put("holdings", pageJson);
 		jsonObject.put("totalSize", jsonArray.size());
@@ -137,14 +123,11 @@ public class PortfolioController extends BaseAPIController {
 	public BaseAPIResponse<JSONObject> allocation(@PathVariable("id") String id,
 			// @RequestParam(defaultValue="0")Integer offset,
 			// @RequestParam(defaultValue="15")Integer limit,
-			@RequestParam(required = true) String currency, String category, HttpServletRequest request) {
+			@RequestParam(required = true) String currency, String category) {
 		JSONObject result = new JSONObject();
 		JSONArray classList = JSONObject.fromObject(JsonFileUtils.readFileToString("hasSubClass_list"))
 				.getJSONArray("clazz");
-		JSONArray regionList = new JSONArray();
-		if(isUK(request)) {
-			regionList = JSONObject.fromObject(JsonFileUtils.readFileToString("region_list")).getJSONArray("region");
-		}
+		JSONArray regionList = JSONObject.fromObject(JsonFileUtils.readFileToString("region_list")).getJSONArray("region");
 		JSONArray currencyList = new JSONArray();
 
 		if ("0".equals(id)) {
@@ -318,7 +301,7 @@ public class PortfolioController extends BaseAPIController {
 	@RequestMapping(value = "portfolio/{id}/transactions", method = { RequestMethod.GET })
 	public BaseAPIResponse<JSONObject> transactions(@PathVariable("id") String id,
 			@RequestParam(defaultValue = "all") String type, @RequestParam(defaultValue = "0") Integer offset,
-			@RequestParam(defaultValue = "15") Integer limit, String currency) {
+			@RequestParam(defaultValue = "15") Integer limit, String currency, HttpServletRequest request) {
 		String json = JsonFileUtils.readFileToString("portfolio_transactions_list");
 		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("transactions");
 		if (id.equals("0")) {
@@ -364,6 +347,11 @@ public class PortfolioController extends BaseAPIController {
 		JsonCompare transactionCompare = new JsonCompare(new String[] { "tradeDate", "type", "description" },
 				new String[] { JsonCompare.NUMBER, JsonCompare.LETTER, JsonCompare.LETTER },
 				new String[] { JsonCompare.DESC, JsonCompare.ASC, JsonCompare.ASC });
+		if(isAsia(request)) {
+			transactionCompare = new JsonCompare(new String[] { "tradeDate", "description" },
+					new String[] { JsonCompare.NUMBER, JsonCompare.LETTER },
+					new String[] { JsonCompare.DESC, JsonCompare.ASC });
+		}
 		Collections.sort(jsonArray, transactionCompare);
 
 		JSONObject jsonObject = new JSONObject();
@@ -450,7 +438,7 @@ public class PortfolioController extends BaseAPIController {
 	public BaseAPIResponse<JSONObject> allocationHoldingList(@RequestParam(required = true) String currency,
 			@PathVariable("id") String id, @RequestParam(required = true) String category,
 			@RequestParam(required = true) String categoryId, @RequestParam(defaultValue = "0") Integer offset,
-			@RequestParam(defaultValue = "15") Integer limit, HttpServletRequest request) {
+			@RequestParam(defaultValue = "15") Integer limit) {
 		String json = JsonFileUtils.readFileToString("portfolio_holding_list");
 		JSONObject resultJson = new JSONObject();
 		JSONObject allocation = new JSONObject();
@@ -489,13 +477,6 @@ public class PortfolioController extends BaseAPIController {
 
 		JSONArray holdingJson = JSONObject.fromObject(json).getJSONArray("holdings");
 		JsonFileUtils.removeFilterObject(holdingJson, "id", new String[] { "11", "12" });
-		// for UK
-		if(isUK(request)) {
-			for (int i = 0; i < holdingJson.size(); i++) {
-				holdingJson.getJSONObject(i).remove("performanceAmount");
-				holdingJson.getJSONObject(i).remove("performanceCurrency");
-			}
-		}
 		resultJson.put("holdings", JsonFileUtils.getPageJsonArray(holdingJson, offset, limit));
 		resultJson.put("totalSize", holdingJson.size());
 		JsonFileUtils.formatObjectNumber2DP(resultJson, new String[] { "type", "totalSize" });

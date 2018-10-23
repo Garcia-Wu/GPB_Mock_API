@@ -26,7 +26,7 @@ import net.sf.json.JSONObject;
 public class AccountController extends BaseAPIController{
 	
 	@RequestMapping(value = "overview", method = {RequestMethod.POST})
-	public BaseAPIResponse<JSONObject> overview(@RequestBody Map<String, Object> params, HttpServletRequest request) {
+	public BaseAPIResponse<JSONObject> overview(@RequestBody Map<String, Object> params) {
 		printJsonParams(params);
 		List<String> ids = (List<String>) params.get("ids");
 		String json = JsonFileUtils.readFileToString("overview_account_list");
@@ -58,17 +58,6 @@ public class AccountController extends BaseAPIController{
 		for (int i = 0; i < resultArray.size(); i++) {
 			resultArray.getJSONObject(i).remove("weight");
 			resultArray.getJSONObject(i).put("updateDate", "24 May 2018");
-		
-			if(isUK(request)) {
-				// for UK
-				resultArray.getJSONObject(i).remove("liabilitiesAmount");
-				resultArray.getJSONObject(i).remove("liabilitiesCurrency");
-				resultArray.getJSONObject(i).remove("netAssetsAmount");
-				resultArray.getJSONObject(i).remove("netAssetsCurrency");
-			} else {
-				// for ASIA
-				resultArray.getJSONObject(i).remove("ytd");
-			}
 		}
 		JSONObject jsonObject = new JSONObject();
 		JsonFileUtils.formatArrayNumber2DP(resultArray);
@@ -126,7 +115,7 @@ public class AccountController extends BaseAPIController{
 				if(pageJson.getJSONObject(i).getString("mandateType").equals("Advisory")) {
 					pageJson.getJSONObject(i).put("name", "Advisory");
 				}
-				if(pageJson.getJSONObject(i).getString("id").equals("0")) {
+				if(pageJson.getJSONObject(i).getString("id").equals("0") || pageJson.getJSONObject(i).getString("id").equals("15")) {
 					pageJson.getJSONObject(i).put("weight", "");
 				}
 			}
@@ -150,13 +139,11 @@ public class AccountController extends BaseAPIController{
 	public BaseAPIResponse<JSONObject> allocation(@PathVariable("id") String id,
 //												@RequestParam(defaultValue="0")Integer offset,
 //												@RequestParam(defaultValue="15")Integer limit,
-			@RequestParam(required=true)String currency, String category, HttpServletRequest request) {
+			@RequestParam(required=true)String currency, String category) {
 		JSONObject result = new JSONObject();
 		JSONArray classList = JSONObject.fromObject(JsonFileUtils.readFileToString("hasSubClass_list")).getJSONArray("clazz");
-		JSONArray regionList = new JSONArray();
-		if(isUK(request)) {
-			regionList = JSONObject.fromObject(JsonFileUtils.readFileToString("region_list")).getJSONArray("region");
-		}
+		JSONArray regionList = JSONObject.fromObject(JsonFileUtils.readFileToString("region_list")).getJSONArray("region");
+		
 		JSONArray currencyList = new JSONArray();
 		
 		if ("0".equals(id)) {
@@ -295,8 +282,7 @@ public class AccountController extends BaseAPIController{
 															@RequestParam(required=true)String category, 
 															@RequestParam(required=true)String categoryId, 
 															@RequestParam(defaultValue="0")Integer offset,
-															@RequestParam(defaultValue="15")Integer limit,
-															HttpServletRequest request) {
+															@RequestParam(defaultValue="15")Integer limit) {
 		String json = JsonFileUtils.readFileToString("portfolio_holding_list");
 		JSONObject resultJson = new JSONObject();
 		JSONObject allocation = new JSONObject();
@@ -334,13 +320,6 @@ public class AccountController extends BaseAPIController{
 		
 		JSONArray holdingJson = JSONObject.fromObject(json).getJSONArray("holdings");
 		JsonFileUtils.removeFilterObject(holdingJson, "id", new String[] {"11","12"});
-		// for UK
-		if(isUK(request)) {
-			for (int i = 0; i < holdingJson.size(); i++) {
-				holdingJson.getJSONObject(i).remove("performanceAmount");
-				holdingJson.getJSONObject(i).remove("performanceCurrency");
-			}
-		}
 		resultJson.put("holdings", JsonFileUtils.getPageJsonArray(holdingJson, offset, limit));
 		resultJson.put("totalSize", holdingJson.size());
 		JsonFileUtils.formatObjectNumber2DP(resultJson, new String[] { "type", "totalSize" });

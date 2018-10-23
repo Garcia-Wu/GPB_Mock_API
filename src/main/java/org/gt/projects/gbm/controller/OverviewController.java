@@ -1,6 +1,7 @@
 package org.gt.projects.gbm.controller;
 
 import java.util.Collections;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,6 +12,7 @@ import org.gt.projects.gbm.base.BaseException;
 import org.gt.projects.gbm.base.comparable.JsonCompare;
 import org.gt.projects.gbm.utils.JsonFileUtils;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +26,7 @@ import net.sf.json.JSONObject;
 public class OverviewController extends BaseAPIController {
 
 	@RequestMapping(value = "{id}/overview", method = { RequestMethod.GET })
-	public BaseAPIResponse<JSONObject> overview(@PathVariable("id") String id, @RequestParam(required=true)String currency, HttpServletRequest request) {
+	public BaseAPIResponse<JSONObject> overview(@PathVariable("id") String id, @RequestParam(required=true)String currency) {
 		if(Integer.valueOf(id) > 7) {
 			throw new BaseException();
 		}
@@ -43,8 +45,11 @@ public class OverviewController extends BaseAPIController {
 			jsonObject.getJSONObject("customer").put("liabilitiesAmount", -0.001);
 			jsonObject.getJSONObject("customer").put("netAssetsAmount", 38950392011.999);
 			jsonObject.getJSONObject("ytd").put("amount", -38950392012D);
-		} else if (id.equals("4")) {
+		} else if (id.equals("3")) {
 			jsonObject.getJSONObject("customer").put("liabilitiesAmount", -38950392012D);
+			jsonObject.getJSONObject("customer").put("netAssetsAmount", 0);
+		} else if (id.equals("4")) {
+			jsonObject.getJSONObject("customer").put("liabilitiesAmount", 1);
 			jsonObject.getJSONObject("customer").put("netAssetsAmount", 0);
 		} else if (id.equals("5")) {
 			jsonObject.getJSONObject("customer").put("liabilitiesAmount", -48086438537.35);
@@ -58,17 +63,6 @@ public class OverviewController extends BaseAPIController {
 			jsonObject.getJSONObject("customer").put("liabilitiesCurrency", currency.toUpperCase());
 			jsonObject.getJSONObject("customer").put("netAssetsCurrency", currency.toUpperCase());
 			jsonObject.getJSONObject("ytd").put("currency", currency.toUpperCase());
-		}
-		
-		if(isUK(request)) {
-			// for UK
-			jsonObject.getJSONObject("customer").remove("liabilitiesAmount");
-			jsonObject.getJSONObject("customer").remove("liabilitiesCurrency");
-			jsonObject.getJSONObject("customer").remove("netAssetsAmount");
-			jsonObject.getJSONObject("customer").remove("netAssetsCurrency");
-		} else {
-			// for ASIA
-			jsonObject.remove("ytd");
 		}
 		
 		JsonFileUtils.formatObjectNumber2DP(jsonObject);
@@ -138,6 +132,7 @@ public class OverviewController extends BaseAPIController {
 			pageJson.getJSONObject(i).remove("netAssetsAmount");
 			pageJson.getJSONObject(i).remove("netAssetsCurrency");
 		}
+	
 		JsonFileUtils.formatArrayNumber2DP(pageJson);
 		jsonObject.put("accounts", pageJson);
 		jsonObject.put("totalSize", jsonArray.size());
@@ -149,16 +144,12 @@ public class OverviewController extends BaseAPIController {
 	public BaseAPIResponse<JSONObject> allocation(@PathVariable("id") String id,
 			// @RequestParam(defaultValue="0")Integer offset,
 			// @RequestParam(defaultValue="15")Integer limit,
-			@RequestParam(required=true)String currency, String category, HttpServletRequest request) {
+			@RequestParam(required=true)String currency, String category) {
 		
 		JSONObject result = new JSONObject();
 		JSONArray classList = JSONObject.fromObject(JsonFileUtils.readFileToString("hasSubClass_list"))
 				.getJSONArray("clazz");
-		JSONArray regionList = new JSONArray();
-		if(isUK(request)) {
-			regionList = JSONObject.fromObject(JsonFileUtils.readFileToString("region_list")).getJSONArray("region");
-		}
-				
+		JSONArray regionList = JSONObject.fromObject(JsonFileUtils.readFileToString("region_list")).getJSONArray("region");
 		JSONArray currencyList = new JSONArray();
 
 		if ("0".equals(id)) {
@@ -244,7 +235,7 @@ public class OverviewController extends BaseAPIController {
 	}
 
 	@RequestMapping(value = "{id}/xrate", method = { RequestMethod.GET })
-	public BaseAPIResponse<JSONObject> currency(@PathVariable("id") String id) {
+	public BaseAPIResponse<JSONObject> currency(@PathVariable("id") String id, HttpServletRequest request) {
 	
 		String json = JsonFileUtils.readFileToString("currency");
 		JSONObject jsonObject = JSONObject.fromObject(json);
@@ -265,9 +256,19 @@ public class OverviewController extends BaseAPIController {
 			jsonObject.remove("updateDate");
 			response.setData(jsonObject);
 			return response;
-		} 
+		}
 
-		JSONArray jsonArray = jsonObject.getJSONArray("currencies");
+		JSONArray jsonArray;
+		jsonArray = jsonObject.getJSONArray("currencies");
+		if(isAsia(request)) {
+			jsonObject.getJSONObject("base").put("code", "USD");
+			jsonArray = JsonFileUtils.removeFilterObject(jsonArray, "code", "USD");
+			JSONObject gbpCurrency = new JSONObject();
+			gbpCurrency.put("code", "GBP");
+			gbpCurrency.put("rate", 1.3156);
+			jsonArray.add(gbpCurrency);
+		} 
+		
 		Collections.sort(jsonArray, JsonCompare.getLetterOrderAsc("code"));
 
 		if ("1".equals(id)) {
@@ -297,16 +298,22 @@ public class OverviewController extends BaseAPIController {
 		response.addHeader("AMSESSION", "AMSESSION_" + id.toUpperCase());
 		response.addHeader("LtpaToken2", "LtpaToken2_" + id.toUpperCase());
 		
+		if(id.indexOf("_") != -1) {
+			id = id.substring(0, id.indexOf("_"));
+		}
+		
 		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("userName", "Jones");
+		if ("0".equals(id)) {
+			jsonObject.put("userName", "");			
+		} else if ("2".equals(id)) {
+			jsonObject.put("userName", "Mr Chen");	
+		} else {
+			jsonObject.put("userName", "Jones");
+		}
 //		if ("6".equals(id)) {
 //			jsonObject.put("userName", "WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
 //		} 
 		jsonObject.put("lastLoginTime", 1533882667);
-		
-		if(id.indexOf("_") != -1) {
-			id = id.substring(0, id.indexOf("_"));
-		}
 		jsonObject.put("id", id);
 		if(id.equals("4")) {
 			jsonObject.put("hasLiabilities", false);
@@ -319,7 +326,7 @@ public class OverviewController extends BaseAPIController {
 	@RequestMapping(value = "{id}/holdings/allocation", method = { RequestMethod.GET })
 	public BaseAPIResponse<JSONObject> allocationHoldingList(@PathVariable("id") String id, @RequestParam(required = true)String currency,
 			@RequestParam(required = true) String category, @RequestParam(required = true) String categoryId,
-			@RequestParam(defaultValue = "0") Integer offset, @RequestParam(defaultValue = "15") Integer limit, HttpServletRequest request) {
+			@RequestParam(defaultValue = "0") Integer offset, @RequestParam(defaultValue = "15") Integer limit) {
 		String json = JsonFileUtils.readFileToString("portfolio_holding_list");
 		JSONObject resultJson = new JSONObject();
 		JSONObject allocation = new JSONObject();
@@ -357,17 +364,94 @@ public class OverviewController extends BaseAPIController {
 
 		JSONArray holdingJson = JSONObject.fromObject(json).getJSONArray("holdings");
 		JsonFileUtils.removeFilterObject(holdingJson, "id", new String[] { "11", "12" });
-		// for UK
-		if(isUK(request)) {
-			for (int i = 0; i < holdingJson.size(); i++) {
-				holdingJson.getJSONObject(i).remove("performanceAmount");
-				holdingJson.getJSONObject(i).remove("performanceCurrency");
-			}
-		}
 		resultJson.put("holdings", JsonFileUtils.getPageJsonArray(holdingJson, offset, limit));
 		resultJson.put("totalSize", holdingJson.size());
 		JsonFileUtils.formatObjectNumber2DP(resultJson, new String[] { "type", "totalSize" });
 		return new BaseAPIResponse<JSONObject>(resultJson);
 	}
+	
+	@RequestMapping(value = "{customerId}/document", method = { RequestMethod.POST })
+	public BaseAPIResponse<JSONObject> document(@PathVariable("customerId") String customerId, @RequestBody Map<String, Object> params){
+		JSONObject jsonObject = JSONObject.fromObject(JsonFileUtils.readFileToString("document"));
+		JSONArray documentsGroup = jsonObject.getJSONArray("documentsGroup");
+		
+		if("0".equals(customerId)) {
+			documentsGroup.clear();
+		}
+		
+		int allDocumentsSize = 0;
+		int unReadNum = 0;
+		int flaggedNum = 0;
+		for (int i = 0; i < documentsGroup.size(); i++) {
+			allDocumentsSize += documentsGroup.getJSONObject(i).getJSONArray("documents").size();
+			JSONArray documents = documentsGroup.getJSONObject(i).getJSONArray("documents");
+			for (int j = 0; j < documents.size(); j++) {
+				if(!documents.getJSONObject(j).getBoolean("isRead")) {
+					unReadNum++;
+				} 
+				if (documents.getJSONObject(j).getBoolean("isFlag")) {
+					flaggedNum++;
+				}
+			}
+		}
+		jsonObject.put("totalSize", allDocumentsSize);
+		jsonObject.put("unreadNum", unReadNum);
+		jsonObject.put("flaggedNum", flaggedNum);
+		
+		String docType = params.get("docType").toString();
+		filterDocument(documentsGroup, docType);
+		
+		return new BaseAPIResponse<>(jsonObject);
+	}
+	
+	public void filterDocument(JSONArray documentsGroup, String docType) {
+		JSONArray removeArray = new JSONArray();
+		Boolean resultMatch = false;
+		String key = "isRead";
+		if (docType.equalsIgnoreCase("UNREAD") || docType.equalsIgnoreCase("FLAGGED")) {
+			if(docType.equalsIgnoreCase("FLAGGED")) {
+				resultMatch = true;
+				key = "isFlag";
+			}
+		} else {
+			return;
+		}
+		for (int i = 0; i < documentsGroup.size(); i++) {
+			JSONArray documents = documentsGroup.getJSONObject(i).getJSONArray("documents");
+			JSONArray resultDocuments = new JSONArray();
+			for (int j = 0; j < documents.size(); j++) {
+				if(documents.getJSONObject(j).getBoolean(key) == resultMatch) {
+					resultDocuments.add(documents.getJSONObject(j));
+				}
+			}
+			if(resultDocuments.size() == 0) {
+				removeArray.add(documentsGroup.getJSONObject(i));
+			} else {
+				documentsGroup.getJSONObject(i).put("documents", resultDocuments);
+			}	
+		}
+		documentsGroup.removeAll(removeArray);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

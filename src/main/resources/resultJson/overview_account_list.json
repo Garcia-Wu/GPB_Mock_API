@@ -273,7 +273,7 @@
 		{
 			"id": "0",
 			"name": "B5ED76F ***",
-			"weight": "",
+			"weight": "0.00",
 			"externalId": "B5ED76F",
 			"amount": 0,
 			"currency": "GBP",
@@ -285,7 +285,7 @@
 			"ytd": {
 				"amount": 0.00,
 				"currency": "GBP",
-				"weight": ""
+				"weight": "0.00"
 			}
 		}
 	]
