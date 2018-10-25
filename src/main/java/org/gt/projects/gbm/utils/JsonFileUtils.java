@@ -1,11 +1,15 @@
 package org.gt.projects.gbm.utils;
 
+import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
@@ -63,6 +67,41 @@ public class JsonFileUtils {
 //	    System.out.println(result);
 	    return result;
 	}
+	
+	/**
+	 * 
+	 * @param jsonObject
+	 * @param fileName
+	 */
+	public static void writeJsonFile(JSONObject jsonObject, String fileName){
+		String filePath;
+		if(GbmApplication.JSON_IN_PROJECT) {
+			// 获取项目下文件位置
+			filePath = "src/main/resources/resultJson"+File.separator;
+		} else {
+			// 获取项目外文件的位置（jar包同级目录下）
+			filePath = JAR_PATH + File.separator + "resultJson" + File.separator;
+		}
+        File file = new File(filePath + fileName + ".json");
+        if(!file.exists()){
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            String jsonStr = jsonObject.toString();
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file),"UTF-8"));
+            bw.write(jsonStr);
+            bw.flush();
+            bw.close();
+        } catch (UnsupportedEncodingException | FileNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 	/**
 	 * 获取分页数组
@@ -198,7 +237,7 @@ public class JsonFileUtils {
 	 * @param exceptField 指定不格式化的属性
 	 * @return
 	 */
-	public static JSONObject formatObjectNumber2DP(JSONObject jsonObject, String[] exceptField) {
+	public static JSONObject formatObjectNumber2DP(JSONObject jsonObject, String... exceptField) {
 		Set<String> set = jsonObject.keySet();
 		forObjectSet: for (String key : set) {
 			if(exceptField != null && exceptField.length > 0) {
@@ -228,7 +267,7 @@ public class JsonFileUtils {
 	 * @param exceptField 指定不格式化的属性
 	 * @return
 	 */
-	public static JSONArray formatArrayNumber2DP(JSONArray jsonArray, String[] exceptField) {
+	public static JSONArray formatArrayNumber2DP(JSONArray jsonArray, String... exceptField) {
 		for (int i = 0; i < jsonArray.size(); i++) {
 			formatObjectNumber2DP(jsonArray.getJSONObject(i), exceptField);
 		}

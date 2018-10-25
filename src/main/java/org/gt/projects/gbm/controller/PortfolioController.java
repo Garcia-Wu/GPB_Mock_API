@@ -108,7 +108,7 @@ public class PortfolioController extends BaseAPIController {
 
 		JSONObject jsonObject = new JSONObject();
 		JSONArray pageJson = JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
-		JsonFileUtils.formatArrayNumber2DP(pageJson, new String[] { "type" });
+		JsonFileUtils.formatArrayNumber2DP(pageJson, "type");
 
 		jsonObject.put("holdings", pageJson);
 		jsonObject.put("totalSize", jsonArray.size());
@@ -389,7 +389,7 @@ public class PortfolioController extends BaseAPIController {
 		// }
 
 		JSONObject jsonObject = new JSONObject();
-		JsonFileUtils.formatArrayNumber2DP(jsonArray, new String[] { "category", "number" });
+		JsonFileUtils.formatArrayNumber2DP(jsonArray, "category", "number");
 		jsonObject.put("holding", jsonArray.get(0));
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
@@ -479,7 +479,7 @@ public class PortfolioController extends BaseAPIController {
 		JsonFileUtils.removeFilterObject(holdingJson, "id", new String[] { "11", "12" });
 		resultJson.put("holdings", JsonFileUtils.getPageJsonArray(holdingJson, offset, limit));
 		resultJson.put("totalSize", holdingJson.size());
-		JsonFileUtils.formatObjectNumber2DP(resultJson, new String[] { "type", "totalSize" });
+		JsonFileUtils.formatObjectNumber2DP(resultJson, "type", "totalSize");
 		return new BaseAPIResponse<JSONObject>(resultJson);
 	}
 

@@ -322,7 +322,7 @@ public class AccountController extends BaseAPIController{
 		JsonFileUtils.removeFilterObject(holdingJson, "id", new String[] {"11","12"});
 		resultJson.put("holdings", JsonFileUtils.getPageJsonArray(holdingJson, offset, limit));
 		resultJson.put("totalSize", holdingJson.size());
-		JsonFileUtils.formatObjectNumber2DP(resultJson, new String[] { "type", "totalSize" });
+		JsonFileUtils.formatObjectNumber2DP(resultJson, "type", "totalSize");
 		return new BaseAPIResponse<JSONObject>(resultJson);
 	}
 

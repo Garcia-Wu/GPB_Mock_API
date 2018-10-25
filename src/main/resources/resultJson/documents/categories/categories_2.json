@@ -1,0 +1,34 @@
+{
+	"categories": [
+		{
+			"name": "Statements",
+			"subCategories": [
+				{
+					"name": "Holdings",
+					"id": "Statement - Holdings"
+				},
+				{
+					"name": "Cash",
+					"id": "Statement - Cash"
+				}
+			]
+		},
+		{
+			"name": "Advice",
+			"subCategories": [
+				{
+					"name": "Cash",
+					"id": "Advice - Cash"
+				}
+			]
+		},
+		{
+			"name": "Other",
+			"subCategories": [
+				{
+					"name": "Communications",
+					"id": "Communication"
+				}
+			]
+		}
+	]}

@@ -14,5 +14,7 @@
 	"ytd": {
 		"amount": 850920120,
 		"currency": "GBP"
-	}
+	},
+	"hasLiabilities": true,
+	"newDocumentCount": 10
 }

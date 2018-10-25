@@ -10,7 +10,7 @@
 			"type": "Cash movements1 GBP",
 			"description": "Transaction Description: This is the Cash movements description, please see the description of the Cash movements 1 item",
 			"currency": "GBP",
-			"units":543,
+			"units":"543",
 			"reportAmount":2000000.12,
 			"reportCurrency":"GBP"
 		},
@@ -24,7 +24,7 @@
 			"type": "Purchases1 USD",
 			"description": "Transaction Description: This is the purchase description, please see the description of the purchase 1 item",
 			"currency": "USD",
-			"units":543,
+			"units":"543",
 			"reportAmount":-265629.2849,
 			"reportCurrency":"GBP"
 		},
@@ -38,7 +38,7 @@
 			"type": "Sales1 JPY",
 			"description": "Transaction Description: This is the sales description, please see the description of the sales 1 item",
 			"currency": "JPY",
-			"units":543,
+			"units":"543",
 			"reportAmount":199525.2688,
 			"reportCurrency":"GBP"
 		},
@@ -52,7 +52,7 @@
 			"description": "Transaction Description: This is the Cash movements description, please see the description of the Cash movements 2 item",
 			"currency": "GBP",
 			"type": "Cash movements2 GBP",
-			"units":543,
+			"units":"543",
 			"reportAmount":-196755,
 			"reportCurrency":"USD"
 		},
@@ -66,7 +66,7 @@
 			"description": "This is the Cash movements description, please see the description of the Cash movements 2 item",
 			"currency": "GBP",
 			"type": "Cash movements2 GBP",
-			"units":543,
+			"units":"543",
 			"reportAmount":-196755,
 			"reportCurrency":"USD"
 		},
@@ -80,7 +80,7 @@
 			"type": "A Cash movements3 JPY",
 			"description": "Transaction Description: This is the Cash movements description, please see the description of the Cash movements 3 item",
 			"currency": "JPY",
-			"units":543,
+			"units":"543",
 			"reportAmount":157030.3665,
 			"reportCurrency":"USD"
 		},
@@ -94,7 +94,7 @@
 			"type": "Cash movements3 JPY",
 			"description": "Transaction Description: This is the Cash movements description, please see the description of the Cash movements 3 item",
 			"currency": "JPY",
-			"units":543,
+			"units":"543",
 			"reportAmount":157030.3665,
 			"reportCurrency":"USD"
 		},
@@ -108,7 +108,7 @@
 			"type": "Purchases2 GBP",
 			"description": "Transaction Description: This is the purchase description, please see the description of the purchase 2 item",
 			"currency": "GBP",
-			"units":543,
+			"units":"543",
 			"reportAmount":80000,
 			"reportCurrency":"GBP"
 		},
@@ -122,7 +122,7 @@
 			"type": "Purchases2 GBP",
 			"description": "This is the purchase description, please see the description of the purchase 2 item",
 			"currency": "GBP",
-			"units":543,
+			"units":"543",
 			"reportAmount":80000,
 			"reportCurrency":"GBP"
 		},
@@ -136,7 +136,7 @@
 			"type": "Sales2 USD",
 			"description": "Transaction Description: This is the sales description, please see the description of the sales 2 item",
 			"currency": "USD",
-			"units":543,
+			"units":"543",
 			"reportAmount":40866.0517,
 			"reportCurrency":"GBP"
 		},
@@ -150,7 +150,7 @@
 			"type": "Sales2 USD",
 			"description": "This is the sales description, please see the description of the sales 2 item",
 			"currency": "USD",
-			"units":543,
+			"units":"543",
 			"reportAmount":40866.0517,
 			"reportCurrency":"GBP"
 		},
@@ -164,7 +164,7 @@
 			"type": "Cash movements4 USD",
 			"description": "Transaction Description: This is the Cash movements description, please see the description of the Cash movements 4 item",
 			"currency": "USD",
-			"units":543,
+			"units":"543",
 			"reportAmount":40203,
 			"reportCurrency":"USD"
 		},
@@ -178,7 +178,7 @@
 			"type": "Sales3 GBP",
 			"description": "Transaction Description: This is the sales description, please see the description of the sales 3 item",
 			"currency": "GBP",
-			"units":543,
+			"units":"543",
 			"reportAmount":-39351,
 			"reportCurrency":"USD"
 		},
@@ -192,7 +192,7 @@
 			"type": "A Sales3 GBP",
 			"description": "Transaction Description: This is the sales description, please see the description of the sales 3 item",
 			"currency": "GBP",
-			"units":543,
+			"units":"543",
 			"reportAmount":-39351,
 			"reportCurrency":"USD"
 		},
@@ -206,7 +206,7 @@
 			"type": "A Purchases3 JPY",
 			"description": "Transaction Description: This is the purchase description, please see the description of the purchase 3 item",
 			"currency": "JPY",
-			"units":543,
+			"units":"543",
 			"reportAmount":19952.5219,
 			"reportCurrency":"GBP"
 		},
@@ -220,7 +220,7 @@
 			"type": "Purchases3 JPY",
 			"description": "Transaction Description: This is the purchase description, please see the description of the purchase 3 item",
 			"currency": "JPY",
-			"units":543,
+			"units":"543",
 			"reportAmount":19952.5219,
 			"reportCurrency":"GBP"
 		},
@@ -234,7 +234,7 @@
 			"type": "Cash movements5 GBP",
 			"description": "Transaction Description: This is the Cash movements description, please see the description of the Cash movements 5 item",
 			"currency": "GBP",
-			"units":543,
+			"units":"543",
 			"reportAmount":20000,
 			"reportCurrency":"GBP"
 		},
@@ -248,7 +248,7 @@
 			"type": "Cash movements6 JPY",
 			"description": "Transaction Description: This is the Cash movements description, please see the description of the Cash movements 6 item",
 			"currency": "JPY",
-			"units":543,
+			"units":"543",
 			"reportAmount":19952.5219,
 			"reportCurrency":"GBP"
 		},
@@ -262,7 +262,7 @@
 			"type": "Purchases4 USD",
 			"description": "Transaction Description: This is the purchase description, please see the description of the purchase 4 item",
 			"currency": "USD",
-			"units":543,
+			"units":"543",
 			"reportAmount":-10216.5129,
 			"reportCurrency":"GBP"
 		},
@@ -276,7 +276,7 @@
 			"type": "Cash movements7 GBP",
 			"description": "Transaction Description: This is the Cash movements description, please see the description of the Cash movements 7 item",
 			"currency": "GBP",
-			"units":543,
+			"units":"543",
 			"reportAmount":-10000,
 			"reportCurrency":"GBP"
 		},
@@ -290,7 +290,7 @@
 			"type": "Cash movements8 GBP",
 			"description": "Transaction Description: This is the Cash movements description, please see the description of the Cash movements 8 item",
 			"currency": "GBP",
-			"units":543,
+			"units":"543",
 			"reportAmount":-10000,
 			"reportCurrency":"GBP"
 		},
@@ -304,7 +304,7 @@
 			"type": "Sales4 GBP",
 			"description": "Transaction Description: This is the sales description, please see the description of the sales 4 item",
 			"currency": "GBP",
-			"units":543,
+			"units":"543",
 			"reportAmount":0,
 			"reportCurrency":"GBP"
 		}
