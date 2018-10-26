@@ -382,14 +382,24 @@ public class OverviewController extends BaseAPIController {
 
 	@RequestMapping(value = "{customerId}/documents", method = { RequestMethod.POST })
 	public BaseAPIResponse<JSONObject> document(@PathVariable("customerId") String customerId,
-			@RequestBody Map<String, Object> params) {
+			@RequestBody Map<String, Object> params, HttpServletRequest request) {
 		printJsonParams(params);
+		
+		String fileName = "documents" + File.separator + "document_";
+		if(isUK(request)) {
+			fileName = fileName + "uk";
+		} else if (isHK(request)) {
+			fileName = fileName + "hk";
+		} else if (isSG(request)){
+			fileName = fileName + "sg";
+		}
 		JSONObject jsonObject = JSONObject
-				.fromObject(JsonFileUtils.readFileToString("documents" + File.separator + "document_" + customerId));
+				.fromObject(JsonFileUtils.readFileToString(fileName + File.separator + "document_" + customerId));
 		JSONArray documentsGroup = jsonObject.getJSONArray("documentsGroup");
 
 		List<String> accountIds = (List<String>) params.get("accountIds");
 		List<String> categories = (List<String>) params.get("categories");
+		// 去除accountId以及categories的document
 		documentsGroup = getExcludeDocument(documentsGroup, accountIds, categories);
 
 		int allDocumentsSize = 0;
@@ -407,16 +417,29 @@ public class OverviewController extends BaseAPIController {
 				}
 			}
 		}
+		
 		jsonObject.put("totalSize", allDocumentsSize);
+		if(customerId.equals("4")) {
+			unReadNum = 999999;
+			flaggedNum = 999999;
+		}
+		if(unReadNum > 9999) {
+			unReadNum = 9999;
+		}
+		if(flaggedNum > 9999) {
+			flaggedNum = 9999;
+		}
+		
 		jsonObject.put("unreadNum", unReadNum);
 		jsonObject.put("flaggedNum", flaggedNum);
 
 		String docType = params.get("docType").toString();
+		// 筛选document type
 		getDocTypeDocument(documentsGroup, docType);
 
 		return new BaseAPIResponse<>(jsonObject);
 	}
-
+	
 	private JSONArray getExcludeDocument(JSONArray documentsGroup, List<String> accountIds, List<String> categories) {
 		JSONArray removeArray = new JSONArray();
 		for (int i = 0; i < documentsGroup.size(); i++) {
@@ -475,8 +498,14 @@ public class OverviewController extends BaseAPIController {
 	}
 
 	@RequestMapping(value = "{customerId}/documents/accounts", method = { RequestMethod.GET })
-	public BaseAPIResponse<JSONObject> documentAccounts(@PathVariable("customerId") String customerId) {
-		JSONObject jsonObject = JSONObject.fromObject(JsonFileUtils.readFileToString("documents/accounts/accounts_"+customerId));
+	public BaseAPIResponse<JSONObject> documentAccounts(@PathVariable("customerId") String customerId, HttpServletRequest request) {
+		String fileName = "documents/accounts_";
+		if(isUK(request)) {
+			fileName = fileName + "uk";
+		} else if (isAsia(request)) {
+			fileName = fileName + "asia";
+		}
+		JSONObject jsonObject = JSONObject.fromObject(JsonFileUtils.readFileToString(fileName + "/accounts_"+customerId));
 		JSONArray accountList = jsonObject.getJSONArray("accounts");
 		Collections.sort(accountList, JsonCompare.getLetterOrderAsc("name"));
 		return new BaseAPIResponse<JSONObject>(jsonObject);
@@ -484,19 +513,28 @@ public class OverviewController extends BaseAPIController {
 
 	@RequestMapping(value = "{customerId}/documents/categories", method = { RequestMethod.GET })
 	public BaseAPIResponse<JSONObject> documentCategories(@PathVariable("customerId") String customerId) {
-		JSONObject jsonObject = JSONObject.fromObject(JsonFileUtils.readFileToString("documents/categories/categories_"+customerId));
+		JSONObject jsonObject = JSONObject.fromObject(JsonFileUtils.readFileToString("documents/categories"));
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
 
 	@RequestMapping(value = "{customerId}/documents/flag", method = { RequestMethod.POST })
 	public BaseAPIResponse documentFlag(@PathVariable("customerId") String customerId,
-			@RequestBody Map<String, Object> params) {
+			@RequestBody Map<String, Object> params, HttpServletRequest request) {
 		printJsonParams(params);
 		String documentId = params.get("documentId").toString();
 		boolean status = Boolean.valueOf(params.get("status").toString());
 		boolean isFind = false;
 
-		String fileName = "documents" + File.separator + "document_" + customerId;
+		String fileName = "documents" + File.separator + "document_";
+		if(isUK(request)) {
+			fileName = fileName + "uk";
+		} else if (isHK(request)) {
+			fileName = fileName + "hk";
+		} else {
+			fileName = fileName + "sg";
+		}
+		fileName = fileName + File.separator + "document_" + customerId;
+			
 		JSONObject jsonObject = JSONObject.fromObject(JsonFileUtils.readFileToString(fileName));
 		JSONArray documentsGroup = jsonObject.getJSONArray("documentsGroup");
 		documentsGroupFor: for (int i = 0; i < documentsGroup.size(); i++) {
@@ -513,6 +551,7 @@ public class OverviewController extends BaseAPIController {
 		if (!isFind) {
 			throw new BaseException("The document corresponding to this ID does not exist!");
 		} else {
+			// 将修改后的json覆盖原json文件
 			JsonFileUtils.writeJsonFile(jsonObject, fileName);
 		}
 		return new BaseAPIResponse<>();
