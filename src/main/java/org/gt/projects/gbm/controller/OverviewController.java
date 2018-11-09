@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.gt.projects.gbm.base.BaseAPIController;
 import org.gt.projects.gbm.base.BaseAPIResponse;
 import org.gt.projects.gbm.base.BaseException;
@@ -60,12 +61,17 @@ public class OverviewController extends BaseAPIController {
 			// } else if (id.equals("6")) {
 			// jsonObject.getJSONObject("customer").put("name",
 			// "WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+		} else if(id.equals("7")) {
+			jsonObject.getJSONObject("ytd").put("amount", 0);
+			jsonObject.getJSONObject("ytd").put("currency", "");
 		}
 		if (currency != null) {
 			jsonObject.getJSONObject("customer").put("currency", currency.toUpperCase());
 			jsonObject.getJSONObject("customer").put("liabilitiesCurrency", currency.toUpperCase());
 			jsonObject.getJSONObject("customer").put("netAssetsCurrency", currency.toUpperCase());
-			jsonObject.getJSONObject("ytd").put("currency", currency.toUpperCase());
+			if(StringUtils.isNotBlank(jsonObject.getJSONObject("ytd").getString("currency"))) {
+				jsonObject.getJSONObject("ytd").put("currency", currency.toUpperCase());
+			}
 		}
 
 		if (isUK(request)) {
@@ -419,16 +425,10 @@ public class OverviewController extends BaseAPIController {
 		}
 		
 		jsonObject.put("totalSize", allDocumentsSize);
-		if(customerId.equals("4")) {
-			unReadNum = 999999;
-			flaggedNum = 999999;
-		}
-		if(unReadNum > 9999) {
-			unReadNum = 9999;
-		}
-		if(flaggedNum > 9999) {
-			flaggedNum = 9999;
-		}
+//		if(customerId.equals("4")) {
+//			unReadNum = unReadNum + 9997;
+//			flaggedNum = flaggedNum + 9997;
+//		}
 		
 		jsonObject.put("unreadNum", unReadNum);
 		jsonObject.put("flaggedNum", flaggedNum);

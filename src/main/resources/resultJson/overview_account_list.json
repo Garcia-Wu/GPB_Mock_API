@@ -80,9 +80,9 @@
 			"amount": 983178,
 			"currency": "GBP",
 			"baseCurrency": "USD",
-			"liabilitiesAmount": -1323568.46,
+			"liabilitiesAmount": -29764323568.46,
 			"liabilitiesCurrency": "USD",
-			"netAssetsAmount": -340390.46,
+			"netAssetsAmount": -29763340390.46,
 			"netAssetsCurrency": "USD",
 			"ytd": {
 				"amount": 6834007.12,
@@ -255,7 +255,7 @@
 		{
 			"id": "15",
 			"name": "B255FBD ***",
-			"weight": "447.52",
+			"weight": "",
 			"amount": 37490,
 			"externalId": "B255FBD",
 			"currency": "GBP",
@@ -265,9 +265,9 @@
 			"netAssetsAmount": 2676.54,
 			"netAssetsCurrency": "USD",
 			"ytd": {
-				"amount": 9734047.12,
+				"amount": 0.00,
 				"currency": "GBP",
-				"weight": "447.52"
+				"weight": ""
 			}
 		},
 		{

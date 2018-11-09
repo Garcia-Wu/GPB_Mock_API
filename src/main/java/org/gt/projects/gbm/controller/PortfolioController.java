@@ -376,12 +376,12 @@ public class PortfolioController extends BaseAPIController {
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
 
-	@RequestMapping(value = "holdings/detail", method = { RequestMethod.GET })
-	public BaseAPIResponse<JSONObject> holdingsDetail(@RequestParam(required = true) String holdingid,
+	@RequestMapping(value = "holdings/{id}/detail", method = { RequestMethod.GET })
+	public BaseAPIResponse<JSONObject> holdingsDetail(@PathVariable("id") String id,
 			String currency) {
 		String json = JsonFileUtils.readFileToString("portfolio_holding_detail_list");
 		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("holdings");
-		jsonArray = JsonFileUtils.getFilterArray(jsonArray, "id", holdingid, 1);
+		jsonArray = JsonFileUtils.getFilterArray(jsonArray, "id", id, 1);
 
 		// fix for noTruncation
 		// if(Integer.valueOf(id) > 15 && Integer.valueOf(holdingid) == 1) {

@@ -1,11 +1,12 @@
 package org.gt.projects.gbm.utils;
 
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class GBMConstant {
 
-	public static final SimpleDateFormat ALL_MONTH_FORMAT = new SimpleDateFormat("dd MMMM YYYY");
-	public static final SimpleDateFormat SIM_MONTH_FORMAT = new SimpleDateFormat("dd MMM YYYY");
+	public static final SimpleDateFormat ALL_MONTH_FORMAT = new SimpleDateFormat("dd MMMM YYYY", Locale.ENGLISH);
+	public static final SimpleDateFormat SIM_MONTH_FORMAT = new SimpleDateFormat("dd MMM YYYY", Locale.ENGLISH);
 	
 	public static final String REGION_UK = "UK";
 	public static final String REGION_HK = "HK";

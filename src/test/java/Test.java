@@ -3,7 +3,10 @@ import static org.junit.Assert.assertTrue;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.lang3.time.DateFormatUtils;
 
 /**
  * @author JX.Wu
@@ -19,13 +22,14 @@ public class Test {
 
 		TestResponse.AccountBean account = new TestResponse.AccountBean();
 		account.setId("a1");
-		account.setAccountName("aName");
+//		account.setAccountName("aName");
 
 		TestResponse.PortfolioBean portfolio1 = new TestResponse.PortfolioBean();
 		portfolio1.setId("p1");
 		portfolio1.setPortfolioName("hhh");
 		TestResponse.PortfolioBean portfolio2 = new TestResponse.PortfolioBean();
-		portfolio2.setId("p2");
+//		portfolio2.setId("p2");
+//		portfolio2.setPortfolioName("yyy");
 		List<TestResponse.PortfolioBean> portfolioBeans = new ArrayList<>();
 		portfolioBeans.add(portfolio1);
 		portfolioBeans.add(portfolio2);
@@ -39,12 +43,23 @@ public class Test {
 //		System.out.println();
 //		System.out.println();
 		test.printBean(testResponse);
+		
+		System.out.println(Double.valueOf("1"));
 
 //		System.out.println(TestResponse.class.getSimpleName());
 //		System.out.println(TestResponse.AccountBean.class);
+//		System.out.println(DateFormatUtils.format(new Date(1533882667*1000L), "yyyy-MM-dd HH:mm:ss"));
 	}
 
 	public void printBean(Object object) {
+		String message = "";
+		checkPropertie(object, message);
+		if(!message.equals("")) {
+			System.out.println("Properties verify not pass! "+message);
+		}
+	}
+	
+	public void checkPropertie(Object object, String message) {
 		try {
 			Class clazz = object.getClass();
 			Field[] fields = clazz.getDeclaredFields();
@@ -53,17 +68,21 @@ public class Test {
 //				Object filedValue = method.invoke(object);
 				field.setAccessible(true);
 				Object filedValue = field.get(object);
-				assertTrue("[" + clazz.getSimpleName() + "] Field ["+field.getName()+"] value is null!", filedValue != null);
+				if(filedValue == null) {
+					message += "\n[" + clazz.getSimpleName() + "] Field ["+field.getName()+"] value is null!";
+					continue;
+				}
+//				assertTrue("[" + clazz.getSimpleName() + "] Field ["+field.getName()+"] value is null!", filedValue != null);
 				
 				if (filedValue instanceof Collection) {
 					for (Object o : (Collection) filedValue) {
 //						System.out.println("object:"+o);
-						printBean(o);
+						checkPropertie(o, message);
 					}
 				}
 				
 				if(filedValue.getClass().toString().contains(clazz.getSimpleName()+"$")) {
-					printBean(filedValue);
+					checkPropertie(filedValue, message);
 				}
 //				System.out.println("field name:"+ field.getName() +"      value:"+filedValue);
 			}
