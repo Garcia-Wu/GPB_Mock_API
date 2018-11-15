@@ -25,7 +25,6 @@
 			"issuer": "",
 			"moody": "",
 			"rating": "",
-			"frequency": "",
 			"inductivePrice": 0,
 			"categoryName": "Equities"
 		},
@@ -54,7 +53,6 @@
 			"issuer": "",
 			"moody": "",
 			"rating": "",
-			"frequency": "",
 			"inductivePrice": 0,
 			"categoryName": "Percious Metals"
 		},
@@ -83,7 +81,6 @@
 			"issuer": "",
 			"moody": "",
 			"rating": "",
-			"frequency": "",
 			"inductivePrice": 0,
 			"categoryName": "Funds"
 		},
@@ -112,7 +109,6 @@
 			"issuer": "",
 			"moody": "",
 			"rating": "",
-			"frequency": "",
 			"inductivePrice": 0,
 			"categoryName": "Funds"
 		},
@@ -141,7 +137,6 @@
 			"issuer": "",
 			"moody": "",
 			"rating": "",
-			"frequency": "",
 			"inductivePrice": 0,
 			"categoryName": "Current Accounts"
 		},
@@ -170,7 +165,6 @@
 			"issuer": "",
 			"moody": "",
 			"rating": "",
-			"frequency": "",
 			"inductivePrice": 0,
 			"categoryName": "Metal Ounces"
 		},
@@ -199,7 +193,6 @@
 			"issuer": "",
 			"moody": "",
 			"rating": "",
-			"frequency": "",
 			"inductivePrice": 0,
 			"categoryName": "Derivatives"
 		},
@@ -228,7 +221,6 @@
 			"issuer": "",
 			"moody": "",
 			"rating": "",
-			"frequency": "",
 			"inductivePrice": 0,
 			"categoryName": "Derivatives"
 		},
@@ -257,7 +249,6 @@
 			"issuer": "",
 			"moody": "",
 			"rating": "",
-			"frequency": "",
 			"inductivePrice": 0,
 			"categoryName": "Direct Investments"
 		},
@@ -266,7 +257,7 @@
 			"category": 1733,
 			"name": "IRS USD 29Jan2014-29Jan2021",
 			"isin": "847564",
-			"marketBaseAmount":80070090.08,
+			"marketBaseAmount": 80070090.08,
 			"marketBaseCurrency": "USD",
 			"marketReportAmount": 60870083.18,
 			"marketReportCurrency": "GBP",
@@ -286,7 +277,6 @@
 			"issuer": "",
 			"moody": "",
 			"rating": "",
-			"frequency": "",
 			"inductivePrice": 0,
 			"categoryName": "Interest Rate Swaps"
 		},
@@ -315,7 +305,6 @@
 			"issuer": "",
 			"moody": "",
 			"rating": "",
-			"frequency": "",
 			"inductivePrice": 0,
 			"categoryName": "Futures"
 		},
@@ -344,7 +333,6 @@
 			"issuer": "",
 			"moody": "",
 			"rating": "",
-			"frequency": "",
 			"inductivePrice": 0,
 			"categoryName": "Foreign Exchange"
 		},
@@ -373,7 +361,6 @@
 			"issuer": "",
 			"moody": "",
 			"rating": "",
-			"frequency": "",
 			"inductivePrice": 0,
 			"categoryName": "Private Equity & Real Estate Funds"
 		},
@@ -402,7 +389,6 @@
 			"issuer": "",
 			"moody": "",
 			"rating": "",
-			"frequency": "",
 			"inductivePrice": 0,
 			"categoryName": "Deposits"
 		},
@@ -431,7 +417,6 @@
 			"issuer": "",
 			"moody": "",
 			"rating": "",
-			"frequency": "",
 			"inductivePrice": 0,
 			"categoryName": "Deposits"
 		},
@@ -460,7 +445,6 @@
 			"issuer": "",
 			"moody": "",
 			"rating": "",
-			"frequency": "",
 			"inductivePrice": 0,
 			"categoryName": "Deposits"
 		},
@@ -489,7 +473,6 @@
 			"issuer": "",
 			"moody": "",
 			"rating": "",
-			"frequency": "",
 			"inductivePrice": 0,
 			"categoryName": "Deposits"
 		},
@@ -518,7 +501,6 @@
 			"issuer": "LVMH",
 			"moody": "Aa1",
 			"rating": "A",
-			"frequency": "",
 			"inductivePrice": 101.45,
 			"categoryName": "Bonds"
 		},
@@ -547,7 +529,6 @@
 			"issuer": "LVMH",
 			"moody": "Aa1",
 			"rating": "A",
-			"frequency": "",
 			"inductivePrice": 101.45,
 			"categoryName": "Structured Products"
 		}

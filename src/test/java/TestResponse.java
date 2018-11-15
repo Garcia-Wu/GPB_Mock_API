@@ -6,7 +6,9 @@ import java.util.List;
  */
 public class TestResponse {
 	
+	@MyTest(name = "haha")
 	private String code;
+	
 	private String name;
 	private Integer id;
 	private AccountBean account;

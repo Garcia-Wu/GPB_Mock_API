@@ -12,8 +12,8 @@
 					"id": "Statement - Cash"
 				},
 				{
-					"name": "Transaction",
-					"id": "Statement - Transaction"
+					"name": "Transactions",
+					"id": "Statement - Transactions"
 				}
 			]
 		},

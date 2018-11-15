@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -311,6 +313,15 @@ public class OverviewController extends BaseAPIController {
 			throw new BaseException("Required 'AMSESSION' is not present!");
 		} else {
 			System.out.println("AMSESSION:" + id);
+		}
+
+		// for SIT test
+		if(!id.endsWith("_UK") && !id.endsWith("_HK") && !id.endsWith("_SG")) {
+			id = id.substring(id.length() - 1);
+		}
+		
+		if(request.getHeader("Region") != null) {
+			id += "_" + request.getHeader("Region");
 		}
 
 		response.addHeader("AMSESSION", "AMSESSION_" + id.toUpperCase());

@@ -1,12 +1,12 @@
-import static org.junit.Assert.assertTrue;
-
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang3.time.DateFormatUtils;
+import org.junit.Assert;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @author JX.Wu
@@ -36,6 +36,8 @@ public class Test {
 
 		testResponse.setAccount(account);
 		testResponse.setPortfolioBeans(portfolioBeans);
+		
+		testResponse.setName("张三");
 
 		Test test = new Test();
 //		System.out.println(testResponse);
@@ -44,11 +46,20 @@ public class Test {
 //		System.out.println();
 		test.printBean(testResponse);
 		
-		System.out.println(Double.valueOf("1"));
+		
+		System.out.println("第一种："+Assert.class);
+		Class clazz = Test.class;
+		Object test2 = clazz.newInstance();
+		System.out.println("class:"+test2);
 
 //		System.out.println(TestResponse.class.getSimpleName());
 //		System.out.println(TestResponse.AccountBean.class);
 //		System.out.println(DateFormatUtils.format(new Date(1533882667*1000L), "yyyy-MM-dd HH:mm:ss"));
+	}
+
+	@Override
+	public String toString() {
+		return "HAHAHA";
 	}
 
 	public void printBean(Object object) {
@@ -64,6 +75,11 @@ public class Test {
 			Class clazz = object.getClass();
 			Field[] fields = clazz.getDeclaredFields();
 			for (Field field : fields) {
+				Autowired annotation = field.getAnnotation(Autowired.class);
+				if(annotation != null) {
+					
+				}
+				
 //				Method method = clazz.getMethod(makeGetMethodName(field));
 //				Object filedValue = method.invoke(object);
 				field.setAccessible(true);
