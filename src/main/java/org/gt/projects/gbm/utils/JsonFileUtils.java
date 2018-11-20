@@ -110,7 +110,25 @@ public class JsonFileUtils {
 	 * @param pageSize 
 	 * @return
 	 */
-	public static JSONArray getPageJsonArray(JSONArray jsonArray, int page, int pageSize) {
+	public static JSONArray getPageJsonArray(JSONArray jsonArray, int fromIndex, int pageSize) {
+		if(pageSize == -1) {
+			return jsonArray;
+		}
+		JSONArray result = new JSONArray();
+		int toIndex = fromIndex + pageSize;
+		for(int i = 0; i < jsonArray.size(); i++) {
+			if (i >= toIndex) {
+				break;
+			}
+			if(i >= fromIndex && i < toIndex) {
+				result.add(jsonArray.get(i));
+			}
+		}
+		jsonArray = result;
+		return result;
+	}
+	
+	public static JSONArray getCommonPageJsonArray(JSONArray jsonArray, int page, int pageSize) {
 		if(pageSize == -1) {
 			return jsonArray;
 		}
