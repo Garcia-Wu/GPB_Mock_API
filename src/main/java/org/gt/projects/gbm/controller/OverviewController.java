@@ -2,6 +2,7 @@ package org.gt.projects.gbm.controller;
 
 import java.io.File;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 
@@ -104,9 +105,9 @@ public class OverviewController extends BaseAPIController {
 			jsonArray.add(oneItem);
 		} else if ("2".equals(id)) {
 			// 获取ID为7与8的数据（ID为7对应的portfolioNumber为2）
-			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 3, 2);
+			jsonArray = JsonFileUtils.getCommonPageJsonArray(jsonArray, 3, 2);
 		} else if ("3".equals(id)) {
-			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 0, 13);
+			jsonArray = JsonFileUtils.getCommonPageJsonArray(jsonArray, 0, 13);
 		} else if ("4".equals(id)) {
 			// 获取对应portfolioNum为1的account
 			JSONObject oneItem = JsonFileUtils.getFilterObject(jsonArray, "id", "3");
@@ -153,6 +154,7 @@ public class OverviewController extends BaseAPIController {
 		}
 
 		JsonFileUtils.formatArrayNumber2DP(pageJson);
+		Collections.sort(pageJson, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
 		jsonObject.put("accounts", pageJson);
 		jsonObject.put("totalSize", jsonArray.size());
 
@@ -229,9 +231,16 @@ public class OverviewController extends BaseAPIController {
 			otherCurrency.put("currency", currency.toUpperCase());
 			otherCurrency.put("weight", currencyWeight);
 
-			currencyList = JsonFileUtils.getPageJsonArray(currencyList, 0, 7);
+			currencyList = JsonFileUtils.getCommonPageJsonArray(currencyList, 0, 7);
 			currencyList.add(otherCurrency);
 		}
+		
+		Collections.sort(classList, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
+		for (Object clazz : classList) {
+			Collections.sort(((JSONObject)clazz).getJSONArray("nodes"), JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
+		}
+		Collections.sort(currencyList, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
+		Collections.sort(regionList, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
 
 		result.put("clazz", classList);
 		result.put("currency", currencyList);
@@ -292,7 +301,7 @@ public class OverviewController extends BaseAPIController {
 		Collections.sort(jsonArray, JsonCompare.getLetterOrderAsc("code"));
 
 		if ("1".equals(id)) {
-			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 0, 5);
+			jsonArray = JsonFileUtils.getCommonPageJsonArray(jsonArray, 0, 5);
 		}
 
 		jsonObject.put("currencies", jsonArray);
@@ -301,12 +310,12 @@ public class OverviewController extends BaseAPIController {
 
 	@RequestMapping(value = "userprofile", method = { RequestMethod.GET })
 	public BaseAPIResponse<JSONObject> userprofile(HttpServletRequest request, HttpServletResponse response) {
-		// Enumeration<String> headerNames = request.getHeaderNames();
-		// System.out.println("request header: ");
-		// while (headerNames.hasMoreElements()) {
-		// String key = (String) headerNames.nextElement();
-		// System.out.println(key+":"+request.getHeader(key));
-		// }
+		 Enumeration<String> headerNames = request.getHeaderNames();
+		 System.out.println("request header: ");
+		 while (headerNames.hasMoreElements()) {
+		 String key = (String) headerNames.nextElement();
+		 System.out.println(key+":"+request.getHeader(key));
+		 }
 
 		String id = request.getHeader("AMSESSION");
 		if (id == null) {
@@ -314,10 +323,17 @@ public class OverviewController extends BaseAPIController {
 		} else {
 			System.out.println("AMSESSION:" + id);
 		}
+		System.out.println("region:" + request.getHeader("region"));
 
 		// for SIT test
 		if(!id.endsWith("_UK") && !id.endsWith("_HK") && !id.endsWith("_SG")) {
 			id = id.substring(id.length() - 1);
+			if(id.equals("9")) {
+				id = "5";
+			}
+			if(Integer.valueOf(id) < 0 || Integer.valueOf(id) > 7) {
+				throw new BaseException("Id is not expected!");
+			}
 		}
 		
 		if(request.getHeader("Region") != null) {

@@ -52,6 +52,20 @@ public class Test {
 		Object test2 = clazz.newInstance();
 		System.out.println("class:"+test2);
 
+		TestEnum testEnum = TestEnum.valueOf("TEST1");
+		System.out.println(testEnum.getName()+" : "+testEnum.getPassword());	
+		if(testEnum.equals(TestEnum.TEST1)){
+			System.out.println("Is Test1");
+		}
+		switch (testEnum) {
+		case TEST1:
+			System.out.println("Is Test1");
+			break;
+
+		default:
+			System.out.println("Is Test2");
+			break;
+		}
 //		System.out.println(TestResponse.class.getSimpleName());
 //		System.out.println(TestResponse.AccountBean.class);
 //		System.out.println(DateFormatUtils.format(new Date(1533882667*1000L), "yyyy-MM-dd HH:mm:ss"));

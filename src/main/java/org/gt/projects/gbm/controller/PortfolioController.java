@@ -204,9 +204,16 @@ public class PortfolioController extends BaseAPIController {
 			otherCurrency.put("currency", currency.toUpperCase());
 			otherCurrency.put("weight", currencyWeight);
 
-			currencyList = JsonFileUtils.getPageJsonArray(currencyList, 0, 7);
+			currencyList = JsonFileUtils.getCommonPageJsonArray(currencyList, 0, 7);
 			currencyList.add(otherCurrency);
 		}
+		
+		Collections.sort(classList, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
+		for (Object clazz : classList) {
+			Collections.sort(((JSONObject)clazz).getJSONArray("nodes"), JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
+		}
+		Collections.sort(currencyList, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
+		Collections.sort(regionList, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
 
 		result.put("clazz", classList);
 		result.put("currency", currencyList);
@@ -307,9 +314,9 @@ public class PortfolioController extends BaseAPIController {
 		if (id.equals("0")) {
 			jsonArray.clear();
 		} else if ("2".equals(id)) {
-			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 0, 13);
+			jsonArray = JsonFileUtils.getCommonPageJsonArray(jsonArray, 0, 13);
 		} else if ("3".equals(id)) {
-			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 0, 5);
+			jsonArray = JsonFileUtils.getCommonPageJsonArray(jsonArray, 0, 5);
 		} else if ("4".equals(id)) {
 			// JSONObject oneItem = (JSONObject) jsonArray.get(0);
 			// jsonArray = new JSONArray();
@@ -427,7 +434,7 @@ public class PortfolioController extends BaseAPIController {
 		Collections.sort(jsonArray, JsonCompare.getLetterOrderAsc("code"));
 
 		if ("1".equals(id)) {
-			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 0, 5);
+			jsonArray = JsonFileUtils.getCommonPageJsonArray(jsonArray, 0, 5);
 		}
 
 		jsonObject.put("currencies", jsonArray);

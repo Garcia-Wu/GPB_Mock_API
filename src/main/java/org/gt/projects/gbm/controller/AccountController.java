@@ -75,15 +75,15 @@ public class AccountController extends BaseAPIController{
 		if ("0".equals(id)) {
 			jsonArray.clear();
 		} else if ("1".equals(id)) {
-			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 0, 13);
+			jsonArray = JsonFileUtils.getCommonPageJsonArray(jsonArray, 0, 13);
 		} else if ("2".equals(id)) {
-			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 1, 5);
+			jsonArray = JsonFileUtils.getCommonPageJsonArray(jsonArray, 1, 5);
 		} else if ("3".equals(id)) {
 			JSONObject oneItem = JsonFileUtils.getFilterObject(jsonArray, "id", "0");
 			jsonArray = new JSONArray();
 			jsonArray.add(oneItem);
 		} else if ("7".equals(id)) {
-			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 0, 2);
+			jsonArray = JsonFileUtils.getCommonPageJsonArray(jsonArray, 0, 2);
 		} else if ("16".equals(id)) {
 			try {
 				Thread.sleep(100 * 1000L);
@@ -128,6 +128,8 @@ public class AccountController extends BaseAPIController{
 			pageJson.getJSONObject(i).remove("netAssetsAmount");
 			pageJson.getJSONObject(i).remove("netAssetsCurrency");
 		}
+		
+		Collections.sort(pageJson, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
 
 		JsonFileUtils.formatArrayNumber2DP(pageJson);
 		jsonObject.put("portfolios", pageJson);
@@ -211,9 +213,16 @@ public class AccountController extends BaseAPIController{
 			otherCurrency.put("currency", currency.toUpperCase());
 			otherCurrency.put("weight", currencyWeight);
 			
-			currencyList = JsonFileUtils.getPageJsonArray(currencyList, 0, 7);
+			currencyList = JsonFileUtils.getCommonPageJsonArray(currencyList, 0, 7);
 			currencyList.add(otherCurrency);
 		}
+		
+		Collections.sort(classList, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
+		for (Object clazz : classList) {
+			Collections.sort(((JSONObject)clazz).getJSONArray("nodes"), JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
+		}
+		Collections.sort(currencyList, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
+		Collections.sort(regionList, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
 		
 		result.put("clazz", classList);
 		result.put("currency", currencyList);
@@ -269,7 +278,7 @@ public class AccountController extends BaseAPIController{
 		Collections.sort(jsonArray, JsonCompare.getLetterOrderAsc("code"));
 		
 		if("1".equals(id)) {
-			jsonArray = JsonFileUtils.getPageJsonArray(jsonArray, 0, 5);
+			jsonArray = JsonFileUtils.getCommonPageJsonArray(jsonArray, 0, 5);
 		}
 		
 		jsonObject.put("currencies", jsonArray);

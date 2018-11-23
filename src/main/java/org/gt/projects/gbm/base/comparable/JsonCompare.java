@@ -87,6 +87,18 @@ public class JsonCompare implements Comparator<JSONObject>{
 	}
 	
 	/**
+	 * 根据数字属性升序排序
+	 * @param orderField 数字属性名
+	 * @return
+	 */
+	public static JsonCompare getNumberDescThenLetterAsc(String numberField, String letterField) {
+		jsonCompare = new JsonCompare(new String[] {numberField, letterField}, 
+									  new String[] {JsonCompare.NUMBER, JsonCompare.LETTER}, 
+									  new String[] {JsonCompare.DESC, JsonCompare.ASC});
+		return jsonCompare;
+	}
+	
+	/**
 	 * 根据英文属性降序排序 （Z-A）
 	 * @param orderField 英文属性名
 	 * @return
