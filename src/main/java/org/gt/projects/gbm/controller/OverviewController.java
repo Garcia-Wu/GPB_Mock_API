@@ -541,6 +541,10 @@ public class OverviewController extends BaseAPIController {
 	@RequestMapping(value = "{customerId}/documents/categories", method = { RequestMethod.GET })
 	public BaseAPIResponse<JSONObject> documentCategories(@PathVariable("customerId") String customerId) {
 		JSONObject jsonObject = JSONObject.fromObject(JsonFileUtils.readFileToString("documents/categories"));
+		JsonCompare letterCompare = JsonCompare.getLetterOrderAsc("name");
+		for (Object category : jsonObject.getJSONArray("categories")) {
+			Collections.sort(((JSONObject)category).getJSONArray("subCategories"), letterCompare);
+		}
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
 
