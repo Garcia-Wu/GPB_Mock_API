@@ -348,7 +348,10 @@ public class OverviewController extends BaseAPIController {
 		}
 
 		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("lastLoginTime", 1533882667);
+		jsonObject.put("id", id);
 		if ("0".equals(id)) {
+			jsonObject.put("lastLoginTime", 0);
 			jsonObject.put("userName", "");
 		} else if ("2".equals(id)) {
 			jsonObject.put("userName", "Mr Chen");
@@ -359,8 +362,6 @@ public class OverviewController extends BaseAPIController {
 		// jsonObject.put("userName",
 		// "WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
 		// }
-		jsonObject.put("lastLoginTime", 1533882667);
-		jsonObject.put("id", id);
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
 

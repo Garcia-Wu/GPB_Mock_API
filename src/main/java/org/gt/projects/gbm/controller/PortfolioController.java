@@ -72,6 +72,7 @@ public class PortfolioController extends BaseAPIController {
 					portfolioObjcet.getJSONObject("ytd").put("weight", "");
 				}
 			} 
+			resultArray.getJSONObject(i).remove("baseCurrency");
 			resultArray.getJSONObject(i).remove("weight");
 			resultArray.getJSONObject(i).remove("mandateType");
 			resultArray.getJSONObject(i).put("updateDate", "24 May 2018");

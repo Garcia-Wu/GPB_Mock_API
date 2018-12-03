@@ -56,6 +56,7 @@ public class AccountController extends BaseAPIController{
 		}
 		
 		for (int i = 0; i < resultArray.size(); i++) {
+			resultArray.getJSONObject(i).remove("baseCurrency");
 			resultArray.getJSONObject(i).remove("weight");
 			resultArray.getJSONObject(i).put("updateDate", "24 May 2018");
 		}
