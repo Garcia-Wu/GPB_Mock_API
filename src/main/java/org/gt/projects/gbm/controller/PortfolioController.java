@@ -32,23 +32,11 @@ public class PortfolioController extends BaseAPIController {
 		if (params.get("accountId") == null) {
 			throw new BaseException();
 		}
+		String accountId = params.get("accountId").toString();
 		List<String> ids = (List<String>) params.get("portfolioIds");
 		String json = JsonFileUtils.readFileToString("account_portfolio_list");
 		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("portfolios");
 		JSONArray resultArray = JsonFileUtils.getIdsArray(jsonArray, ids);
-
-		// fix for noTruncation
-		// if(Integer.valueOf(ids.get(0)) > 15) {
-		// for (int i = 0; i < ids.size(); i++) {
-		// if(!ids.get(i).equals("0")) {
-		// ids.set(i, String.valueOf(Integer.valueOf(ids.get(i)) - 15));
-		// }
-		// }
-		// resultArray = JsonFileUtils.getIdsArray(jsonArray, ids);
-		// if(resultArray.getJSONObject(0).getInt("id") == 1) {
-		// resultArray.getJSONObject(0).put("name", "FX Portfolio 1");
-		// }
-		// }
 
 		if (params.get("currency") != null) {
 			for (int i = 0; i < resultArray.size(); i++) {
@@ -61,6 +49,8 @@ public class PortfolioController extends BaseAPIController {
 			}
 		}
 
+		JSONArray accounts = JSONObject.fromObject(JsonFileUtils.readFileToString("overview_account_list")).getJSONArray("accounts");
+		String updateDate = JsonFileUtils.getFilterObject(accounts, "id", accountId).getString("updateDate");
 		for (int i = 0; i < resultArray.size(); i++) {
 			JSONObject portfolioObjcet = resultArray.getJSONObject(i);
 			if (isAsia(request)) {
@@ -75,7 +65,8 @@ public class PortfolioController extends BaseAPIController {
 			resultArray.getJSONObject(i).remove("baseCurrency");
 			resultArray.getJSONObject(i).remove("weight");
 			resultArray.getJSONObject(i).remove("mandateType");
-			resultArray.getJSONObject(i).put("updateDate", "24 May 2018");
+		
+			resultArray.getJSONObject(i).put("updateDate", updateDate);
 		}
 
 		JSONObject jsonObject = new JSONObject();
@@ -92,17 +83,7 @@ public class PortfolioController extends BaseAPIController {
 		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("holdings");
 		if ("0".equals(id) || "3".equals(id)) {
 			jsonArray.clear();
-		} else if (Integer.valueOf(id) > 15) {
-			// fix for noTruncation
-			// jsonArray.getJSONObject(0).put("name", "SNE 0.001USD Sony Corp ADR Each Rep 1
-			// Ord NPV (CDI)LUHSony Corp ADR Each Rep 1");
-		}
-
-		// if(currency != null) {
-		// for (int i = 0; i < jsonArray.size(); i++) {
-		// jsonArray.getJSONObject(i).put("currency", currency.toUpperCase());
-		// }
-		// }
+		} 
 
 		JsonCompare numCompare = JsonCompare.getNumberOrderDesc("reportAmount");
 		Collections.sort(jsonArray, numCompare);
@@ -164,15 +145,6 @@ public class PortfolioController extends BaseAPIController {
 		} else {
 			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list"))
 					.getJSONArray("currency");
-
-			// fix for noTruncation
-			// if (Integer.valueOf(id) > 15) {
-			// classList.getJSONObject(0).put("name", "Liquidity and Money");
-			// classList.getJSONObject(0).getJSONArray("nodes").getJSONObject(0).put("name",
-			// "Futures on Forex");
-			// currencyList.getJSONObject(0).put("name", "Hong Kong Dollar");
-			// regionList.getJSONObject(0).put("name", "Europe");
-			// }
 		}
 
 		if (currency != null) {
@@ -327,20 +299,7 @@ public class PortfolioController extends BaseAPIController {
 			jsonArray = JsonFileUtils.getFilterArray(jsonArray, "filterType", "purchases", 1);
 		} else if ("6".equals(id)) {
 			jsonArray = JsonFileUtils.getFilterArray(jsonArray, "filterType", "sales", 1);
-		} else if (Integer.valueOf(id) > 15) {
-			// fix for noTruncation
-			// jsonArray.getJSONObject(0).put("type", "Cash movements1 GBP");
-			// jsonArray.getJSONObject(0).put("description", "Transaction Description: This
-			// is the Cash movements description, please see the description of the Cash
-			// movements 1 item");
-			// jsonArray.getJSONObject(1).put("type", "Purchases1 USD");
-			// jsonArray.getJSONObject(1).put("description", "Transaction Description: This
-			// is the purchase description, please see the description of the purchase 1
-			// item");
-			// jsonArray.getJSONObject(2).put("type", "Sales1 JPY");
-			// jsonArray.getJSONObject(2).put("description", "Transaction Description: This
-			// is the sales description, please see the description of the sales 1 item");
-		}
+		} 
 
 		// if (currency != null) {
 		// for (int i = 0; i < jsonArray.size(); i++) {

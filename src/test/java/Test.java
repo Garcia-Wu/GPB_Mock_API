@@ -1,10 +1,13 @@
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -51,24 +54,26 @@ public class Test {
 		Class clazz = Test.class;
 		Object test2 = clazz.newInstance();
 		System.out.println("class:"+test2);
+		
+		
 
-		TestEnum testEnum = TestEnum.valueOf("TEST1");
-		System.out.println(testEnum.getName()+" : "+testEnum.getPassword());	
-		if(testEnum.equals(TestEnum.TEST1)){
-			System.out.println("Is Test1");
-		}
-		switch (testEnum) {
-		case TEST1:
-			System.out.println("Is Test1");
-			break;
-
-		default:
-			System.out.println("Is Test2");
-			break;
-		}
+//		TestEnum testEnum = TestEnum.valueOf("TEST1");
+//		System.out.println(testEnum.getName()+" : "+testEnum.getPassword());	
+//		if(testEnum.equals(TestEnum.TEST1)){
+//			System.out.println("Is Test1");
+//		}
+//		switch (testEnum) {
+//		case TEST1:
+//			System.out.println("Is Test1");
+//			break;
+//
+//		default:
+//			System.out.println("Is Test2");
+//			break;
+//		}
 //		System.out.println(TestResponse.class.getSimpleName());
 //		System.out.println(TestResponse.AccountBean.class);
-//		System.out.println(DateFormatUtils.format(new Date(1533882667*1000L), "yyyy-MM-dd HH:mm:ss"));
+//		System.out.println(DateFormatUtils.format(new Date(1543302984*1000L), "yyyy-MM-dd HH:mm:ss"));
 	}
 
 	@Override

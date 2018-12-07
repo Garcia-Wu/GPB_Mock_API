@@ -1,7 +1,9 @@
 package org.gt.projects.gbm.controller;
 
 import java.io.File;
+import java.text.ParseException;
 import java.util.Collections;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +16,7 @@ import org.gt.projects.gbm.base.BaseAPIController;
 import org.gt.projects.gbm.base.BaseAPIResponse;
 import org.gt.projects.gbm.base.BaseException;
 import org.gt.projects.gbm.base.comparable.JsonCompare;
+import org.gt.projects.gbm.utils.GBMConstant;
 import org.gt.projects.gbm.utils.JsonFileUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,8 +24,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -33,7 +34,7 @@ public class OverviewController extends BaseAPIController {
 
 	@RequestMapping(value = "{id}/overview", method = { RequestMethod.GET })
 	public BaseAPIResponse<JSONObject> overview(@PathVariable("id") String id,
-			@RequestParam(required = true) String currency, HttpServletRequest request) {
+			@RequestParam(required = true) String currency, HttpServletRequest request) throws ParseException {
 		if (Integer.valueOf(id) > 7) {
 			throw new BaseException();
 		}
@@ -61,9 +62,9 @@ public class OverviewController extends BaseAPIController {
 		} else if (id.equals("5")) {
 			jsonObject.getJSONObject("customer").put("liabilitiesAmount", -48086438537.35);
 			jsonObject.getJSONObject("customer").put("netAssetsAmount", -9136046525.35);
-			// } else if (id.equals("6")) {
-			// jsonObject.getJSONObject("customer").put("name",
-			// "WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+		} else if (id.equals("6")) {
+//			 jsonObject.getJSONObject("customer").put("name",
+//			 "WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
 		} else if(id.equals("7")) {
 			jsonObject.getJSONObject("ytd").put("amount", 0);
 			jsonObject.getJSONObject("ytd").put("currency", "");
@@ -84,6 +85,37 @@ public class OverviewController extends BaseAPIController {
 		} else {
 			jsonObject.getJSONObject("customer").put("bookingCenter", "SG Accounts");
 		}
+		
+		// update time
+		BaseAPIResponse<JSONObject> accountsResponse = this.accounts(id, 0, 1000, currency, true, request);
+		JSONArray accounts = accountsResponse.getData().getJSONArray("accounts");
+		String updateDate = "";
+		for(Object account : accounts) {
+			String accountUpdateDate = ((JSONObject)account).getString("updateDate");
+			if(accountUpdateDate.equals("")) {
+				// account list其中有一个没有更新时间，则更新时间为空
+				updateDate = "";
+				break;
+			} else {
+				// 获取最小的更新时间
+				Date accountDate = GBMConstant.SIM_MONTH_FORMAT.parse(accountUpdateDate);
+				if(updateDate.equals("")) {
+					updateDate = GBMConstant.SIM_MONTH_FORMAT.format(accountDate);
+				} else {
+					Date lastDate = GBMConstant.SIM_MONTH_FORMAT.parse(updateDate);
+					if(accountDate.getTime() < lastDate.getTime()) {
+						updateDate = GBMConstant.SIM_MONTH_FORMAT.format(accountDate);
+					}
+				}
+			}
+		}
+		// 设置更新时间
+		jsonObject.getJSONObject("customer").put("updateDate", updateDate);
+		if(id.equals("3")) {
+			jsonObject.getJSONObject("customer").put("updateDate", "01 Dec 2018");
+		} else if(id.equals("4")){
+			jsonObject.getJSONObject("customer").put("updateDate", "");
+		}
 
 		JsonFileUtils.formatObjectNumber2DP(jsonObject, "newDocumentCount");
 		return new BaseAPIResponse<JSONObject>(jsonObject);
@@ -92,7 +124,7 @@ public class OverviewController extends BaseAPIController {
 	@RequestMapping(value = "{id}/accounts", method = { RequestMethod.GET })
 	public BaseAPIResponse<JSONObject> accounts(@PathVariable("id") String id,
 			@RequestParam(defaultValue = "0") Integer offset, @RequestParam(defaultValue = "15") Integer limit,
-			@RequestParam(required = true) String currency, HttpServletRequest request) {
+			@RequestParam(required = true) String currency, @RequestParam(required = false, defaultValue = "false")boolean hasUpdateDate, HttpServletRequest request) {
 
 		String json = JsonFileUtils.readFileToString("overview_account_list");
 		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("accounts");
@@ -111,22 +143,17 @@ public class OverviewController extends BaseAPIController {
 		} else if ("4".equals(id)) {
 			// 获取对应portfolioNum为1的account
 			JSONObject oneItem = JsonFileUtils.getFilterObject(jsonArray, "id", "3");
+			JSONObject item = JsonFileUtils.getFilterObject(jsonArray, "id", "4");
 			jsonArray = new JSONArray();
 			jsonArray.add(oneItem);
+			jsonArray.add(item);
 		} else if ("7".equals(id)) {
 			// For timeout
-			JSONObject account = JsonFileUtils.getFilterObject(jsonArray, "id", "0");
-			account.put("id", "16");
-			account.put("name", "B5ED76G ***");
-			account.put("externalId", "B5ED76G");
-			jsonArray.add(account);
-
-			// fix for noTruncation
-			// jsonArray.getJSONObject(0).put("name", "Ada");
-			// for (int i = 0; i < jsonArray.size() - 1; i++) {
-			// JSONObject jsonObject = jsonArray.getJSONObject(i);
-			// jsonObject.put("id", String.valueOf((15 + jsonObject.getInt("id"))));
-			// }
+//			JSONObject account = JsonFileUtils.getFilterObject(jsonArray, "id", "0");
+//			account.put("id", "16");
+//			account.put("name", "B5ED76G ***");
+//			account.put("externalId", "B5ED76G");
+//			jsonArray.add(account);
 		}
 
 		if (currency != null) {
@@ -147,6 +174,9 @@ public class OverviewController extends BaseAPIController {
 
 		for (int i = 0; i < pageJson.size(); i++) {
 			pageJson.getJSONObject(i).remove("ytd");
+			if(!hasUpdateDate) {
+				pageJson.getJSONObject(i).remove("updateDate");
+			}
 			pageJson.getJSONObject(i).remove("liabilitiesAmount");
 			pageJson.getJSONObject(i).remove("liabilitiesCurrency");
 			pageJson.getJSONObject(i).remove("netAssetsAmount");

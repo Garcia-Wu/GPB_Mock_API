@@ -58,7 +58,6 @@ public class AccountController extends BaseAPIController{
 		for (int i = 0; i < resultArray.size(); i++) {
 			resultArray.getJSONObject(i).remove("baseCurrency");
 			resultArray.getJSONObject(i).remove("weight");
-			resultArray.getJSONObject(i).put("updateDate", "24 May 2018");
 		}
 		JSONObject jsonObject = new JSONObject();
 		JsonFileUtils.formatArrayNumber2DP(resultArray);
@@ -86,11 +85,11 @@ public class AccountController extends BaseAPIController{
 		} else if ("7".equals(id)) {
 			jsonArray = JsonFileUtils.getCommonPageJsonArray(jsonArray, 0, 2);
 		} else if ("16".equals(id)) {
-			try {
-				Thread.sleep(100 * 1000L);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+//			try {
+//				Thread.sleep(100 * 1000L);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
 		} 
 		
 //		else if (Integer.valueOf(id) > 15) {

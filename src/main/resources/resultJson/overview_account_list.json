@@ -12,6 +12,7 @@
 			"liabilitiesCurrency": "USD",
 			"netAssetsAmount": 369888362.66,
 			"netAssetsCurrency": "USD",
+			"updateDate":"06 Dec 2018",
 			"ytd": {
 				"amount": -28456234.12,
 				"currency": "GBP",
@@ -30,6 +31,7 @@
 			"liabilitiesCurrency": "USD",
 			"netAssetsAmount": 503668433.869,
 			"netAssetsCurrency": "USD",
+			"updateDate":"06 Dec 2018",
 			"ytd": {
 				"amount": 9123482.12,
 				"currency": "GBP",
@@ -48,6 +50,7 @@
 			"liabilitiesCurrency": "USD",
 			"netAssetsAmount": 0,
 			"netAssetsCurrency": "USD",
+			"updateDate":"03 Dec 2018",
 			"ytd": {
 				"amount": 8234010.12,
 				"currency": "GBP",
@@ -66,6 +69,7 @@
 			"liabilitiesCurrency": "USD",
 			"netAssetsAmount": 0,
 			"netAssetsCurrency": "USD",
+			"updateDate":"06 Dec 2018",
 			"ytd": {
 				"amount": 7234090.12,
 				"currency": "GBP",
@@ -84,6 +88,7 @@
 			"liabilitiesCurrency": "USD",
 			"netAssetsAmount": -29763340390.46,
 			"netAssetsCurrency": "USD",
+			"updateDate":"06 Dec 2018",
 			"ytd": {
 				"amount": 6834007.12,
 				"currency": "GBP",
@@ -102,6 +107,7 @@
 			"liabilitiesCurrency": "USD",
 			"netAssetsAmount": 496069.54,
 			"netAssetsCurrency": "USD",
+			"updateDate":"06 Dec 2018",
 			"ytd": {
 				"amount": 6334030.12,
 				"currency": "GBP",
@@ -120,6 +126,7 @@
 			"liabilitiesCurrency": "USD",
 			"netAssetsAmount": 403224.54,
 			"netAssetsCurrency": "USD",
+			"updateDate":"05 Dec 2018",
 			"ytd": {
 				"amount": 5934011.12,
 				"currency": "GBP",
@@ -138,6 +145,7 @@
 			"liabilitiesCurrency": "USD",
 			"netAssetsAmount": 313251.54,
 			"netAssetsCurrency": "USD",
+			"updateDate":"06 Dec 2018",
 			"ytd": {
 				"amount": 5534320.12,
 				"currency": "GBP",
@@ -156,6 +164,7 @@
 			"liabilitiesCurrency": "USD",
 			"netAssetsAmount": 188293.54,
 			"netAssetsCurrency": "USD",
+			"updateDate":"06 Dec 2018",
 			"ytd": {
 				"amount": 5134000.12,
 				"currency": "GBP",
@@ -174,6 +183,7 @@
 			"liabilitiesCurrency": "USD",
 			"netAssetsAmount": 80213.54,
 			"netAssetsCurrency": "USD",
+			"updateDate":"06 Dec 2018",
 			"ytd": {
 				"amount": -1234074.12,
 				"currency": "GBP",
@@ -192,6 +202,7 @@
 			"liabilitiesCurrency": "USD",
 			"netAssetsAmount": 287395.54,
 			"netAssetsCurrency": "USD",
+			"updateDate":"06 Dec 2018",
 			"ytd": {
 				"amount": 3234093.12,
 				"currency": "GBP",
@@ -210,6 +221,7 @@
 			"liabilitiesCurrency": "USD",
 			"netAssetsAmount": 267750.54,
 			"netAssetsCurrency": "USD",
+			"updateDate":"06 Dec 2018",
 			"ytd": {
 				"amount": 2234032.12,
 				"currency": "GBP",
@@ -228,6 +240,7 @@
 			"liabilitiesCurrency": "USD",
 			"netAssetsAmount": 76423.54,
 			"netAssetsCurrency": "USD",
+			"updateDate":"06 Dec 2018",
 			"ytd": {
 				"amount": 934032.12,
 				"currency": "GBP",
@@ -246,6 +259,7 @@
 			"liabilitiesCurrency": "USD",
 			"netAssetsAmount": 16994.54,
 			"netAssetsCurrency": "USD",
+			"updateDate":"06 Dec 2018",
 			"ytd": {
 				"amount": 244038.12,
 				"currency": "GBP",
@@ -264,6 +278,7 @@
 			"liabilitiesCurrency": "USD",
 			"netAssetsAmount": 2676.54,
 			"netAssetsCurrency": "USD",
+			"updateDate":"",
 			"ytd": {
 				"amount": 0.00,
 				"currency": "GBP",
@@ -282,6 +297,7 @@
 			"liabilitiesCurrency": "USD",
 			"netAssetsAmount": 0.00,
 			"netAssetsCurrency": "USD",
+			"updateDate":"",
 			"ytd": {
 				"amount": 0.00,
 				"currency": "GBP",
