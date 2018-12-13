@@ -20,7 +20,7 @@ public class JsonCompare implements Comparator<JSONObject>{
 	public static final String LETTER = "letter";
 	
 	protected String[] orderField;
-	protected String[] orderFieldType = new String[] {NUMBER};
+	protected String[] orderFieldType = {NUMBER};
 	protected String[] sequence;
 	
 	private static JsonCompare jsonCompare;
@@ -92,9 +92,10 @@ public class JsonCompare implements Comparator<JSONObject>{
 	 * @return
 	 */
 	public static JsonCompare getNumberDescThenLetterAsc(String numberField, String letterField) {
-		jsonCompare = new JsonCompare(new String[] {numberField, letterField}, 
-									  new String[] {JsonCompare.NUMBER, JsonCompare.LETTER}, 
-									  new String[] {JsonCompare.DESC, JsonCompare.ASC});
+		String[] fields = {numberField, letterField};
+		String[] fieldTypes = {JsonCompare.NUMBER, JsonCompare.LETTER};
+		String[] fieldOrders = {JsonCompare.DESC, JsonCompare.ASC};
+		jsonCompare = new JsonCompare(fields, fieldTypes, fieldOrders);
 		return jsonCompare;
 	}
 	
