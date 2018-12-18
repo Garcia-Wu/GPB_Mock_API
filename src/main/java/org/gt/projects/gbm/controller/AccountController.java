@@ -334,5 +334,40 @@ public class AccountController extends BaseAPIController{
 		JsonFileUtils.formatObjectNumber2DP(resultJson, "type", "totalSize");
 		return new BaseAPIResponse<JSONObject>(resultJson);
 	}
+	
+	@RequestMapping("{id}/holdings/allocation/group")
+	public BaseAPIResponse<JSONObject> holdingAllocationGroup(@PathVariable String id,
+			@RequestParam(required = true) String currency, @RequestParam(required = true) String category,
+			@RequestParam(required = true) String categoryId, @RequestParam(defaultValue = "0") Integer offset,
+			@RequestParam(defaultValue = "15") Integer limit){
+		if(!category.equalsIgnoreCase("asset")) {
+			throw new BaseException();
+		} 
+		JSONArray holdingJson = JSONObject.fromObject(JsonFileUtils.readFileToString("portfolio_holding_list")).getJSONArray("holdings");
+		JsonFileUtils.removeFilterObject(holdingJson, "id", new String[] { "11", "12" });
+		holdingJson = JsonFileUtils.getPageJsonArray(holdingJson, 0, 2);
+		JSONObject resultJson = new JSONObject();
+
+		JSONArray jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("hasSubClass_list")).getJSONArray("clazz");
+		JSONArray nodeList = JsonFileUtils.getFilterObject(jsonArray, "id", categoryId).getJSONArray("nodes");
+		JSONArray holdingGroups = new JSONArray();
+		int totalSize = 0;
+		for (Object object : nodeList) {
+			JSONObject node = (JSONObject)object;
+			JSONObject holdingGroup = new JSONObject();
+			holdingGroup.put("subAssetId", node.get("id"));
+			holdingGroup.put("subAssetName", node.get("name"));
+			holdingGroup.put("subAssetAmount", node.get("amount"));
+			holdingGroup.put("subAssetCurrency", currency.toUpperCase());
+			holdingGroup.put("holdings", holdingJson);
+			holdingGroups.add(holdingGroup);
+			totalSize += holdingJson.size();
+		}
+		
+		resultJson.put("holdingGroup", holdingGroups);
+		resultJson.put("totalSize", totalSize);
+		JsonFileUtils.formatObjectNumber2DP(resultJson, "type", "totalSize");
+		return new BaseAPIResponse<JSONObject>(resultJson);
+	}
 
 }
