@@ -2,7 +2,7 @@
 	"clazz": [
 		{
 			"id": "1",
-			"amount": -200400600800.90,
+			"amount": 200400600800.90,
 			"name": "Equities",
 			"weight": 63.83,
 			"currency": "GBP",
@@ -32,7 +32,7 @@
 		},
 		{
 			"id": "2",
-			"amount": -10002000300.00,
+			"amount": 10002000300.00,
 			"name": "Others",
 			"weight": 31.67,
 			"currency": "GBP",
@@ -55,7 +55,7 @@
 		},
 		{
 			"id": "3",
-			"amount": -9622799423.29,
+			"amount": 9622799423.29,
 			"name": "Liquidity and Money Markets",
 			"weight": -12.74,
 			"currency": "GBP",
@@ -66,6 +66,36 @@
 					"name": "Current Accounts",
 					"currency": "GBP",
 					"weight": 72.94
+				}
+			]
+		},
+		{
+			"id": "5",
+			"amount": -1280000000.44,
+			"name": "Fixed Income",
+			"weight": -280.96,
+			"currency": "GBP",
+			"nodes": [
+				{
+					"id": "14",
+					"amount": -60.12,
+					"name": "Fixed Income",
+					"currency": "GBP",
+					"weight": 0.00
+				},
+				{
+					"id": "15",
+					"amount": -560000000.12,
+					"name": "Fixed Income Mutual Funds",
+					"currency": "GBP",
+					"weight": 43.75
+				},
+				{
+					"id": "16",
+					"amount": -720000000.32,
+					"name": "Fixed Income Warrants",
+					"currency": "GBP",
+					"weight": -256.25
 				}
 			]
 		}

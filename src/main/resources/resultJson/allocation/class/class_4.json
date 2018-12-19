@@ -71,7 +71,7 @@
 		},
 		{
 			"id": "4",
-			"amount": 0.00,
+			"amount": 8622799423.29,
 			"name": "Commodities",
 			"weight": 12.74,
 			"currency": "GBP",
@@ -94,7 +94,7 @@
 		},
 		{
 			"id": "5",
-			"amount": -1280000000.44,
+			"amount": 7622799423.29,
 			"name": "Fixed Income",
 			"weight": -280.96,
 			"currency": "GBP",
@@ -119,6 +119,54 @@
 					"name": "Fixed Income Warrants",
 					"currency": "GBP",
 					"weight": -256.25
+				}
+			]
+		},
+		{
+			"id": "100",
+			"amount": 6622799423.29,
+			"name": "Hedge Funds",
+			"weight": -280.96,
+			"currency": "GBP",
+			"nodes": [
+				{
+					"id": "200",
+					"amount": -60.12,
+					"name": "Hedge Funds",
+					"currency": "GBP",
+					"weight": 0.00
+				}
+			]
+		},
+		{
+			"id": "101",
+			"amount": 5622799423.29,
+			"name": "Private Equity",
+			"weight": -280.96,
+			"currency": "GBP",
+			"nodes": [
+				{
+					"id": "201",
+					"amount": -60.12,
+					"name": "Private Equity",
+					"currency": "GBP",
+					"weight": 0.00
+				}
+			]
+		},
+		{
+			"id": "102",
+			"amount": 4622799423.29,
+			"name": "Real Estate",
+			"weight": -280.96,
+			"currency": "GBP",
+			"nodes": [
+				{
+					"id": "202",
+					"amount": -60.12,
+					"name": "Real Estate",
+					"currency": "GBP",
+					"weight": 0.00
 				}
 			]
 		}

@@ -198,7 +198,7 @@ public class OverviewController extends BaseAPIController {
 			@RequestParam(required = true) String currency, String category) {
 
 		JSONObject result = new JSONObject();
-		JSONArray classList = JSONObject.fromObject(JsonFileUtils.readFileToString("hasSubClass_list"))
+		JSONArray classList = JSONObject.fromObject(JsonFileUtils.readFileToString("allocation/class/class_"+id))
 				.getJSONArray("clazz");
 		JSONArray regionList = JSONObject.fromObject(JsonFileUtils.readFileToString("region_list"))
 				.getJSONArray("region");
@@ -632,7 +632,7 @@ public class OverviewController extends BaseAPIController {
 		holdingJson = JsonFileUtils.getPageJsonArray(holdingJson, 0, 2);
 		JSONObject resultJson = new JSONObject();
 
-		JSONArray jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("hasSubClass_list")).getJSONArray("clazz");
+		JSONArray jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("allocation/class/class_"+id)).getJSONArray("clazz");
 		JSONArray nodeList = JsonFileUtils.getFilterObject(jsonArray, "id", categoryId).getJSONArray("nodes");
 		JSONArray holdingGroups = new JSONArray();
 		int totalSize = 0;
