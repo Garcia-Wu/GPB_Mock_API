@@ -16,6 +16,7 @@ public class TestServiceImpl implements TestService{
 		System.out.println("save 操作...");
 	}
 	
+	@Override
 	@TestAnnotation
 	public void testAnnotation() {
 		System.out.println("has Annotation 操作...");
