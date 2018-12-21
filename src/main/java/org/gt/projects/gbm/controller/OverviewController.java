@@ -63,8 +63,7 @@ public class OverviewController extends BaseAPIController {
 			jsonObject.getJSONObject("customer").put("liabilitiesAmount", -48086438537.35);
 			jsonObject.getJSONObject("customer").put("netAssetsAmount", -9136046525.35);
 		} else if (id.equals("6")) {
-//			 jsonObject.getJSONObject("customer").put("name",
-//			 "WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+			jsonObject.getJSONObject("customer").put("name","Jones WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
 		} else if(id.equals("7")) {
 			jsonObject.getJSONObject("ytd").put("amount", 0);
 			jsonObject.getJSONObject("ytd").put("currency", "");
@@ -269,6 +268,15 @@ public class OverviewController extends BaseAPIController {
 		for (Object clazz : classList) {
 			Collections.sort(((JSONObject)clazz).getJSONArray("nodes"), JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
 		}
+		// 将Others放在列表最后
+//		for (Object object : classList) {
+//			if(((JSONObject)object).getString("name").equals("Others")) {
+//				classList.remove(object);
+//				classList.add(object);
+//				break;
+//			}
+//		}
+		
 		Collections.sort(currencyList, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
 		Collections.sort(regionList, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
 
@@ -406,7 +414,7 @@ public class OverviewController extends BaseAPIController {
 
 		JSONArray jsonArray = null;
 		if (category.equalsIgnoreCase("ASSET")) {
-			jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("allClass_list")).getJSONArray("clazz");
+			jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("allocation/class/class_"+id)).getJSONArray("clazz");
 		} else if (category.equalsIgnoreCase("CURRENCY")) {
 			jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("allCurrency_list"))
 					.getJSONArray("currency");
@@ -437,8 +445,40 @@ public class OverviewController extends BaseAPIController {
 		resultJson.put("allocation", allocation);
 
 		JSONArray holdingJson = JSONObject.fromObject(json).getJSONArray("holdings");
+		// allocation holdingList需去除Futures以及Foreign Exchange类型的holding
 		JsonFileUtils.removeFilterObject(holdingJson, "id", new String[] { "11", "12" });
-		resultJson.put("holdings", JsonFileUtils.getPageJsonArray(holdingJson, offset, limit));
+		
+		// 
+		JSONArray resultHolding = new JSONArray();
+		if(category.equalsIgnoreCase("asset")) {
+			JSONArray simpleHolding = JsonFileUtils.getPageJsonArray(holdingJson, 0, 2);
+			JSONArray nodeList = jsonObject.getJSONArray("nodes");
+			for(int i=0; i < nodeList.size(); i++) {
+				// 除了第二个，其他所有asset class的第一个subClass拥有全部holding，其余只获取前2个
+				JSONArray nodeHoldingList;
+				if(i == 0 && !categoryId.endsWith("2")) {
+					nodeHoldingList = holdingJson;
+				} else {
+					nodeHoldingList = simpleHolding;
+				}
+				
+				// 加上索引以区分
+//				for(int j = 0; j < nodeHoldingList.size(); j++) {
+//					String holdingName = nodeHoldingList.getJSONObject(j).getString("name");
+//					if(holdingName.indexOf("_") == -1) {
+//						nodeHoldingList.getJSONObject(j).put("name", i + "_" + holdingName);
+//					} else {
+//						nodeHoldingList.getJSONObject(j).put("name", i + "_" + holdingName.substring(holdingName.indexOf("_") + 1));
+//					}
+//				}
+				resultHolding.addAll(nodeHoldingList);
+			}
+		} else {
+			resultHolding = holdingJson;
+		}
+		Collections.sort(resultHolding, JsonCompare.getNumberOrderDesc("reportAmount"));
+//		resultHolding = JsonFileUtils.getPageJsonArray(resultHolding, offset, limit);
+		resultJson.put("holdings", resultHolding);
 		resultJson.put("totalSize", holdingJson.size());
 		JsonFileUtils.formatObjectNumber2DP(resultJson, "type", "totalSize");
 		return new BaseAPIResponse<JSONObject>(resultJson);
@@ -625,27 +665,35 @@ public class OverviewController extends BaseAPIController {
 			@RequestParam(required = true) String categoryId, @RequestParam(defaultValue = "0") Integer offset,
 			@RequestParam(defaultValue = "15") Integer limit){
 		if(!category.equalsIgnoreCase("asset")) {
-			throw new BaseException();
+			throw new BaseException("category not support!");
 		} 
 		JSONArray holdingJson = JSONObject.fromObject(JsonFileUtils.readFileToString("portfolio_holding_list")).getJSONArray("holdings");
+		// allocation holdingList需去除Futures以及Foreign Exchange类型的holding
 		JsonFileUtils.removeFilterObject(holdingJson, "id", new String[] { "11", "12" });
-		holdingJson = JsonFileUtils.getPageJsonArray(holdingJson, 0, 2);
+		JSONArray simpleHolding = JsonFileUtils.getPageJsonArray(holdingJson, 0, 2);
 		JSONObject resultJson = new JSONObject();
 
 		JSONArray jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("allocation/class/class_"+id)).getJSONArray("clazz");
 		JSONArray nodeList = JsonFileUtils.getFilterObject(jsonArray, "id", categoryId).getJSONArray("nodes");
 		JSONArray holdingGroups = new JSONArray();
 		int totalSize = 0;
-		for (Object object : nodeList) {
-			JSONObject node = (JSONObject)object;
+		for (int i = 0; i < nodeList.size(); i++) {
+			JSONObject node = nodeList.getJSONObject(i);
 			JSONObject holdingGroup = new JSONObject();
 			holdingGroup.put("subAssetId", node.get("id"));
 			holdingGroup.put("subAssetName", node.get("name"));
 			holdingGroup.put("subAssetAmount", node.get("amount"));
 			holdingGroup.put("subAssetCurrency", currency.toUpperCase());
-			holdingGroup.put("holdings", holdingJson);
+			
+			// 除了第二个，其他所有asset class的第一个subClass拥有全部holding，其余只获取前2个
+			if(i == 0 && !categoryId.endsWith("2")) {
+				holdingGroup.put("holdings", holdingJson);
+				totalSize += holdingJson.size();
+			} else {
+				holdingGroup.put("holdings", simpleHolding);
+				totalSize += simpleHolding.size();
+			}
 			holdingGroups.add(holdingGroup);
-			totalSize += holdingJson.size();
 		}
 		
 		resultJson.put("holdingGroup", holdingGroups);

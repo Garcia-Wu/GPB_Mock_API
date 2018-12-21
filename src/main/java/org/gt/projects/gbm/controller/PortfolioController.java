@@ -443,6 +443,7 @@ public class PortfolioController extends BaseAPIController {
 		resultJson.put("allocation", allocation);
 
 		JSONArray holdingJson = JSONObject.fromObject(json).getJSONArray("holdings");
+		// allocation holdingList需去除Futures以及Foreign Exchange类型的holding
 		JsonFileUtils.removeFilterObject(holdingJson, "id", new String[] { "11", "12" });
 		resultJson.put("holdings", JsonFileUtils.getPageJsonArray(holdingJson, offset, limit));
 		resultJson.put("totalSize", holdingJson.size());
@@ -507,6 +508,7 @@ public class PortfolioController extends BaseAPIController {
 			throw new BaseException();
 		} 
 		JSONArray holdingJson = JSONObject.fromObject(JsonFileUtils.readFileToString("portfolio_holding_list")).getJSONArray("holdings");
+		// allocation holdingList需去除Futures以及Foreign Exchange类型的holding
 		JsonFileUtils.removeFilterObject(holdingJson, "id", new String[] { "11", "12" });
 		holdingJson = JsonFileUtils.getPageJsonArray(holdingJson, 0, 2);
 		JSONObject resultJson = new JSONObject();

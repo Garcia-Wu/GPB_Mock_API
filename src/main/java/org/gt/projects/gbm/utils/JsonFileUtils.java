@@ -107,7 +107,7 @@ public class JsonFileUtils {
 	 * 获取分页数组
 	 * @param jsonArray
 	 * @param fromIndex 起始索引值 
-	 * @param pageSize 
+	 * @param pageSize 每页大小
 	 * @return
 	 */
 	public static JSONArray getPageJsonArray(JSONArray jsonArray, int fromIndex, int pageSize) {
@@ -131,8 +131,8 @@ public class JsonFileUtils {
 	/**
 	 * 获取分页数组
 	 * @param jsonArray
-	 * @param page 
-	 * @param pageSize 
+	 * @param page 页数
+	 * @param pageSize 每页大小
 	 * @return
 	 */
 	public static JSONArray getCommonPageJsonArray(JSONArray jsonArray, int page, int pageSize) {

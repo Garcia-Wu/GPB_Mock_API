@@ -2,7 +2,7 @@
 	"customer": {
 		"id": "12",
 		"name": "Jones",
-		"amount": 38950392012,
+		"amount": 38950392012.00,
 		"currency": "GBP",
 		"bookingCenter": "UK Accounts",
 		"updateDate": "24 May 2018",

@@ -1,28 +1,28 @@
 {
 	"clazz": [
 		{
-			"id": "1",
+			"id": "2_1",
 			"amount": 200400600800.90,
 			"name": "Equities",
 			"weight": 63.83,
 			"currency": "GBP",
 			"nodes": [
 				{
-					"id": "6",
+					"id": "2_1_1",
 					"amount": 120240360480.54,
 					"name": "Equities",
 					"currency": "GBP",
 					"weight": 60
 				},
 				{
-					"id": "7",
+					"id": "2_1_2",
 					"amount": 100200300400.45,
 					"name": "Equity Mutual Funds",
 					"currency": "GBP",
 					"weight": 0
 				},
 				{
-					"id": "17",
+					"id": "2_1_3",
 					"amount": 20040060080.09,
 					"name": "Equity Warrants",
 					"currency": "GBP",
@@ -31,28 +31,28 @@
 			]
 		},
 		{
-			"id": "5",
+			"id": "2_2",
 			"amount": -380400660807.26,
 			"name": "Fixed Income",
 			"weight": -280.96,
 			"currency": "GBP",
 			"nodes": [
 				{
-					"id": "14",
+					"id": "2_2_1",
 					"amount": -60.12,
 					"name": "Fixed Income",
 					"currency": "GBP",
 					"weight": 0.00
 				},
 				{
-					"id": "15",
+					"id": "2_2_2",
 					"amount": -560000000.12,
 					"name": "Fixed Income Mutual Funds",
 					"currency": "GBP",
 					"weight": 43.75
 				},
 				{
-					"id": "16",
+					"id": "2_2_3",
 					"amount": -720000000.32,
 					"name": "Fixed Income Warrants",
 					"currency": "GBP",

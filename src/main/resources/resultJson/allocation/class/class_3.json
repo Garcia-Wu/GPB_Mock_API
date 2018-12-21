@@ -1,28 +1,28 @@
 {
 	"clazz": [
 		{
-			"id": "1",
+			"id": "3_1",
 			"amount": 200400600800.90,
 			"name": "Equities",
 			"weight": 63.83,
 			"currency": "GBP",
 			"nodes": [
 				{
-					"id": "6",
+					"id": "3_1_1",
 					"amount": 120240360480.54,
 					"name": "Equities",
 					"currency": "GBP",
 					"weight": 60
 				},
 				{
-					"id": "7",
+					"id": "3_1_2",
 					"amount": 100200300400.45,
 					"name": "Equity Mutual Funds",
 					"currency": "GBP",
 					"weight": 0
 				},
 				{
-					"id": "17",
+					"id": "3_1_3",
 					"amount": 20040060080.09,
 					"name": "Equity Warrants",
 					"currency": "GBP",
@@ -31,37 +31,30 @@
 			]
 		},
 		{
-			"id": "2",
-			"amount": 10002000300.00,
-			"name": "Others",
-			"weight": 31.67,
+			"id": "3_2",
+			"amount": 16622799423.29,
+			"name": "Hedge Funds",
+			"weight": -280.96,
 			"currency": "GBP",
 			"nodes": [
 				{
-					"id": "8",
-					"amount": 11002200330.40,
-					"name": "Other Mutual Funds",
+					"id": "3_2_1",
+					"amount": -1380000000.44,
+					"name": "Hedge Funds",
 					"currency": "GBP",
-					"weight": 110
-				},
-				{
-					"id": "9",
-					"amount": -1000200030.00,
-					"name": "Others",
-					"currency": "GBP",
-					"weight": 10.00
+					"weight": 100.00
 				}
 			]
 		},
 		{
-			"id": "3",
+			"id": "3_3",
 			"amount": 9622799423.29,
 			"name": "Liquidity and Money Markets",
 			"weight": -12.74,
 			"currency": "GBP",
 			"nodes": [
 				{
-					"id": "10",
+					"id": "3_3_1",
 					"amount": 36194869899.35,
 					"name": "Current Accounts",
 					"currency": "GBP",
@@ -70,28 +63,28 @@
 			]
 		},
 		{
-			"id": "5",
+			"id": "3_4",
 			"amount": -1280000000.44,
 			"name": "Fixed Income",
 			"weight": -280.96,
 			"currency": "GBP",
 			"nodes": [
 				{
-					"id": "14",
+					"id": "3_4_1",
 					"amount": -60.12,
 					"name": "Fixed Income",
 					"currency": "GBP",
 					"weight": 0.00
 				},
 				{
-					"id": "15",
+					"id": "3_4_2",
 					"amount": -560000000.12,
 					"name": "Fixed Income Mutual Funds",
 					"currency": "GBP",
 					"weight": 43.75
 				},
 				{
-					"id": "16",
+					"id": "3_4_3",
 					"amount": -720000000.32,
 					"name": "Fixed Income Warrants",
 					"currency": "GBP",
