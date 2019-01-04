@@ -1,0 +1,26 @@
+{
+	"region": [
+		{
+			"id": "1",
+			"amount": 1280000000.44,
+			"name": "Europe",
+			"currency": "GBP",
+			"weight": 29
+		},
+		{
+			"id": "2",
+			"amount": 0.00,
+			"name": "Asia",
+			"currency": "GBP",
+			"weight": 21.8
+		},
+		{
+			"id": "3",
+			"amount": -1280000000.44,
+			"name": "North America",
+			"currency": "GBP",
+			"weight": 14.7
+		}
+	]
+}
+

@@ -1,0 +1,11 @@
+{
+	"currency": [
+		{
+			"id": "1",
+			"amount": -200400600800.90,
+			"name": "GBP",
+			"currency": "GBP",
+			"weight": 63.83
+		}
+	]
+}

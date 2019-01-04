@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.gt.projects.gbm.GbmApplication;
+import org.gt.projects.gbm.base.BaseException;
 import org.springframework.boot.ApplicationHome;
 
 import net.sf.json.JSONArray;
@@ -221,7 +222,7 @@ public class JsonFileUtils {
 	}
 	
 	public static JSONObject getFilterObject(JSONArray jsonArray, String filterKey, String filterValue) {
-		return getFilterArray(jsonArray, filterKey, filterValue, 1).getJSONObject(0);
+		return getFilterArray(jsonArray, filterKey, filterValue).getJSONObject(0);
 	}
 	
 	/**
@@ -250,26 +251,23 @@ public class JsonFileUtils {
 	/**
 	 * 将json对象下所有数字格式化为保留2位小数
 	 * @param jsonObject
-	 * @return
-	 */
-	public static JSONObject formatObjectNumber2DP(JSONObject jsonObject) {
-		return formatObjectNumber2DP(jsonObject, null);
-	}
-	
-	/**
-	 * 将json对象下所有数字格式化为保留2位小数
-	 * @param jsonObject
 	 * @param exceptField 指定不格式化的属性
 	 * @return
 	 */
 	public static JSONObject formatObjectNumber2DP(JSONObject jsonObject, String... exceptField) {
 		Set<String> set = jsonObject.keySet();
-		forObjectSet: for (String key : set) {
+		for (String key : set) {
+			boolean isSkip = false;
 			if(exceptField != null && exceptField.length > 0) {
 				for (String field : exceptField) {
 					if(key.equals(field)) {
-						continue forObjectSet;
+						// 当前属性为排除属性，则跳过
+						isSkip = true;
+						break;
 					}
+				}
+				if(isSkip) {
+					continue;
 				}
 			}
 			if(jsonObject.get(key).getClass().equals(JSONArray.class)) {
@@ -278,8 +276,9 @@ public class JsonFileUtils {
 			if(jsonObject.get(key).getClass().equals(JSONObject.class)) {
 				formatObjectNumber2DP(jsonObject.getJSONObject(key), exceptField);
 			}
-			if(jsonObject.get(key).getClass().equals(Integer.class) || jsonObject.get(key).getClass().equals(Double.class)) {
-		        BigDecimal d1=new BigDecimal(String.valueOf(jsonObject.get(key))).setScale(2, BigDecimal.ROUND_HALF_UP);
+			
+			if(jsonObject.get(key) instanceof Number) {
+		        BigDecimal d1 = new BigDecimal(String.valueOf(jsonObject.get(key))).setScale(2, BigDecimal.ROUND_HALF_UP);
 		        jsonObject.put(key, d1);
 			}
 		}
@@ -312,6 +311,36 @@ public class JsonFileUtils {
 			}
 		}
 		return jsonArray;
+	}
+
+	/**
+	 * 根据索引获取子数组(左闭右开)
+	 * @param jsonArray
+	 * @param fromIndex
+	 * @param toIndex
+	 * @return
+	 */
+	public static JSONArray getSubList(JSONArray jsonArray, int fromIndex, int toIndex) {
+		JSONArray result = new JSONArray();
+		for (int i = 0; i < jsonArray.size(); i++) {
+			if(i >= toIndex) {
+				break;
+			}
+			if(i >= fromIndex) {
+				result.add(jsonArray.get(i));
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * 根据索引获取子数组(从fromIndex开始的后面所有元素)
+	 * @param jsonArray
+	 * @param fromIndex
+	 * @return
+	 */
+	public static JSONArray getSubList(JSONArray jsonArray, int fromIndex) {
+		return getSubList(jsonArray, fromIndex, jsonArray.size());
 	}
 	
 }

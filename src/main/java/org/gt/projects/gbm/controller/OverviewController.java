@@ -16,6 +16,7 @@ import org.gt.projects.gbm.base.BaseAPIController;
 import org.gt.projects.gbm.base.BaseAPIResponse;
 import org.gt.projects.gbm.base.BaseException;
 import org.gt.projects.gbm.base.comparable.JsonCompare;
+import org.gt.projects.gbm.utils.CommonUtil;
 import org.gt.projects.gbm.utils.GBMConstant;
 import org.gt.projects.gbm.utils.JsonFileUtils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,7 +58,7 @@ public class OverviewController extends BaseAPIController {
 			jsonObject.getJSONObject("customer").put("netAssetsAmount", 0);
 		} else if (id.equals("4")) {
 			jsonObject.put("hasLiabilities", false);
-			jsonObject.getJSONObject("customer").put("liabilitiesAmount", 1);
+//			jsonObject.getJSONObject("customer").put("liabilitiesAmount", 1);
 			jsonObject.getJSONObject("customer").put("netAssetsAmount", 0);
 		} else if (id.equals("5")) {
 			jsonObject.getJSONObject("customer").put("liabilitiesAmount", -48086438537.35);
@@ -195,112 +196,9 @@ public class OverviewController extends BaseAPIController {
 			// @RequestParam(defaultValue="0")Integer offset,
 			// @RequestParam(defaultValue="15")Integer limit,
 			@RequestParam(required = true) String currency, String category) {
-
-		JSONObject result = new JSONObject();
-		JSONArray classList = JSONObject.fromObject(JsonFileUtils.readFileToString("allocation/class/class_"+id))
-				.getJSONArray("clazz");
-		JSONArray regionList = JSONObject.fromObject(JsonFileUtils.readFileToString("region_list"))
-				.getJSONArray("region");
-		JSONArray currencyList = new JSONArray();
-
-		if ("0".equals(id)) {
-			classList.clear();
-			regionList.clear();
-		} else if ("1".equals(id) || "4".equals(id)) {
-			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("7currency_list"))
-					.getJSONArray("currency");
-		} else if ("2".equals(id) || "5".equals(id)) {
-			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list"))
-					.getJSONArray("currency");
-		} else if ("3".equals(id) || "6".equals(id)) {
-			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("9currency_list"))
-					.getJSONArray("currency");
-		} else {
-			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("8currency_list"))
-					.getJSONArray("currency");
-
-			// fix for noTruncation
-			// if("7".equals(id)) {
-			// classList.getJSONObject(0).put("name", "Liquidity and Money");
-			// classList.getJSONObject(0).getJSONArray("nodes").getJSONObject(0).put("name",
-			// "Futures on Forex");
-			// currencyList.getJSONObject(0).put("name", "Hong Kong Dollar");
-			// regionList.getJSONObject(0).put("name", "Europe");
-			// }
-
-		}
-
-		if (currency != null) {
-			JsonFileUtils.replaceProperty(classList, "currency", currency.toUpperCase());
-			for (int i = 0; i < classList.size(); i++) {
-				JsonFileUtils.replaceProperty(classList.getJSONObject(i).getJSONArray("nodes"), "currency",
-						currency.toUpperCase());
-			}
-			JsonFileUtils.replaceProperty(currencyList, "currency", currency.toUpperCase());
-			JsonFileUtils.replaceProperty(regionList, "currency", currency.toUpperCase());
-		}
-
-		if (currencyList.size() > 8) {
-			StringBuilder currencyId = new StringBuilder();
-			double currencyAmount = 0;
-			double currencyWeight = 0;
-			String currencyName = "Other";
-			for (int i = 7; i < currencyList.size(); i++) {
-				currencyId.append(currencyList.getJSONObject(i).getString("id"));
-				if (i != currencyList.size() - 1) {
-					currencyId.append(",");
-				}
-				currencyAmount += currencyList.getJSONObject(i).getDouble("amount");
-				currencyWeight += currencyList.getJSONObject(i).getDouble("weight");
-			}
-			JSONObject otherCurrency = new JSONObject();
-			otherCurrency.put("id", currencyId.toString());
-			otherCurrency.put("amount", currencyAmount);
-			otherCurrency.put("name", currencyName);
-			otherCurrency.put("currency", currency.toUpperCase());
-			otherCurrency.put("weight", currencyWeight);
-
-			currencyList = JsonFileUtils.getCommonPageJsonArray(currencyList, 0, 7);
-			currencyList.add(otherCurrency);
-		}
-		
-		Collections.sort(classList, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
-		for (Object clazz : classList) {
-			Collections.sort(((JSONObject)clazz).getJSONArray("nodes"), JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
-		}
-		// 将Others放在列表最后
-//		for (Object object : classList) {
-//			if(((JSONObject)object).getString("name").equals("Others")) {
-//				classList.remove(object);
-//				classList.add(object);
-//				break;
-//			}
-//		}
-		
-		Collections.sort(currencyList, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
-		Collections.sort(regionList, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
-
-		result.put("clazz", classList);
-		result.put("currency", currencyList);
-		result.put("region", regionList);
-
-		if (category != null) {
-			JSONArray nullList = new JSONArray();
-			if (category.equalsIgnoreCase("ASSET")) {
-				result.put("currency", nullList);
-				result.put("region", nullList);
-			} else if (category.equalsIgnoreCase("CURRENCY")) {
-				result.put("clazz", nullList);
-				result.put("region", nullList);
-			} else if (category.equalsIgnoreCase("REGION")) {
-				result.put("clazz", nullList);
-				result.put("currency", nullList);
-			}
-		}
-		JsonFileUtils.formatObjectNumber2DP(result);
-		return new BaseAPIResponse<JSONObject>(result);
+		return CommonUtil.getAllocationData(id, currency, category);
 	}
-
+	
 	@RequestMapping(value = "{id}/xrate", method = { RequestMethod.GET })
 	public BaseAPIResponse<JSONObject> currency(@PathVariable("id") String id, HttpServletRequest request) {
 
@@ -393,13 +291,11 @@ public class OverviewController extends BaseAPIController {
 			jsonObject.put("userName", "");
 		} else if ("2".equals(id)) {
 			jsonObject.put("userName", "Mr Chen");
+		} else if ("6".equals(id)) {
+			jsonObject.put("userName", "Jones WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
 		} else {
 			jsonObject.put("userName", "Jones");
 		}
-		// if ("6".equals(id)) {
-		// jsonObject.put("userName",
-		// "WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
-		// }
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
 
@@ -408,80 +304,7 @@ public class OverviewController extends BaseAPIController {
 			@RequestParam(required = true) String currency, @RequestParam(required = true) String category,
 			@RequestParam(required = true) String categoryId, @RequestParam(defaultValue = "0") Integer offset,
 			@RequestParam(defaultValue = "15") Integer limit) {
-		String json = JsonFileUtils.readFileToString("portfolio_holding_list");
-		JSONObject resultJson = new JSONObject();
-		JSONObject allocation = new JSONObject();
-
-		JSONArray jsonArray = null;
-		if (category.equalsIgnoreCase("ASSET")) {
-			jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("allocation/class/class_"+id)).getJSONArray("clazz");
-		} else if (category.equalsIgnoreCase("CURRENCY")) {
-			jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("allCurrency_list"))
-					.getJSONArray("currency");
-		} else if (category.equalsIgnoreCase("REGION")) {
-			jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("region_list")).getJSONArray("region");
-		} else {
-			throw new BaseException();
-		}
-
-		JSONObject jsonObject = new JSONObject();
-		if (category.equalsIgnoreCase("CURRENCY") && categoryId.contains(",")) {
-			String[] categoryIds = categoryId.split(",");
-			double categoryAmount = 0;
-			for (String cId : categoryIds) {
-				JSONObject categoryObject = JsonFileUtils.getFilterObject(jsonArray, "id", cId);
-				categoryAmount += categoryObject.getDouble("amount");
-			}
-
-			jsonObject.put("name", "Other");
-			jsonObject.put("amount", categoryAmount);
-		} else {
-			jsonObject = JsonFileUtils.getFilterObject(jsonArray, "id", categoryId);
-		}
-
-		allocation.put("name", jsonObject.getString("name"));
-		allocation.put("amount", jsonObject.getDouble("amount"));
-		allocation.put("currency", currency.toUpperCase());
-		resultJson.put("allocation", allocation);
-
-		JSONArray holdingJson = JSONObject.fromObject(json).getJSONArray("holdings");
-		// allocation holdingList需去除Futures以及Foreign Exchange类型的holding
-		JsonFileUtils.removeFilterObject(holdingJson, "id", new String[] { "11", "12" });
-		
-		// 
-		JSONArray resultHolding = new JSONArray();
-		if(category.equalsIgnoreCase("asset")) {
-			JSONArray simpleHolding = JsonFileUtils.getPageJsonArray(holdingJson, 0, 2);
-			JSONArray nodeList = jsonObject.getJSONArray("nodes");
-			for(int i=0; i < nodeList.size(); i++) {
-				// 除了第二个，其他所有asset class的第一个subClass拥有全部holding，其余只获取前2个
-				JSONArray nodeHoldingList;
-				if(i == 0 && !categoryId.endsWith("2")) {
-					nodeHoldingList = holdingJson;
-				} else {
-					nodeHoldingList = simpleHolding;
-				}
-				
-				// 加上索引以区分
-//				for(int j = 0; j < nodeHoldingList.size(); j++) {
-//					String holdingName = nodeHoldingList.getJSONObject(j).getString("name");
-//					if(holdingName.indexOf("_") == -1) {
-//						nodeHoldingList.getJSONObject(j).put("name", i + "_" + holdingName);
-//					} else {
-//						nodeHoldingList.getJSONObject(j).put("name", i + "_" + holdingName.substring(holdingName.indexOf("_") + 1));
-//					}
-//				}
-				resultHolding.addAll(nodeHoldingList);
-			}
-		} else {
-			resultHolding = holdingJson;
-		}
-		Collections.sort(resultHolding, JsonCompare.getNumberOrderDesc("reportAmount"));
-//		resultHolding = JsonFileUtils.getPageJsonArray(resultHolding, offset, limit);
-		resultJson.put("holdings", resultHolding);
-		resultJson.put("totalSize", holdingJson.size());
-		JsonFileUtils.formatObjectNumber2DP(resultJson, "type", "totalSize");
-		return new BaseAPIResponse<JSONObject>(resultJson);
+		return CommonUtil.getAllocationHoldings(id, currency, category, categoryId, offset, limit);
 	}
 
 	@RequestMapping(value = "{customerId}/documents", method = { RequestMethod.POST })
@@ -620,7 +443,7 @@ public class OverviewController extends BaseAPIController {
 	}
 
 	@RequestMapping(value = "{customerId}/documents/flag", method = { RequestMethod.POST })
-	public BaseAPIResponse documentFlag(@PathVariable("customerId") String customerId,
+	public BaseAPIResponse<JSONObject> documentFlag(@PathVariable("customerId") String customerId,
 			@RequestBody Map<String, Object> params, HttpServletRequest request) {
 		printJsonParams(params);
 		String documentId = params.get("documentId").toString();
@@ -664,42 +487,7 @@ public class OverviewController extends BaseAPIController {
 			@RequestParam(required = true) String currency, @RequestParam(required = true) String category,
 			@RequestParam(required = true) String categoryId, @RequestParam(defaultValue = "0") Integer offset,
 			@RequestParam(defaultValue = "15") Integer limit){
-		if(!category.equalsIgnoreCase("asset")) {
-			throw new BaseException("category not support!");
-		} 
-		JSONArray holdingJson = JSONObject.fromObject(JsonFileUtils.readFileToString("portfolio_holding_list")).getJSONArray("holdings");
-		// allocation holdingList需去除Futures以及Foreign Exchange类型的holding
-		JsonFileUtils.removeFilterObject(holdingJson, "id", new String[] { "11", "12" });
-		JSONArray simpleHolding = JsonFileUtils.getPageJsonArray(holdingJson, 0, 2);
-		JSONObject resultJson = new JSONObject();
-
-		JSONArray jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("allocation/class/class_"+id)).getJSONArray("clazz");
-		JSONArray nodeList = JsonFileUtils.getFilterObject(jsonArray, "id", categoryId).getJSONArray("nodes");
-		JSONArray holdingGroups = new JSONArray();
-		int totalSize = 0;
-		for (int i = 0; i < nodeList.size(); i++) {
-			JSONObject node = nodeList.getJSONObject(i);
-			JSONObject holdingGroup = new JSONObject();
-			holdingGroup.put("subAssetId", node.get("id"));
-			holdingGroup.put("subAssetName", node.get("name"));
-			holdingGroup.put("subAssetAmount", node.get("amount"));
-			holdingGroup.put("subAssetCurrency", currency.toUpperCase());
-			
-			// 除了第二个，其他所有asset class的第一个subClass拥有全部holding，其余只获取前2个
-			if(i == 0 && !categoryId.endsWith("2")) {
-				holdingGroup.put("holdings", holdingJson);
-				totalSize += holdingJson.size();
-			} else {
-				holdingGroup.put("holdings", simpleHolding);
-				totalSize += simpleHolding.size();
-			}
-			holdingGroups.add(holdingGroup);
-		}
-		
-		resultJson.put("holdingGroup", holdingGroups);
-		resultJson.put("totalSize", totalSize);
-		JsonFileUtils.formatObjectNumber2DP(resultJson, "type", "totalSize");
-		return new BaseAPIResponse<JSONObject>(resultJson);
+		return CommonUtil.getAllocationHoldingGroup(id, currency, category, categoryId, offset, limit);
 	}
 
 }
