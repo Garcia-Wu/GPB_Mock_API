@@ -19,7 +19,7 @@
 			"amount": -1280000000.44,
 			"name": "USD",
 			"currency": "GBP",
-			"weight": 16.74
+			"weight": -16.74
 		}
 	]
 }

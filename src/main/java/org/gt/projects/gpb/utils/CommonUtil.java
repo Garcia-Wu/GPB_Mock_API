@@ -1,10 +1,11 @@
-package org.gt.projects.gbm.utils;
+package org.gt.projects.gpb.utils;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 
-import org.gt.projects.gbm.base.BaseAPIResponse;
-import org.gt.projects.gbm.base.BaseException;
-import org.gt.projects.gbm.base.comparable.JsonCompare;
+import org.gt.projects.gpb.base.BaseAPIResponse;
+import org.gt.projects.gpb.base.BaseException;
+import org.gt.projects.gpb.base.comparable.JsonCompare;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -16,10 +17,7 @@ import net.sf.json.JSONObject;
 public class CommonUtil {
 
 	public static BaseAPIResponse<JSONObject> getAllocationData(String id, String currency, String category) {
-		// 默认视为5
-		if (Integer.valueOf(id) > 7) {
-			id = "5";
-		}
+		id = handleId(id);
 
 		JSONObject result = new JSONObject();
 		JSONArray classList = JSONObject.fromObject(JsonFileUtils.readFileToString("allocation/class/class_" + id))
@@ -97,21 +95,34 @@ public class CommonUtil {
 				result.put("currency", nullList);
 			}
 		}
+		
+		BigDecimal total = new BigDecimal("0");
+		for (Object object : result.getJSONArray("clazz")) {
+			total = total.add(new BigDecimal(((JSONObject)object).getDouble("amount") + ""));
+		}
+		System.out.println("customerId:"+id+"  total amount:"+total.toPlainString());
+		
 		JsonFileUtils.formatObjectNumber2DP(result);
 		return new BaseAPIResponse<JSONObject>(result);
 	}
 
+	private static String handleId(String id) {
+		if (id.contains(",")) {
+			// others默认视为5(存在于currency)
+			id = "5";
+		} else if (Integer.valueOf(id) > 8) {
+			id = Integer.valueOf(id) % 8 + "";
+		}
+		return id;
+	}
+
 	public static BaseAPIResponse<JSONObject> getAllocationHoldings(String id, String currency, String category,
 			String categoryId, Integer offset, Integer limit) {
+		id = handleId(id);
 		String json = JsonFileUtils.readFileToString("portfolio_holding_list");
 		JSONArray holdingJson = JSONObject.fromObject(json).getJSONArray("holdings");
 		JSONObject resultJson = new JSONObject();
 		JSONObject allocation = new JSONObject();
-
-		// 默认视为5(currency有可能多个ID拼接情况)
-		if (id.contains(",") || Integer.valueOf(id) > 7) {
-			id = "5";
-		}
 
 		JSONArray jsonArray = null;
 		if (category.equalsIgnoreCase("ASSET")) {
@@ -187,6 +198,19 @@ public class CommonUtil {
 		Collections.sort(resultHolding, JsonCompare.getNumberOrderDesc("reportAmount"));
 		resultJson.put("totalSize", resultHolding.size());
 		resultHolding = JsonFileUtils.getPageJsonArray(resultHolding, offset, limit);
+		
+		if(category.equalsIgnoreCase("currency") && !allocation.getString("name").equals("Others")) {
+			for (int i = 0; i < resultHolding.size(); i++) {
+				JSONObject holding = resultHolding.getJSONObject(i);
+				holding.put("baseCurrency", allocation.getString("name"));
+				holding.put("reportCurrency", allocation.getString("currency"));
+				holding.put("performanceCurrency", allocation.getString("name"));
+				if(holding.getString("baseCurrency").equals(holding.get("reportCurrency"))) {
+					holding.put("baseAmount", holding.get("reportAmount"));
+				}
+			}
+		}
+		
 		resultJson.put("holdings", resultHolding);
 		JsonFileUtils.formatObjectNumber2DP(resultJson, "type", "totalSize");
 		return new BaseAPIResponse<JSONObject>(resultJson);
@@ -194,6 +218,7 @@ public class CommonUtil {
 
 	public static BaseAPIResponse<JSONObject> getAllocationHoldingGroup(String id, String currency, String category,
 			String categoryId, Integer offset, Integer limit) {
+		id = handleId(id);
 		if(!category.equalsIgnoreCase("asset")) {
 			throw new BaseException("category not support!");
 		} 

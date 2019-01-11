@@ -2,31 +2,38 @@
 	"currency": [
 		{
 			"id": "1",
-			"amount": 200400600800.90,
+			"amount": 20040060080.90,
 			"name": "GBP",
 			"currency": "GBP",
 			"weight": 29.85
 		},
 		{
 			"id": "2",
-			"amount": 16622799423.29,
+			"amount": 10002000300.00,
 			"name": "EUR",
 			"currency": "GBP",
 			"weight": 19.67
 		},
 		{
 			"id": "3",
-			"amount": 9622799423.29,
+			"amount": 7622799423.29,
 			"name": "USD",
 			"currency": "GBP",
 			"weight": 16.74
 		},
 		{
 			"id": "4",
-			"amount": -1280000000.44,
+			"amount": 1022799423.29,
 			"name": "CAD",
 			"currency": "GBP",
-			"weight": -10.72
+			"weight": 10.72
+		},
+		{
+			"id": "5",
+			"amount": 977200576.71,
+			"name": "SEK",
+			"currency": "GBP",
+			"weight": 10.72
 		}
 	]
 }

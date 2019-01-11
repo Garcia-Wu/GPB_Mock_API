@@ -1,8 +1,8 @@
-package org.gt.projects.gbm.base.comparable;
+package org.gt.projects.gpb.base.comparable;
 
 import java.util.Comparator;
 
-import org.gt.projects.gbm.base.BaseException;
+import org.gt.projects.gpb.base.BaseException;
 
 import net.sf.json.JSONObject;
 

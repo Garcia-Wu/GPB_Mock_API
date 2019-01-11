@@ -1,10 +1,10 @@
-package org.gt.projects.gbm.controller;
+package org.gt.projects.gpb.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.gt.projects.gbm.base.BaseAPIController;
-import org.gt.projects.gbm.base.BaseAPIResponse;
-import org.gt.projects.gbm.utils.JsonFileUtils;
+import org.gt.projects.gpb.base.BaseAPIController;
+import org.gt.projects.gpb.base.BaseAPIResponse;
+import org.gt.projects.gpb.utils.JsonFileUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;

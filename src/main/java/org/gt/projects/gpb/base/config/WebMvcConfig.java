@@ -1,7 +1,7 @@
-package org.gt.projects.gbm.base.config;
+package org.gt.projects.gpb.base.config;
 
-import org.gt.projects.gbm.base.config.interceptor.HeaderInterceptor;
-import org.gt.projects.gbm.base.config.interceptor.RequestLogInterceptor;
+import org.gt.projects.gpb.base.config.interceptor.HeaderInterceptor;
+import org.gt.projects.gpb.base.config.interceptor.RequestLogInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;

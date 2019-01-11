@@ -1,4 +1,4 @@
-package org.gt.projects.gbm.utils;
+package org.gt.projects.gpb.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;

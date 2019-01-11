@@ -1,4 +1,4 @@
-package org.gt.projects.gbm.controller;
+package org.gt.projects.gpb.controller;
 
 import java.util.Collections;
 import java.util.List;
@@ -6,13 +6,13 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.gt.projects.gbm.base.BaseAPIController;
-import org.gt.projects.gbm.base.BaseAPIResponse;
-import org.gt.projects.gbm.base.BaseException;
-import org.gt.projects.gbm.base.comparable.JsonCompare;
-import org.gt.projects.gbm.utils.CommonUtil;
-import org.gt.projects.gbm.utils.GBMConstant;
-import org.gt.projects.gbm.utils.JsonFileUtils;
+import org.gt.projects.gpb.base.BaseAPIController;
+import org.gt.projects.gpb.base.BaseAPIResponse;
+import org.gt.projects.gpb.base.BaseException;
+import org.gt.projects.gpb.base.comparable.JsonCompare;
+import org.gt.projects.gpb.utils.CommonUtil;
+import org.gt.projects.gpb.utils.GBMConstant;
+import org.gt.projects.gpb.utils.JsonFileUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,4 +1,4 @@
-package org.gt.projects.gbm.controller;
+package org.gt.projects.gpb.controller;
 
 import java.io.File;
 import java.text.ParseException;
@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
-import org.gt.projects.gbm.base.BaseAPIController;
-import org.gt.projects.gbm.base.BaseAPIResponse;
-import org.gt.projects.gbm.base.BaseException;
-import org.gt.projects.gbm.base.comparable.JsonCompare;
-import org.gt.projects.gbm.utils.CommonUtil;
-import org.gt.projects.gbm.utils.GBMConstant;
-import org.gt.projects.gbm.utils.JsonFileUtils;
+import org.gt.projects.gpb.base.BaseAPIController;
+import org.gt.projects.gpb.base.BaseAPIResponse;
+import org.gt.projects.gpb.base.BaseException;
+import org.gt.projects.gpb.base.comparable.JsonCompare;
+import org.gt.projects.gpb.utils.CommonUtil;
+import org.gt.projects.gpb.utils.GBMConstant;
+import org.gt.projects.gpb.utils.JsonFileUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -87,35 +87,35 @@ public class OverviewController extends BaseAPIController {
 		}
 		
 		// update time
-		BaseAPIResponse<JSONObject> accountsResponse = this.accounts(id, 0, 1000, currency, true, request);
-		JSONArray accounts = accountsResponse.getData().getJSONArray("accounts");
-		String updateDate = "";
-		for(Object account : accounts) {
-			String accountUpdateDate = ((JSONObject)account).getString("updateDate");
-			if(accountUpdateDate.equals("")) {
-				// account list其中有一个没有更新时间，则更新时间为空
-				updateDate = "";
-				break;
-			} else {
-				// 获取最小的更新时间
-				Date accountDate = GBMConstant.SIM_MONTH_FORMAT.parse(accountUpdateDate);
-				if(updateDate.equals("")) {
-					updateDate = GBMConstant.SIM_MONTH_FORMAT.format(accountDate);
-				} else {
-					Date lastDate = GBMConstant.SIM_MONTH_FORMAT.parse(updateDate);
-					if(accountDate.getTime() < lastDate.getTime()) {
-						updateDate = GBMConstant.SIM_MONTH_FORMAT.format(accountDate);
-					}
-				}
-			}
-		}
-		// 设置更新时间
-		jsonObject.getJSONObject("customer").put("updateDate", updateDate);
-		if(id.equals("3")) {
-			jsonObject.getJSONObject("customer").put("updateDate", "01 Dec 2018");
-		} else if(id.equals("4")){
-			jsonObject.getJSONObject("customer").put("updateDate", "");
-		}
+//		BaseAPIResponse<JSONObject> accountsResponse = this.accounts(id, 0, 1000, currency, true, request);
+//		JSONArray accounts = accountsResponse.getData().getJSONArray("accounts");
+//		String updateDate = "";
+//		for(Object account : accounts) {
+//			String accountUpdateDate = ((JSONObject)account).getString("updateDate");
+//			if(accountUpdateDate.equals("")) {
+//				// account list其中有一个没有更新时间，则更新时间为空
+//				updateDate = "";
+//				break;
+//			} else {
+//				// 获取最小的更新时间
+//				Date accountDate = GBMConstant.SIM_MONTH_FORMAT.parse(accountUpdateDate);
+//				if(updateDate.equals("")) {
+//					updateDate = GBMConstant.SIM_MONTH_FORMAT.format(accountDate);
+//				} else {
+//					Date lastDate = GBMConstant.SIM_MONTH_FORMAT.parse(updateDate);
+//					if(accountDate.getTime() < lastDate.getTime()) {
+//						updateDate = GBMConstant.SIM_MONTH_FORMAT.format(accountDate);
+//					}
+//				}
+//			}
+//		}
+//		// 设置更新时间
+//		jsonObject.getJSONObject("customer").put("updateDate", updateDate);
+//		if(id.equals("3")) {
+//			jsonObject.getJSONObject("customer").put("updateDate", "01 Dec 2018");
+//		} else if(id.equals("4")){
+//			jsonObject.getJSONObject("customer").put("updateDate", "");
+//		}
 
 		JsonFileUtils.formatObjectNumber2DP(jsonObject, "newDocumentCount");
 		return new BaseAPIResponse<JSONObject>(jsonObject);

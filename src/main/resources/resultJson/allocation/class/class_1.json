@@ -4,7 +4,7 @@
 			"id": "1_1",
 			"amount": -200400600800.90,
 			"name": "Equities",
-			"weight": 63.83,
+			"weight": -63.83,
 			"currency": "GBP",
 			"nodes": [
 				{
@@ -13,20 +13,6 @@
 					"name": "Equities",
 					"currency": "GBP",
 					"weight": 60
-				},
-				{
-					"id": "1_1_2",
-					"amount": 100200300400.45,
-					"name": "Equity Mutual Funds",
-					"currency": "GBP",
-					"weight": 0
-				},
-				{
-					"id": "1_1_3",
-					"amount": 20040060080.09,
-					"name": "Equity Warrants",
-					"currency": "GBP",
-					"weight": -10
 				}
 			]
 		}

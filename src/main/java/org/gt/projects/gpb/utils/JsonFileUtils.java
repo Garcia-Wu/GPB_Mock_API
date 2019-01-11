@@ -1,4 +1,4 @@
-package org.gt.projects.gbm.utils;
+package org.gt.projects.gpb.utils;
 
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
@@ -14,8 +14,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 
-import org.gt.projects.gbm.GbmApplication;
-import org.gt.projects.gbm.base.BaseException;
+import org.gt.projects.gpb.GPBApplication;
+import org.gt.projects.gpb.base.BaseException;
 import org.springframework.boot.ApplicationHome;
 
 import net.sf.json.JSONArray;
@@ -34,7 +34,7 @@ public class JsonFileUtils {
 		String filePath = "resultJson"+ File.separator + fileName + ".json";	
 		InputStream input = null;
 		try {
-			if(GbmApplication.JSON_IN_PROJECT) {
+			if(GPBApplication.JSON_IN_PROJECT) {
 				// 获取项目下文件的输入流
 				input = JsonFileUtils.class.getClassLoader().getResourceAsStream(filePath);
 			} else {
@@ -76,7 +76,7 @@ public class JsonFileUtils {
 	 */
 	public static void writeJsonFile(JSONObject jsonObject, String fileName){
 		String filePath;
-		if(GbmApplication.JSON_IN_PROJECT) {
+		if(GPBApplication.JSON_IN_PROJECT) {
 			// 获取项目下文件位置
 			filePath = "src/main/resources/resultJson"+File.separator;
 		} else {

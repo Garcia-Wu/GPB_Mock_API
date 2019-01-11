@@ -2,7 +2,7 @@
 	"clazz": [
 		{
 			"id": "5_1",
-			"amount": 20040060080.90,
+			"amount": 20462859504.18,
 			"name": "Equities",
 			"weight": 63.83,
 			"currency": "GBP",
@@ -13,20 +13,6 @@
 					"name": "Equities",
 					"currency": "GBP",
 					"weight": 60
-				},
-				{
-					"id": "5_1_2",
-					"amount": 100200300400.45,
-					"name": "Equity Mutual Funds",
-					"currency": "GBP",
-					"weight": 0
-				},
-				{
-					"id": "5_1_3",
-					"amount": 20040060080.09,
-					"name": "Equity Warrants",
-					"currency": "GBP",
-					"weight": -10
 				}
 			]
 		},
@@ -133,7 +119,7 @@
 		},
 		{
 			"id": "5_7",
-			"amount": 422799423.29,
+			"amount": 0.01,
 			"name": "Private Equity",
 			"weight": -280.96,
 			"currency": "GBP",
@@ -151,7 +137,7 @@
 			"id": "5_8",
 			"amount": -2580000000.44,
 			"name": "Others",
-			"weight": -280.96,
+			"weight": -28.96,
 			"currency": "GBP",
 			"nodes": [
 				{

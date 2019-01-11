@@ -57,7 +57,7 @@
 			"id": "7_3",
 			"amount": -1280000000.44,
 			"name": "Fixed Income",
-			"weight": -280.96,
+			"weight": -80.96,
 			"currency": "GBP",
 			"nodes": [
 				{

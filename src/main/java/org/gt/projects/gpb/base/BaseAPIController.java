@@ -1,10 +1,10 @@
-package org.gt.projects.gbm.base;
+package org.gt.projects.gpb.base;
 
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.gt.projects.gbm.utils.GBMConstant;
+import org.gt.projects.gpb.utils.GBMConstant;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;

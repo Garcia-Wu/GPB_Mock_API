@@ -2,7 +2,7 @@
 	"region": [
 		{
 			"id": "1",
-			"amount": 20462859504.18,
+			"amount": 20040060080.90,
 			"name": "Europe",
 			"currency": "GBP",
 			"weight": 29
@@ -16,21 +16,21 @@
 		},
 		{
 			"id": "3",
-			"amount": 9622799423.29,
+			"amount": 4622799423.29,
 			"name": "North America",
 			"currency": "GBP",
 			"weight": 14.7
 		},
 		{
 			"id": "4",
-			"amount": 7622799423.29,
+			"amount": 2131601730.13,
 			"name": "Latin America",
 			"currency": "GBP",
 			"weight": 8.6
 		},
 		{
 			"id": "5",
-			"amount": 2622799423.29,
+			"amount": 1622799423.29,
 			"name": "Others",
 			"currency": "GBP",
 			"weight": 0
@@ -44,15 +44,8 @@
 		},
 		{
 			"id": "7",
-			"amount": 0.01,
+			"amount": 322799423.29,
 			"name": "Southeast Asia",
-			"currency": "GBP",
-			"weight": -7.83
-		},
-		{
-			"id": "8",
-			"amount": -2580000000.44,
-			"name": "Australia",
 			"currency": "GBP",
 			"weight": -7.83
 		}

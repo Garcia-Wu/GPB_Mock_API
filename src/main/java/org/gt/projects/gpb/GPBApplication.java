@@ -1,11 +1,11 @@
-package org.gt.projects.gbm;
+package org.gt.projects.gpb;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GbmApplication{
+public class GPBApplication{
 
 	/**
 	 * 设置json数据源位置
@@ -20,6 +20,6 @@ public class GbmApplication{
 	}
 	
 	public static void main(String[] args) {
-		SpringApplication.run(GbmApplication.class, args);
+		SpringApplication.run(GPBApplication.class, args);
 	}
 }

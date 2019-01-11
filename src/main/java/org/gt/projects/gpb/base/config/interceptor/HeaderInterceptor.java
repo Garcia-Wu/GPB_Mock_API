@@ -1,9 +1,9 @@
-package org.gt.projects.gbm.base.config.interceptor;
+package org.gt.projects.gpb.base.config.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.gt.projects.gbm.base.BaseException;
+import org.gt.projects.gpb.base.BaseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;

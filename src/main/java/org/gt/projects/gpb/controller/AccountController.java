@@ -1,4 +1,4 @@
-package org.gt.projects.gbm.controller;
+package org.gt.projects.gpb.controller;
 
 import java.util.Collections;
 import java.util.List;
@@ -6,12 +6,12 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.gt.projects.gbm.base.BaseAPIController;
-import org.gt.projects.gbm.base.BaseAPIResponse;
-import org.gt.projects.gbm.base.BaseException;
-import org.gt.projects.gbm.base.comparable.JsonCompare;
-import org.gt.projects.gbm.utils.CommonUtil;
-import org.gt.projects.gbm.utils.JsonFileUtils;
+import org.gt.projects.gpb.base.BaseAPIController;
+import org.gt.projects.gpb.base.BaseAPIResponse;
+import org.gt.projects.gpb.base.BaseException;
+import org.gt.projects.gpb.base.comparable.JsonCompare;
+import org.gt.projects.gpb.utils.CommonUtil;
+import org.gt.projects.gpb.utils.JsonFileUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,7 +63,7 @@ public class AccountController extends BaseAPIController{
 		if ("0".equals(id)) {
 			jsonArray.clear();
 		} else if ("1".equals(id)) {
-			jsonArray = JsonFileUtils.getCommonPageJsonArray(jsonArray, 0, 13);
+//			jsonArray = JsonFileUtils.getCommonPageJsonArray(jsonArray, 0, 13);
 		} else if ("2".equals(id)) {
 			jsonArray = JsonFileUtils.getCommonPageJsonArray(jsonArray, 1, 5);
 		} else if ("3".equals(id)) {
