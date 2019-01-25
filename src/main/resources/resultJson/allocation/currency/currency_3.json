@@ -23,8 +23,29 @@
 		},
 		{
 			"id": "4",
+			"amount": 0,
+			"name": "NOK",
+			"currency": "GBP",
+			"weight": 0
+		},
+		{
+			"id": "5",
 			"amount": -1280000000.44,
 			"name": "CAD",
+			"currency": "GBP",
+			"weight": -10.72
+		},
+		{
+			"id": "6",
+			"amount": -1980000000.44,
+			"name": "TRY",
+			"currency": "GBP",
+			"weight": 0
+		},
+		{
+			"id": "7",
+			"amount": -2250000000.44,
+			"name": "ARS",
 			"currency": "GBP",
 			"weight": -10.72
 		}

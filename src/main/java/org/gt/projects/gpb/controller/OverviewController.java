@@ -41,14 +41,17 @@ public class OverviewController extends BaseAPIController {
 		}
 
 		JSONObject jsonObject = JSONObject.fromObject(JsonFileUtils.readFileToString("overview"));
-		jsonObject.getJSONObject("customer").put("id", id);
+//		jsonObject.getJSONObject("customer").put("id", id);
 		if (id.equals("0")) {
 			jsonObject.getJSONObject("customer").put("name", "");
 			jsonObject.getJSONObject("customer").put("amount", 0);
 			jsonObject.getJSONObject("customer").put("liabilitiesAmount", 1);
 			jsonObject.getJSONObject("customer").put("netAssetsAmount", 0);
 			jsonObject.getJSONObject("ytd").put("amount", 0);
+		} else if (id.equals("1")) {
+			jsonObject.getJSONObject("customer").put("amount", -38950392012D);
 		} else if (id.equals("2")) {
+			jsonObject.getJSONObject("customer").put("amount", -38950392012D);
 			jsonObject.getJSONObject("customer").put("name", "Mr Chen");
 			jsonObject.getJSONObject("customer").put("liabilitiesAmount", -0.001);
 			jsonObject.getJSONObject("customer").put("netAssetsAmount", 38950392011.999);
@@ -64,8 +67,10 @@ public class OverviewController extends BaseAPIController {
 			jsonObject.getJSONObject("customer").put("liabilitiesAmount", -48086438537.35);
 			jsonObject.getJSONObject("customer").put("netAssetsAmount", -9136046525.35);
 		} else if (id.equals("6")) {
+			jsonObject.getJSONObject("customer").put("amount", 0);
 			jsonObject.getJSONObject("customer").put("name","Jones WwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwWwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
 		} else if(id.equals("7")) {
+			jsonObject.getJSONObject("customer").put("amount", 0);
 			jsonObject.getJSONObject("ytd").put("amount", 0);
 			jsonObject.getJSONObject("ytd").put("currency", "");
 		}
@@ -87,35 +92,44 @@ public class OverviewController extends BaseAPIController {
 		}
 		
 		// update time
-//		BaseAPIResponse<JSONObject> accountsResponse = this.accounts(id, 0, 1000, currency, true, request);
-//		JSONArray accounts = accountsResponse.getData().getJSONArray("accounts");
-//		String updateDate = "";
-//		for(Object account : accounts) {
-//			String accountUpdateDate = ((JSONObject)account).getString("updateDate");
-//			if(accountUpdateDate.equals("")) {
-//				// account list其中有一个没有更新时间，则更新时间为空
-//				updateDate = "";
-//				break;
-//			} else {
-//				// 获取最小的更新时间
-//				Date accountDate = GBMConstant.SIM_MONTH_FORMAT.parse(accountUpdateDate);
-//				if(updateDate.equals("")) {
-//					updateDate = GBMConstant.SIM_MONTH_FORMAT.format(accountDate);
-//				} else {
-//					Date lastDate = GBMConstant.SIM_MONTH_FORMAT.parse(updateDate);
-//					if(accountDate.getTime() < lastDate.getTime()) {
-//						updateDate = GBMConstant.SIM_MONTH_FORMAT.format(accountDate);
-//					}
-//				}
-//			}
+		BaseAPIResponse<JSONObject> accountsResponse = this.accounts(id, 0, 1000, currency, true, request);
+		JSONArray accounts = accountsResponse.getData().getJSONArray("accounts");
+		String updateDate = "";
+		for(Object account : accounts) {
+			String accountUpdateDate = ((JSONObject)account).getString("updateDate");
+			if(accountUpdateDate.equals("")) {
+				// account list其中有一个没有更新时间，则更新时间为空
+				updateDate = "";
+				break;
+			} else {
+				// 获取最小的更新时间
+				Date accountDate = GBMConstant.SIM_MONTH_FORMAT.parse(accountUpdateDate);
+				if(updateDate.equals("")) {
+					updateDate = GBMConstant.SIM_MONTH_FORMAT.format(accountDate);
+				} else {
+					Date lastDate = GBMConstant.SIM_MONTH_FORMAT.parse(updateDate);
+					if(accountDate.getTime() < lastDate.getTime()) {
+						updateDate = GBMConstant.SIM_MONTH_FORMAT.format(accountDate);
+					}
+				}
+			}
+		}
+		// 设置更新时间
+		jsonObject.getJSONObject("customer").put("updateDate", updateDate);
+		if(id.equals("3")) {
+			jsonObject.getJSONObject("customer").put("updateDate", "01 Dec 2018");
+		} else if(id.equals("4")){
+			jsonObject.getJSONObject("customer").put("updateDate", "");
+		}
+		
+		// 计算amount
+//		BaseAPIResponse<JSONObject> allocation = CommonUtil.getAllocationData(id, currency, "ASSET");
+//		BigDecimal amount = new BigDecimal("0");
+//		for (Object clazz : allocation.getData().getJSONArray("clazz")) {
+//			JSONObject clazzJson = (JSONObject) clazz;
+//			amount = amount.add(new BigDecimal(clazzJson.get("amount") + ""));
 //		}
-//		// 设置更新时间
-//		jsonObject.getJSONObject("customer").put("updateDate", updateDate);
-//		if(id.equals("3")) {
-//			jsonObject.getJSONObject("customer").put("updateDate", "01 Dec 2018");
-//		} else if(id.equals("4")){
-//			jsonObject.getJSONObject("customer").put("updateDate", "");
-//		}
+//		jsonObject.getJSONObject("customer").put("amount", amount);
 
 		JsonFileUtils.formatObjectNumber2DP(jsonObject, "newDocumentCount");
 		return new BaseAPIResponse<JSONObject>(jsonObject);
@@ -147,7 +161,7 @@ public class OverviewController extends BaseAPIController {
 			jsonArray = new JSONArray();
 			jsonArray.add(oneItem);
 			jsonArray.add(item);
-		} else if ("7".equals(id)) {
+		} else if ("6".equals(id)) {
 			// For timeout
 //			JSONObject account = JsonFileUtils.getFilterObject(jsonArray, "id", "0");
 //			account.put("id", "16");
@@ -184,7 +198,7 @@ public class OverviewController extends BaseAPIController {
 		}
 
 		JsonFileUtils.formatArrayNumber2DP(pageJson);
-		Collections.sort(pageJson, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
+//		Collections.sort(pageJson, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
 		jsonObject.put("accounts", pageJson);
 		jsonObject.put("totalSize", jsonArray.size());
 
@@ -195,7 +209,7 @@ public class OverviewController extends BaseAPIController {
 	public BaseAPIResponse<JSONObject> allocation(@PathVariable("id") String id,
 			// @RequestParam(defaultValue="0")Integer offset,
 			// @RequestParam(defaultValue="15")Integer limit,
-			@RequestParam(required = true) String currency, String category) {
+			@RequestParam(required = true) String currency, @RequestParam(required = true) String category) {
 		return CommonUtil.getAllocationData(id, currency, category);
 	}
 	
@@ -264,11 +278,9 @@ public class OverviewController extends BaseAPIController {
 		// for SIT test
 		if(!id.endsWith("_UK") && !id.endsWith("_HK") && !id.endsWith("_SG")) {
 			id = id.substring(id.length() - 1);
-			if(id.equals("9")) {
+			String regex = "^[0-7]$";
+			if(!id.matches(regex)) {
 				id = "5";
-			}
-			if(Integer.valueOf(id) < 0 || Integer.valueOf(id) > 7) {
-				throw new BaseException("Id is not expected!");
 			}
 		}
 		

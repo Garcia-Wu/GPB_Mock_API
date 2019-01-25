@@ -108,7 +108,7 @@ public class AccountController extends BaseAPIController{
 			pageJson.getJSONObject(i).remove("netAssetsCurrency");
 		}
 		
-		Collections.sort(pageJson, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
+//		Collections.sort(pageJson, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
 
 		JsonFileUtils.formatArrayNumber2DP(pageJson);
 		jsonObject.put("portfolios", pageJson);
@@ -120,7 +120,7 @@ public class AccountController extends BaseAPIController{
 	public BaseAPIResponse<JSONObject> allocation(@PathVariable("id") String id,
 //												@RequestParam(defaultValue="0")Integer offset,
 //												@RequestParam(defaultValue="15")Integer limit,
-			@RequestParam(required=true)String currency, String category) {
+			@RequestParam(required=true)String currency, @RequestParam(required = true)String category) {
 		return CommonUtil.getAllocationData(id, currency, category);
 	}
 	

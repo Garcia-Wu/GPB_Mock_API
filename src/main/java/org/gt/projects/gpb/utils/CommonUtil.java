@@ -19,14 +19,23 @@ public class CommonUtil {
 	public static BaseAPIResponse<JSONObject> getAllocationData(String id, String currency, String category) {
 		id = handleId(id);
 
+		if(!category.equals("ALL") && !category.equals("ASSET") && !category.equals("CURRENCY") && !category.equals("REGION")) {
+			throw new BaseException("Category not support!");
+		}
+		
 		JSONObject result = new JSONObject();
-		JSONArray classList = JSONObject.fromObject(JsonFileUtils.readFileToString("allocation/class/class_" + id))
-				.getJSONArray("clazz");
-		JSONArray currencyList = JSONObject
-				.fromObject(JsonFileUtils.readFileToString("allocation/currency/currency_" + id))
-				.getJSONArray("currency");
-		JSONArray regionList = JSONObject.fromObject(JsonFileUtils.readFileToString("allocation/region/region_" + id))
-				.getJSONArray("region");
+		JSONArray classList = new JSONArray();
+		if(category.equals("ALL") || category.equals("ASSET")) {
+			classList = JSONObject.fromObject(JsonFileUtils.readFileToString("allocation/class/class_" + id)).getJSONArray("clazz");
+		}
+		JSONArray currencyList = new JSONArray();
+		if(category.equals("ALL") || category.equals("CURRENCY")) {
+			currencyList = JSONObject.fromObject(JsonFileUtils.readFileToString("allocation/currency/currency_" + id)).getJSONArray("currency");
+		}
+		JSONArray regionList = new JSONArray();
+		if(category.equals("ALL") || category.equals("REGION")) {
+			regionList = JSONObject.fromObject(JsonFileUtils.readFileToString("allocation/region/region_" + id)).getJSONArray("region");
+		}
 
 		// replace currency
 		JsonFileUtils.replaceProperty(classList, "currency", currency.toUpperCase());
@@ -37,8 +46,16 @@ public class CommonUtil {
 		JsonFileUtils.replaceProperty(currencyList, "currency", currency.toUpperCase());
 		JsonFileUtils.replaceProperty(regionList, "currency", currency.toUpperCase());
 
+		Collections.sort(classList, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
+		for (Object clazz : classList) {
+			Collections.sort(((JSONObject) clazz).getJSONArray("nodes"),
+					JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
+		}
+		Collections.sort(currencyList, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
+		Collections.sort(regionList, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
+
 		if (currencyList.size() > 8) {
-			StringBuilder currencyId = new StringBuilder();
+			StringBuilder currencyId = new StringBuilder("");
 			double currencyAmount = 0;
 			double currencyWeight = 0;
 			String currencyName = "Others";
@@ -61,49 +78,96 @@ public class CommonUtil {
 			currencyList.add(otherCurrency);
 		}
 
-		Collections.sort(classList, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
-		for (Object clazz : classList) {
-			Collections.sort(((JSONObject) clazz).getJSONArray("nodes"),
-					JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
-		}
-		// 将Others放在列表最后
-		// for (Object object : classList) {
-		// if(((JSONObject)object).getString("name").equals("Others")) {
-		// classList.remove(object);
-		// classList.add(object);
-		// break;
-		// }
-		// }
+		setAllocationOrder(classList);
+		setAllocationOrder(currencyList);
+		setAllocationOrder(regionList);
 
-		Collections.sort(currencyList, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
-		Collections.sort(regionList, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
+		setWeight(classList);
+		setWeight(currencyList);
+		setWeight(regionList);
 
 		result.put("clazz", classList);
 		result.put("currency", currencyList);
 		result.put("region", regionList);
 
-		if (category != null) {
-			JSONArray nullList = new JSONArray();
-			if (category.equalsIgnoreCase("ASSET")) {
-				result.put("currency", nullList);
-				result.put("region", nullList);
-			} else if (category.equalsIgnoreCase("CURRENCY")) {
-				result.put("clazz", nullList);
-				result.put("region", nullList);
-			} else if (category.equalsIgnoreCase("REGION")) {
-				result.put("clazz", nullList);
-				result.put("currency", nullList);
+//		if (category != null) {
+//			JSONArray nullList = new JSONArray();
+//			if (category.equalsIgnoreCase("ASSET")) {
+//				result.put("currency", nullList);
+//				result.put("region", nullList);
+//			} else if (category.equalsIgnoreCase("CURRENCY")) {
+//				result.put("clazz", nullList);
+//				result.put("region", nullList);
+//			} else if (category.equalsIgnoreCase("REGION")) {
+//				result.put("clazz", nullList);
+//				result.put("currency", nullList);
+//			}
+//		}
+
+//		BigDecimal total = new BigDecimal("0");
+//		for (Object object : result.getJSONArray("clazz")) {
+//			total = total.add(new BigDecimal(((JSONObject) object).getDouble("amount") + ""));
+//		}
+//		System.out.println("customerId:" + id + "  total amount:" + total.toPlainString());
+
+		JsonFileUtils.formatObjectNumber2DP(result);
+		return new BaseAPIResponse<JSONObject>(result);
+	}
+
+	private static void setAllocationOrder(JSONArray assetList) {
+		// 正数从大到小排序，负数从小到大排序，最后将Others放在尾部
+		JSONArray negativeList = new JSONArray();
+		JSONObject otherObject = null;
+		for (Object object : assetList) {
+			if (((JSONObject) object).getDouble("amount") < 0) {
+				negativeList.add(object);
+			}
+			if (((JSONObject) object).getString("name").equals("Others")) {
+				otherObject = (JSONObject) object;
+			}
+		}
+
+		if (negativeList.size() > 0) {
+			assetList.removeAll(negativeList);
+			Collections.sort(negativeList, JsonCompare.getNumberAscThenLetterAsc("amount", "name"));
+			assetList.addAll(negativeList);
+		}
+		if (otherObject != null) {
+			assetList.remove(otherObject);
+			assetList.add(otherObject);
+		}
+	}
+
+	private static void setWeight(JSONArray assetList) {
+		BigDecimal positiveAmount = new BigDecimal("0");
+		for (Object object : assetList) {
+			JSONObject asset = (JSONObject) object;
+			if (asset.getDouble("amount") > 0) {
+				positiveAmount = positiveAmount.add(new BigDecimal(asset.getDouble("amount") + ""));
+			} else if (asset.getDouble("amount") == 0) {
+				asset.put("donutWeight", "0.00");
+				asset.put("weight", 0.00);
 			}
 		}
 		
-		BigDecimal total = new BigDecimal("0");
-		for (Object object : result.getJSONArray("clazz")) {
-			total = total.add(new BigDecimal(((JSONObject)object).getDouble("amount") + ""));
+		if (positiveAmount.doubleValue() > 0) {
+			for (Object object : assetList) {
+				JSONObject asset = (JSONObject) object;
+				if (asset.getDouble("amount") >= 0) {
+					BigDecimal amount = new BigDecimal(asset.getDouble("amount") + "");
+					BigDecimal dountWeight = amount.divide(positiveAmount, 4, BigDecimal.ROUND_HALF_UP);
+					asset.put("donutWeight", dountWeight.multiply(new BigDecimal("100")).setScale(2).toPlainString());
+					asset.put("weight", dountWeight.multiply(new BigDecimal("100")).setScale(2));
+				} else {
+					asset.put("donutWeight", "");
+				}
+			}
+		} else if (positiveAmount.doubleValue() < 0) {
+			for (Object object : assetList) {
+				JSONObject asset = (JSONObject) object;
+				asset.put("donutWeight", "");
+			}
 		}
-		System.out.println("customerId:"+id+"  total amount:"+total.toPlainString());
-		
-		JsonFileUtils.formatObjectNumber2DP(result);
-		return new BaseAPIResponse<JSONObject>(result);
 	}
 
 	private static String handleId(String id) {
@@ -198,19 +262,19 @@ public class CommonUtil {
 		Collections.sort(resultHolding, JsonCompare.getNumberOrderDesc("reportAmount"));
 		resultJson.put("totalSize", resultHolding.size());
 		resultHolding = JsonFileUtils.getPageJsonArray(resultHolding, offset, limit);
-		
-		if(category.equalsIgnoreCase("currency") && !allocation.getString("name").equals("Others")) {
+
+		if (category.equalsIgnoreCase("currency") && !allocation.getString("name").equals("Others")) {
 			for (int i = 0; i < resultHolding.size(); i++) {
 				JSONObject holding = resultHolding.getJSONObject(i);
 				holding.put("baseCurrency", allocation.getString("name"));
 				holding.put("reportCurrency", allocation.getString("currency"));
 				holding.put("performanceCurrency", allocation.getString("name"));
-				if(holding.getString("baseCurrency").equals(holding.get("reportCurrency"))) {
+				if (holding.getString("baseCurrency").equals(holding.get("reportCurrency"))) {
 					holding.put("baseAmount", holding.get("reportAmount"));
 				}
 			}
 		}
-		
+
 		resultJson.put("holdings", resultHolding);
 		JsonFileUtils.formatObjectNumber2DP(resultJson, "type", "totalSize");
 		return new BaseAPIResponse<JSONObject>(resultJson);
@@ -219,16 +283,18 @@ public class CommonUtil {
 	public static BaseAPIResponse<JSONObject> getAllocationHoldingGroup(String id, String currency, String category,
 			String categoryId, Integer offset, Integer limit) {
 		id = handleId(id);
-		if(!category.equalsIgnoreCase("asset")) {
+		if (!category.equalsIgnoreCase("asset")) {
 			throw new BaseException("category not support!");
-		} 
-		JSONArray holdingJson = JSONObject.fromObject(JsonFileUtils.readFileToString("portfolio_holding_list")).getJSONArray("holdings");
+		}
+		JSONArray holdingJson = JSONObject.fromObject(JsonFileUtils.readFileToString("portfolio_holding_list"))
+				.getJSONArray("holdings");
 		// allocation holdingList需去除Futures以及Foreign Exchange类型的holding
 		JsonFileUtils.removeFilterObject(holdingJson, "id", new String[] { "11", "12" });
 		JSONArray simpleHolding = JsonFileUtils.getPageJsonArray(holdingJson, 0, 2);
 		JSONObject resultJson = new JSONObject();
 
-		JSONArray jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("allocation/class/class_"+id)).getJSONArray("clazz");
+		JSONArray jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("allocation/class/class_" + id))
+				.getJSONArray("clazz");
 		JSONArray nodeList = JsonFileUtils.getFilterObject(jsonArray, "id", categoryId).getJSONArray("nodes");
 		JSONArray holdingGroups = new JSONArray();
 		int totalSize = 0;
@@ -237,42 +303,50 @@ public class CommonUtil {
 			JSONObject holdingGroup = new JSONObject();
 			holdingGroup.put("subAssetId", node.get("id"));
 			holdingGroup.put("subAssetName", node.get("name"));
-			holdingGroup.put("subAssetAmount", node.get("amount"));
-			holdingGroup.put("subAssetCurrency", currency.toUpperCase());
-			
+
 			// 除了第二个，其他所有asset class的第一个subClass拥有全部holding，其余只获取前2个
 			JSONArray nodeHoldingList = new JSONArray();
-			if(i == 0 && !categoryId.endsWith("2")) {
+			if (i == 0 && !categoryId.endsWith("2")) {
 				nodeHoldingList = holdingJson;
 			} else {
 				nodeHoldingList = simpleHolding;
 			}
-			
+
+			// 计算subAssetAmount
+			BigDecimal subAssetAmount = new BigDecimal("0");
+			for (Object object : nodeHoldingList) {
+				JSONObject holding = (JSONObject) object;
+				subAssetAmount = subAssetAmount.add(new BigDecimal(holding.get("reportAmount") + ""));
+			}
+
+			holdingGroup.put("subAssetAmount", subAssetAmount.doubleValue());
+			holdingGroup.put("subAssetCurrency", currency.toUpperCase());
+
 			holdingGroup.put("holdings", nodeHoldingList);
 			holdingGroups.add(holdingGroup);
 			totalSize += nodeHoldingList.size();
 		}
-		
+
 		holdingGroups = getPageHoldingGroup(holdingGroups, offset, limit);
 		resultJson.put("holdingGroup", holdingGroups);
 		resultJson.put("totalSize", totalSize);
 		JsonFileUtils.formatObjectNumber2DP(resultJson, "type", "totalSize");
 		return new BaseAPIResponse<JSONObject>(resultJson);
 	}
-	
+
 	private static JSONArray getPageHoldingGroup(JSONArray holdingGroups, Integer offset, Integer limit) {
 		JSONArray resultGroups = new JSONArray();
 		int totalNum = 0;
 		for (int i = 0; i < holdingGroups.size(); i++) {
 			JSONArray holdings = holdingGroups.getJSONObject(i).getJSONArray("holdings");
 			JSONArray newHoldings = new JSONArray();
-			for(int j = 0; j < holdings.size(); j++) {
-				if(totalNum >= offset && totalNum < offset + limit) {
+			for (int j = 0; j < holdings.size(); j++) {
+				if (totalNum >= offset && totalNum < offset + limit) {
 					newHoldings.add(holdings.getJSONObject(j));
 				}
 				totalNum += 1;
 			}
-			if(newHoldings.size() > 0) {
+			if (newHoldings.size() > 0) {
 				holdingGroups.getJSONObject(i).put("holdings", newHoldings);
 				resultGroups.add(holdingGroups.getJSONObject(i));
 			}

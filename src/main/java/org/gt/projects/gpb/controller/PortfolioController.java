@@ -106,7 +106,7 @@ public class PortfolioController extends BaseAPIController {
 	public BaseAPIResponse<JSONObject> allocation(@PathVariable("id") String id,
 			// @RequestParam(defaultValue="0")Integer offset,
 			// @RequestParam(defaultValue="15")Integer limit,
-			@RequestParam(required = true) String currency, String category) {
+			@RequestParam(required = true) String currency, @RequestParam(required = true)String category) {
 		return CommonUtil.getAllocationData(id, currency, category);
 	}
 
@@ -182,7 +182,7 @@ public class PortfolioController extends BaseAPIController {
 	@RequestMapping(value = "portfolio/{id}/transactions", method = { RequestMethod.GET })
 	public BaseAPIResponse<JSONObject> transactions(@PathVariable("id") String id,
 			@RequestParam(defaultValue = "all") String type, @RequestParam(defaultValue = "0") Integer offset,
-			@RequestParam(defaultValue = "15") Integer limit, String currency, HttpServletRequest request) {
+			@RequestParam(defaultValue = "15") Integer limit, @RequestParam(required = true) String currency, HttpServletRequest request) {
 		String json = JsonFileUtils.readFileToString("portfolio_transactions_list");
 		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("transactions");
 		if (id.equals("0")) {

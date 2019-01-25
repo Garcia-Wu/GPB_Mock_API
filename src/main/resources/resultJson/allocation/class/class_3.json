@@ -64,31 +64,79 @@
 		},
 		{
 			"id": "3_4",
+			"amount": 0,
+			"name": "Commodities",
+			"weight": 0,
+			"currency": "GBP",
+			"nodes": [
+				{
+					"id": "3_4_1",
+					"amount": 6622799423.29,
+					"name": "Commodity Funds",
+					"currency": "GBP",
+					"weight": 100.00
+				}
+			]
+		},
+		{
+			"id": "3_5",
 			"amount": -1280000000.44,
 			"name": "Fixed Income",
 			"weight": -20.96,
 			"currency": "GBP",
 			"nodes": [
 				{
-					"id": "3_4_1",
+					"id": "3_5_1",
 					"amount": -60.12,
 					"name": "Fixed Income",
 					"currency": "GBP",
 					"weight": 0.00
 				},
 				{
-					"id": "3_4_2",
+					"id": "3_5_2",
 					"amount": -560000000.12,
 					"name": "Fixed Income Mutual Funds",
 					"currency": "GBP",
 					"weight": 43.75
 				},
 				{
-					"id": "3_4_3",
+					"id": "3_5_3",
 					"amount": -720000000.32,
 					"name": "Fixed Income Warrants",
 					"currency": "GBP",
 					"weight": -256.25
+				}
+			]
+		},
+		{
+			"id": "3_6",
+			"amount": -1980000000.44,
+			"name": "Private Equity",
+			"weight": -28.96,
+			"currency": "GBP",
+			"nodes": [
+				{
+					"id": "3_6_1",
+					"amount": -1980000000.44,
+					"name": "Private Equity",
+					"currency": "GBP",
+					"weight": 100.00
+				}
+			]
+		},
+		{
+			"id": "3_7",
+			"amount": -2250000000.44,
+			"name": "Real Estate",
+			"weight": -80.96,
+			"currency": "GBP",
+			"nodes": [
+				{
+					"id": "3_7_1",
+					"amount": -2250000000.44,
+					"name": "Real Estate",
+					"currency": "GBP",
+					"weight": 100.00
 				}
 			]
 		}

@@ -55,6 +55,8 @@ public class Test {
 		Object test2 = clazz.newInstance();
 		System.out.println("class:"+test2);
 		
+		String regex = "^[0-7]$";
+		System.out.println("5".matches(regex));
 		
 
 //		TestEnum testEnum = TestEnum.valueOf("TEST1");

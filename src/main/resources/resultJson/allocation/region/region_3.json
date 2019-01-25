@@ -23,10 +23,31 @@
 		},
 		{
 			"id": "4",
+			"amount": 0,
+			"name": "Asia Pacific",
+			"currency": "GBP",
+			"weight": 0
+		},
+		{
+			"id": "5",
 			"amount": -1280000000.44,
 			"name": "Latin America",
 			"currency": "GBP",
-			"weight": -8.6
+			"weight": -1.2
+		},
+		{
+			"id": "6",
+			"amount": -1980000000.44,
+			"name": "Southeast Asia",
+			"currency": "GBP",
+			"weight": -2.2
+		},
+		{
+			"id": "7",
+			"amount": -2250000000.44,
+			"name": "Australia",
+			"currency": "GBP",
+			"weight": -3.6
 		}
 	]
 }

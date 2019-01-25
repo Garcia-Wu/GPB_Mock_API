@@ -4,7 +4,7 @@
 			"id": "1_1",
 			"amount": -200400600800.90,
 			"name": "Equities",
-			"weight": -63.83,
+			"weight": -10,
 			"currency": "GBP",
 			"nodes": [
 				{
@@ -12,7 +12,7 @@
 					"amount": 120240360480.54,
 					"name": "Equities",
 					"currency": "GBP",
-					"weight": 60
+					"weight": 100
 				}
 			]
 		}

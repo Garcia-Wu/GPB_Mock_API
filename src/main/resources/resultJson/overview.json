@@ -1,6 +1,5 @@
 {
 	"customer": {
-		"id": "12",
 		"name": "Jones",
 		"amount": 38950392012.00,
 		"currency": "GBP",
