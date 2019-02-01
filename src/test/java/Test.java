@@ -76,6 +76,22 @@ public class Test {
 //		System.out.println(TestResponse.class.getSimpleName());
 //		System.out.println(TestResponse.AccountBean.class);
 //		System.out.println(DateFormatUtils.format(new Date(1543302984*1000L), "yyyy-MM-dd HH:mm:ss"));
+		
+		
+		String a = "hello2"; // string池里面找，找不到，新的
+		String b = "hello" + 2; 
+		System.out.println(a == b);//true
+		
+		String c = "hello";
+		String d = c + 2;
+		System.out.println(a == d);//false
+		
+		final String e = "hello";
+		String f = e + 2;
+		System.out.println(a == f);//true
+		
+		
+		
 	}
 
 	@Override

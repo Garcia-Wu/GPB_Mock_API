@@ -1,6 +1,7 @@
 package org.gt.projects.gpb.controller;
 
 import java.io.File;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.util.Collections;
 import java.util.Date;
@@ -123,13 +124,13 @@ public class OverviewController extends BaseAPIController {
 		}
 		
 		// 计算amount
-//		BaseAPIResponse<JSONObject> allocation = CommonUtil.getAllocationData(id, currency, "ASSET");
-//		BigDecimal amount = new BigDecimal("0");
-//		for (Object clazz : allocation.getData().getJSONArray("clazz")) {
-//			JSONObject clazzJson = (JSONObject) clazz;
-//			amount = amount.add(new BigDecimal(clazzJson.get("amount") + ""));
-//		}
-//		jsonObject.getJSONObject("customer").put("amount", amount);
+		BaseAPIResponse<JSONObject> allocation = CommonUtil.getAllocationData(id, currency, "ASSET");
+		BigDecimal amount = new BigDecimal("0");
+		for (Object clazz : allocation.getData().getJSONArray("clazz")) {
+			JSONObject clazzJson = (JSONObject) clazz;
+			amount = amount.add(new BigDecimal(clazzJson.get("amount") + ""));
+		}
+		jsonObject.getJSONObject("customer").put("amount", amount);
 
 		JsonFileUtils.formatObjectNumber2DP(jsonObject, "newDocumentCount");
 		return new BaseAPIResponse<JSONObject>(jsonObject);
@@ -197,6 +198,19 @@ public class OverviewController extends BaseAPIController {
 			pageJson.getJSONObject(i).remove("netAssetsCurrency");
 		}
 
+		// 计算amount
+		for (Object object : pageJson) {
+			JSONObject account = (JSONObject) object;
+			BaseAPIResponse<JSONObject> allocation = CommonUtil.getAllocationData(account.getString("id"), currency, "ASSET");
+			BigDecimal amount = new BigDecimal("0");
+			for (Object clazz : allocation.getData().getJSONArray("clazz")) {
+				JSONObject clazzJson = (JSONObject) clazz;
+				amount = amount.add(new BigDecimal(clazzJson.get("amount") + ""));
+			}
+			account.put("amount", amount);
+		}
+		
+		
 		JsonFileUtils.formatArrayNumber2DP(pageJson);
 //		Collections.sort(pageJson, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
 		jsonObject.put("accounts", pageJson);

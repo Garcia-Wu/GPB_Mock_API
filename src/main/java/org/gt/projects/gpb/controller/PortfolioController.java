@@ -1,5 +1,6 @@
 package org.gt.projects.gpb.controller;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -42,11 +43,9 @@ public class PortfolioController extends BaseAPIController {
 		if (params.get("currency") != null) {
 			for (int i = 0; i < resultArray.size(); i++) {
 				resultArray.getJSONObject(i).put("currency", params.get("currency").toString().toUpperCase());
-				resultArray.getJSONObject(i).put("liabilitiesCurrency",
-						params.get("currency").toString().toUpperCase());
+				resultArray.getJSONObject(i).put("liabilitiesCurrency", params.get("currency").toString().toUpperCase());
 				resultArray.getJSONObject(i).put("netAssetsCurrency", params.get("currency").toString().toUpperCase());
-				resultArray.getJSONObject(i).getJSONObject("ytd").put("currency",
-						params.get("currency").toString().toUpperCase());
+				resultArray.getJSONObject(i).getJSONObject("ytd").put("currency", params.get("currency").toString().toUpperCase());
 			}
 		}
 
@@ -68,6 +67,18 @@ public class PortfolioController extends BaseAPIController {
 			resultArray.getJSONObject(i).remove("mandateType");
 		
 			resultArray.getJSONObject(i).put("updateDate", updateDate);
+		}
+		
+		// 计算amount
+		for (Object object : resultArray) {
+			JSONObject portfolio = (JSONObject) object;
+			BaseAPIResponse<JSONObject> allocation = CommonUtil.getAllocationData(portfolio.getString("id"), params.get("currency").toString(), "ASSET");
+			BigDecimal amount = new BigDecimal("0");
+			for (Object clazz : allocation.getData().getJSONArray("clazz")) {
+				JSONObject clazzJson = (JSONObject) clazz;
+				amount = amount.add(new BigDecimal(clazzJson.get("amount") + ""));
+			}
+			portfolio.put("amount", amount);
 		}
 
 		JSONObject jsonObject = new JSONObject();
@@ -238,19 +249,6 @@ public class PortfolioController extends BaseAPIController {
 		JsonFileUtils.formatArrayNumber2DP(pageJson, new String[] { "units" });
 		jsonObject.put("transactions", pageJson);
 		jsonObject.put("totalSize", jsonArray.size());
-		return new BaseAPIResponse<JSONObject>(jsonObject);
-	}
-
-	@RequestMapping(value = "holdings/{id}/detail", method = { RequestMethod.GET })
-	public BaseAPIResponse<JSONObject> holdingsDetail(@PathVariable("id") String id,
-			String currency) {
-		String json = JsonFileUtils.readFileToString("portfolio_holding_detail_list");
-		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("holdings");
-		jsonArray = JsonFileUtils.getFilterArray(jsonArray, "id", id, 1);
-
-		JSONObject jsonObject = new JSONObject();
-		JsonFileUtils.formatArrayNumber2DP(jsonArray, "category", "number");
-		jsonObject.put("holding", jsonArray.get(0));
 		return new BaseAPIResponse<JSONObject>(jsonObject);
 	}
 

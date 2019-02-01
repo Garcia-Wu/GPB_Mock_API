@@ -1,5 +1,6 @@
 package org.gt.projects.gpb.controller;
 
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +49,19 @@ public class AccountController extends BaseAPIController{
 			resultArray.getJSONObject(i).remove("weight");
 		}
 		JSONObject jsonObject = new JSONObject();
+		
+		// 计算amount
+		for (Object object : resultArray) {
+			JSONObject account = (JSONObject) object;
+			BaseAPIResponse<JSONObject> allocation = CommonUtil.getAllocationData(account.getString("id"), params.get("currency").toString(), "ASSET");
+			BigDecimal amount = new BigDecimal("0");
+			for (Object clazz : allocation.getData().getJSONArray("clazz")) {
+				JSONObject clazzJson = (JSONObject) clazz;
+				amount = amount.add(new BigDecimal(clazzJson.get("amount") + ""));
+			}
+			account.put("amount", amount);
+		}
+		
 		JsonFileUtils.formatArrayNumber2DP(resultArray);
 		jsonObject.put("accounts", resultArray);
 		return new BaseAPIResponse<JSONObject>(jsonObject);
@@ -110,6 +124,18 @@ public class AccountController extends BaseAPIController{
 		
 //		Collections.sort(pageJson, JsonCompare.getNumberDescThenLetterAsc("amount", "name"));
 
+		// 计算amount
+		for (Object object : pageJson) {
+			JSONObject portfolio = (JSONObject) object;
+			BaseAPIResponse<JSONObject> allocation = CommonUtil.getAllocationData(id, currency, "ASSET");
+			BigDecimal amount = new BigDecimal("0");
+			for (Object clazz : allocation.getData().getJSONArray("clazz")) {
+				JSONObject clazzJson = (JSONObject) clazz;
+				amount = amount.add(new BigDecimal(clazzJson.get("amount") + ""));
+			}
+			portfolio.put("amount", amount);
+		}
+		
 		JsonFileUtils.formatArrayNumber2DP(pageJson);
 		jsonObject.put("portfolios", pageJson);
 		jsonObject.put("totalSize", jsonArray.size());

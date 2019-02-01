@@ -6,6 +6,20 @@
 			"name": "GBP",
 			"currency": "GBP",
 			"weight": 0.00
+		},
+		{
+			"id": "2",
+			"amount": 0.00,
+			"name": "EUR",
+			"currency": "GBP",
+			"weight": 0.00
+		},
+		{
+			"id": "3",
+			"amount": 0.00,
+			"name": "USD",
+			"currency": "GBP",
+			"weight": 0.00
 		}
 	]
 }

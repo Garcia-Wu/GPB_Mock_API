@@ -1,7 +1,7 @@
 {
 	"portfolios": [
 		{
-			"mandateType": "Execution",
+			"mandateType": "Hedge Fund",
 			"externalId": "C4G0Z9C",
 			"currency": "GBP",
 			"baseCurrency": "JPY",
@@ -281,7 +281,7 @@
 			}
 		},
 		{
-			"mandateType": "Advisory",
+			"mandateType": "Execution",
 			"externalId": "CF91965",
 			"currency": "GBP",
 			"baseCurrency": "JPY",

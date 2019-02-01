@@ -22,6 +22,52 @@
 					"weight": -52.63
 				}
 			]
+		},
+		{
+			"id": "6_2",
+			"amount": 0.00,
+			"name": "Equities",
+			"weight": 63.83,
+			"currency": "GBP",
+			"nodes": [
+				{
+					"id": "6_2_1",
+					"amount": 0.00,
+					"name": "Equities",
+					"currency": "GBP",
+					"weight": 0.00
+				}
+			]
+		},
+		{
+			"id": "6_3",
+			"amount": 0.00,
+			"name": "Fixed Income",
+			"weight": -280.96,
+			"currency": "GBP",
+			"nodes": [
+				{
+					"id": "6_3_1",
+					"amount": 20000000,
+					"name": "Fixed Income",
+					"currency": "GBP",
+					"weight": 3.00
+				},
+				{
+					"id": "6_3_2",
+					"amount": 700000000.32,
+					"name": "Fixed Income Mutual Funds",
+					"currency": "GBP",
+					"weight": 40.75
+				},
+				{
+					"id": "6_3_3",
+					"amount": -720000000.32,
+					"name": "Fixed Income Warrants",
+					"currency": "GBP",
+					"weight": -43.75
+				}
+			]
 		}
 	]
 }

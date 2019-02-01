@@ -5,10 +5,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.gt.projects.gpb.base.BaseAPIController;
 import org.gt.projects.gpb.base.BaseAPIResponse;
 import org.gt.projects.gpb.utils.JsonFileUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 /**
@@ -18,6 +20,24 @@ import net.sf.json.JSONObject;
 @RestController
 @RequestMapping("/mobile/v1")
 public class CommonController extends BaseAPIController{
+
+	@RequestMapping(value = "holdings/{id}/detail", method = { RequestMethod.GET })
+	public BaseAPIResponse<JSONObject> holdingsDetail(@PathVariable("id") String id,
+			String currency) {
+		String json = JsonFileUtils.readFileToString("portfolio_holding_detail_list");
+		JSONArray jsonArray = JSONObject.fromObject(json).getJSONArray("holdings");
+		JSONObject holdingDetail = JsonFileUtils.getFilterObject(jsonArray, "id", id);
+		
+		// 同步holdingList的holdingName
+		JSONArray holdingList = JSONObject.fromObject(JsonFileUtils.readFileToString("portfolio_holding_list")).getJSONArray("holdings");
+		JSONObject targetHolding = JsonFileUtils.getFilterObject(holdingList, "id", id);
+		holdingDetail.put("name", targetHolding.get("name"));
+
+		JSONObject jsonObject = new JSONObject();
+		JsonFileUtils.formatObjectNumber2DP(holdingDetail, "category", "number");
+		jsonObject.put("holding", holdingDetail);
+		return new BaseAPIResponse<JSONObject>(jsonObject);
+	}
 	
 	@RequestMapping(value = "version", method = { RequestMethod.GET })
 	public BaseAPIResponse<JSONObject> version() {
