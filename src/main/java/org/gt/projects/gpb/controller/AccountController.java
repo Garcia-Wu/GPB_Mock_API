@@ -127,7 +127,7 @@ public class AccountController extends BaseAPIController{
 		// 计算amount
 		for (Object object : pageJson) {
 			JSONObject portfolio = (JSONObject) object;
-			BaseAPIResponse<JSONObject> allocation = CommonUtil.getAllocationData(id, currency, "ASSET");
+			BaseAPIResponse<JSONObject> allocation = CommonUtil.getAllocationData(portfolio.getString("id"), currency, "ASSET");
 			BigDecimal amount = new BigDecimal("0");
 			for (Object clazz : allocation.getData().getJSONArray("clazz")) {
 				JSONObject clazzJson = (JSONObject) clazz;

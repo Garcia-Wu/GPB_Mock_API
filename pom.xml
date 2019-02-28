@@ -61,6 +61,38 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>profile/</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>src/main/resources/profile/${profiles.active}</directory>
+				<targetPath>.</targetPath>
+			</resource>
+		</resources>
 	</build>
+	
+	<!-- Profiles -->
+	<profiles>
+		<profile>        <!--开发环境 -->
+			<id>dev</id>
+			<properties>
+				<profiles.active>dev</profiles.active>
+			</properties>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>       <!-- 线上测试环境 -->
+			<id>uat</id>
+			<properties>
+				<profiles.active>uat</profiles.active>
+			</properties>
+		</profile>
+	</profiles>
 
 </project>
