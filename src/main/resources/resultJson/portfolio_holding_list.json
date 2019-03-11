@@ -230,6 +230,30 @@
 			"type":1,
 			"performanceAmount":-1569032875.30,
 			"performanceCurrency":"EUR"
+		},
+		{
+			"id":"20",
+			"name":"HSBC Reverse Convertible 5% 18.03.2019 on TSLA 2",
+			"weight":1.57,
+			"baseAmount":-40050030,
+			"baseCurrency":"EUR",
+			"reportAmount":-36701738.74,
+			"reportCurrency":"GBP",
+			"type":1,
+			"performanceAmount":-1569032875.30,
+			"performanceCurrency":"EUR"
+		},
+		{
+			"id":"21",
+			"name":"LVMH 1.25% 4nov2019 EUR 2",
+			"weight":3.56,
+			"baseAmount":-58590030,
+			"baseCurrency":"EUR",
+			"reportAmount":-55851520.69,
+			"reportCurrency":"GBP",
+			"type":1,
+			"performanceAmount":-8560003501.50,
+			"performanceCurrency":"EUR"
 		}
 	]
 }
