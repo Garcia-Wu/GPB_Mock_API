@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestNg Parallel" parallel="tests" thread-count="1">
+
+    <test name="Device1">
+        <parameter name="automationServer" value="http://127.0.0.1:4723/wd/hub"/>
+        <parameter name="instrumentation" value="Appium"/>
+        <parameter name="platform" value="ANDROID"/>
+        <parameter name="platformVersion" value="6.0"/>
+        <parameter name="deviceName" value="Samsung Galaxy"/>
+        <!--<parameter name="appPath" value="src/test/resources/apps/app-uk-bdd-debug.apk"/>-->
+        <parameter name="appPath" value="/Users/gzuser/Downloads/app/GPB_Mobile_AOS_uk_document.apk"/>
+        <parameter name="appiumPath" value="/Applications/Appium.app/Contents/Resources/app/node_modules/appium/build/lib/main.js"/>
+        <classes>
+            <class name="com.gt.projects.bdd.RunnerClass"/>
+        </classes>
+    </test>
+
+    <!--<test name="Nexus">-->
+        <!--<parameter name="automationServer" value="http://127.0.0.1:4723/wd/hub"/>-->
+        <!--<parameter name="instrumentation" value="UiAutomator2"/>-->
+        <!--<parameter name="platform" value="ANDROID"/>-->
+        <!--<parameter name="platformVersion" value="8.0"/>-->
+        <!--<parameter name="deviceName" value="Nexus 5X"/>-->
+        <!--<parameter name="appPath" value="/Users/eva.qiu/Downloads/app/GPB_Mobile_AOS.apk"/>-->
+        <!--<parameter name="appiumPath" value="/Applications/Appium.app/Contents/Resources/app/node_modules/appium/build/lib/main.js"/>-->
+        <!--<classes>-->
+            <!--<class name="com.gt.projects.bdd.RunnerClass"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!--索尼-->
+    <!--<test name="E2353">-->
+        <!--<parameter name="automationServer" value="http://127.0.0.1:4723/wd/hub"/>-->
+        <!--<parameter name="instrumentation" value="UiAutomator2"/>-->
+        <!--<parameter name="platform" value="ANDROID"/>-->
+        <!--<parameter name="platformVersion" value="5.0"/>-->
+        <!--<parameter name="deviceName" value="E2353"/>-->
+        <!--<parameter name="appPath" value="/Users/eva.qiu/Downloads/app/906app-bdd-debug.apk"/>-->
+        <!--<parameter name="appiumPath" value="/Applications/Appium.app/Contents/Resources/app/node_modules/appium/build/lib/main.js"/>-->
+        <!--<classes>-->
+            <!--<class name="com.gt.projects.bdd.RunnerClass"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!--谷歌-->
+    <!--<test name="Pixel 2 XL">-->
+        <!--<parameter name="automationServer" value="http://127.0.0.1:4723/wd/hub"/>-->
+        <!--<parameter name="instrumentation" value="UiAutomator2"/>-->
+        <!--<parameter name="platform" value="ANDROID"/>-->
+        <!--<parameter name="platformVersion" value="8.0.0"/>-->
+        <!--<parameter name="deviceName" value="Pixel 2 XL"/>-->
+        <!--<parameter name="appPath" value="/Users/eva.qiu/Downloads/app/20190211app-uk-bdd-debug.apk"/>-->
+        <!--<parameter name="appiumPath" value="/Applications/Appium.app/Contents/Resources/app/node_modules/appium/build/lib/main.js"/>-->
+
+        <!--<classes>-->
+            <!--<class name="com.gt.projects.bdd.RunnerClass"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!--<test name="Galaxy Note8">-->
+        <!--<parameter name="automationServer" value="http://127.0.0.1:4723/wd/hub"/>-->
+        <!--<parameter name="instrumentation" value="UiAutomator2"/>-->
+        <!--<parameter name="platform" value="ANDROID"/>-->
+        <!--<parameter name="platformVersion" value="7.1.1"/>-->
+        <!--<parameter name="deviceName" value="Galaxy Note8"/>-->
+        <!--<parameter name="appPath" value="src/test/resources/apps/1009app-hk-bdd-debug.apk"/>-->
+        <!--<parameter name="appiumPath" value="/Applications/Appium.app/Contents/Resources/app/node_modules/appium/build/lib/main.js"/>-->
+        <!--<classes>-->
+        <!--<class name="com.gt.projects.bdd.RunnerClass"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!--<test name="Galaxy S9">-->
+        <!--<parameter name="automationServer" value="http://127.0.0.1:4723/wd/hub"/>-->
+        <!--<parameter name="instrumentation" value="UiAutomator2"/>-->
+        <!--<parameter name="platform" value="ANDROID"/>-->
+        <!--<parameter name="platformVersion" value="8.0.0"/>-->
+        <!--<parameter name="deviceName" value="Galaxy S9"/>-->
+        <!--<parameter name="appPath" value="/Users/eva.qiu/Downloads/app/20190124app-uk-bdd-release.apk"/>-->
+        <!--<parameter name="appiumPath" value="/Applications/Appium.app/Contents/Resources/app/node_modules/appium/build/lib/main.js"/>-->
+        <!--<classes>-->
+        <!--<class name="com.gt.projects.bdd.RunnerClass"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    </suite>

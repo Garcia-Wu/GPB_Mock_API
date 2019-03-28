@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestNg Parallel" parallel="tests" thread-count="1">
+
+    <test name="Device2">
+        <parameter name="automationServer" value="http://127.0.0.1:4723/wd/hub"/>
+        <parameter name="instrumentation" value="Appium"/>
+        <parameter name="platform" value="IOS"/>
+        <parameter name="platformVersion" value="11.2"/>
+        <parameter name="deviceName" value="iPhone 6s"/>
+        <!--<parameter name="udid" value="3eea6f10"/>-->
+        <!--<parameter name="temporaryFolder" value="/sdcard/"/>-->
+        <parameter name="appPath" value="src/test/resources/apps/GPB_Mobile_iOS_BDD.app"/>
+        <!--<parameter name="appPath" value="http://ci-digital-mobile.cn.hsbc:8080/job/GPB/view/All/job/Dev_iOS_Build_UK_BDD/ws/build/Build/Products/BDD-iphoneos/GPB_Mobile_iOS_BDD.app"/>-->
+        <parameter name="appiumPath" value="/Users/Shared/BuildHome/Software/appium-1.7.2/node_modules/appium/build/lib/main.js"/>
+        <!--<parameter name="appiumPath" value="/Applications/Appium.app/Contents/Resources/app/node_modules/appium/build/lib/main.js"/>-->
+        <classes>
+            <class name="com.gt.projects.bdd.MockApiRunner"/>
+        </classes>
+    </test>
+
+    <!--真机-->
+    <!--<test name="iPhone 7">-->
+        <!--<parameter name="automationServer" value="http://127.0.0.1:4723/wd/hub"/>-->
+        <!--<parameter name="instrumentation" value="Appium"/>-->
+        <!--<parameter name="platform" value="IOS"/>-->
+        <!--<parameter name="platformVersion" value="10.3.3"/>-->
+        <!--<parameter name="deviceName" value="iPhone 7"/>-->
+        <!--<parameter name="udid" value="d444f05c1653c5f5c274ef291a37898eb305b4bb"/>-->
+        <!--&lt;!&ndash;<parameter name="temporaryFolder" value="/sdcard/"/>&ndash;&gt;-->
+        <!--<parameter name="appPath" value="/Users/eva.qiu/Downloads/app/725GPB_Mobile_iOS_BDD.app"/>-->
+        <!--<classes>-->
+            <!--<class name="com.gt.projects.bdd.MockApiRunner"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+    <!--真机2-->
+    <!--<test name="iPhone 5s">-->
+        <!--<parameter name="automationServer" value="http://127.0.0.1:4723/wd/hub"/>-->
+        <!--<parameter name="instrumentation" value="Appium"/>-->
+        <!--<parameter name="platform" value="IOS"/>-->
+        <!--<parameter name="platformVersion" value="11.3"/>-->
+        <!--<parameter name="deviceName" value="iPhone 5s"/>-->
+        <!--<parameter name="udid" value="df3e29d803dd7624b4f18db04c8d58ea357bef3d"/>-->
+        <!--&lt;!&ndash;<parameter name="temporaryFolder" value="/sdcard/"/>&ndash;&gt;-->
+        <!--<parameter name="appPath" value="/Users/eva.qiu/Downloads/app/727真机GPB_Mobile_iOS.app"/>-->
+        <!--<classes>-->
+            <!--<class name="com.gt.projects.bdd.MockApiRunner"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!--HSBC iPhone 7-->
+    <!--<test name="HSBC iPhone 7">-->
+        <!--<parameter name="automationServer" value="http://127.0.0.1:4723/wd/hub"/>-->
+        <!--<parameter name="instrumentation" value="Appium"/>-->
+        <!--<parameter name="platform" value="IOS"/>-->
+        <!--<parameter name="platformVersion" value="11.3"/>-->
+        <!--<parameter name="deviceName" value="iPhone 7"/>-->
+        <!--<parameter name="udid" value="500af948b0855c3433c4826289ee17fcc8456298"/>-->
+        <!--&lt;!&ndash;<parameter name="temporaryFolder" value="/sdcard/"/>&ndash;&gt;-->
+        <!--<parameter name="appPath" value="/Users/eva.qiu/Downloads/app/808真机GPB_Mobile_iOS.app"/>-->
+        <!--<classes>-->
+            <!--<class name="com.gt.projects.bdd.MockApiRunner"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+
+    <!--HSBC iPhone X-->
+    <!--<test name="HSBC iPhone X">-->
+        <!--<parameter name="automationServer" value="http://127.0.0.1:4723/wd/hub"/>-->
+        <!--<parameter name="instrumentation" value="Appium"/>-->
+        <!--<parameter name="platform" value="IOS"/>-->
+        <!--<parameter name="platformVersion" value="11.2"/>-->
+        <!--<parameter name="deviceName" value="iPhone X"/>-->
+        <!--<parameter name="udid" value="e8c0704910f7cf491f6b963785850bc766b478ee"/>-->
+        <!--&lt;!&ndash;<parameter name="temporaryFolder" value="/sdcard/"/>&ndash;&gt;-->
+        <!--<parameter name="appPath" value="/Users/eva.qiu/Downloads/app/904真机GPB_Mobile_iOS.app"/>-->
+        <!--<classes>-->
+            <!--<class name="com.gt.projects.bdd.MockApiRunner"/>-->
+        <!--</classes>-->
+    <!--</test>-->
+
+</suite>

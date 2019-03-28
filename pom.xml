@@ -1,66 +1,666 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.gt.projects</groupId>
-	<artifactId>Mock_GPB</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.6.RELEASE</version>
-	</parent>
+  <modelVersion>4.0.0</modelVersion>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
+  <groupId>TahoeLifeInsuranceProposalSystem</groupId>
+  <artifactId>TahoeAutomationTesting</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
 
-		<dependency>
-			<groupId>net.sf.json-lib</groupId>
-			<artifactId>json-lib</artifactId>
-			<!-- 2.4版本存在小数精度问题 -->
-			<version>2.3</version>
-			<classifier>jdk15</classifier>
-		</dependency>
-		
-		<dependency>
-		    <groupId>org.apache.commons</groupId>
-		    <artifactId>commons-lang3</artifactId>
-		    <version>3.2.1</version>
-		</dependency>
-	</dependencies>
+  <name>TahoeAutomationTesting</name>
+  <url>http://maven.apache.org</url>
 
-	<build>
-		<finalName>Mock_GPB</finalName>
-		<plugins>
-			<!-- JDK1.8 -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-			<!-- spring boot JAR package plugin -->
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<fork>true</fork>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+  <properties>
+
+    <!-- Project Info -->
+    <finalName>AIA_VITALITY_ACTIVE_BDD</finalName>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <timestamp>${maven.build.timestamp}</timestamp>
+    <maven.build.timestamp.format>yyyyMMdd HH:mm</maven.build.timestamp.format>
+
+    <!-- Spring -->
+    <spring.version>5.0.2.RELEASE</spring.version>
+    <spring.boot.version>1.5.8.RELEASE</spring.boot.version>
+    <!--<aspectj.version>1.8.9</aspectj.version>-->
+
+    <!-- ORM -->
+    <spring.jpa.version>2.0.2.RELEASE</spring.jpa.version>
+    <hibernate.version>5.0.10.Final</hibernate.version>
+
+    <hibernate.ogm.version>5.1.0.Final</hibernate.ogm.version>
+    <spring.mongo.version>2.0.2.RELEASE</spring.mongo.version>
+
+    <eclipse.link.version>2.7.0</eclipse.link.version>
+    <h2database.version>1.4.193</h2database.version>
+
+    <!-- Logger -->
+    <slf4j.version>1.6.1</slf4j.version>
+    <log4j.version>1.6.1</log4j.version>
+
+    <!-- Test -->
+    <testng.version>6.9.10</testng.version>
+    <junit.version>4.12</junit.version>
+    <appium.version>7.0.0</appium.version>
+    <selenium.version>3.141.59</selenium.version>
+    <cucumber.version>2.3.0</cucumber.version>
+    <cucumber.report.version>3.10.0</cucumber.report.version>
+    <hamcrest.version>1.3</hamcrest.version>
+
+    <!-- Misc -->
+    <apache.io.version>2.6</apache.io.version>
+    <apache.cmd.version>1.3</apache.cmd.version>
+    <apache.poi.version>3.10-FINAL</apache.poi.version>
+    <gson.version>2.8.2</gson.version>
+    <projectlombok.version>1.14.4</projectlombok.version>
+    <automation.server.version>1.0.2</automation.server.version>
+    <guava.version>23.0</guava.version>
+    <reflections.version>0.9.11</reflections.version>
+    <jackson.version>2.9.4</jackson.version>
+    <tomcat.version>8.5.23</tomcat.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.hibernate.ogm</groupId>
+        <artifactId>hibernate-ogm-bom</artifactId>
+        <version>${hibernate.ogm.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <!-- Spring -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.springframework</groupId>-->
+      <!--<artifactId>spring-webmvc</artifactId>-->
+      <!--<version>${spring.version}</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>org.springframework</groupId>-->
+      <!--<artifactId>spring-web</artifactId>-->
+      <!--<version>${spring.version}</version>-->
+    <!--</dependency>-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <!-- Spring AOP + AspectJ -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aop</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <!--<dependency>-->
+    <!--<groupId>org.springframework</groupId>-->
+    <!--<artifactId>spring-aspects</artifactId>-->
+    <!--<version>${spring.version}</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+    <!--<groupId>org.aspectj</groupId>-->
+    <!--<artifactId>aspectjrt</artifactId>-->
+    <!--<version>${aspectj.version}</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+    <!--<groupId>org.aspectj</groupId>-->
+    <!--<artifactId>aspectjweaver</artifactId>-->
+    <!--<version>${aspectj.version}</version>-->
+    <!--</dependency>-->
+
+    <!-- for LTW -->
+    <!--<dependency>-->
+      <!--<groupId>org.springframework</groupId>-->
+      <!--<artifactId>spring-instrument</artifactId>-->
+      <!--<version>${spring.version}</version>-->
+    <!--</dependency>-->
+
+    <!-- Spring Test -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <!-- Spring Boot -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-test-autoconfigure</artifactId>
+      <version>${spring.boot.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-test</artifactId>
+      <version>${spring.boot.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-mail</artifactId>
+      <version>${spring.boot.version}</version>
+    </dependency>
+
+
+    <!-- Spring Web + MVC -->
+    <!--<dependency>-->
+      <!--<groupId>org.springframework</groupId>-->
+      <!--<artifactId>spring-web</artifactId>-->
+      <!--<version>${spring.version}</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>org.springframework</groupId>-->
+      <!--<artifactId>spring-webmvc</artifactId>-->
+      <!--<version>${spring.version}</version>-->
+    <!--</dependency>-->
+
+    <!-- Spring Data -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-jpa</artifactId>
+      <version>${spring.jpa.version}</version>
+    </dependency>
+
+    <!-- ORM -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>${hibernate.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <version>${hibernate.version}</version>
+    </dependency>
+
+    <!--<dependency>-->
+      <!--<groupId>org.hibernate</groupId>-->
+      <!--<artifactId>hibernate-ehcache</artifactId>-->
+      <!--<version>${hibernate.version}</version>-->
+    <!--</dependency>-->
+
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-c3p0</artifactId>
+      <version>${hibernate.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>${h2database.version}</version>
+    </dependency>
+
+    <!-- Mongo -->
+    <!--<dependency>-->
+      <!--<groupId>org.springframework.data</groupId>-->
+      <!--<artifactId>spring-data-mongodb</artifactId>-->
+      <!--<version>${spring.mongo.version}</version>-->
+    <!--</dependency>-->
+
+    <!--<dependency>-->
+      <!--<groupId>org.hibernate.ogm</groupId>-->
+      <!--<artifactId>hibernate-ogm-mongodb</artifactId>-->
+    <!--</dependency>-->
+
+    <dependency>
+      <groupId>javax.transaction</groupId>
+      <artifactId>jta</artifactId>
+      <version>1.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!--<dependency>-->
+      <!--<groupId>org.eclipse.persistence</groupId>-->
+      <!--<artifactId>org.eclipse.persistence.jpa</artifactId>-->
+      <!--<version>${eclipse.link.version}</version>-->
+    <!--</dependency>-->
+
+    <!--<dependency>-->
+      <!--<groupId>org.eclipse.persistence</groupId>-->
+      <!--<artifactId>org.eclipse.persistence.nosql</artifactId>-->
+      <!--<version>${eclipse.link.version}</version>-->
+    <!--</dependency>-->
+
+    <!-- Embedded Mongo Database -->
+    <!--<dependency>-->
+      <!--<groupId>de.flapdoodle.embed</groupId>-->
+      <!--<artifactId>de.flapdoodle.embed.mongo</artifactId>-->
+      <!--<version>1.50.5</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>cz.jirutka.spring</groupId>-->
+      <!--<artifactId>embedmongo-spring</artifactId>-->
+      <!--<version>1.3.1</version>-->
+    <!--</dependency>-->
+
+
+    <!-- Logger -->
+    <!--<dependency>-->
+      <!--<groupId>org.slf4j</groupId>-->
+      <!--<artifactId>slf4j-api</artifactId>-->
+      <!--<version>${slf4j.version}</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>org.slf4j</groupId>-->
+      <!--<artifactId>slf4j-log4j12</artifactId>-->
+      <!--<version>${log4j.version}</version>-->
+    <!--</dependency>-->
+
+
+    <!-- Test -->
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>${testng.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.appium</groupId>
+      <artifactId>java-client</artifactId>
+      <version>${appium.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>${selenium.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-remote-driver</artifactId>
+      <version>${selenium.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-junit</artifactId>
+      <version>${cucumber.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-spring</artifactId>
+      <version>${cucumber.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>${cucumber.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-core</artifactId>
+      <version>${cucumber.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>cucumber-testng</artifactId>
+      <version>${cucumber.version}</version>
+    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>info.cukes</groupId>-->
+      <!--<artifactId>cucumber-junit</artifactId>-->
+      <!--<version>${cucumber.version}</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>info.cukes</groupId>-->
+      <!--<artifactId>cucumber-spring</artifactId>-->
+      <!--<version>${cucumber.version}</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>info.cukes</groupId>-->
+      <!--<artifactId>cucumber-java</artifactId>-->
+      <!--<version>${cucumber.version}</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>info.cukes</groupId>-->
+      <!--<artifactId>cucumber-core</artifactId>-->
+      <!--<version>${cucumber.version}</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>info.cukes</groupId>-->
+      <!--<artifactId>cucumber-testng</artifactId>-->
+      <!--<version>${cucumber.version}</version>-->
+    <!--</dependency>-->
+    <dependency>
+      <groupId>net.masterthought</groupId>
+      <artifactId>cucumber-reporting</artifactId>
+      <version>${cucumber.report.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-core</artifactId>
+      <version>${hamcrest.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-library</artifactId>
+      <version>${hamcrest.version}</version>
+    </dependency>
+
+    <!-- Misc -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>${apache.io.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-exec</artifactId>
+      <version>${apache.cmd.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.reflections</groupId>
+      <artifactId>reflections</artifactId>
+      <version>${reflections.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>${apache.poi.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>${apache.poi.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>${gson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${projectlombok.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${guava.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-catalina</artifactId>
+      <version>${tomcat.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-coyote</artifactId>
+      <version>${tomcat.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat.embed</groupId>
+      <artifactId>tomcat-embed-core</artifactId>
+      <version>${tomcat.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat.embed</groupId>
+      <artifactId>tomcat-embed-jasper</artifactId>
+      <version>${tomcat.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-jasper</artifactId>
+      <version>${tomcat.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-jasper-el</artifactId>
+      <version>${tomcat.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat</groupId>
+      <artifactId>tomcat-jsp-api</artifactId>
+      <version>${tomcat.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-web</artifactId>
+      <version>2.10.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+
+    <!-- tomcat config -->
+    <dependency>
+      <groupId>io.cucumber</groupId>
+      <artifactId>gherkin-jvm-deps</artifactId>
+      <version>1.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>com.mchange</groupId>
+      <artifactId>mchange-commons-java</artifactId>
+      <version>0.2.3.4</version>
+    </dependency>
+
+
+    <!--<dependency>-->
+      <!--<groupId>javassist</groupId>-->
+      <!--<artifactId>javassist</artifactId>-->
+      <!--<version>3.12.1.GA</version>-->
+    <!--</dependency>-->
+
+
+
+    <!--<dependency>-->
+      <!--<groupId>org.eclipse.jetty</groupId>-->
+      <!--<artifactId>jetty-server</artifactId>-->
+      <!--<version>9.2.3.v20140905</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>org.eclipse.jetty</groupId>-->
+      <!--<artifactId>jetty-servlet</artifactId>-->
+      <!--<version>9.2.3.v20140905</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>org.glassfish.jersey.core</groupId>-->
+      <!--<artifactId>jersey-server</artifactId>-->
+      <!--<version>2.7</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>org.glassfish.jersey.containers</groupId>-->
+      <!--<artifactId>jersey-container-servlet-core</artifactId>-->
+      <!--<version>2.7</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>org.glassfish.jersey.containers</groupId>-->
+      <!--<artifactId>jersey-container-jetty-http</artifactId>-->
+      <!--<version>2.7</version>-->
+    <!--</dependency>-->
+    <!--<dependency>-->
+      <!--<groupId>org.apache.maven</groupId>-->
+      <!--<artifactId>maven-settings</artifactId>-->
+      <!--<version>3.0</version>-->
+    <!--</dependency>-->
+
+
+  </dependencies>
+
+  <build>
+
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**.*</include>
+          <include>**/**.*</include>
+        </includes>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+
+    <plugins>
+
+      <!-- Tomcat -->
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+          <path>/</path>
+          <server>localhost</server>
+          <uriEncoding>utf-8</uriEncoding>
+        </configuration>
+      </plugin>
+
+      <!-- Indicate the java compiler version in maven -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+
+      <!-- Specify the output directory of cucumber reports -->
+      <plugin>
+        <groupId>net.masterthought</groupId>
+        <artifactId>maven-cucumber-reporting</artifactId>
+        <version>0.0.5</version>
+        <executions>
+          <execution>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <projectName>cucumber-jvm-example</projectName>
+              <outputDirectory>${project.build.directory}/cucumber-html-reports</outputDirectory>
+              <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
+              <enableFlashCharts>true</enableFlashCharts>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.20.1</version>
+        <configuration>
+          <systemPropertyVariables>
+            <environment>${excelName}</environment>
+            <environment>${appRegion}</environment>
+          </systemPropertyVariables>
+          <suiteXmlFiles>
+            <!--<suiteXmlFile>src/test/resources/suiteConfig/iosParallelTest.xml</suiteXmlFile>-->
+            <suiteXmlFile>src/test/resources/suiteConfig/${suiteXmlFile}</suiteXmlFile>
+          </suiteXmlFiles>
+        </configuration>
+      </plugin>
+
+      <!--<plugin>-->
+        <!--<groupId>com.lazerycode.selenium</groupId>-->
+        <!--<artifactId>driver-binary-downloader-maven-plugin</artifactId>-->
+        <!--<version>${automation.server.version}</version>-->
+        <!--<configuration>-->
+          <!--<rootStandaloneServerDirectory>target/server/download</rootStandaloneServerDirectory>-->
+          <!--<downloadedZipFileDirectory>target/server/download</downloadedZipFileDirectory>-->
+          <!--<customRepositoryMap>src/test/resources/serverRepo.xml</customRepositoryMap>-->
+          <!--<onlyGetDriversForHostOperatingSystem>true</onlyGetDriversForHostOperatingSystem>-->
+          <!--<checkFileHashes>true</checkFileHashes>-->
+          <!--<throwExceptionIfSpecifiedVersionIsNotFound>true</throwExceptionIfSpecifiedVersionIsNotFound>-->
+
+          <!--&lt;!&ndash;<operatingSystems>&ndash;&gt;-->
+            <!--&lt;!&ndash;<windows>true</windows>&ndash;&gt;-->
+            <!--&lt;!&ndash;<linux>true</linux>&ndash;&gt;-->
+            <!--&lt;!&ndash;<mac>true</mac>&ndash;&gt;-->
+          <!--&lt;!&ndash;</operatingSystems>&ndash;&gt;-->
+
+          <!--&lt;!&ndash;<thirtyTwoBitBinaries>true</thirtyTwoBitBinaries>&ndash;&gt;-->
+          <!--&lt;!&ndash;<sixtyFourBitBinaries>true</sixtyFourBitBinaries>&ndash;&gt;-->
+          <!--&lt;!&ndash;<onlyGetLatestVersions>false</onlyGetLatestVersions>&ndash;&gt;-->
+          <!--&lt;!&ndash;<getSpecificExecutableVersions>&ndash;&gt;-->
+            <!--&lt;!&ndash;<googlechrome>18</googlechrome>&ndash;&gt;-->
+          <!--&lt;!&ndash;</getSpecificExecutableVersions>&ndash;&gt;-->
+
+          <!--&lt;!&ndash;<fileDownloadRetryAttempts>2</fileDownloadRetryAttempts>&ndash;&gt;-->
+          <!--&lt;!&ndash;<fileDownloadConnectTimeout>20000</fileDownloadConnectTimeout>&ndash;&gt;-->
+          <!--&lt;!&ndash;<fileDownloadReadTimeout>10000</fileDownloadReadTimeout>&ndash;&gt;-->
+          <!--&lt;!&ndash;<overwriteFilesThatExist>true</overwriteFilesThatExist>&ndash;&gt;-->
+
+          <!--&lt;!&ndash; To specify an explicit proxy set the environment variables http.proxyHost and http.proxyPort &ndash;&gt;-->
+          <!--&lt;!&ndash;<useSystemProxy>true</useSystemProxy>&ndash;&gt;-->
+        <!--</configuration>-->
+        <!--<executions>-->
+          <!--<execution>-->
+            <!--<goals>-->
+              <!--<goal>selenium</goal>-->
+            <!--</goals>-->
+          <!--</execution>-->
+        <!--</executions>-->
+      <!--</plugin>-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.0</version>
+        <!--<configuration>-->
+          <!--<webappDirectory>/sample/servlet/container/deploy/directory</webappDirectory>-->
+        <!--</configuration>-->
+      </plugin>
+    </plugins>
+  </build>
+
+  <repositories>
+    <repository>
+      <id>jcenter</id>
+      <url>https://jcenter.bintray.com</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 
 </project>
