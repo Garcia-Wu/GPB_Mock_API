@@ -42,10 +42,10 @@
 			"weight": -12.08,
 			"number": 994,
 			"lastClosingPrice": 756756.09,
-			"lastClosingPriceCurrency": "GBP",
+			"lastClosingPriceCurrency": "USD",
 			"lastClosingDate": "14 Apr 2018",
 			"averagePrice": 756756.09,
-			"averagePriceCurrency": "GBP",
+			"averagePriceCurrency": "USD",
 			"lastPurchaseDate": "12 Apr 2018",
 			"sector": "",
 			"country": "",
@@ -66,7 +66,7 @@
 			"name": "HSBC Private Bank World Equity Fund",
 			"isin": "1637463453",
 			"totalAmount": 590000000.00,
-			"totalCurrency": "EUR",
+			"totalCurrency": "USD",
 			"totalReportAmount": 524418111.44,
 			"totalReportCurrency": "GBP",
 			"weight": 5.32,
@@ -102,7 +102,7 @@
 			"weight": 5.32,
 			"number": 1,
 			"lastClosingPrice": 355.96,
-			"lastClosingPriceCurrency": "USD",
+			"lastClosingPriceCurrency": "GBP",
 			"lastClosingDate": "28 Jun 2018",
 			"averagePrice": 0,
 			"averagePriceCurrency": "",
@@ -222,7 +222,7 @@
 			"weight": -12.21,
 			"number": 0,
 			"lastClosingPrice": 98.95,
-			"lastClosingPriceCurrency": "USD",
+			"lastClosingPriceCurrency": "GBP",
 			"lastClosingDate": "28 Jun 2018",
 			"averagePrice": 1.45,
 			"averagePriceCurrency": "",
@@ -231,7 +231,7 @@
 			"country": "",
 			"expiryDate": "28 Mar 2018",
 			"notionalAmount": 370986.00,
-			"notionalAmountCurrency": "USD",
+			"notionalAmountCurrency": "GBP",
 			"issuer": "",
 			"moody": "",
 			"rating": "",
@@ -291,7 +291,7 @@
 			"country": "",
 			"expiryDate": "28 Mar 2018",
 			"notionalAmount": 900000.00,
-			"notionalAmountCurrency": "EUR",
+			"notionalAmountCurrency": "USD",
 			"issuer": "",
 			"moody": "",
 			"rating": "",
@@ -372,7 +372,7 @@
 			"weight": 0,
 			"number": 0,
 			"lastClosingPrice": -5000000.00,
-			"lastClosingPriceCurrency": "USD",
+			"lastClosingPriceCurrency": "GBP",
 			"lastClosingDate": "",
 			"averagePrice": 0,
 			"averagePriceCurrency": "",
@@ -417,8 +417,8 @@
 			"rating": "",
 			"inductivePrice": 0,
 			"categoryName": "Deposits",
-			"accruedInterest":6756.09,
-			"accruedInterestCurrency":"GBP"
+			"accruedInterest":1386756.09,
+			"accruedInterestCurrency":"EUR"
 		},
 		{
 			"id": "15",
@@ -432,7 +432,7 @@
 			"weight": 35.89,
 			"number": 0,
 			"lastClosingPrice": 999756.09,
-			"lastClosingPriceCurrency": "GBP",
+			"lastClosingPriceCurrency": "EUR",
 			"lastClosingDate": "12 Apr 2018",
 			"averagePrice": 999756.09,
 			"averagePriceCurrency": "EUR",
@@ -447,8 +447,8 @@
 			"rating": "",
 			"inductivePrice": 0,
 			"categoryName": "Deposits",
-			"accruedInterest":6756.09,
-			"accruedInterestCurrency":"GBP"
+			"accruedInterest":6752346.09,
+			"accruedInterestCurrency":"EUR"
 		},
 		{
 			"id": "16",
@@ -462,7 +462,7 @@
 			"weight": 0,
 			"number": 0,
 			"lastClosingPrice": 999756.09,
-			"lastClosingPriceCurrency": "GBP",
+			"lastClosingPriceCurrency": "EUR",
 			"lastClosingDate": "",
 			"averagePrice": 0,
 			"averagePriceCurrency": "",
@@ -477,8 +477,8 @@
 			"rating": "",
 			"inductivePrice": 0,
 			"categoryName": "Deposits",
-			"accruedInterest":6756.09,
-			"accruedInterestCurrency":"GBP"
+			"accruedInterest":6380756.09,
+			"accruedInterestCurrency":"EUR"
 		},
 		{
 			"id": "17",
@@ -507,7 +507,7 @@
 			"rating": "",
 			"inductivePrice": 0,
 			"categoryName": "Deposits",
-			"accruedInterest":6756.09,
+			"accruedInterest":6751126.09,
 			"accruedInterestCurrency":"GBP"
 		},
 		{
@@ -537,12 +537,12 @@
 			"rating": "A",
 			"inductivePrice": 101.45,
 			"categoryName": "Bonds",
-			"accruedInterest":6756.09,
-			"accruedInterestCurrency":"GBP"
+			"accruedInterest":9086756.09,
+			"accruedInterestCurrency":"EUR"
 		},
 		{
 			"id": "19",
-			"category": 17311,
+			"category": 1731,
 			"name": "HSBC Reverse Convertible 5% 18.03.2019 on TSLA",
 			"isin": "FR0011485051",
 			"totalAmount": -30050030,
@@ -567,12 +567,12 @@
 			"rating": "A",
 			"inductivePrice": 101.45,
 			"categoryName": "Structured Products",
-			"accruedInterest":6756.09,
-			"accruedInterestCurrency":"GBP"
+			"accruedInterest":0,
+			"accruedInterestCurrency":""
 		},
 		{
 			"id": "20",
-			"category": 1731,
+			"category": 17311,
 			"name": "HSBC Reverse Convertible 5% 18.03.2019 on TSLA",
 			"isin": "FR0011485051",
 			"totalAmount": -40050030,
@@ -597,8 +597,8 @@
 			"rating": "A",
 			"inductivePrice": 101.45,
 			"categoryName": "Structured Products",
-			"accruedInterest":6756.09,
-			"accruedInterestCurrency":"GBP"
+			"accruedInterest":6712056.09,
+			"accruedInterestCurrency":"EUR"
 		},
 		{
 			"id": "21",
@@ -627,8 +627,8 @@
 			"rating": "A",
 			"inductivePrice": 101.45,
 			"categoryName": "Bonds",
-			"accruedInterest":6756.09,
-			"accruedInterestCurrency":"GBP"
+			"accruedInterest":6756129.09,
+			"accruedInterestCurrency":"EUR"
 		}
 	]
 }

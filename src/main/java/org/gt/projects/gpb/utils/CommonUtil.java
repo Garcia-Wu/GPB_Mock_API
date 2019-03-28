@@ -227,7 +227,7 @@ public class CommonUtil {
 
 		JSONArray resultHolding = new JSONArray();
 		if (category.equalsIgnoreCase("asset")) {
-			JSONArray simpleHolding = JsonFileUtils.getPageJsonArray(holdingJson, 0, 2);
+			JSONArray simpleHolding = JsonFileUtils.getCommonPageJsonArray(holdingJson, 1, 2);
 			JSONArray nodeList = jsonObject.getJSONArray("nodes");
 			for (int i = 0; i < nodeList.size(); i++) {
 				// 除了第二个，其他所有asset class的第一个subClass拥有全部holding，其余只获取前2个
@@ -290,7 +290,7 @@ public class CommonUtil {
 				.getJSONArray("holdings");
 		// allocation holdingList需去除Futures以及Foreign Exchange类型的holding
 		JsonFileUtils.removeFilterObject(holdingJson, "id", new String[] { "11", "12" });
-		JSONArray simpleHolding = JsonFileUtils.getPageJsonArray(holdingJson, 0, 2);
+		JSONArray simpleHolding = JsonFileUtils.getCommonPageJsonArray(holdingJson, 1, 2);
 		JSONObject resultJson = new JSONObject();
 
 		JSONArray jsonArray = JSONObject.fromObject(JsonFileUtils.readFileToString("allocation/class/class_" + id))

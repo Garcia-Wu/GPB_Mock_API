@@ -1,6 +1,9 @@
 package org.gt.projects.gpb.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.gt.projects.gpb.base.BaseAPIController;
 import org.gt.projects.gpb.base.BaseAPIResponse;
@@ -40,7 +43,8 @@ public class CommonController extends BaseAPIController{
 	}
 	
 	@RequestMapping(value = "version", method = { RequestMethod.GET })
-	public BaseAPIResponse<JSONObject> version() {
+	public BaseAPIResponse<JSONObject> version(HttpServletResponse response) {
+//		response.setStatus(403);
 		String json = JsonFileUtils.readFileToString("version");
 		return new BaseAPIResponse<JSONObject>(JSONObject.fromObject(json));
 	}

@@ -180,12 +180,12 @@ public class OverviewController extends BaseAPIController {
 		JSONObject jsonObject = new JSONObject();
 		JSONArray pageJson = JsonFileUtils.getPageJsonArray(jsonArray, offset, limit);
 
-		// for ASIA
-		if (isAsia(request)) {
+		// remove in uk sprint19
+//		if (isAsia(request)) {
 			for (int i = 0; i < pageJson.size(); i++) {
 				pageJson.getJSONObject(i).put("weight", "");
 			}
-		}
+//		}
 
 		for (int i = 0; i < pageJson.size(); i++) {
 			pageJson.getJSONObject(i).remove("ytd");
@@ -312,6 +312,7 @@ public class OverviewController extends BaseAPIController {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("lastLoginTime", 1533882667);
 		jsonObject.put("id", id);
+		jsonObject.put("baseCurrency", "GBP");
 		if ("0".equals(id)) {
 			jsonObject.put("lastLoginTime", 0);
 			jsonObject.put("userName", "");
