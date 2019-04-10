@@ -287,7 +287,12 @@ public class OverviewController extends BaseAPIController {
 		} else {
 			System.out.println("AMSESSION:" + id);
 		}
-		System.out.println("region:" + request.getHeader("region"));
+		String region = request.getHeader("region");
+		if (region == null) {
+			throw new BaseException("Required 'region' is not present!");
+		} else {
+			System.out.println("region:" + region);
+		}
 
 		// for SIT test
 		if(!id.endsWith("_UK") && !id.endsWith("_HK") && !id.endsWith("_SG")) {
@@ -298,9 +303,7 @@ public class OverviewController extends BaseAPIController {
 			}
 		}
 		
-		if(request.getHeader("Region") != null) {
-			id += "_" + request.getHeader("Region");
-		}
+		id += "_" + request.getHeader("Region");
 
 		response.addHeader("AMSESSION", "AMSESSION_" + id.toUpperCase());
 		response.addHeader("LtpaToken2", "LtpaToken2_" + id.toUpperCase());
@@ -312,7 +315,12 @@ public class OverviewController extends BaseAPIController {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("lastLoginTime", 1533882667);
 		jsonObject.put("id", id);
-		jsonObject.put("baseCurrency", "GBP");
+		if(region.equalsIgnoreCase("UK")){
+			jsonObject.put("baseCurrency", "GBP");
+		} else {
+			jsonObject.put("baseCurrency", "USD");
+		}
+		
 		if ("0".equals(id)) {
 			jsonObject.put("lastLoginTime", 0);
 			jsonObject.put("userName", "");
