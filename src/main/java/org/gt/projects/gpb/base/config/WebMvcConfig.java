@@ -1,6 +1,5 @@
 package org.gt.projects.gpb.base.config;
 
-import org.gt.projects.gpb.base.config.interceptor.DelayInterceptor;
 import org.gt.projects.gpb.base.config.interceptor.HeaderInterceptor;
 import org.gt.projects.gpb.base.config.interceptor.RequestLogInterceptor;
 import org.springframework.context.annotation.Configuration;

@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.gt.projects.gpb.base.BaseAPIController;
 import org.gt.projects.gpb.base.BaseAPIResponse;
-import org.gt.projects.gpb.base.BaseException;
 import org.gt.projects.gpb.base.comparable.JsonCompare;
 import org.gt.projects.gpb.utils.CommonUtil;
 import org.gt.projects.gpb.utils.JsonFileUtils;

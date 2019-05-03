@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.gt.projects.gpb.GPBApplication;
-import org.gt.projects.gpb.base.BaseException;
 import org.springframework.boot.ApplicationHome;
 
 import net.sf.json.JSONArray;
